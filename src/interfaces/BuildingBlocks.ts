@@ -39,16 +39,16 @@ export enum Element {
 export enum StatusEffect {
 
   // unique debuffs
-  Curse = 'Curse',
-  Poison = 'Poison',
-  Silence = 'Silence',
-  Stun = 'Stun',
+  Curse = 'Curse',        // outgoing damage reduced, incoming damage increased
+  Poison = 'Poison',      // taking damage every turn
+  Silence = 'Silence',    // cannot use skills
+  Stun = 'Stun',          // cannot act for a turn
 
   // unique buffs
-  Barrier = 'Barrier',
-  Deflect = 'Deflect',
-  Regen = 'Regen',
-  Shield = 'Shield',
+  Barrier = 'Barrier',    // lower incoming magical damage
+  Deflect = 'Deflect',    // negate incoming damage X times
+  Regen = 'Regen',        // heal every turn
+  Shield = 'Shield',      // lower incoming physical damage
 
   // stat buffs
   HPUp = 'HPUp',

@@ -93,6 +93,7 @@ export enum AbilityTarget {
 
   AllEnemies = 'AllEnemies',
   AllAllies = 'AllAllies',
+  AllAlliesAndSelf = 'AllAlliesAndSelf',
 
   AllyIsArcher = 'AllyIsArcher',
   AllyIsNotArcher = 'AllyIsNotArcher',
@@ -142,15 +143,11 @@ export interface IAbilityEffectProps {
   baseValue?: number;                   // the base value of the effect (used for effects that rely on stats)
   baseStat?: Stat;                      // the base stat to scale the ability from
   convertToStat?: Stat;                 // the stat to convert the base stat to
-
   skillName?: string;                   // the skill name to modify
-
+  target?: AbilityTarget;               // the target of the ability (used for effects like leech)
   monsterType?: MonsterType;            // the monster type affected by the ability
-
   statusEffect?: StatusEffect;          // the status effect referenced by the ability
-
   explodeRadius?: number;               // the explode radius of the ability
-
   imbueElement?: Element;               // the element imbued by the ability
   surviveDeathReboundValue?: number;    // the survive HP rebound value
 }
