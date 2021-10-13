@@ -3,7 +3,7 @@
 
 import { Element, Stat, StatusEffect } from './BuildingBlocks';
 
-export enum SkillAttackPattern {
+export enum SkillActionPattern {
   SingleTarget = 'SingleTarget',                    // single target attack
   All = 'All',                                      // all targets
   SmallSquare = 'SmallSquare',                      // 2x2 square
@@ -16,14 +16,15 @@ export enum SkillAttackPattern {
   DiagonalCross = 'DiagonalCross',                  // diagonal line LtR + diagonal line RtL
 }
 
-export interface ISkillAttack {
-  pattern: SkillAttackPattern;                                            // attack pattern
+export interface ISkillAction {
+  pattern: SkillActionPattern;                                            // attack pattern
   castTime: number;                                                       // cast time in round (0 = instant, 1+ = delay)
   element: Element;                                                       // element of the attack
   push: number;                                                           // # of tiles to push the target away from the caster
   pull: number;                                                           // # of tiles to pull the target towards the caster
   statusEffectChanges: Array<{ effect: StatusEffect, value: number }>;    // status effect changes to the target
   statScaling: Record<Stat, number>;                                      // stat scaling of the attack, eg { ATK: 200 } for 200% ATK
+  hits: number;                                                           // the number of hits the attack will do
   dropsTrap: boolean;                                                     // whether the attack drops a trap that does this attack later, as opposed to casting it right away
 }
 
@@ -31,7 +32,8 @@ export interface ISkill {
   name: string;             // name of the skill
   description: string;      // description of the skill
   mpCost: number;           // MP cost of the skill
+  spcCost: number;          // SPC cost of the skill
   cooldown: number;         // cooldown of the skill in rounds
 
-  attacks: ISkillAttack[];  // attack sequence for the skill
+  actions: ISkillAction[];  // attack sequence for the skill
 }

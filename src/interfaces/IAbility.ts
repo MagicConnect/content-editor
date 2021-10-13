@@ -84,6 +84,8 @@ export enum AbilityEffect {
   CastSpeed = 'CastSpeed',
   Overheal = 'Overheal',
 
+  ModifyBaseAbility = 'ModifyBaseAbility'
+
 }
 
 export enum AbilityTarget {

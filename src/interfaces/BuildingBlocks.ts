@@ -76,19 +76,19 @@ export enum StatusEffect {
 }
 
 export enum PrimaryStat {
-  Attack = 'Attack',
-  Defense = 'Defense',
-  Magic = 'Magic',
-  Special = 'Special'
+  Attack = 'attack',
+  Defense = 'defense',
+  Magic = 'magic',
+  Special = 'special'
 }
 
 export enum SecondaryStat {
-  HP = 'HP',
-  MP = 'MP',
-  MeleeEvasion = 'MeleeEvasion',
-  MagicEvasion = 'MagicEvasion',
-  Critical = 'Critical',
-  Accuracy = 'Accuracy'
+  HP = 'hp',
+  MP = 'mp',
+  MeleeEvasion = 'meleeEvasion',
+  MagicEvasion = 'magicEvasion',
+  Critical = 'critical',
+  Accuracy = 'accuracy'
 }
 
 export type Stat = PrimaryStat & SecondaryStat;
