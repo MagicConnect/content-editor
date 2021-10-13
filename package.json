@@ -1,0 +1,20 @@
+{
+  "name": "magicon-content",
+  "version": "1.0.0",
+  "description": "MagiCon! content",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagicConnect/content.git"
+  },
+  "author": "Kyle Kemp <kyle@magic-connect.com>",
+  "bugs": {
+    "url": "https://github.com/MagicConnect/content/issues"
+  },
+  "homepage": "https://github.com/MagicConnect/content#readme",
+  "devDependencies": {
+    "ts-node": "^10.3.0"
+  }
+}
