@@ -80,6 +80,7 @@ export enum AbilityEffect {
   MagicalAttackElement = 'MagicalAttackElement',
 
   SurviveDeath = 'SurviveDeath',
+  AdditionalHit = 'AdditionalHit',
 
   CastSpeed = 'CastSpeed',
   Overheal = 'Overheal',
