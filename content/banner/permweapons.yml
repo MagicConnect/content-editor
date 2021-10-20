@@ -1,0 +1,34 @@
+
+id: permweapons
+name: Weapon Connect!
+description: Permanent weapon banner
+
+# no activeStarts means it's permanent
+
+type: weapons
+
+characters: []
+chips: []
+weapons:
+
+  # 1 stars
+  - name: Iron Axe
+    weight: 1
+
+  - name: Iron Bow
+    weight: 1
+
+  - name: Iron Dagger
+    weight: 1
+
+  - name: Iron Greatsword
+    weight: 1
+
+  - name: Iron Knuckles
+    weight: 1
+
+  - name: Iron Staff
+    weight: 1
+
+  - name: Iron Sword & Shield
+    weight: 1
