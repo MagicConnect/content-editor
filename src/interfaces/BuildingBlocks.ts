@@ -18,12 +18,12 @@ export enum Archetype {
 
 export enum Weapon {
   Axe = 'Axe',
-  Book = 'Book',
   Bow = 'Bow',
   Dagger = 'Dagger',
   Greatsword = 'Greatsword',
   Knuckles = 'Knuckles',
-  Staff = 'Staff'
+  Staff = 'Staff',
+  SwordAndShield = 'SwordAndShield'
 }
 
 export enum Element {
