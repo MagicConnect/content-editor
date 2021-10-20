@@ -6,6 +6,7 @@ export enum MonsterType {
   Humanoid = 'Humanoid',
   Mechanical = 'Mechanical',
   Plant = 'Plant',
+  Undead = 'Undead'
 }
 
 export enum Archetype {
