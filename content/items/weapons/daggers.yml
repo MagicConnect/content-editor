@@ -1,0 +1,58 @@
+
+Knife:
+  description: ""
+  stars: 1
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities: []
+  lbRewards: {}
+
+Dagger:
+  description: ""
+  stars: 2
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities: []
+  lbRewards: {}
+
+Pursestabber:
+  description: ""
+  stars: 3
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities:
+    - name: Humanoid Damager
+      target: Self
+      trigger: Always
+      effects:
+        - value: OutgoingMonsterTypeDamage
+          props: 
+              baseValue: 40
+              monsterType: Humanoid
+              isPercent: true
+
+  lbRewards: {}
+
+Vocal Shredder:
+  description: ""
+  stars: 4
+
+  primaryStat: attack
+  secondaryStat: special
+
+  abilities:
+    - name: Silence Physical Attacker
+      target: Self
+      trigger: Always
+      effects:
+        - value: PhysicalAttackStatusEffect
+          props: 
+              baseValue: 20
+              statusEffect: Silence
+              isPercent: true

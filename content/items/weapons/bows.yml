@@ -1,0 +1,58 @@
+
+Crude Bow:
+  description: ""
+  stars: 1
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities: []
+  lbRewards: {}
+
+Rough Bow:
+  description: ""
+  stars: 2
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities: []
+  lbRewards: {}
+
+Hunter's Bow:
+  description: ""
+  stars: 3
+
+  primaryStat: attack
+  secondaryStat: ""
+
+  abilities:
+    - name: Flying Damager
+      target: Self
+      trigger: Always
+      effects:
+        - value: OutgoingMonsterTypeDamage
+          props: 
+              baseValue: 40
+              monsterType: Flying
+              isPercent: true
+
+  lbRewards: {}
+
+Bow & Poison Arrows:
+  description: ""
+  stars: 4
+
+  primaryStat: attack
+  secondaryStat: magic
+
+  abilities:
+    - name: Poison Physical Attacker
+      target: Self
+      trigger: Always
+      effects:
+        - value: PhysicalAttackStatusEffect
+          props: 
+              baseValue: 20
+              statusEffect: Poison
+              isPercent: true

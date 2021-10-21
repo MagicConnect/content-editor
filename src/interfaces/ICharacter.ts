@@ -1,6 +1,7 @@
 import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
 import { IAbility } from './IAbility';
 import { ISkill } from './ISkill';
+
 export interface ICharacter {
   name: string;                           // character name
   archetype: Archetype;                   // character class/archetype

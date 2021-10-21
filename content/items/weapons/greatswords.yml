@@ -1,0 +1,69 @@
+
+Big Sword:
+  description: ""
+  stars: 1
+
+  primaryStat: attack
+  secondaryStat: defense
+
+  abilities: []
+  lbRewards: {}
+
+Wide Sword:
+  description: ""
+  stars: 2
+
+  primaryStat: attack
+  secondaryStat: defense
+
+  abilities: []
+  lbRewards: {}
+
+Gear Slicer:
+  description: ""
+  stars: 3
+
+  primaryStat: attack
+  secondaryStat: defense
+
+  abilities:
+    - name: Mechanical Damager
+      target: Self
+      trigger: Always
+      effects:
+        - value: OutgoingMonsterTypeDamage
+          props: 
+              baseValue: 40
+              monsterType: Mechanical
+              isPercent: true
+
+  lbRewards: {}
+
+Cauterizer:
+  description: ""
+  stars: 4
+
+  primaryStat: attack
+  secondaryStat: special
+
+  abilities:
+    - name: Fire Damage
+      target: Self
+      trigger: Always
+      effects:
+        - value: OutgoingElementDamage
+          props: 
+              baseValue: 25
+              element: Fire
+              isPercent: true
+
+  lbRewards:
+    3: 
+      abilities:
+        - name: Fire Imbue
+          target: Self
+          trigger: Always
+          effects:
+            - value: PhysicalAttackElement
+              props: 
+                element: Fire

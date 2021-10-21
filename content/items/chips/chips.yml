@@ -1,0 +1,269 @@
+
+
+Special Chip:
+  description: ""
+  stars: 1
+
+  primaryStat: defense
+
+  abilities:
+    - name: 5% Special
+      target: Self
+      trigger: Always
+      effects:
+        - value: SpecialGaugeBoost
+          trigger: OnCombatStart
+          props: 
+              baseValue: 5
+
+Reducer:
+  description: ""
+  stars: 2
+
+  primaryStat: defense
+
+  abilities:
+    - name: Negate 1
+      target: Self
+      trigger: Always
+      effects:
+        - value: NegateDamageInstances
+          props: 
+              baseValue: 1
+
+Magic Enhancer:
+  description: ""
+  stars: 3
+
+  primaryStat: magic
+
+  abilities:
+    - name: Stat +5%
+      target: Self
+      trigger: Always
+      effects:
+        - value: StatBoost
+          props: 
+              baseValue: 5
+              baseStat: magic
+              isPercent: true
+
+Special Enhancer:
+  description: ""
+  stars: 3
+
+  primaryStat: special
+
+  abilities:
+    - name: Stat +5%
+      target: Self
+      trigger: Always
+      effects:
+        - value: StatBoost
+          props: 
+              baseValue: 5
+              baseStat: special
+              isPercent: true
+
+Attack Enhancer:
+  description: ""
+  stars: 3
+
+  primaryStat: attack
+
+  abilities:
+    - name: Stat +5%
+      target: Self
+      trigger: Always
+      effects:
+        - value: StatBoost
+          props: 
+              baseValue: 5
+              baseStat: attack
+              isPercent: true
+
+Defense Enhancer:
+  description: ""
+  stars: 3
+
+  primaryStat: defense
+
+  abilities:
+    - name: Stat +5%
+      target: Self
+      trigger: Always
+      effects:
+        - value: StatBoost
+          props: 
+              baseValue: 5
+              baseStat: defense
+              isPercent: true
+
+Curse Blocker:
+  description: ""
+  stars: 3
+
+  primaryStat: defense
+
+  abilities:
+    - name: Status Resist
+      target: Self
+      trigger: Always
+      effects:
+        - value: ResistStatusEffect
+          props: 
+              baseValue: 5
+              statusEffect: Curse
+              isPercent: true
+
+Poison Blocker:
+  description: ""
+  stars: 3
+
+  primaryStat: defense
+
+  abilities:
+    - name: Status Resist
+      target: Self
+      trigger: Always
+      effects:
+        - value: ResistStatusEffect
+          props: 
+              baseValue: 5
+              statusEffect: Poison
+              isPercent: true
+
+Silence Blocker:
+  description: ""
+  stars: 3
+
+  primaryStat: defense
+
+  abilities:
+    - name: Status Resist
+      target: Self
+      trigger: Always
+      effects:
+        - value: ResistStatusEffect
+          props: 
+              baseValue: 5
+              statusEffect: Silence
+              isPercent: true
+
+Stun Blocker:
+  description: ""
+  stars: 3
+
+  primaryStat: defense
+
+  abilities:
+    - name: Status Resist
+      target: Self
+      trigger: Always
+      effects:
+        - value: ResistStatusEffect
+          props: 
+              baseValue: 5
+              statusEffect: Stun
+              isPercent: true
+
+Blazing Phoenix:
+  description: ""
+  stars: 4
+
+  primaryStat: defense
+
+  abilities:
+    - name: Fire Damage
+      target: Self
+      trigger: Always
+      effects:
+        - value: OutgoingElementDamage
+          props: 
+              baseValue: 25
+              element: Fire
+              isPercent: true
+
+  lbRewards:
+    3: 
+      abilities:
+        - name: Death Heal
+          target: AllAllies
+          trigger: Always
+          effects:
+            - value: StatBoost
+              props: 
+                baseValue: 100
+                baseStat: hp
+
+Faster Caster:
+  description: ""
+  stars: 4
+
+  primaryStat: magic
+
+  abilities:
+    - name: Cast Speed-
+      target: Self
+      trigger: Always
+      effects:
+        - value: CastSpeed
+          props: 
+              baseValue: -1
+
+  lbRewards:
+    3: 
+      abilities:
+        - name: Cast Cooldown-
+          target: Self
+          trigger: Always
+          effects:
+            - value: CooldownReduction
+              props: 
+                  baseValue: -1
+
+Silent Striker:
+  description: ""
+  stars: 4
+
+  primaryStat: attack
+
+  abilities:
+    - name: Silence Physical Attacker
+      target: Self
+      trigger: Always
+      effects:
+        - value: PhysicalAttackStatusEffect
+          props: 
+              baseValue: 10
+              statusEffect: Silence
+              isPercent: true
+
+  lbRewards:
+    3: 
+      abilities:
+        - name: Status Resist
+          target: Self
+          trigger: Always
+          effects:
+            - value: ResistStatusEffect
+              props: 
+                  baseValue: 10
+                  statusEffect: Silence
+                  isPercent: true
+
+Special Striker:
+  description: ""
+  stars: 4
+
+  primaryStat: special
+
+  abilities:
+    - name: Special On Hit
+      target: Self
+      trigger: Always
+      effects:
+        - value: SpecialGaugeLeech
+          props: 
+              baseValue: 1
+              isPercent: true

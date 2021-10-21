@@ -30,6 +30,7 @@ export enum AbilityEffect {
   MPRegen = 'MPRegen',
   HPLeech = 'HPLeech',
   MPLeech = 'MPLeech',
+  SpecialGaugeBoost = 'SpecialGaugeBoost',
   SpecialGaugeRegen = 'SpecialGaugeRegen',
   SpecialGaugeLeech = 'SpecialGaugeLeech',
 
@@ -149,7 +150,7 @@ export interface IAbilityEffectProps {
   monsterType?: MonsterType;            // the monster type affected by the ability
   statusEffect?: StatusEffect;          // the status effect referenced by the ability
   explodeRadius?: number;               // the explode radius of the ability
-  imbueElement?: Element;               // the element imbued by the ability
+  element?: Element;                    // the element imbued by the ability
   surviveDeathReboundValue?: number;    // the survive HP rebound value
 }
 
