@@ -127,7 +127,7 @@ specialSkill:
   name: Burst Breath
   description: Breathe darkness on your foes, dealing massive damage.
   mpCost: 0
-  spcCost: 100
+  spcCost: 25
   cooldown: 5
   actions:
     - pattern: All

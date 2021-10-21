@@ -124,7 +124,7 @@ specialSkill:
   name: Yggdrasil
   description: All allies are healed and get a defense buff.
   mpCost: 0
-  spcCost: 100
+  spcCost: 25
   cooldown: 5
   actions:
     - pattern: All
