@@ -1,7 +1,9 @@
-import { MonsterType, Stat, StatusEffect } from './BuildingBlocks';
+import { Element, MonsterType, Stat, StatusEffect } from './BuildingBlocks';
 
 // enums for abilities
 export enum AbilityTrigger {
+  Always = 'Always',
+
   OnSelfDeath = 'OnSelfDeath',
   OnAllyDeath = 'OnAllyDeath',
   OnEnemyDeath = 'OnEnemyDeath',
@@ -111,8 +113,6 @@ export enum AbilityTarget {
 }
 
 export enum AbilityCondition {
-  Always = 'Always',
-
   AboveHP = 'AboveHP',
   BelowHP = 'BelowHP',
   AboveMP = 'AboveMP',

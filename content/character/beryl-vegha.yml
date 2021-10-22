@@ -131,6 +131,7 @@ specialSkill:
   cooldown: 5
   actions:
     - pattern: All
+      validTargets: Enemies
       element: Dark
       statScaling:
         magic: 250
