@@ -28,14 +28,14 @@ Holy Rod:
 
   abilities:
     - name: Celestial Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Celestial
-              isPercent: true
+            baseValue: 40
+            monsterType: Celestial
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,22 +48,22 @@ Cursed Relic:
 
   abilities:
     - name: Curse Physical Attacker
-      target: Self
       trigger: Always
       effects:
         - value: PhysicalAttackStatusEffect
+          target: Self
           props: 
-              baseValue: 10
-              statusEffect: Curse
-              isPercent: true
+            baseValue: 10
+            statusEffect: Curse
+            isPercent: true
 
   lbRewards:
     3: 
       abilities:
         - name: Dark Imbue
-          target: Self
           trigger: Always
           effects:
             - value: MagicalAttackElement
+              target: Self
               props: 
                 element: Dark

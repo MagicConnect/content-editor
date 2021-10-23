@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorage } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend';
+
+  @LocalStorage() currentPage = 'chip';
+
+  pages = ['banner', 'character', 'chip', 'enemy', 'event', 'weapon']
+
+  save() {
+    console.log('save');
+  }
+
 }

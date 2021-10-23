@@ -28,14 +28,14 @@ Sharp Axe:
 
   abilities:
     - name: Plant Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Plant
-              isPercent: true
+            baseValue: 40
+            monsterType: Plant
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,23 +48,23 @@ Silver Axe:
 
   abilities:
     - name: Undead Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 20
-              monsterType: Undead
-              isPercent: true
+            baseValue: 20
+            monsterType: Undead
+            isPercent: true
 
   lbRewards:
     3: 
       abilities:
         - name: AoE Damager
-          target: Self
           trigger: Always
           effects:
             - value: DamageBoostMultiTarget
+              target: Self
               props: 
-                  baseValue: 20
-                  isPercent: true
+                baseValue: 20
+                isPercent: true

@@ -1,0 +1,25 @@
+
+<fieldset class="border border-dark p-3">
+  <legend>Base Details</legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3">
+  <legend>
+    Abilities
+
+    <button class="btn btn-primary btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 3">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.abilities.length === 0">No abilities created.</div>
+
+  <app-ability-form *ngFor="let ability of model.abilities; let i = index"
+                    (remove)="removeAbility(i)"
+                    [model]="ability"
+                    [index]="i"></app-ability-form>
+</fieldset>

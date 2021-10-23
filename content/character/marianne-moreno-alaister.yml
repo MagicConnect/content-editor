@@ -35,29 +35,29 @@ levelStats:
 
 abilities:
   - name: Live Longer!
-    target: Self
     trigger: Always
     effects:
       - value: Overheal
+        target: Self
         props: 
             baseValue: 15
             isPercent: true
 
   - name: Will to Survive
-    target: Self
     trigger: Always
     effects:
       - value: SurviveDeath
+        target: Self
         props: 
             baseValue: 20
             isPercent: true
             surviveDeathReboundValue: 50
 
   - name: Radiant Glow
-    target: AllAllies
     trigger: OnRoundStart
     effects:
       - value: StatBoost
+        target: AllAllies
         props: 
             baseValue: 1
             baseStat: hp
@@ -167,20 +167,20 @@ lbRewards:
   abilities:
     3:
       - name: Live Longer!
-        target: Self
         trigger: Always
         effects:
           - value: Overheal
+            target: Self
             props: 
                 baseValue: 25
                 isPercent: true
 
     6:
       - name: Will to Survive
-        target: Self
         trigger: Always
         effects:
           - value: SurviveDeath
+            target: Self
             props: 
                 baseValue: 15
                 isPercent: true
@@ -188,10 +188,10 @@ lbRewards:
 
     10: 
       - name: Radiant Glow
-        target: AllAllies
         trigger: OnRoundStart
         effects:
           - value: StatBoost
+            target: AllAllies
             props: 
                 baseValue: 3
                 baseStat: hp

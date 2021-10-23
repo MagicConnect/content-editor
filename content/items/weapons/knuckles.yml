@@ -28,14 +28,14 @@ Bugsmasher:
 
   abilities:
     - name: Bug Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Bug
-              isPercent: true
+            baseValue: 40
+            monsterType: Bug
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,24 +48,24 @@ Brass Knuckles:
 
   abilities:
     - name: Stun Physical Attacker
-      target: Self
       trigger: Always
       effects:
         - value: PhysicalAttackStatusEffect
+          target: Self
           props: 
-              baseValue: 10
-              statusEffect: Stun
-              isPercent: true
+            baseValue: 10
+            statusEffect: Stun
+            isPercent: true
 
   lbRewards:
     3: 
       abilities:
         - name: Evade Up
-          target: Self
           trigger: Always
           effects:
             - value: StatBoost
+              target: Self
               props: 
-                  baseValue: 5
-                  baseStat: meleeEvasion
-                  isPercent: true
+                baseValue: 5
+                baseStat: meleeEvasion
+                isPercent: true

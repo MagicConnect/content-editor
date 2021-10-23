@@ -28,14 +28,14 @@ Holy Slicer:
 
   abilities:
     - name: Undead Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Undead
-              isPercent: true
+            baseValue: 40
+            monsterType: Undead
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,40 +48,43 @@ Defender:
 
   abilities:
     - name: Negate 3
-      target: Self
       trigger: Always
       effects:
         - value: NegateDamageInstances
+          target: Self
           props: 
-              baseValue: 3
+            baseValue: 3
 
   lbRewards:
     3: 
       abilities:
         - name: Resist All
-          target: Self
           trigger: Always
           effects:
             - value: ResistStatusEffect
+              target: Self
               props: 
-                  baseValue: 25
-                  statusEffect: Curse
-                  isPercent: true
+                baseValue: 25
+                statusEffect: Curse
+                isPercent: true
 
             - value: ResistStatusEffect
+              target: Self
               props: 
-                  baseValue: 25
-                  statusEffect: Poison
-                  isPercent: true
+                baseValue: 25
+                statusEffect: Poison
+                isPercent: true
 
             - value: ResistStatusEffect
+              target: Self
               props: 
-                  baseValue: 25
-                  statusEffect: Silence
-                  isPercent: true
+                baseValue: 25
+                statusEffect: Silence
+                isPercent: true
 
             - value: ResistStatusEffect
+              target: Self
               props: 
-                  baseValue: 25
-                  statusEffect: Stun
-                  isPercent: true
+                baseValue: 25
+                statusEffect: Stun
+                isPercent: true

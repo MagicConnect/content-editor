@@ -28,14 +28,14 @@ Pursestabber:
 
   abilities:
     - name: Humanoid Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Humanoid
-              isPercent: true
+            baseValue: 40
+            monsterType: Humanoid
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,11 +48,11 @@ Vocal Shredder:
 
   abilities:
     - name: Silence Physical Attacker
-      target: Self
       trigger: Always
       effects:
         - value: PhysicalAttackStatusEffect
+          target: Self
           props: 
-              baseValue: 20
-              statusEffect: Silence
-              isPercent: true
+            baseValue: 20
+            statusEffect: Silence
+            isPercent: true

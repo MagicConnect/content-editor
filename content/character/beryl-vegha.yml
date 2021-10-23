@@ -35,10 +35,10 @@ levelStats:
 
 abilities:
   - name: Hivemind
-    target: Self
     trigger: Always
     effects:
       - value: StatBoost
+        target: Self
         props: 
             baseValue: 30
             baseStat: magic
@@ -50,19 +50,19 @@ abilities:
             isPercent: true
 
   - name: Calm Mind
-    target: Self
     trigger: Always
     effects:
       - value: ModifyBaseAbility
+        target: Self
         props: 
             skillName: Meditate
             baseValue: 20
 
   - name: Strong Mind
-    target: Self
     trigger: Always
     effects:
       - value: ConvertStat
+        target: Self
         props: 
             baseValue: 20
             baseStat: attack
@@ -161,41 +161,41 @@ lbRewards:
   abilities:
     3:
       - name: Hivemind
-        target: Self
         trigger: Always
         effects:
           - value: StatBoost
+            target: Self
             props: 
-                baseValue: 30
-                baseStat: magic
-                isPercent: true
+              baseValue: 30
+              baseStat: magic
+              isPercent: true
         conditions:
           - value: AboveHP
             props:
-                hpValue: 70
-                isPercent: true
+              hpValue: 70
+              isPercent: true
 
     6:
       - name: Calm Mind
-        target: Self
         trigger: Always
         effects:
           - value: ModifyBaseAbility
+            target: Self
             props: 
-                skillName: Meditate
-                baseValue: 30
-              - value: AboveHP
+              skillName: Meditate
+              baseValue: 30
+          - value: AboveHP
             props:
-                hpValue: 70
-                isPercent: true
+              hpValue: 70
+              isPercent: true
 
     10: 
       - name: Strong Mind
-        target: Self
         trigger: Always
         effects:
           - value: ConvertStat
+            target: Self
             props: 
-                baseValue: 40
-                baseStat: attack
-                convertToStat: magic
+              baseValue: 40
+              baseStat: attack
+              convertToStat: magic

@@ -28,14 +28,14 @@ Hunter's Bow:
 
   abilities:
     - name: Flying Damager
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingMonsterTypeDamage
+          target: Self
           props: 
-              baseValue: 40
-              monsterType: Flying
-              isPercent: true
+            baseValue: 40
+            monsterType: Flying
+            isPercent: true
 
   lbRewards: {}
 
@@ -48,11 +48,11 @@ Bow & Poison Arrows:
 
   abilities:
     - name: Poison Physical Attacker
-      target: Self
       trigger: Always
       effects:
         - value: PhysicalAttackStatusEffect
+          target: Self
           props: 
-              baseValue: 20
-              statusEffect: Poison
-              isPercent: true
+            baseValue: 20
+            statusEffect: Poison
+            isPercent: true
