@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, PrimaryStat, SecondaryStat, Stat, StatusEffect } from '../../../../../interfaces';
@@ -8,7 +8,7 @@ import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, Pri
   templateUrl: './ability-effect-form.component.html',
   styleUrls: ['./ability-effect-form.component.scss']
 })
-export class AbilityEffectFormComponent implements OnInit {
+export class AbilityEffectFormComponent {
 
   @Input() index = -1;
   @Output() remove = new EventEmitter();
@@ -229,8 +229,5 @@ export class AbilityEffectFormComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

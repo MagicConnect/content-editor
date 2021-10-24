@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 
@@ -7,7 +7,7 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent {
 
   @Output() save = new EventEmitter();
 
@@ -135,8 +135,5 @@ export class CharacterComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

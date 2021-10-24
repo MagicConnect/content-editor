@@ -18,6 +18,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { AbilityFormComponent } from './components/ability-form/ability-form.component';
 import { AbilityEffectFormComponent } from './components/ability-effect-form/ability-effect-form.component';
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
+import { LbFormComponent } from './components/lb-form/lb-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AbilityConditionFormComponent } from './components/ability-condition-fo
     ChipComponent,
     AbilityFormComponent,
     AbilityEffectFormComponent,
-    AbilityConditionFormComponent
+    AbilityConditionFormComponent,
+    LbFormComponent
   ],
   imports: [
     BrowserModule,

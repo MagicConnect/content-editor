@@ -1,6 +1,4 @@
 
-// pattern
-
 import { Element, Stat, StatusEffect } from './BuildingBlocks';
 
 export enum SkillValidTargets {

@@ -1,3 +1,4 @@
+import { ILimitBreak } from './ILimitBreak';
 import { PrimaryStat, SecondaryStat } from './BuildingBlocks';
 import { IAbility } from './IAbility';
 
@@ -10,8 +11,5 @@ export interface IWeapon {
 
   abilities: IAbility[];                  // weapon base abilities (un-upgraded)   
 
-  lbRewards: Record<number, {             // rewards gained for a specific LB (can change stats, abilities, attacks, etc)
-    abilities: Record<number, IAbility[]> // abilities changed for the earned LB
-    stats: Record<PrimaryStat, number>    // stats changed for the earned LB
-  }>;
+  lbRewards: ILimitBreak;                 // weapon limit break rewards
 }

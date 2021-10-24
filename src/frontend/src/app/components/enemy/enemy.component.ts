@@ -1,17 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-enemy',
   templateUrl: './enemy.component.html',
   styleUrls: ['./enemy.component.scss']
 })
-export class EnemyComponent implements OnInit {
+export class EnemyComponent {
 
   @Output() save = new EventEmitter();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

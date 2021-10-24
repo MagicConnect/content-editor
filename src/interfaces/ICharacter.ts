@@ -1,3 +1,4 @@
+import { ILimitBreak } from '.';
 import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
 import { IAbility } from './IAbility';
 import { ISkill } from './ISkill';
@@ -16,9 +17,5 @@ export interface ICharacter {
   skills: ISkill[];                       // character skills
   specialSkill: ISkill;                   // character special ability
 
-  lbRewards: Record<number, {             // rewards gained for a specific LB (can change stats, abilities, attacks, etc)
-    abilities: Record<number, IAbility[]> // abilities changed for the earned LB
-    skills: Record<number, ISkill[]>      // skills changed for the earned LB
-    stats: Record<Stat, number>           // stats changed for the earned LB
-  }>;
+  lbRewards: ILimitBreak;                 // rewards gained for a specific LB (can change stats, abilities, attacks, etc)
 }

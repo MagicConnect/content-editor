@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AbilityTrigger, IAbility } from '../../../../../interfaces';
@@ -8,7 +8,7 @@ import { AbilityTrigger, IAbility } from '../../../../../interfaces';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss']
 })
-export class ChipComponent implements OnInit {
+export class ChipComponent {
 
   @Output() save = new EventEmitter();
 
@@ -20,7 +20,12 @@ export class ChipComponent implements OnInit {
     stars: 1,
     primaryStat: undefined,
 
-    abilities: []
+    abilities: [],
+
+    lbRewards: {
+      abilities: {},
+      stats: {}
+    }
   };
 
   options: FormlyFormOptions = {};
@@ -93,9 +98,6 @@ export class ChipComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   addAbility() {
     (this.model.abilities as IAbility[]).push({

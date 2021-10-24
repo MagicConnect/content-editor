@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
@@ -9,7 +9,7 @@ import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbilit
   templateUrl: './ability-form.component.html',
   styleUrls: ['./ability-form.component.scss']
 })
-export class AbilityFormComponent implements OnInit {
+export class AbilityFormComponent {
 
   @Input() index = -1;
   @Output() remove = new EventEmitter();
@@ -58,9 +58,6 @@ export class AbilityFormComponent implements OnInit {
   ];
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   addCondition() {
     this.model.conditions.push({ value: AbilityCondition.None, props: {} });
