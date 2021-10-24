@@ -21,6 +21,7 @@
     "@angular/router": "~12.2.0",
     "@ngx-formly/bootstrap": "^5.0.0",
     "@ngx-formly/core": "^5.0.0",
+    "@swimlane/ngx-datatable": "^20.0.0",
     "bootstrap": "^4.5.3",
     "ngx-bootstrap": "^7.1.0",
     "ngx-webstorage": "^8.0.0",

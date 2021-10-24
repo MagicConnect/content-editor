@@ -24,6 +24,7 @@ import { AbilityEffectFormComponent } from './components/ability-effect-form/abi
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
 import { LbFormComponent } from './components/lb-form/lb-form.component';
 import { StatsFormComponent } from './components/stats-form/stats-form.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,14 @@ import { StatsFormComponent } from './components/stats-form/stats-form.component
     FormlyBootstrapModule,
     BrowserAnimationsModule,
     ButtonsModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgxDatatableModule.forRoot({
+      messages: {
+        emptyMessage: 'No data to display',
+        totalMessage: 'total',
+        selectedMessage: 'selected'
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
