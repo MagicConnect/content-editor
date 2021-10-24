@@ -23,6 +23,7 @@ import { AbilityFormComponent } from './components/ability-form/ability-form.com
 import { AbilityEffectFormComponent } from './components/ability-effect-form/ability-effect-form.component';
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
 import { LbFormComponent } from './components/lb-form/lb-form.component';
+import { StatsFormComponent } from './components/stats-form/stats-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LbFormComponent } from './components/lb-form/lb-form.component';
     AbilityFormComponent,
     AbilityEffectFormComponent,
     AbilityConditionFormComponent,
-    LbFormComponent
+    LbFormComponent,
+    StatsFormComponent
   ],
   imports: [
     BrowserModule,
