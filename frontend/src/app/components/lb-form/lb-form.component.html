@@ -1,7 +1,5 @@
 
 <div class="row">
-  <div class="col-1"></div>
-
   <div class="col-10">
     <ul class="nav nav-pills nav-fill">
       <li class="nav-item mx-1" *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
@@ -15,11 +13,64 @@
     </ul>
   </div>
 
-  <div class="col-1"></div>
+  <div class="col-2">
+    <button class="btn btn-info" (click)="addAbility.emit(activeLB)">Add Ability</button>
+  </div>
 </div>
 
-<div class="row">
+<div class="row mt-3">
   <div class="col" *ngIf="allowAbilities">
-    {{ activeLB }} {{ model | json }}
+
+    <tabset [justified]="true">
+
+      <tab *ngIf="allowAbilities" class="pt-3">
+
+        <ng-template tabHeading>
+          Abilities
+
+          <span class="badge badge-secondary bg-secondary" *ngIf="model.abilities[activeLB]">
+            {{ model.abilities[activeLB].length }}
+          </span>
+        </ng-template>
+
+        <div class="text-center mw-100 p-3 m-3" *ngIf="!model.abilities[activeLB] || model.abilities[activeLB].length === 0">
+          No abilities for LB {{ activeLB + 1 }}.
+        </div>
+
+        <app-ability-form *ngFor="let ability of model.abilities[activeLB]; let i = index"
+                          (remove)="removeLBAbility(i)"
+                          [model]="ability"
+                          [index]="i"></app-ability-form>
+
+      </tab>
+
+      <tab *ngIf="allowStats" class="pt-3">
+
+        <ng-template tabHeading>
+          Stats
+        </ng-template>
+
+        <div class="text-center mw-100 p-3 m-3">
+          No stats for LB {{ activeLB + 1 }}.
+        </div>
+
+      </tab>
+
+      <tab *ngIf="allowSkills" class="pt-3">
+
+        <ng-template tabHeading>
+          Skills
+
+          <span class="badge badge-secondary bg-secondary" *ngIf="model.skills[activeLB]">
+            {{ model.skills[activeLB].length }}
+          </span>
+        </ng-template>
+
+        <div class="text-center mw-100 p-3 m-3" *ngIf="!model.skills[activeLB] || model.skills[activeLB].length === 0">
+          No skills for LB {{ activeLB + 1 }}.
+        </div>
+      </tab>
+
+    </tabset>
   </div>
 </div>

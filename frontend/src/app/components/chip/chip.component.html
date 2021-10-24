@@ -11,7 +11,7 @@
   <legend>
     Abilities
 
-    <button class="btn btn-primary btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 3">
+    <button class="btn btn-info btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 3">
       Add
     </button>
   </legend>
@@ -29,6 +29,6 @@
     Limit Break Rewards
   </legend>
 
-  <app-lb-form [model]="model.lbRewards" [allowAbilities]="true"></app-lb-form>
+  <app-lb-form [model]="model.lbRewards" [allowAbilities]="true" [allowStats]="true" (addAbility)="addLBAbility($event)"></app-lb-form>
 
 </fieldset>

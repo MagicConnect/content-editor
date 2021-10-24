@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityTrigger, IAbility } from '../../../../../shared/interfaces';
+import { AbilityTrigger, IAbility, IChip, PrimaryStat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-chip',
@@ -14,17 +14,18 @@ export class ChipComponent {
 
   form = new FormGroup({});
 
-  model = {
+  model: IChip = {
     name: '',
     description: '',
     stars: 1,
-    primaryStat: undefined,
+    primaryStat: PrimaryStat.Defense,
 
     abilities: [],
 
     lbRewards: {
       abilities: {},
-      stats: {}
+      stats: {},
+      skills: {}
     }
   };
 
@@ -111,6 +112,19 @@ export class ChipComponent {
 
   removeAbility(index: number) {
     this.model.abilities.splice(index, 1);
+  }
+
+  addLBAbility(lb: number) {
+    const abilities = this.model.lbRewards.abilities[lb] ?? [];
+    this.model.lbRewards.abilities[lb] = abilities;
+
+    abilities.push({
+      name: '',
+      trigger: AbilityTrigger.Always,
+
+      effects: [],
+      conditions: []
+    });
   }
 
 }

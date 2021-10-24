@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ILimitBreak, Stat } from '../../../../../shared/interfaces';
 
 @Component({
@@ -18,6 +18,8 @@ export class LbFormComponent {
   @Input() allowStats = false;
   @Input() allowSkills = false;
 
+  @Output() addAbility = new EventEmitter();
+
   public activeLB = 0;
 
   constructor() { }
@@ -26,6 +28,12 @@ export class LbFormComponent {
     const stats: Record<Stat, number> = this.model.stats || {};
     if(!stats) return false;
     return (Object.values(stats) as number[]).some(val => val > 0);
+  }
+
+  removeLBAbility(index: number) {
+    if(this.model.abilities[this.activeLB]) return;
+
+    this.model.abilities[this.activeLB].splice(index, 1);
   }
 
 }
