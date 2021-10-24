@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, PrimaryStat, SecondaryStat, Stat, StatusEffect } from '../../../../../interfaces';
+import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, PrimaryStat, SecondaryStat, StatusEffect } from '../../../../../shared/interfaces';
+
 
 @Component({
   selector: 'app-ability-effect-form',

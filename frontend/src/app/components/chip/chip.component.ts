@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityTrigger, IAbility } from '../../../../../interfaces';
+import { AbilityTrigger, IAbility } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-chip',

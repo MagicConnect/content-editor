@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
-import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbility } from '../../../../../interfaces';
+import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbility } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-ability-form',

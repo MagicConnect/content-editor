@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ILimitBreak, Stat } from '../../../../../interfaces';
+import { ILimitBreak, Stat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-lb-form',
