@@ -7,7 +7,7 @@
   </form>
 </fieldset>
 
-<fieldset class="border border-dark p-3 mt-3">
+<fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>
     Abilities
 
@@ -24,11 +24,13 @@
                     [index]="i"></app-ability-form>
 </fieldset>
 
-<fieldset class="border border-dark p-3 mt-3">
+<fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>
     Limit Break Rewards
   </legend>
 
-  <app-lb-form [model]="model.lbRewards" [allowAbilities]="true" [allowStats]="true" (addAbility)="addLBAbility($event)"></app-lb-form>
-
+  <app-lb-form [model]="model.lbRewards"
+               [allowAbilities]="true"
+               [allowStats]="true"
+               (addAbility)="addLBAbility($event)"></app-lb-form>
 </fieldset>

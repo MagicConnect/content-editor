@@ -1,7 +1,34 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityTrigger, IAbility, IChip, PrimaryStat } from '../../../../../shared/interfaces';
+import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
+
+const newChip: () => IChip = () => ({
+  name: '',
+  description: '',
+  stars: 1,
+  primaryStat: PrimaryStat.Defense,
+
+  abilities: [],
+
+  lbRewards: {
+    abilities: {},
+    stats: {
+      [PrimaryStat.Attack]: 0,
+      [PrimaryStat.Defense]: 0,
+      [PrimaryStat.Magic]: 0,
+      [PrimaryStat.Special]: 0,
+
+      [SecondaryStat.Accuracy]: 0,
+      [SecondaryStat.Critical]: 0,
+      [SecondaryStat.HP]: 0,
+      [SecondaryStat.MP]: 0,
+      [SecondaryStat.MagicEvasion]: 0,
+      [SecondaryStat.MeleeEvasion]: 0,
+    },
+    skills: {}
+  }
+});
 
 @Component({
   selector: 'app-chip',
@@ -14,20 +41,7 @@ export class ChipComponent {
 
   form = new FormGroup({});
 
-  model: IChip = {
-    name: '',
-    description: '',
-    stars: 1,
-    primaryStat: PrimaryStat.Defense,
-
-    abilities: [],
-
-    lbRewards: {
-      abilities: {},
-      stats: {},
-      skills: {}
-    }
-  };
+  model: IChip = newChip();
 
   options: FormlyFormOptions = {};
 
@@ -69,10 +83,10 @@ export class ChipComponent {
             description: 'Primary stat is the only stat boosted by chips.',
             required: true,
             options: [
-              { value: 'Attack',  label: 'Attack' },
-              { value: 'Defense', label: 'Defense' },
-              { value: 'Magic',   label: 'Magic' },
-              { value: 'Special', label: 'Special'  },
+              { value: 'attack',  label: 'Attack' },
+              { value: 'defense', label: 'Defense' },
+              { value: 'magic',   label: 'Magic' },
+              { value: 'special', label: 'Special'  },
             ],
           },
         },

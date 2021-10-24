@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col-10">
+  <div class="col-12">
     <ul class="nav nav-pills nav-fill">
       <li class="nav-item mx-1" *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
         <a class="nav-link" [class.active]="x === activeLB">
@@ -12,10 +12,6 @@
       </li>
     </ul>
   </div>
-
-  <div class="col-2">
-    <button class="btn btn-info" (click)="addAbility.emit(activeLB)">Add Ability</button>
-  </div>
 </div>
 
 <div class="row mt-3">
@@ -23,7 +19,7 @@
 
     <tabset [justified]="true">
 
-      <tab *ngIf="allowAbilities" class="pt-3">
+      <tab *ngIf="allowAbilities" class="pt-3" #tabAbilities="tab">
 
         <ng-template tabHeading>
           Abilities
@@ -31,6 +27,8 @@
           <span class="badge badge-secondary bg-secondary" *ngIf="model.abilities[activeLB]">
             {{ model.abilities[activeLB].length }}
           </span>
+
+          <button class="btn btn-info btn-sm btn-in-tab ml-2" (click)="addAbility.emit(activeLB)" *ngIf="tabAbilities.active">+</button>
         </ng-template>
 
         <div class="text-center mw-100 p-3 m-3" *ngIf="!model.abilities[activeLB] || model.abilities[activeLB].length === 0">
@@ -44,7 +42,7 @@
 
       </tab>
 
-      <tab *ngIf="allowStats" class="pt-3">
+      <tab *ngIf="allowStats" class="pt-3" #tabStats="tab">
 
         <ng-template tabHeading>
           Stats
@@ -56,7 +54,7 @@
 
       </tab>
 
-      <tab *ngIf="allowSkills" class="pt-3">
+      <tab *ngIf="allowSkills" class="pt-3" #tabSkills="tab">
 
         <ng-template tabHeading>
           Skills
