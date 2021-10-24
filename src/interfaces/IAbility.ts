@@ -130,8 +130,8 @@ export enum AbilityCondition {
   SelfStatusEffect = 'SelfStatusEffect',
   SelfNoStatusEffect = 'SelfNoStatusEffect',
 
-  FirstCharacters = 'FirstCharacters',
-  NotFirstCharacters = 'NotFirstCharacters',
+  FirstCharacters = 'FirstCharacters',          // the "first characters" seen by the enemies, ie, frontliners
+  NotFirstCharacters = 'NotFirstCharacters',    // the back row characters, "defended" by the rest
 
   ArchersInParty = 'ArchersInParty',
   AttackersInParty = 'AttackersInParty',
