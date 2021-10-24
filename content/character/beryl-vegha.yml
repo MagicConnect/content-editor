@@ -52,7 +52,7 @@ abilities:
   - name: Calm Mind
     trigger: Always
     effects:
-      - value: ModifyBaseAbility
+      - value: ModifyBaseSkill
         target: Self
         props: 
             skillName: Meditate
@@ -179,7 +179,7 @@ lbRewards:
       - name: Calm Mind
         trigger: Always
         effects:
-          - value: ModifyBaseAbility
+          - value: ModifyBaseSkill
             target: Self
             props: 
               skillName: Meditate

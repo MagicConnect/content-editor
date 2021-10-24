@@ -37,12 +37,11 @@ export enum AbilityEffect {
   SpecialGaugeRegen = 'SpecialGaugeRegen',
   SpecialGaugeLeech = 'SpecialGaugeLeech',
 
-  MagicEvasion = 'MagicEvasion',
-  PhysicalEvasion = 'PhysicalEvasion',
-
   CooldownReduction = 'CooldownReduction',
 
   // damage related
+  Counterattack = 'Counterattack', 
+  
   OutgoingStatDamage = 'OutgoingStatDamage',
   IncomingStatDamage = 'IncomingStatDamage',
 
@@ -73,10 +72,10 @@ export enum AbilityEffect {
   StatusEffectDuration = 'StatusEffectDuration',
 
   // explosion
-  BasicAttackExplodes = 'BasicAttackExplodes',
-  PhysicalAttackExplodes = 'PhysicalAttackExplodes',
-  MagicalAttackExplodes = 'MagicalAttackExplodes',
-  SkillExplodes = 'SkillExplodes',
+  // BasicAttackExplodes = 'BasicAttackExplodes',
+  // PhysicalAttackExplodes = 'PhysicalAttackExplodes',
+  // MagicalAttackExplodes = 'MagicalAttackExplodes',
+  // SkillExplodes = 'SkillExplodes',
 
   // misc
   PhysicalAttackElement = 'PhysicalAttackElement',
@@ -88,7 +87,7 @@ export enum AbilityEffect {
   CastSpeed = 'CastSpeed',
   Overheal = 'Overheal',
 
-  ModifyBaseAbility = 'ModifyBaseAbility'
+  ModifyBaseSkill = 'ModifyBaseSkill'
 
 }
 
@@ -154,7 +153,7 @@ export interface IAbilityEffectProps {
   skillName?: string;                   // the skill name to modify
   monsterType?: MonsterType;            // the monster type affected by the ability
   statusEffect?: StatusEffect;          // the status effect referenced by the ability
-  explodeRadius?: number;               // the explode radius of the ability
+  // explodeRadius?: number;               // the explode radius of the ability
   element?: Element;                    // the element imbued by the ability
   surviveDeathReboundValue?: number;    // the survive HP rebound value
 }
