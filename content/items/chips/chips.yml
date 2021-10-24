@@ -8,13 +8,13 @@ Special Chip:
 
   abilities:
     - name: 5% Special
-      target: Self
       trigger: Always
       effects:
         - value: SpecialGaugeBoost
+          target: Self
           trigger: OnCombatStart
           props: 
-              baseValue: 5
+            baseValue: 5
 
 Reducer:
   description: ""
@@ -24,12 +24,12 @@ Reducer:
 
   abilities:
     - name: Negate 1
-      target: Self
       trigger: Always
       effects:
         - value: NegateDamageInstances
+          target: Self
           props: 
-              baseValue: 1
+            baseValue: 1
 
 Magic Enhancer:
   description: ""
@@ -39,14 +39,14 @@ Magic Enhancer:
 
   abilities:
     - name: Stat +5%
-      target: Self
       trigger: Always
       effects:
         - value: StatBoost
+          target: Self
           props: 
-              baseValue: 5
-              baseStat: magic
-              isPercent: true
+            baseValue: 5
+            baseStat: magic
+            isPercent: true
 
 Special Enhancer:
   description: ""
@@ -56,14 +56,14 @@ Special Enhancer:
 
   abilities:
     - name: Stat +5%
-      target: Self
       trigger: Always
       effects:
         - value: StatBoost
+          target: Self
           props: 
-              baseValue: 5
-              baseStat: special
-              isPercent: true
+            baseValue: 5
+            baseStat: special
+            isPercent: true
 
 Attack Enhancer:
   description: ""
@@ -73,14 +73,14 @@ Attack Enhancer:
 
   abilities:
     - name: Stat +5%
-      target: Self
       trigger: Always
       effects:
         - value: StatBoost
+          target: Self
           props: 
-              baseValue: 5
-              baseStat: attack
-              isPercent: true
+            baseValue: 5
+            baseStat: attack
+            isPercent: true
 
 Defense Enhancer:
   description: ""
@@ -90,14 +90,14 @@ Defense Enhancer:
 
   abilities:
     - name: Stat +5%
-      target: Self
       trigger: Always
       effects:
         - value: StatBoost
+          target: Self
           props: 
-              baseValue: 5
-              baseStat: defense
-              isPercent: true
+            baseValue: 5
+            baseStat: defense
+            isPercent: true
 
 Curse Blocker:
   description: ""
@@ -107,14 +107,14 @@ Curse Blocker:
 
   abilities:
     - name: Status Resist
-      target: Self
       trigger: Always
       effects:
         - value: ResistStatusEffect
+          target: Self
           props: 
-              baseValue: 5
-              statusEffect: Curse
-              isPercent: true
+            baseValue: 5
+            statusEffect: Curse
+            isPercent: true
 
 Poison Blocker:
   description: ""
@@ -124,14 +124,14 @@ Poison Blocker:
 
   abilities:
     - name: Status Resist
-      target: Self
       trigger: Always
       effects:
         - value: ResistStatusEffect
+          target: Self
           props: 
-              baseValue: 5
-              statusEffect: Poison
-              isPercent: true
+            baseValue: 5
+            statusEffect: Poison
+            isPercent: true
 
 Silence Blocker:
   description: ""
@@ -141,14 +141,14 @@ Silence Blocker:
 
   abilities:
     - name: Status Resist
-      target: Self
       trigger: Always
       effects:
         - value: ResistStatusEffect
+          target: Self
           props: 
-              baseValue: 5
-              statusEffect: Silence
-              isPercent: true
+            baseValue: 5
+            statusEffect: Silence
+            isPercent: true
 
 Stun Blocker:
   description: ""
@@ -158,14 +158,14 @@ Stun Blocker:
 
   abilities:
     - name: Status Resist
-      target: Self
       trigger: Always
       effects:
         - value: ResistStatusEffect
+          target: Self
           props: 
-              baseValue: 5
-              statusEffect: Stun
-              isPercent: true
+            baseValue: 5
+            statusEffect: Stun
+            isPercent: true
 
 Blazing Phoenix:
   description: ""
@@ -175,23 +175,23 @@ Blazing Phoenix:
 
   abilities:
     - name: Fire Damage
-      target: Self
       trigger: Always
       effects:
         - value: OutgoingElementDamage
+          target: Self
           props: 
-              baseValue: 25
-              element: Fire
-              isPercent: true
+            baseValue: 25
+            element: Fire
+            isPercent: true
 
   lbRewards:
     3: 
       abilities:
         - name: Death Heal
-          target: AllAllies
           trigger: Always
           effects:
             - value: StatBoost
+              target: AllAllies
               props: 
                 baseValue: 100
                 baseStat: hp
@@ -204,23 +204,23 @@ Faster Caster:
 
   abilities:
     - name: Cast Speed-
-      target: Self
       trigger: Always
       effects:
         - value: CastSpeed
+          target: Self
           props: 
-              baseValue: -1
+            baseValue: -1
 
   lbRewards:
     3: 
       abilities:
         - name: Cast Cooldown-
-          target: Self
           trigger: Always
           effects:
             - value: CooldownReduction
+              target: Self
               props: 
-                  baseValue: -1
+                baseValue: -1
 
 Silent Striker:
   description: ""
@@ -230,27 +230,27 @@ Silent Striker:
 
   abilities:
     - name: Silence Physical Attacker
-      target: Self
       trigger: Always
       effects:
         - value: PhysicalAttackStatusEffect
+          target: Self
           props: 
-              baseValue: 10
-              statusEffect: Silence
-              isPercent: true
+            baseValue: 10
+            statusEffect: Silence
+            isPercent: true
 
   lbRewards:
     3: 
       abilities:
         - name: Status Resist
-          target: Self
           trigger: Always
           effects:
             - value: ResistStatusEffect
+              target: Self
               props: 
-                  baseValue: 10
-                  statusEffect: Silence
-                  isPercent: true
+                baseValue: 10
+                statusEffect: Silence
+                isPercent: true
 
 Special Striker:
   description: ""
@@ -260,10 +260,10 @@ Special Striker:
 
   abilities:
     - name: Special On Hit
-      target: Self
       trigger: Always
       effects:
         - value: SpecialGaugeLeech
+          target: Self
           props: 
-              baseValue: 1
-              isPercent: true
+            baseValue: 1
+            isPercent: true

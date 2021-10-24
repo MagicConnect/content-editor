@@ -1,0 +1,54 @@
+
+<hr *ngIf="index > 0">
+
+<div class="ability-container" [ngClass]="'ability-' + index">
+  <div class="row">
+    <div class="col-10">
+
+      <form [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-danger float-right" (click)="remove.emit()">Remove A#{{ index + 1 }}</button>
+    </div>
+  </div>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Effects
+
+      <button class="btn btn-primary btn-sm float-right" (click)="addEffect()" [disabled]="model.effects.length >= 5">
+        Add
+      </button>
+    </legend>
+
+    <div *ngIf="model.effects.length === 0">No effects created.</div>
+
+    <app-ability-effect-form *ngFor="let effect of model.effects; let i = index"
+                            (remove)="removeEffect(i)"
+                            [model]="effect"
+                            [index]="i"></app-ability-effect-form>
+
+  </fieldset>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Conditions
+
+      <button class="btn btn-primary btn-sm float-right" (click)="addCondition()" [disabled]="model.conditions.length >= 2">
+        Add
+      </button>
+    </legend>
+
+    <div *ngIf="model.conditions.length === 0">No conditions created.</div>
+
+    <app-ability-condition-form *ngFor="let condition of model.conditions; let i = index"
+                                (remove)="removeCondition(i)"
+                                [model]="condition"
+                                [index]="i"></app-ability-condition-form>
+
+  </fieldset>
+
+</div>

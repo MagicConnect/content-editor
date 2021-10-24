@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">MagiCon! Tools</a>
+
+  <div class="collapse navbar-collapse">
+    <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
+      <label class="btn btn-info btn-sm mb-0" btnRadio="banner" [disabled]="true">Banner</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="character">Character</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="enemy" [disabled]="true">Enemy</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="event" [disabled]="true">Event</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon</label>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <app-banner (save)="save()" *ngIf="currentPage === 'banner'"></app-banner>
+      <app-character (save)="save()" *ngIf="currentPage === 'character'"></app-character>
+      <app-chip (save)="save()" *ngIf="currentPage === 'chip'"></app-chip>
+      <app-enemy (save)="save()" *ngIf="currentPage === 'enemy'"></app-enemy>
+      <app-event (save)="save()" *ngIf="currentPage === 'event'"></app-event>
+      <app-weapon (save)="save()" *ngIf="currentPage === 'weapon'"></app-weapon>
+    </div>
+  </div>
+</div>

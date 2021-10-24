@@ -35,32 +35,32 @@ levelStats:
 
 abilities:
   - name: Earthen Bond
-    target: Self
     trigger: Always
     effects:
       - value: PhysicalAttackElement
+        target: Self
         props: 
-            imbueElement: Earth
+          imbueElement: Earth
 
   - name: Barkskin
-    target: Self
     trigger: Always
     effects:
       - value: StatBoost
+        target: Self
         props: 
-            baseValue: 20
-            baseStat: defense
-            isPercent: true
+          baseValue: 20
+          baseStat: defense
+          isPercent: true
 
   - name: Nature's Envoy
-    target: Self
     trigger: Always
     effects:
       - value: HPLeech
+        target: Self
         props: 
-            baseValue: 10
-            isPercent: true
-            target: AllAllies
+          baseValue: 10
+          isPercent: true
+          effectTarget: AllAllies
 
 skills:
   - name: Cross Swipe
@@ -161,33 +161,33 @@ lbRewards:
   abilities:
     3:
       - name: Nature's Envoy
-        target: Self
         trigger: Always
         effects:
           - value: HPLeech
+            target: Self
             props: 
-                baseValue: 20
-                isPercent: true
-                target: AllAllies
+              baseValue: 20
+              isPercent: true
+              effectTarget: AllAllies
 
     6:
       - name: Barkskin
-        target: Self
         trigger: Always
         effects:
           - value: StatBoost
+            target: Self
             props: 
-                baseValue: 30
-                baseStat: defense
-                isPercent: true
+              baseValue: 30
+              baseStat: defense
+              isPercent: true
 
     10: 
       - name: Nature's Envoy
-        target: Self
         trigger: Always
         effects:
           - value: HPLeech
+            target: Self
             props: 
-                baseValue: 30
-                isPercent: true
-                target: AllAllies
+              baseValue: 30
+              isPercent: true
+              effectTarget: AllAllies

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+.section-header {
+  font-size: 1.5rem;
+}
+
+legend {
+  width: 50%;
+}
+
+.nav-item {
+  cursor: pointer;
+}
