@@ -25,6 +25,8 @@ import { AbilityConditionFormComponent } from './components/ability-condition-fo
 import { LbFormComponent } from './components/lb-form/lb-form.component';
 import { StatsFormComponent } from './components/stats-form/stats-form.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ChipListComponent } from './components/chip-list/chip-list.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AbilityEffectFormComponent,
     AbilityConditionFormComponent,
     LbFormComponent,
-    StatsFormComponent
+    StatsFormComponent,
+    ChipListComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         totalMessage: 'total',
         selectedMessage: 'selected'
       }
-    })
+    }),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

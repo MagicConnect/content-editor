@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
 
 const newChip: () => IChip = () => ({
+  id: '',
   name: '',
   description: '',
   stars: 1,
@@ -39,9 +40,9 @@ export class ChipComponent {
 
   @Output() save = new EventEmitter();
 
-  form = new FormGroup({});
+  @Input() model: IChip = newChip();
 
-  model: IChip = newChip();
+  form = new FormGroup({});
 
   options: FormlyFormOptions = {};
 
