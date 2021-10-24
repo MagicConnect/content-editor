@@ -130,8 +130,8 @@ export enum AbilityCondition {
   SelfStatusEffect = 'SelfStatusEffect',
   SelfNoStatusEffect = 'SelfNoStatusEffect',
 
-  FirstRow = 'FirstRow',
-  NotFirstRow = 'NotFirstRow',
+  FirstCharacters = 'FirstCharacters',
+  NotFirstCharacters = 'NotFirstCharacters',
 
   ArchersInParty = 'ArchersInParty',
   AttackersInParty = 'AttackersInParty',
