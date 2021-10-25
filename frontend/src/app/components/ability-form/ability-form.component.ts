@@ -12,6 +12,7 @@ import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbilit
 export class AbilityFormComponent {
 
   @Input() index = -1;
+  @Input() copyableAbilities: IAbility[] = [];
   @Output() remove = new EventEmitter();
 
   form = new FormGroup({});
@@ -73,6 +74,10 @@ export class AbilityFormComponent {
 
   removeEffect(index: number) {
     this.model.effects.splice(index, 1);
+  }
+
+  isAbiityOverwriting() {
+    return this.copyableAbilities.some(x => x.name === this.model.name);
   }
 
 

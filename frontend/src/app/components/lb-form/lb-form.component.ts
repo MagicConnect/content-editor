@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ILimitBreak, PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+import { IAbility, ILimitBreak, PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-lb-form',
@@ -30,6 +32,8 @@ export class LbFormComponent {
   @Input() allowStats = false;
   @Input() allowSkills = false;
 
+  @Input() existingAbilities: IAbility[] = [];
+
   @Output() addAbility = new EventEmitter();
 
   public activeLB = 0;
@@ -43,9 +47,16 @@ export class LbFormComponent {
   }
 
   removeLBAbility(index: number) {
-    if(this.model.abilities[this.activeLB]) return;
+    if(!this.model.abilities[this.activeLB]) return;
 
     this.model.abilities[this.activeLB].splice(index, 1);
+  }
+
+  copyAbilityToLB(ability: IAbility) {
+    const abilities = this.model.abilities[this.activeLB] || [];
+    this.model.abilities[this.activeLB] = abilities;
+
+    abilities.push(cloneDeep(ability));
   }
 
 }

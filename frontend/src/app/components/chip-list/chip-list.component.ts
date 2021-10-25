@@ -4,6 +4,8 @@ import { LocalStorage } from 'ngx-webstorage';
 import { IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
+import { cloneDeep } from 'lodash';
+
 @Component({
   selector: 'app-chip-list',
   templateUrl: './chip-list.component.html',
@@ -66,7 +68,7 @@ export class ChipListComponent implements OnInit {
   }
 
   editChip(template: TemplateRef<any>, chip: IChip, index: number) {
-    this.currentChip = chip;
+    this.currentChip = cloneDeep(chip);
     this.openEditModal(template);
     this.editIndex = index;
   }
@@ -86,6 +88,7 @@ export class ChipListComponent implements OnInit {
 
   deleteChip(chip: IChip) {
     if(!confirm('Are you sure you want to delete this chip?')) return;
+
     this.data = this.data.filter(c => c !== chip);
     this.saveData();
   }

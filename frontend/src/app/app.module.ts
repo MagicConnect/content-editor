@@ -27,6 +27,7 @@ import { StatsFormComponent } from './components/stats-form/stats-form.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         selectedMessage: 'selected'
       }
     }),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
