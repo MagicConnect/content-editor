@@ -35,7 +35,7 @@
 
           <tabset [justified]="true">
 
-            <tab *ngIf="allowAbilities" class="pt-3" #tabAbilities="tab">
+            <tab *ngIf="allowAbilities" class="pt-3 pr-3 pb-3" #tabAbilities="tab">
 
               <ng-template tabHeading>
                 Abilities
@@ -45,6 +45,18 @@
                 </span>
 
                 <button class="btn btn-info btn-sm btn-in-tab ml-2" (click)="addAbility.emit(activeLB)" *ngIf="tabAbilities.active">+</button>
+
+                <div class="btn-group" dropdown>
+                  <button dropdownToggle type="button" class="btn btn-primary btn-sm btn-in-tab ml-2 dropdown-toggle"  *ngIf="tabAbilities.active && existingAbilities && existingAbilities.length > 0">
+                    <span class="caret"></span>
+                  </button>
+
+                  <ul *dropdownMenu class="dropdown-menu">
+                    <li *ngFor="let ability of existingAbilities" (click)="copyAbilityToLB(ability)">
+                      <a class="dropdown-item">{{ ability.name }}</a>
+                    </li>
+                  </ul>
+                </div>
               </ng-template>
 
               <div class="text-center mw-100 p-3 m-3" *ngIf="!model.abilities[activeLB] || model.abilities[activeLB].length === 0">
@@ -54,7 +66,8 @@
               <app-ability-form *ngFor="let ability of model.abilities[activeLB]; let i = index"
                                 (remove)="removeLBAbility(i)"
                                 [model]="ability"
-                                [index]="i"></app-ability-form>
+                                [index]="i"
+                                [copyableAbilities]="existingAbilities"></app-ability-form>
 
             </tab>
 

@@ -1,6 +1,14 @@
 
 <hr *ngIf="index > 0">
 
+<div class="ml-3 font-weight-bold text-center alert alert-info" *ngIf="copyableAbilities.length > 0 && isAbilityOverwriting()">
+  Overwriting a base ability!
+</div>
+
+<div class="ml-3 font-weight-bold text-center alert alert-danger" *ngIf="copyableAbilities.length > 0 && !isAbilityOverwriting()">
+  NOT overwriting a base ability!
+</div>
+
 <div class="ability-container" [ngClass]="'ability-' + index">
   <div class="row">
     <div class="col-10">

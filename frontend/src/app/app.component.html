@@ -18,10 +18,14 @@
     <div class="col-md-12">
       <app-banner (save)="save()" *ngIf="currentPage === 'banner'"></app-banner>
       <app-character (save)="save()" *ngIf="currentPage === 'character'"></app-character>
-      <app-chip (save)="save()" *ngIf="currentPage === 'chip'"></app-chip>
+      <app-chip-list *ngIf="currentPage === 'chip'"></app-chip-list>
       <app-enemy (save)="save()" *ngIf="currentPage === 'enemy'"></app-enemy>
       <app-event (save)="save()" *ngIf="currentPage === 'event'"></app-event>
       <app-weapon (save)="save()" *ngIf="currentPage === 'weapon'"></app-weapon>
     </div>
   </div>
 </div>
+
+      <!--
+      <app-chip (save)="save()" *ngIf="currentPage === 'chip'"></app-chip>
+      -->

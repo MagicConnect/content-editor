@@ -32,5 +32,6 @@
   <app-lb-form [model]="model.lbRewards"
                [allowAbilities]="true"
                [allowStats]="true"
+               [existingAbilities]="model.abilities"
                (addAbility)="addLBAbility($event)"></app-lb-form>
 </fieldset>

@@ -3,27 +3,8 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
-/* Importing Datepicker SCSS file. */
-@import "~ngx-bootstrap/datepicker/bs-datepicker";
+@import '~@swimlane/ngx-datatable/index.css';
+@import "~@swimlane/ngx-datatable/themes/bootstrap";
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 
-.section-header {
-  font-size: 1.5rem;
-}
-
-legend {
-  width: 50%;
-}
-
-.nav-item {
-  cursor: pointer;
-}
-
-.btn-in-tab {
-  max-height: 20px;
-  line-height: 20px;
-  padding-top: 0px;
-}
-
-.tab-pane.active {
-  border: 1px solid #dee2e6;
-}
+@import "global";

@@ -1,0 +1,35 @@
+
+
+.section-header {
+  font-size: 1.5rem;
+}
+
+legend {
+  width: 50%;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.btn-in-tab {
+  max-height: 20px;
+  line-height: 20px;
+  padding-top: 0px;
+}
+
+.tab-pane.active {
+  border: 1px solid #dee2e6;
+}
+
+.modal-dialog.big-modal {
+  max-width: 95% !important;
+
+  .modal-header {
+    align-items: center;
+
+    .has-actions {
+      flex: 1
+    }
+  }
+}
