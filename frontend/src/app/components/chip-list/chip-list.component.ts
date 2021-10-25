@@ -14,6 +14,8 @@ import { cloneDeep } from 'lodash';
 export class ChipListComponent implements OnInit {
 
   public currentChip?: IChip;
+
+  // TODO: remove from local storage
   @LocalStorage('chip-list') public data!: IChip[];
 
   public editIndex = -1;
@@ -26,6 +28,8 @@ export class ChipListComponent implements OnInit {
 
   ngOnInit() {
     if(!this.data) this.data = [];
+
+    // TODO: load data from mod manager
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -39,6 +43,7 @@ export class ChipListComponent implements OnInit {
   addNewChip(template: TemplateRef<any>) {
     this.currentChip = {
       name: 'Chip Name',
+      sellValue: 0,
       description: '',
       stars: 1,
       primaryStat: PrimaryStat.Defense,
@@ -75,6 +80,8 @@ export class ChipListComponent implements OnInit {
 
   confirmChipEdit() {
     if(!this.currentChip || !this.currentChip.name) return;
+
+    // TODO: move this to mod manager
 
     if(this.editIndex === -1) {
       this.data.push(this.currentChip);

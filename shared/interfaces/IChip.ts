@@ -1,8 +1,9 @@
 import { ILimitBreak } from './ILimitBreak';
 import { PrimaryStat } from './BuildingBlocks';
 import { IAbility } from './IAbility';
+import { IItem } from './IItem';
 
-export interface IChip {
+export type IChip = IItem & {
   name: string;                           // chip name
   description: string;                    // chip description         
   stars: 1|2|3|4|5;                       // chip rarity   

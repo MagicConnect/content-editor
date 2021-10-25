@@ -6,6 +6,7 @@ import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../
 const newChip: () => IChip = () => ({
   id: '',
   name: '',
+  sellValue: 0,
   description: '',
   stars: 1,
   primaryStat: PrimaryStat.Defense,
