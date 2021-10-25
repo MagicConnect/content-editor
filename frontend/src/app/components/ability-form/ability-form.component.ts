@@ -76,7 +76,9 @@ export class AbilityFormComponent {
     this.model.effects.splice(index, 1);
   }
 
-  isAbiityOverwriting() {
+  isAbilityOverwriting(): boolean {
+    if(this.copyableAbilities.length === 0) return false;
+
     return this.copyableAbilities.some(x => x.name === this.model.name);
   }
 
