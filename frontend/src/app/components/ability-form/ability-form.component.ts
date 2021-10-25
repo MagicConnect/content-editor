@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
@@ -9,7 +9,7 @@ import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbilit
   templateUrl: './ability-form.component.html',
   styleUrls: ['./ability-form.component.scss']
 })
-export class AbilityFormComponent {
+export class AbilityFormComponent implements OnInit {
 
   @Input() index = -1;
   @Input() copyableAbilities: IAbility[] = [];
@@ -60,6 +60,14 @@ export class AbilityFormComponent {
 
   constructor() { }
 
+  ngOnInit() {
+    setInterval(() => {
+      if(this.model.name && !this.model.name.startsWith('AG-')) return;
+
+      this.fields[0].fieldGroup![0].formControl!.setValue(this.autoName());
+    }, 1000);
+  }
+
   addCondition() {
     this.model.conditions.push({ value: AbilityCondition.None, props: {} });
   }
@@ -80,6 +88,24 @@ export class AbilityFormComponent {
     if(this.copyableAbilities.length === 0) return false;
 
     return this.copyableAbilities.some(x => x.name === this.model.name);
+  }
+
+  autoName(): string {
+    const uc = (s: string) => s.replace(/[^A-Z]/g, '');
+
+    const baseString = this.model.effects.map(x => {
+      return [
+        uc(x.value),
+        uc(x.target),
+        (x.props.baseValue || 0) + (x.props.isPercent ? '%' : ''),
+        x.props.skillName,
+        x.props.monsterType,
+        x.props.statusEffect,
+        x.props.element
+      ].filter(Boolean).join('-');
+    }).join('|');
+
+    return `AG-${uc(this.model.trigger)}-${baseString}`;
   }
 
 
