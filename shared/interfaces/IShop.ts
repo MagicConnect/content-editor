@@ -6,7 +6,6 @@ export interface IShopBuyable {
 }
 
 export interface IShop {
-  id: string;
   name: string;
   description: string;
   currency: string;

@@ -4,7 +4,6 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
 
 const newChip: () => IChip = () => ({
-  id: '',
   name: '',
   sellValue: 0,
   description: '',

@@ -7,7 +7,6 @@ export interface IBannerRollable {
 }
 
 export interface IBanner {
-  id: string;
   name: string;
   description: string;
   type: BannerType;

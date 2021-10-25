@@ -37,17 +37,43 @@ export class ModManagerService {
 
   public init() {
     if(!this.currentPack) {
-      this.currentPack = {
-        banners: [],
-        characters: [],
-        chips: [],
-        items: [],
-        shops: [],
-        weapons: []
-      }
+      this.resetPack();
     };
 
     this.sync();
+  }
+
+  // Management-related
+  public export(): void {
+    const data = JSON.stringify(this.currentPack, null, 4);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `magicon-content-${Date.now()}.json`;
+    a.click();
+  }
+
+  public import(contentPack: IContentPack): void {
+    this.currentPack = contentPack;
+    this.syncAndSave();
+  }
+
+  public reset(): void {
+    this.resetPack();
+    this.syncAndSave();
+  }
+
+  // Pack-related
+  private resetPack(): void {
+    this.currentPack = {
+      banners: [],
+      characters: [],
+      chips: [],
+      items: [],
+      shops: [],
+      weapons: []
+    };
   }
 
   private sync(): void {
