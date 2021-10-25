@@ -29,6 +29,7 @@ import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModManagerService } from './services/mod-manager.service';
+import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ModManagerService } from './services/mod-manager.service';
     AbilityConditionFormComponent,
     LbFormComponent,
     StatsFormComponent,
-    ChipListComponent
+    ChipListComponent,
+    WeaponListComponent
   ],
   imports: [
     BrowserModule,

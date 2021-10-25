@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
@@ -37,8 +37,6 @@ const newChip: () => IChip = () => ({
   styleUrls: ['./chip.component.scss']
 })
 export class ChipComponent {
-
-  @Output() save = new EventEmitter();
 
   @Input() model: IChip = newChip();
 

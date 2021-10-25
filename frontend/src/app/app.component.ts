@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 import { ModManagerService } from './services/mod-manager.service';
 
@@ -7,13 +7,17 @@ import { ModManagerService } from './services/mod-manager.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  @LocalStorage() currentPage = 'chip';
+  @LocalStorage() currentPage!: string;
 
   pages = ['banner', 'character', 'chip', 'enemy', 'event', 'weapon'];
 
   constructor(private mod: ModManagerService) {}
+
+  ngOnInit() {
+    if(!this.currentPage) this.currentPage = 'weapon';
+  }
 
   export() {
     this.mod.export();
