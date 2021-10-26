@@ -30,7 +30,7 @@ export class ChipListComponent implements OnInit {
   }
 
   openEditModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { keyboard: false, class: 'big-modal' });
+    this.modalRef = this.modalService.show(template, { keyboard: false, backdrop: 'static', class: 'big-modal' });
   }
 
   addNewChip(template: TemplateRef<any>) {
