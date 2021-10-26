@@ -1,4 +1,4 @@
-import { IWeapon, PrimaryStat, SecondaryStat } from '../interfaces';
+import { Archetype, IWeapon, PrimaryStat, SecondaryStat } from '../interfaces';
 
 export const newWeapon = (): IWeapon => ({
   name: 'Weapon Name',
@@ -12,6 +12,13 @@ export const newWeapon = (): IWeapon => ({
 
   lbRewards: {
     abilities: {},
+    statPoints: {
+      [Archetype.Archer]: 0,
+      [Archetype.Attacker]: 0,
+      [Archetype.Caster]: 0,
+      [Archetype.Defender]: 0,
+      [Archetype.Healer]: 0,
+    },
     stats: {
       [PrimaryStat.Attack]: 0,
       [PrimaryStat.Defense]: 0,

@@ -9,18 +9,34 @@ export const newCharacter = (): ICharacter => ({
   archetype: Archetype.Archer,
   weapon: Weapon.Bow,
 
+  basePoints: {
+    [Archetype.Archer]: 0,
+    [Archetype.Attacker]: 0,
+    [Archetype.Caster]: 0,
+    [Archetype.Defender]: 0,
+    [Archetype.Healer]: 0,
+  },
+
   baseStats: {
     [PrimaryStat.Attack]: 0,
     [PrimaryStat.Defense]: 0,
     [PrimaryStat.Magic]: 0,
     [PrimaryStat.Special]: 0,
 
-    [SecondaryStat.Accuracy]: 0,
-    [SecondaryStat.Critical]: 0,
+    [SecondaryStat.Accuracy]: 90,
+    [SecondaryStat.Critical]: 5,
     [SecondaryStat.HP]: 0,
     [SecondaryStat.MP]: 0,
     [SecondaryStat.MagicEvasion]: 0,
     [SecondaryStat.MeleeEvasion]: 0,
+  },
+
+  levelPoints: {
+    [Archetype.Archer]: 0,
+    [Archetype.Attacker]: 0,
+    [Archetype.Caster]: 0,
+    [Archetype.Defender]: 0,
+    [Archetype.Healer]: 0,
   },
 
   levelStats: {
@@ -53,6 +69,13 @@ export const newCharacter = (): ICharacter => ({
 
   lbRewards: {
     abilities: {},
+    statPoints: {
+      [Archetype.Archer]: 0,
+      [Archetype.Attacker]: 0,
+      [Archetype.Caster]: 0,
+      [Archetype.Defender]: 0,
+      [Archetype.Healer]: 0,
+    },
     stats: {
       [PrimaryStat.Attack]: 0,
       [PrimaryStat.Defense]: 0,

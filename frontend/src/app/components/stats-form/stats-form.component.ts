@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+import { Archetype, ArchetypeStatMatrix, PrimaryStat, SecondaryStat, Stat, StatAllocationMatrix } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-stats-form',
@@ -9,6 +9,18 @@ import { PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfac
   styleUrls: ['./stats-form.component.scss']
 })
 export class StatsFormComponent {
+
+  @Input() pointBuyEnabled = false;
+  @Input() maxPoints = 25;
+  @Input() statKey!: keyof ArchetypeStatMatrix;
+
+  @Input() statPointModel: Record<Archetype, number> = {
+    [Archetype.Archer]: 0,
+    [Archetype.Attacker]: 0,
+    [Archetype.Caster]: 0,
+    [Archetype.Defender]: 0,
+    [Archetype.Healer]: 0,
+  };
 
   @Input() model: Record<Stat, number> = {
     [PrimaryStat.Attack]: 0,
@@ -23,6 +35,14 @@ export class StatsFormComponent {
     [SecondaryStat.MagicEvasion]: 0,
     [SecondaryStat.MeleeEvasion]: 0,
   };
+
+  public archetypes: Array<{ name: Archetype, color: string }> = [
+    { name: Archetype.Archer,     color: 'primary' },
+    { name: Archetype.Attacker,   color: 'danger' },
+    { name: Archetype.Caster,     color: 'secondary' },
+    { name: Archetype.Defender,   color: 'warning' },
+    { name: Archetype.Healer,     color: 'success' },
+  ];
 
   form = new FormGroup({});
 
@@ -153,5 +173,39 @@ export class StatsFormComponent {
   ];
 
   constructor() { }
+
+  totalPoints(): number {
+    return Object.values(this.statPointModel).reduce((a, b) => a + b, 0);
+  }
+
+  buyPoint(archetype: Archetype, multiplier: 1|-1) {
+    const subType = this.statKey;
+    const matrix: Record<string, number> = StatAllocationMatrix[archetype][subType];
+
+    const myMatrix = this.statPointModel;
+    const myStats: Record<string, number> = this.model;
+
+    if(multiplier === -1 && myMatrix[archetype] <= 0) return;
+
+    myMatrix[archetype] += multiplier;
+
+    Object.keys(matrix).forEach(stat => {
+      const valueIncrease = matrix[stat] * multiplier;
+
+      myStats[stat] ??= 0;
+      myStats[stat] += valueIncrease;
+
+      const formControl = this.fields
+        .map(x => (x.fieldGroup || []))
+        .flat()
+        .find((x: FormlyFieldConfig) => x.key === stat)
+        ?.formControl;
+
+      if(!formControl) return;
+
+      formControl.setValue((formControl.value ?? 0) + (valueIncrease ?? 0));
+    });
+
+  }
 
 }

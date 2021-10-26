@@ -1,4 +1,4 @@
-import { IChip, PrimaryStat, SecondaryStat } from '../interfaces';
+import { Archetype, IChip, PrimaryStat, SecondaryStat } from '../interfaces';
 
 export const newChip = (): IChip => ({
   name: 'Chip Name',
@@ -11,6 +11,14 @@ export const newChip = (): IChip => ({
 
   lbRewards: {
     abilities: {},
+    statPoints: {
+      [Archetype.Archer]: 0,
+      [Archetype.Attacker]: 0,
+      [Archetype.Caster]: 0,
+      [Archetype.Defender]: 0,
+      [Archetype.Healer]: 0,
+    },
+
     stats: {
       [PrimaryStat.Attack]: 0,
       [PrimaryStat.Defense]: 0,

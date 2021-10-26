@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IAbility, ILimitBreak, PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+import { Archetype, IAbility, ILimitBreak, PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
 
 import { cloneDeep } from 'lodash';
 
@@ -12,6 +12,13 @@ export class LbFormComponent {
 
   @Input() model: ILimitBreak = {
     abilities: {},
+    statPoints: {
+      [Archetype.Archer]: 0,
+      [Archetype.Attacker]: 0,
+      [Archetype.Caster]: 0,
+      [Archetype.Defender]: 0,
+      [Archetype.Healer]: 0,
+    },
     stats: {
       [PrimaryStat.Attack]: 0,
       [PrimaryStat.Defense]: 0,
@@ -39,12 +46,6 @@ export class LbFormComponent {
   public activeLB = 0;
 
   constructor() { }
-
-  hasStatsGT0(): boolean {
-    const stats: Record<Stat, number> = this.model.stats || {};
-    if(!stats) return false;
-    return (Object.values(stats) as number[]).some(val => val > 0);
-  }
 
   removeLBAbility(index: number) {
     if(!this.model.abilities[this.activeLB]) return;

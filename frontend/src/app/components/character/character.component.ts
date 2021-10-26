@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { newCharacter } from '../../../../../shared/initializers';
+import { AbilityTrigger } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-character',
@@ -16,10 +17,6 @@ export class CharacterComponent {
 
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [
-    {
-      className: 'section-label',
-      template: '<div><strong>Base Details</strong></div>',
-    },
 
     {
       fieldGroupClassName: 'row',
@@ -96,11 +93,6 @@ export class CharacterComponent {
     },
 
     {
-      className: 'section-label',
-      template: '<hr /><div><strong>Stats</strong></div>',
-    },
-
-    {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
@@ -125,5 +117,30 @@ export class CharacterComponent {
   ];
 
   constructor() { }
+
+  addLBAbility(lb: number) {
+    const abilities = this.model.lbRewards.abilities[lb] ?? [];
+    this.model.lbRewards.abilities[lb] = abilities;
+
+    abilities.push({
+      name: '',
+      trigger: AbilityTrigger.Always,
+
+      effects: [],
+      conditions: []
+    });
+  }
+
+  addSkill() {
+    this.model.skills.push({
+      name: '',
+      description: '',
+      actions: [],
+      cooldown: 0,
+      hpCost: 0,
+      mpCost: 0,
+      spcCost: 0
+    });
+  }
 
 }
