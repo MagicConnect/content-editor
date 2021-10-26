@@ -43,6 +43,7 @@ export interface ISkillAction {
 export interface ISkill {
   name: string;             // name of the skill
   description: string;      // description of the skill
+  hpCost: number;           // HP cost of the skill
   mpCost: number;           // MP cost of the skill
   spcCost: number;          // SPC cost of the skill
   cooldown: number;         // cooldown of the skill in rounds

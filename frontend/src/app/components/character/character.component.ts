@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
+import { newCharacter } from '../../../../../shared/initializers';
 
 @Component({
   selector: 'app-character',
@@ -9,21 +10,10 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 })
 export class CharacterComponent {
 
-  @Output() save = new EventEmitter();
+  @Input() model = newCharacter();
 
   form = new FormGroup({});
-  model = {
-    baseStats: {},
-    levelStats: {},
-    abilities: [],
-    skills: [],
-    specialSkill: {},
-    lbRewards: {
-      stats: {},
-      skills: {},
-      abilities: {}
-    }
-  };
+
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [
     {

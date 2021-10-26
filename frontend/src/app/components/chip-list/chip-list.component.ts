@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
+import { IChip } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';
+import { newChip } from '../../../../../shared/initializers';
 
 @Component({
   selector: 'app-chip-list',
@@ -33,33 +34,7 @@ export class ChipListComponent implements OnInit {
   }
 
   addNewChip(template: TemplateRef<any>) {
-    this.currentChip = {
-      name: 'Chip Name',
-      sellValue: 0,
-      description: '',
-      stars: 1,
-      primaryStat: PrimaryStat.Defense,
-
-      abilities: [],
-
-      lbRewards: {
-        abilities: {},
-        stats: {
-          [PrimaryStat.Attack]: 0,
-          [PrimaryStat.Defense]: 0,
-          [PrimaryStat.Magic]: 0,
-          [PrimaryStat.Special]: 0,
-
-          [SecondaryStat.Accuracy]: 0,
-          [SecondaryStat.Critical]: 0,
-          [SecondaryStat.HP]: 0,
-          [SecondaryStat.MP]: 0,
-          [SecondaryStat.MagicEvasion]: 0,
-          [SecondaryStat.MeleeEvasion]: 0,
-        },
-        skills: {}
-      }
-    };
+    this.currentChip = newChip();
 
     this.openEditModal(template);
   }

@@ -30,6 +30,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModManagerService } from './services/mod-manager.service';
 import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
+import { CharacterListComponent } from './components/character-list/character-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { WeaponListComponent } from './components/weapon-list/weapon-list.compon
     LbFormComponent,
     StatsFormComponent,
     ChipListComponent,
-    WeaponListComponent
+    WeaponListComponent,
+    CharacterListComponent
   ],
   imports: [
     BrowserModule,

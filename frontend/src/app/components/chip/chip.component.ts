@@ -1,35 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityTrigger, IAbility, IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
-
-const newChip: () => IChip = () => ({
-  name: '',
-  sellValue: 0,
-  description: '',
-  stars: 1,
-  primaryStat: PrimaryStat.Defense,
-
-  abilities: [],
-
-  lbRewards: {
-    abilities: {},
-    stats: {
-      [PrimaryStat.Attack]: 0,
-      [PrimaryStat.Defense]: 0,
-      [PrimaryStat.Magic]: 0,
-      [PrimaryStat.Special]: 0,
-
-      [SecondaryStat.Accuracy]: 0,
-      [SecondaryStat.Critical]: 0,
-      [SecondaryStat.HP]: 0,
-      [SecondaryStat.MP]: 0,
-      [SecondaryStat.MagicEvasion]: 0,
-      [SecondaryStat.MeleeEvasion]: 0,
-    },
-    skills: {}
-  }
-});
+import { newChip } from '../../../../../shared/initializers';
+import { AbilityTrigger, IAbility, IChip } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-chip',
