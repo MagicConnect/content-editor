@@ -4,7 +4,7 @@
   <div class="collapse navbar-collapse">
     <div class="btn-group mr-auto ml-auto">
       <label class="btn btn-info btn-sm mb-0" (click)="export()">Export</label>
-      <label class="btn btn-info btn-sm mb-0" (click)="uploadContent.click()">Import</label>
+      <label class="btn btn-warning btn-sm mb-0" (click)="uploadContent.click()">Import</label>
       <input type="file" #uploadContent class="hidden" accept=".json" (change)="import($event, uploadContent)"/>
       <label class="btn btn-danger btn-sm mb-0" (click)="reset()">Reset</label>
     </div>
