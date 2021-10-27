@@ -143,4 +143,8 @@ export class CharacterComponent {
     });
   }
 
+  removeSkill(index: number) {
+    this.model.skills.splice(index, 1);
+  }
+
 }

@@ -25,13 +25,14 @@ export interface ISkillActionStatusEffect {
   value: number;                                    // value of the status effect (damage, percentage, etc)
   valueScaleStat?: Stat;                            // the stat by which to scale the value (if present charstat * value)
   duration: number;                                 // duration of the status effect
+  probability: number;                              // probability of applying the status effect (0-100)     
 }
 
 export interface ISkillAction {
   pattern: SkillActionPattern;                        // attack pattern
   validTargets: SkillValidTargets;                    // valid targets for the attack
   castTime: number;                                   // cast time in round (0 = instant, 1+ = delay)
-  element: Element;                                   // element of the attack
+  elements: Element[];                                // element of the attack
   push: number;                                       // # of tiles to push the target away from the caster
   pull: number;                                       // # of tiles to pull the target towards the caster
   statusEffectChanges: ISkillActionStatusEffect[];    // status effect changes to the target

@@ -1,0 +1,36 @@
+
+<hr *ngIf="index > 0">
+
+<div class="ability-container" [ngClass]="'ability-' + index">
+  <div class="row">
+    <div class="col-10">
+
+      <form [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-danger float-right" (click)="remove.emit()" *ngIf="index !== -1">Remove S#{{ index + 1 }}</button>
+    </div>
+  </div>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Actions
+
+      <button class="btn btn-info btn-sm float-right" (click)="addAction()" [disabled]="model.actions.length >= 5">
+        Add
+      </button>
+    </legend>
+
+    <div *ngIf="model.actions.length === 0">No actions created.</div>
+
+    <app-skill-action-form *ngFor="let effect of model.actions; let i = index"
+                             (remove)="removeAction(i)"
+                             [model]="effect"
+                             [index]="i"></app-skill-action-form>
+
+  </fieldset>
+
+</div>

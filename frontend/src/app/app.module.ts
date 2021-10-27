@@ -31,6 +31,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModManagerService } from './services/mod-manager.service';
 import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
+import { SkillFormComponent } from './components/skill-form/skill-form.component';
+import { SkillActionFormComponent } from './components/skill-action-form/skill-action-form.component';
+import { SkillActionEffectFormComponent } from './components/skill-action-effect-form/skill-action-effect-form.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { CharacterListComponent } from './components/character-list/character-li
     StatsFormComponent,
     ChipListComponent,
     WeaponListComponent,
-    CharacterListComponent
+    CharacterListComponent,
+    SkillFormComponent,
+    SkillActionFormComponent,
+    SkillActionEffectFormComponent
   ],
   imports: [
     BrowserModule,

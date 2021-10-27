@@ -50,13 +50,13 @@ export class StatsFormComponent {
 
   fields: FormlyFieldConfig[] = [
 
-    // hp / mp
+    // primary stats
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
           key: SecondaryStat.HP,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'HP',
@@ -65,25 +65,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.MP,
-          className: 'col-3',
-          type: 'input',
-          templateOptions: {
-            label: 'MP',
-            placeholder: 'Enter MP here...',
-            min: 0
-          },
-        },
-      ]
-    },
-
-    // primary stats
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
           key: PrimaryStat.Attack,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Attack',
@@ -93,7 +76,7 @@ export class StatsFormComponent {
         },
         {
           key: PrimaryStat.Defense,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Defense',
@@ -103,7 +86,7 @@ export class StatsFormComponent {
         },
         {
           key: PrimaryStat.Magic,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Magic',
@@ -113,7 +96,7 @@ export class StatsFormComponent {
         },
         {
           key: PrimaryStat.Special,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Special',
@@ -129,8 +112,18 @@ export class StatsFormComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
+          key: SecondaryStat.MP,
+          className: 'col-2',
+          type: 'input',
+          templateOptions: {
+            label: 'MP',
+            placeholder: 'Enter MP here...',
+            min: 0
+          },
+        },
+        {
           key: SecondaryStat.MeleeEvasion,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Melee Evasion',
@@ -140,7 +133,7 @@ export class StatsFormComponent {
         },
         {
           key: SecondaryStat.MagicEvasion,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Magic Evasion',
@@ -150,7 +143,7 @@ export class StatsFormComponent {
         },
         {
           key: SecondaryStat.Accuracy,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Accuracy',
@@ -160,7 +153,7 @@ export class StatsFormComponent {
         },
         {
           key: SecondaryStat.Critical,
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Critical',

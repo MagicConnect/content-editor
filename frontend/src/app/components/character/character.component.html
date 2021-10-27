@@ -35,6 +35,22 @@
       Add
     </button>
   </legend>
+
+  <div *ngIf="model.skills.length === 0">No skills created.</div>
+
+  <app-skill-form *ngFor="let skill of model.skills; let i = index"
+                  (remove)="removeSkill(i)"
+                  [model]="skill"
+                  [index]="i"></app-skill-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Connect Skill
+  </legend>
+
+  <app-skill-form [model]="model.specialSkill"
+                  [index]="-1"></app-skill-form>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">
