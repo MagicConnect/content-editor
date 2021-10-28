@@ -1,11 +1,11 @@
 
-import { Archetype, PrimaryStat, SecondaryStat, Weapon } from '../interfaces';
+import { Archetype, Stat, Weapon } from '../interfaces';
 import { ICharacter } from '../interfaces/ICharacter';
 
 export const newCharacter = (): ICharacter => ({
   name: 'Character Name',
   stars: 1,
-  primaryStat: PrimaryStat.Attack,
+  primaryStat: Stat.Attack,
   archetype: Archetype.Archer,
   weapon: Weapon.Bow,
 
@@ -18,17 +18,17 @@ export const newCharacter = (): ICharacter => ({
   },
 
   baseStats: {
-    [PrimaryStat.Attack]: 0,
-    [PrimaryStat.Defense]: 0,
-    [PrimaryStat.Magic]: 0,
-    [PrimaryStat.Special]: 0,
+    [Stat.Attack]: 0,
+    [Stat.Defense]: 0,
+    [Stat.Magic]: 0,
+    [Stat.Special]: 0,
 
-    [SecondaryStat.Accuracy]: 90,
-    [SecondaryStat.Critical]: 5,
-    [SecondaryStat.HP]: 0,
-    [SecondaryStat.MP]: 0,
-    [SecondaryStat.MagicEvasion]: 0,
-    [SecondaryStat.MeleeEvasion]: 0,
+    [Stat.Accuracy]: 90,
+    [Stat.Critical]: 5,
+    [Stat.HP]: 0,
+    [Stat.MP]: 0,
+    [Stat.MagicEvasion]: 0,
+    [Stat.MeleeEvasion]: 0,
   },
 
   levelPoints: {
@@ -40,17 +40,17 @@ export const newCharacter = (): ICharacter => ({
   },
 
   levelStats: {
-    [PrimaryStat.Attack]: 0,
-    [PrimaryStat.Defense]: 0,
-    [PrimaryStat.Magic]: 0,
-    [PrimaryStat.Special]: 0,
+    [Stat.Attack]: 0,
+    [Stat.Defense]: 0,
+    [Stat.Magic]: 0,
+    [Stat.Special]: 0,
 
-    [SecondaryStat.Accuracy]: 0,
-    [SecondaryStat.Critical]: 0,
-    [SecondaryStat.HP]: 0,
-    [SecondaryStat.MP]: 0,
-    [SecondaryStat.MagicEvasion]: 0,
-    [SecondaryStat.MeleeEvasion]: 0,
+    [Stat.Accuracy]: 0,
+    [Stat.Critical]: 0,
+    [Stat.HP]: 0,
+    [Stat.MP]: 0,
+    [Stat.MagicEvasion]: 0,
+    [Stat.MeleeEvasion]: 0,
   },
 
   abilities: [],
@@ -77,17 +77,17 @@ export const newCharacter = (): ICharacter => ({
       [Archetype.Healer]: 0,
     },
     stats: {
-      [PrimaryStat.Attack]: 0,
-      [PrimaryStat.Defense]: 0,
-      [PrimaryStat.Magic]: 0,
-      [PrimaryStat.Special]: 0,
+      [Stat.Attack]: 0,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 0,
+      [Stat.Special]: 0,
 
-      [SecondaryStat.Accuracy]: 0,
-      [SecondaryStat.Critical]: 0,
-      [SecondaryStat.HP]: 0,
-      [SecondaryStat.MP]: 0,
-      [SecondaryStat.MagicEvasion]: 0,
-      [SecondaryStat.MeleeEvasion]: 0,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.HP]: 0,
+      [Stat.MP]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
     },
     skills: {}
   }

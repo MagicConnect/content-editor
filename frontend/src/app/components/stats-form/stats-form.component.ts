@@ -23,17 +23,17 @@ export class StatsFormComponent {
   };
 
   @Input() model: Record<Stat, number> = {
-    [PrimaryStat.Attack]: 0,
-    [PrimaryStat.Defense]: 0,
-    [PrimaryStat.Magic]: 0,
-    [PrimaryStat.Special]: 0,
+    [Stat.Attack]: 0,
+    [Stat.Defense]: 0,
+    [Stat.Magic]: 0,
+    [Stat.Special]: 0,
 
-    [SecondaryStat.Accuracy]: 0,
-    [SecondaryStat.Critical]: 0,
-    [SecondaryStat.HP]: 0,
-    [SecondaryStat.MP]: 0,
-    [SecondaryStat.MagicEvasion]: 0,
-    [SecondaryStat.MeleeEvasion]: 0,
+    [Stat.Accuracy]: 0,
+    [Stat.Critical]: 0,
+    [Stat.HP]: 0,
+    [Stat.MP]: 0,
+    [Stat.MagicEvasion]: 0,
+    [Stat.MeleeEvasion]: 0,
   };
 
   public archetypes: Array<{ name: Archetype, color: string }> = [
@@ -55,7 +55,7 @@ export class StatsFormComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: SecondaryStat.HP,
+          key: Stat.HP,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -65,7 +65,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Attack,
+          key: Stat.Attack,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -75,7 +75,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Defense,
+          key: Stat.Defense,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -85,7 +85,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Magic,
+          key: Stat.Magic,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -95,7 +95,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Special,
+          key: Stat.Special,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -112,7 +112,7 @@ export class StatsFormComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: SecondaryStat.MP,
+          key: Stat.MP,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -122,7 +122,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.MeleeEvasion,
+          key: Stat.MeleeEvasion,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -132,7 +132,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.MagicEvasion,
+          key: Stat.MagicEvasion,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -142,7 +142,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.Accuracy,
+          key: Stat.Accuracy,
           className: 'col-2',
           type: 'input',
           templateOptions: {
@@ -152,7 +152,7 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.Critical,
+          key: Stat.Critical,
           className: 'col-2',
           type: 'input',
           templateOptions: {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ISkillActionStatusEffect, PrimaryStat, SecondaryStat, StatusEffect } from '../../../../../shared/interfaces';
+import { ISkillActionStatusEffect, Stat, StatusEffect } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-skill-action-effect-form',
@@ -62,9 +62,7 @@ export class SkillActionEffectFormComponent {
             placeholder: 'Choose scale stat...',
             description: 'If selected, value applied to effect will be multiplied by the casters scale stat.',
             options: [{ label: 'None', value: '' }]
-                      .concat(Object.values((Object.values(PrimaryStat) as string[])
-                      .concat(Object.values(SecondaryStat)))
-                      .filter(Boolean).sort().map(x => ({ label: x, value: x })))
+                      .concat(Object.values(Stat).filter(Boolean).sort().map(x => ({ label: x, value: x })))
           },
         },
         {

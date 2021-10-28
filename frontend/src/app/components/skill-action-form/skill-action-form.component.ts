@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Element, ISkillAction, SkillActionPattern, SkillValidTargets, StatusEffect } from '../../../../../shared/interfaces';
+import { Element, ISkillAction, SkillActionPattern, SkillValidTargets, Stat, StatusEffect } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-skill-action-form',
@@ -25,7 +25,18 @@ export class SkillActionFormComponent {
     push: 0,
     pull: 0,
     statusEffectChanges: [],
-    statScaling: {},
+    statScaling: {
+      [Stat.HP]: 0,
+      [Stat.MP]: 0,
+      [Stat.Attack]: 0,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 0,
+      [Stat.Special]: 0,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
+    },
     hits: 1,
     dropsTrap: false
   };
