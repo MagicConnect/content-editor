@@ -1,4 +1,66 @@
 
-<form [formGroup]="form">
-  <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
-</form>
+<fieldset class="border border-dark p-3">
+  <legend>Base Details</legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>Base Stats</legend>
+
+  <app-stats-form [model]="model.baseStats"
+                  [pointBuyEnabled]="true"
+                  [maxPoints]="25"
+                  [statKey]="'baseStatPoints'"
+                  [statPointModel]="model.basePoints"></app-stats-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>Level-up Stats</legend>
+
+  <app-stats-form [model]="model.levelStats"
+                  [pointBuyEnabled]="true"
+                  [maxPoints]="25"
+                  [statKey]="'levelupPoints'"
+                  [statPointModel]="model.levelPoints"></app-stats-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Skills
+
+    <button class="btn btn-info btn-sm float-right" (click)="addSkill()" [disabled]="model.skills.length >= 3">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.skills.length === 0">No skills created.</div>
+
+  <app-skill-form *ngFor="let skill of model.skills; let i = index"
+                  (remove)="removeSkill(i)"
+                  [model]="skill"
+                  [index]="i"></app-skill-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Connect Skill
+  </legend>
+
+  <app-skill-form [model]="model.specialSkill"
+                  [index]="-1"></app-skill-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Limit Break Rewards
+  </legend>
+
+  <app-lb-form [model]="model.lbRewards"
+               [allowAbilities]="true"
+               [allowStats]="true"
+               [existingAbilities]="model.abilities"
+               (addAbility)="addLBAbility($event)"></app-lb-form>
+</fieldset>

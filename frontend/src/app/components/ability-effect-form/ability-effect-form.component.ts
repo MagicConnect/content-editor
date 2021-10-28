@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, PrimaryStat, SecondaryStat, StatusEffect } from '../../../../../shared/interfaces';
+import { AbilityEffect, AbilityTarget, Element, IAbilityEffect, MonsterType, Stat, StatusEffect } from '../../../../../shared/interfaces';
 
 
 @Component({
@@ -113,7 +113,7 @@ export class AbilityEffectFormComponent {
             label: 'Effect Base Stat',
             placeholder: 'Choose effect base stat...',
             description: 'Effect base stat determines the stat used for calculations.',
-            options: (Object.values(PrimaryStat) as string[]).concat(Object.values(SecondaryStat)).filter(Boolean).sort().map(x => ({ label: x, value: x }))
+            options: Object.values(Stat).filter(Boolean).sort().map(x => ({ label: x, value: x }))
           },
         },
         {
@@ -130,7 +130,7 @@ export class AbilityEffectFormComponent {
             label: 'Effect Convert Stat',
             placeholder: 'Choose effect convert stat...',
             description: 'Effect convert stat determines the stat converted to from the base stat.',
-            options: (Object.values(PrimaryStat) as string[]).concat(Object.values(SecondaryStat)).filter(Boolean).sort().map(x => ({ label: x, value: x }))
+            options: Object.values(Stat).filter(Boolean).sort().map(x => ({ label: x, value: x }))
           },
         },
         {

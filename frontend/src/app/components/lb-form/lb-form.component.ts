@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IAbility, ILimitBreak, PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+import { Archetype, IAbility, ILimitBreak, Stat } from '../../../../../shared/interfaces';
 
 import { cloneDeep } from 'lodash';
 
@@ -12,18 +12,25 @@ export class LbFormComponent {
 
   @Input() model: ILimitBreak = {
     abilities: {},
+    statPoints: {
+      [Archetype.Archer]: 0,
+      [Archetype.Attacker]: 0,
+      [Archetype.Caster]: 0,
+      [Archetype.Defender]: 0,
+      [Archetype.Healer]: 0,
+    },
     stats: {
-      [PrimaryStat.Attack]: 0,
-      [PrimaryStat.Defense]: 0,
-      [PrimaryStat.Magic]: 0,
-      [PrimaryStat.Special]: 0,
+      [Stat.Attack]: 0,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 0,
+      [Stat.Special]: 0,
 
-      [SecondaryStat.Accuracy]: 0,
-      [SecondaryStat.Critical]: 0,
-      [SecondaryStat.HP]: 0,
-      [SecondaryStat.MP]: 0,
-      [SecondaryStat.MagicEvasion]: 0,
-      [SecondaryStat.MeleeEvasion]: 0,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.HP]: 0,
+      [Stat.MP]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
     },
     skills: {}
   };
@@ -39,12 +46,6 @@ export class LbFormComponent {
   public activeLB = 0;
 
   constructor() { }
-
-  hasStatsGT0(): boolean {
-    const stats: Record<Stat, number> = this.model.stats || {};
-    if(!stats) return false;
-    return (Object.values(stats) as number[]).some(val => val > 0);
-  }
 
   removeLBAbility(index: number) {
     if(!this.model.abilities[this.activeLB]) return;

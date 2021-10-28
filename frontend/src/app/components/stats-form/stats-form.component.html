@@ -1,4 +1,40 @@
 
+<div *ngIf="pointBuyEnabled">
+  <div class="alert alert-info" *ngIf="totalPoints() <= 25">
+    You have spent <strong>{{ totalPoints() }}</strong> / 25 points.
+  </div>
+
+  <div class="alert alert-warning" *ngIf="totalPoints() > 25">
+    Warning, you have spent more than the recommended 25 points: <strong>{{ totalPoints() }}</strong> / 25 points. This stat block may be unbalanced.
+  </div>
+
+  <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between" *ngFor="let archetype of archetypes">
+      <button class="btn btn-sm fw-button"
+              [ngClass]="['btn-' + archetype.color]"
+              (click)="buyPoint(archetype.name, -1)">-</button>
+
+      <div class="mx-1">
+        <strong>{{ archetype.name }}</strong> ({{ statPointModel[archetype.name] }})
+      </div>
+
+      <button class="btn btn-sm fw-button"
+              [ngClass]="['btn-' + archetype.color]"
+              (click)="buyPoint(archetype.name, 1)">+</button>
+    </div>
+  </div>
+
+  <div class="progress mb-3">
+    <div class="progress-bar"
+         [ngClass]="['bg-' + archetype.color]"
+         *ngFor="let archetype of archetypes"
+         [class.hidden]="statPointModel[archetype.name] <= 0"
+         [style.width]="(100 * statPointModel[archetype.name] / totalPoints()) + '%'">
+      {{ statPointModel[archetype.name] }}
+    </div>
+  </div>
+</div>
+
 <form [formGroup]="form">
   <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
 </form>

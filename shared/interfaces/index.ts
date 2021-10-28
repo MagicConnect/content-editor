@@ -10,3 +10,4 @@ export * from './ILimitBreak';
 export * from './IShop';
 export * from './ISkill';
 export * from './IWeapon';
+export * from './Matrices';

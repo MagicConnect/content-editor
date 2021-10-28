@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +28,12 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModManagerService } from './services/mod-manager.service';
+import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
+import { CharacterListComponent } from './components/character-list/character-list.component';
+import { SkillFormComponent } from './components/skill-form/skill-form.component';
+import { SkillActionFormComponent } from './components/skill-action-form/skill-action-form.component';
+import { SkillActionEffectFormComponent } from './components/skill-action-effect-form/skill-action-effect-form.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     AbilityConditionFormComponent,
     LbFormComponent,
     StatsFormComponent,
-    ChipListComponent
+    ChipListComponent,
+    WeaponListComponent,
+    CharacterListComponent,
+    SkillFormComponent,
+    SkillActionFormComponent,
+    SkillActionEffectFormComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +77,17 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ModalModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (mod: ModManagerService) => () => {
+        mod.init();
+        return mod;
+      },
+      deps: [ModManagerService],
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

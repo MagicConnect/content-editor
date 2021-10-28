@@ -1,4 +1,7 @@
 
+.hidden {
+  display: none;
+}
 
 .section-header {
   font-size: 1.5rem;
@@ -32,4 +35,8 @@ legend {
       flex: 1
     }
   }
+}
+
+.fw-button {
+  width: 32px;
 }

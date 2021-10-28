@@ -2,6 +2,13 @@
   <a class="navbar-brand" href="#">MagiCon! Tools</a>
 
   <div class="collapse navbar-collapse">
+    <div class="btn-group mr-auto ml-auto">
+      <label class="btn btn-info btn-sm mb-0" (click)="export()">Export</label>
+      <label class="btn btn-warning btn-sm mb-0" (click)="uploadContent.click()">Import</label>
+      <input type="file" #uploadContent class="hidden" accept=".json" (change)="import($event, uploadContent)"/>
+      <label class="btn btn-danger btn-sm mb-0" (click)="reset()">Reset</label>
+    </div>
+
     <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
       <label class="btn btn-info btn-sm mb-0" btnRadio="banner" [disabled]="true">Banner</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="character">Character</label>
@@ -16,16 +23,12 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-md-12">
-      <app-banner (save)="save()" *ngIf="currentPage === 'banner'"></app-banner>
-      <app-character (save)="save()" *ngIf="currentPage === 'character'"></app-character>
+      <app-banner *ngIf="currentPage === 'banner'"></app-banner>
+      <app-character-list *ngIf="currentPage === 'character'"></app-character-list>
       <app-chip-list *ngIf="currentPage === 'chip'"></app-chip-list>
-      <app-enemy (save)="save()" *ngIf="currentPage === 'enemy'"></app-enemy>
-      <app-event (save)="save()" *ngIf="currentPage === 'event'"></app-event>
-      <app-weapon (save)="save()" *ngIf="currentPage === 'weapon'"></app-weapon>
+      <app-enemy *ngIf="currentPage === 'enemy'"></app-enemy>
+      <app-event *ngIf="currentPage === 'event'"></app-event>
+      <app-weapon-list *ngIf="currentPage === 'weapon'"></app-weapon-list>
     </div>
   </div>
 </div>
-
-      <!--
-      <app-chip (save)="save()" *ngIf="currentPage === 'chip'"></app-chip>
-      -->

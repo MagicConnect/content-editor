@@ -76,14 +76,11 @@ export enum StatusEffect {
   MEVADown = 'MEVADown',
 }
 
-export enum PrimaryStat {
+export enum Stat {
   Attack = 'attack',
   Defense = 'defense',
   Magic = 'magic',
-  Special = 'special'
-}
-
-export enum SecondaryStat {
+  Special = 'special',
   HP = 'hp',
   MP = 'mp',
   MeleeEvasion = 'meleeEvasion',
@@ -92,4 +89,5 @@ export enum SecondaryStat {
   Accuracy = 'accuracy'
 }
 
-export type Stat = PrimaryStat & SecondaryStat;
+export type PrimaryStat = Stat.Attack | Stat.Defense | Stat.Magic | Stat.Special;
+export type SecondaryStat = Stat.HP | Stat.MP | Stat.MeleeEvasion | Stat.MagicEvasion | Stat.Critical | Stat.Accuracy;

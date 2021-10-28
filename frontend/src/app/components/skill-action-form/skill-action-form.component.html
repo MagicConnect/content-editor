@@ -1,0 +1,59 @@
+
+<hr *ngIf="index > 0">
+
+<div class="ability-container" [ngClass]="'ability-' + index">
+  <div class="row">
+    <div class="col-10">
+
+      <form [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-danger float-right" (click)="remove.emit()" *ngIf="index !== -1">Remove SA#{{ index + 1 }}</button>
+    </div>
+  </div>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Elements
+    </legend>
+
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary"
+              [class.active]="model.elements.includes(element)"
+              (click)="toggleElement(element)"
+              *ngFor="let element of elements">{{ element }}</button>
+    </div>
+
+  </fieldset>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Damage Scaling
+    </legend>
+
+    <app-stats-form [model]="model.statScaling"></app-stats-form>
+
+  </fieldset>
+
+  <fieldset class="border border-dark p-3 mt-3">
+    <legend>
+      Status Effects
+
+      <button class="btn btn-info btn-sm float-right" (click)="addStatusEffect()" [disabled]="model.statusEffectChanges.length >= 5">
+        Add
+      </button>
+    </legend>
+
+    <div *ngIf="model.statusEffectChanges.length === 0">No status effects created.</div>
+
+    <app-skill-action-effect-form *ngFor="let effect of model.statusEffectChanges; let i = index"
+                            (remove)="removeStatusEffect(i)"
+                            [model]="effect"
+                            [index]="i"></app-skill-action-effect-form>
+
+  </fieldset>
+
+</div>

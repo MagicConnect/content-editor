@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { LocalStorage } from 'ngx-webstorage';
-import { IChip, PrimaryStat, SecondaryStat } from '../../../../../shared/interfaces';
+import { IChip } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';
+import { newChip } from '../../../../../shared/initializers';
 
 @Component({
   selector: 'app-chip-list',
@@ -13,10 +13,9 @@ import { cloneDeep } from 'lodash';
 })
 export class ChipListComponent implements OnInit {
 
-  public currentChip?: IChip;
+  public chips: IChip[] = [];
 
-  // TODO: remove from local storage
-  @LocalStorage('chip-list') public data!: IChip[];
+  public currentChip?: IChip;
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
@@ -24,50 +23,18 @@ export class ChipListComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    if(!this.data) this.data = [];
-
-    // TODO: load data from mod manager
+    this.mod.chips$.subscribe(chips => this.chips = [...chips]);
   }
 
   openEditModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { keyboard: false, class: 'big-modal' });
-  }
-
-  saveData() {
-    this.data = this.data.slice();
+    this.modalRef = this.modalService.show(template, { keyboard: false, backdrop: 'static', class: 'big-modal' });
   }
 
   addNewChip(template: TemplateRef<any>) {
-    this.currentChip = {
-      name: 'Chip Name',
-      sellValue: 0,
-      description: '',
-      stars: 1,
-      primaryStat: PrimaryStat.Defense,
-
-      abilities: [],
-
-      lbRewards: {
-        abilities: {},
-        stats: {
-          [PrimaryStat.Attack]: 0,
-          [PrimaryStat.Defense]: 0,
-          [PrimaryStat.Magic]: 0,
-          [PrimaryStat.Special]: 0,
-
-          [SecondaryStat.Accuracy]: 0,
-          [SecondaryStat.Critical]: 0,
-          [SecondaryStat.HP]: 0,
-          [SecondaryStat.MP]: 0,
-          [SecondaryStat.MagicEvasion]: 0,
-          [SecondaryStat.MeleeEvasion]: 0,
-        },
-        skills: {}
-      }
-    };
+    this.currentChip = newChip();
 
     this.openEditModal(template);
   }
@@ -81,23 +48,19 @@ export class ChipListComponent implements OnInit {
   confirmChipEdit() {
     if(!this.currentChip || !this.currentChip.name) return;
 
-    // TODO: move this to mod manager
-
     if(this.editIndex === -1) {
-      this.data.push(this.currentChip);
+      this.mod.addChip(this.currentChip);
     } else {
-      this.data[this.editIndex] = this.currentChip;
+      this.mod.editChip(this.currentChip, this.editIndex);
     }
 
-    this.saveData();
     this.cancelEdit();
   }
 
   deleteChip(chip: IChip) {
     if(!confirm('Are you sure you want to delete this chip?')) return;
 
-    this.data = this.data.filter(c => c !== chip);
-    this.saveData();
+    this.mod.deleteChip(chip);
   }
 
   cancelEdit() {

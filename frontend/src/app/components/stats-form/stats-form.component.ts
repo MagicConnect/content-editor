@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfaces';
+import { Archetype, ArchetypeStatMatrix, PrimaryStat, SecondaryStat, Stat, StatAllocationMatrix } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-stats-form',
@@ -10,19 +10,39 @@ import { PrimaryStat, SecondaryStat, Stat } from '../../../../../shared/interfac
 })
 export class StatsFormComponent {
 
-  @Input() model: Record<Stat, number> = {
-    [PrimaryStat.Attack]: 0,
-    [PrimaryStat.Defense]: 0,
-    [PrimaryStat.Magic]: 0,
-    [PrimaryStat.Special]: 0,
+  @Input() pointBuyEnabled = false;
+  @Input() maxPoints = 25;
+  @Input() statKey!: keyof ArchetypeStatMatrix;
 
-    [SecondaryStat.Accuracy]: 0,
-    [SecondaryStat.Critical]: 0,
-    [SecondaryStat.HP]: 0,
-    [SecondaryStat.MP]: 0,
-    [SecondaryStat.MagicEvasion]: 0,
-    [SecondaryStat.MeleeEvasion]: 0,
+  @Input() statPointModel: Record<Archetype, number> = {
+    [Archetype.Archer]: 0,
+    [Archetype.Attacker]: 0,
+    [Archetype.Caster]: 0,
+    [Archetype.Defender]: 0,
+    [Archetype.Healer]: 0,
   };
+
+  @Input() model: Record<Stat, number> = {
+    [Stat.Attack]: 0,
+    [Stat.Defense]: 0,
+    [Stat.Magic]: 0,
+    [Stat.Special]: 0,
+
+    [Stat.Accuracy]: 0,
+    [Stat.Critical]: 0,
+    [Stat.HP]: 0,
+    [Stat.MP]: 0,
+    [Stat.MagicEvasion]: 0,
+    [Stat.MeleeEvasion]: 0,
+  };
+
+  public archetypes: Array<{ name: Archetype, color: string }> = [
+    { name: Archetype.Archer,     color: 'primary' },
+    { name: Archetype.Attacker,   color: 'danger' },
+    { name: Archetype.Caster,     color: 'secondary' },
+    { name: Archetype.Defender,   color: 'warning' },
+    { name: Archetype.Healer,     color: 'success' },
+  ];
 
   form = new FormGroup({});
 
@@ -30,13 +50,13 @@ export class StatsFormComponent {
 
   fields: FormlyFieldConfig[] = [
 
-    // hp / mp
+    // primary stats
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: SecondaryStat.HP,
-          className: 'col-3',
+          key: Stat.HP,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'HP',
@@ -45,25 +65,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.MP,
-          className: 'col-3',
-          type: 'input',
-          templateOptions: {
-            label: 'MP',
-            placeholder: 'Enter MP here...',
-            min: 0
-          },
-        },
-      ]
-    },
-
-    // primary stats
-    {
-      fieldGroupClassName: 'row',
-      fieldGroup: [
-        {
-          key: PrimaryStat.Attack,
-          className: 'col-3',
+          key: Stat.Attack,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Attack',
@@ -72,8 +75,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Defense,
-          className: 'col-3',
+          key: Stat.Defense,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Defense',
@@ -82,8 +85,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Magic,
-          className: 'col-3',
+          key: Stat.Magic,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Magic',
@@ -92,8 +95,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: PrimaryStat.Special,
-          className: 'col-3',
+          key: Stat.Special,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Special',
@@ -109,8 +112,18 @@ export class StatsFormComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: SecondaryStat.MeleeEvasion,
-          className: 'col-3',
+          key: Stat.MP,
+          className: 'col-2',
+          type: 'input',
+          templateOptions: {
+            label: 'MP',
+            placeholder: 'Enter MP here...',
+            min: 0
+          },
+        },
+        {
+          key: Stat.MeleeEvasion,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Melee Evasion',
@@ -119,8 +132,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.MagicEvasion,
-          className: 'col-3',
+          key: Stat.MagicEvasion,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Magic Evasion',
@@ -129,8 +142,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.Accuracy,
-          className: 'col-3',
+          key: Stat.Accuracy,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Accuracy',
@@ -139,8 +152,8 @@ export class StatsFormComponent {
           },
         },
         {
-          key: SecondaryStat.Critical,
-          className: 'col-3',
+          key: Stat.Critical,
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Critical',
@@ -153,5 +166,39 @@ export class StatsFormComponent {
   ];
 
   constructor() { }
+
+  totalPoints(): number {
+    return Object.values(this.statPointModel).reduce((a, b) => a + b, 0);
+  }
+
+  buyPoint(archetype: Archetype, multiplier: 1|-1) {
+    const subType = this.statKey;
+    const matrix: Record<string, number> = StatAllocationMatrix[archetype][subType];
+
+    const myMatrix = this.statPointModel;
+    const myStats: Record<string, number> = this.model;
+
+    if(multiplier === -1 && myMatrix[archetype] <= 0) return;
+
+    myMatrix[archetype] += multiplier;
+
+    Object.keys(matrix).forEach(stat => {
+      const valueIncrease = matrix[stat] * multiplier;
+
+      myStats[stat] ??= 0;
+      myStats[stat] += valueIncrease;
+
+      const formControl = this.fields
+        .map(x => (x.fieldGroup || []))
+        .flat()
+        .find((x: FormlyFieldConfig) => x.key === stat)
+        ?.formControl;
+
+      if(!formControl) return;
+
+      formControl.setValue((formControl.value ?? 0) + (valueIncrease ?? 0));
+    });
+
+  }
 
 }

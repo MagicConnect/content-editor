@@ -5,7 +5,11 @@
     <fieldset class="border border-dark p-3 mt-3 mb-3">
       <legend>Stats</legend>
 
-      <app-stats-form [model]="model.stats"></app-stats-form>
+      <app-stats-form [model]="model.stats"
+                      [pointBuyEnabled]="true"
+                      [maxPoints]="25"
+                      [statKey]="'limitBreakPoints'"
+                      [statPointModel]="model.statPoints"></app-stats-form>
     </fieldset>
   </div>
 </div>
@@ -22,7 +26,6 @@
               <a class="nav-link" [class.active]="x === activeLB">
                 {{ x + 1 }}
                 <span class="badge badge-success" *ngIf="model.abilities && model.abilities[x] && model.abilities[x].length > 0">A</span>
-                <span class="badge badge-warning" *ngIf="model.stats && hasStatsGT0()">S</span>
                 <span class="badge badge-danger" *ngIf="model.skills && model.skills[x] && model.skills[x].length > 0">S</span>
               </a>
             </li>
