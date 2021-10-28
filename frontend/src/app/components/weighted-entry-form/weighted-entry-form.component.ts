@@ -33,7 +33,7 @@ export class WeightedEntryFormComponent {
           templateOptions: {
             label: 'Entry Name',
             placeholder: 'Enter name here...',
-            description: 'Enter the name of the entry you want on this banner.',
+            description: '',
             required: true,
             maxLength: 50,
           },
@@ -45,7 +45,7 @@ export class WeightedEntryFormComponent {
           templateOptions: {
             label: 'Weight',
             placeholder: 'Enter weight here...',
-            description: 'Weight is the likelihood this item will be picked as opposed to something else.',
+            description: '',
             required: true,
             min: 0,
           },

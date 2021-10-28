@@ -1,0 +1,91 @@
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" (click)="addNewBanner(bannerEditor)">+ Add New Banner</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="banners"
+               columnMode="flex"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Type" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.type }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Characters" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.characters.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Chips" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.chips.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Items" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.items.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Weapons" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.weapons.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm" (click)="editBanner(bannerEditor, row, rowIndex)">Edit</button>
+        <button class="btn btn-danger btn-sm ml-1" (click)="deleteBanner(row)">Delete</button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #bannerEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Banner
+    </h4>
+
+    <div class="has-actions text-center">
+      <button class="btn btn-sm btn-primary" (click)="confirmBannerEdit()">Save</button>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-banner [model]="currentBanner" *ngIf="currentBanner"></app-banner>
+  </div>
+</ng-template>

@@ -37,6 +37,11 @@ import { SkillActionEffectFormComponent } from './components/skill-action-effect
 
 import { ModManagerService } from './services/mod-manager.service';
 import { WeightedEntryFormComponent } from './components/weighted-entry-form/weighted-entry-form.component';
+import { BannerListComponent } from './components/banner-list/banner-list.component';
+import { ItemListComponent } from './components/item-list/item-list.component';
+import { EnemyListComponent } from './components/enemy-list/enemy-list.component';
+import { ShopListComponent } from './components/shop-list/shop-list.component';
+import { ItemComponent } from './components/item/item.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,12 @@ import { WeightedEntryFormComponent } from './components/weighted-entry-form/wei
     SkillFormComponent,
     SkillActionFormComponent,
     SkillActionEffectFormComponent,
-    WeightedEntryFormComponent
+    WeightedEntryFormComponent,
+    BannerListComponent,
+    ItemListComponent,
+    EnemyListComponent,
+    ShopListComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

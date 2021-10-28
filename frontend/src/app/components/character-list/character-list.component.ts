@@ -58,7 +58,7 @@ export class CharacterListComponent implements OnInit {
   }
 
   deleteCharacter(character: ICharacter) {
-    if(!confirm('Are you sure you want to delete this weapon?')) return;
+    if(!confirm('Are you sure you want to delete this character?')) return;
 
     this.mod.deleteCharacter(character);
   }
