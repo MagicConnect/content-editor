@@ -8,9 +8,9 @@ export interface IShopBuyable {
 export interface IShop {
   name: string;
   description: string;
-  currency: string;
-  activeStarts: Date;
-  activeEnds: Date;
+  currencyItem: string;
+  activeStarts: string;
+  activeEnds: string;
 
   characters: IShopBuyable[];
   chips: IShopBuyable[];

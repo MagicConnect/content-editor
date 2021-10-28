@@ -12,28 +12,31 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { CharacterComponent } from './components/character/character.component';
 import { EnemyComponent } from './components/enemy/enemy.component';
 import { WeaponComponent } from './components/weapon/weapon.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { EventComponent } from './components/event/event.component';
+import { ShopComponent } from './components/shop/shop.component';
 import { ChipComponent } from './components/chip/chip.component';
 import { AbilityFormComponent } from './components/ability-form/ability-form.component';
 import { AbilityEffectFormComponent } from './components/ability-effect-form/ability-effect-form.component';
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
 import { LbFormComponent } from './components/lb-form/lb-form.component';
 import { StatsFormComponent } from './components/stats-form/stats-form.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChipListComponent } from './components/chip-list/chip-list.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ModManagerService } from './services/mod-manager.service';
 import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import { SkillFormComponent } from './components/skill-form/skill-form.component';
 import { SkillActionFormComponent } from './components/skill-action-form/skill-action-form.component';
 import { SkillActionEffectFormComponent } from './components/skill-action-effect-form/skill-action-effect-form.component';
+
+import { ModManagerService } from './services/mod-manager.service';
+import { WeightedEntryFormComponent } from './components/weighted-entry-form/weighted-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,7 @@ import { SkillActionEffectFormComponent } from './components/skill-action-effect
     EnemyComponent,
     WeaponComponent,
     BannerComponent,
-    EventComponent,
+    ShopComponent,
     ChipComponent,
     AbilityFormComponent,
     AbilityEffectFormComponent,
@@ -54,7 +57,8 @@ import { SkillActionEffectFormComponent } from './components/skill-action-effect
     CharacterListComponent,
     SkillFormComponent,
     SkillActionFormComponent,
-    SkillActionEffectFormComponent
+    SkillActionEffectFormComponent,
+    WeightedEntryFormComponent
   ],
   imports: [
     BrowserModule,
