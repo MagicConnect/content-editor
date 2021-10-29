@@ -1,6 +1,5 @@
 
-import { Archetype, Stat, Weapon } from '../interfaces';
-import { ICharacter } from '../interfaces/ICharacter';
+import { Archetype, Stat, Weapon, ICharacter } from '../interfaces';
 
 export const newCharacter = (): ICharacter => ({
   name: 'Character Name',

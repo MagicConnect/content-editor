@@ -10,11 +10,12 @@
     </div>
 
     <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
-      <label class="btn btn-info btn-sm mb-0" btnRadio="banner" [disabled]="true">Banner</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="banner">Banner</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="character">Character</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip</label>
-      <label class="btn btn-info btn-sm mb-0" btnRadio="enemy" [disabled]="true">Enemy</label>
-      <label class="btn btn-info btn-sm mb-0" btnRadio="event" [disabled]="true">Event</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="item">Item</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon</label>
     </div>
   </div>
@@ -23,11 +24,11 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-md-12">
-      <app-banner *ngIf="currentPage === 'banner'"></app-banner>
+      <app-banner-list *ngIf="currentPage === 'banner'"></app-banner-list>
       <app-character-list *ngIf="currentPage === 'character'"></app-character-list>
       <app-chip-list *ngIf="currentPage === 'chip'"></app-chip-list>
       <app-enemy *ngIf="currentPage === 'enemy'"></app-enemy>
-      <app-event *ngIf="currentPage === 'event'"></app-event>
+      <app-shop *ngIf="currentPage === 'shop'"></app-shop>
       <app-weapon-list *ngIf="currentPage === 'weapon'"></app-weapon-list>
     </div>
   </div>
