@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IBanner, ICharacter, IChip, IContentPack, IItem, IShop, IWeapon } from '../../../../shared/interfaces';
+import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IShop, IWeapon } from '../../../../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,9 @@ export class ModManagerService {
 
   private chips: BehaviorSubject<IChip[]> = new BehaviorSubject<IChip[]>([]);
   public chips$: Observable<IChip[]> = this.chips.asObservable();
+
+  private enemies: BehaviorSubject<IEnemy[]> = new BehaviorSubject<IEnemy[]>([]);
+  public enemies$: Observable<IEnemy[]> = this.enemies.asObservable();
 
   private items: BehaviorSubject<IItem[]> = new BehaviorSubject<IItem[]>([]);
   public items$: Observable<IItem[]> = this.items.asObservable();
@@ -70,6 +73,7 @@ export class ModManagerService {
       banners: [],
       characters: [],
       chips: [],
+      enemies: [],
       items: [],
       shops: [],
       weapons: []
@@ -80,6 +84,7 @@ export class ModManagerService {
     this.banners.next(this.currentPack.banners);
     this.characters.next(this.currentPack.characters);
     this.chips.next(this.currentPack.chips);
+    this.enemies.next(this.currentPack.enemies);
     this.items.next(this.currentPack.items);
     this.shops.next(this.currentPack.shops);
     this.weapons.next(this.currentPack.weapons);
@@ -139,6 +144,22 @@ export class ModManagerService {
 
   public deleteChip(chip: IChip): void {
     this.currentPack.chips = this.currentPack.chips.filter(c => c !== chip);
+    this.syncAndSave();
+  }
+
+  // Enemy-related
+  public addEnemy(enemy: IEnemy): void {
+    this.currentPack.enemies.push(enemy);
+    this.syncAndSave();
+  }
+
+  public editEnemy(enemy: IEnemy, index: number): void {
+    this.currentPack.enemies[index] = enemy;
+    this.syncAndSave();
+  }
+
+  public deleteEnemy(enemy: IEnemy): void {
+    this.currentPack.enemies = this.currentPack.enemies.filter(e => e !== enemy);
     this.syncAndSave();
   }
 

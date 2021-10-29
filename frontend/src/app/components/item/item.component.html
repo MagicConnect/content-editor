@@ -1,1 +1,8 @@
-<p>item works!</p>
+
+<fieldset class="border border-dark p-3">
+  <legend>Base Details</legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
