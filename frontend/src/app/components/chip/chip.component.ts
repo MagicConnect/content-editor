@@ -78,6 +78,10 @@ export class ChipComponent {
               { value: 4, label: '★★★★' },
               { value: 5, label: '★★★★★' },
             ],
+            change: (field, $event) => {
+              const value = +$event.target.value.split(' ')[1];
+              this.model.sellValue = value * value * 100;
+            },
           },
         },
       ]

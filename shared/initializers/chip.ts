@@ -2,7 +2,7 @@ import { Archetype, IChip, Stat } from '../interfaces';
 
 export const newChip = (): IChip => ({
   name: 'Chip Name',
-  sellValue: 0,
+  sellValue: 100,
   description: '',
   stars: 1,
   primaryStat: Stat.Defense,
