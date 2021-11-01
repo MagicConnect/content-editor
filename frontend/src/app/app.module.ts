@@ -42,6 +42,7 @@ import { ItemListComponent } from './components/item-list/item-list.component';
 import { EnemyListComponent } from './components/enemy-list/enemy-list.component';
 import { ShopListComponent } from './components/shop-list/shop-list.component';
 import { ItemComponent } from './components/item/item.component';
+import { ShopEntryFormComponent } from './components/shop-entry-form/shop-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ItemComponent } from './components/item/item.component';
     ItemListComponent,
     EnemyListComponent,
     ShopListComponent,
-    ItemComponent
+    ItemComponent,
+    ShopEntryFormComponent
   ],
   imports: [
     BrowserModule,

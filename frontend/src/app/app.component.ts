@@ -11,8 +11,6 @@ export class AppComponent implements OnInit {
 
   @LocalStorage() currentPage!: string;
 
-  pages = ['banner', 'character', 'chip', 'enemy', 'shop', 'weapon'];
-
   constructor(private mod: ModManagerService) {}
 
   ngOnInit() {

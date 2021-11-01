@@ -53,7 +53,7 @@
     </button>
   </legend>
 
-  <div *ngIf="model.chips.length === 0">No chips on banner.</div>
+  <div *ngIf="model.chips.length === 0">No items on banner.</div>
 
   <app-weighted-entry-form *ngFor="let item of model.items; let i = index"
                            (remove)="remove('items', i)"

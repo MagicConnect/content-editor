@@ -15,4 +15,5 @@ export interface IShop {
   characters: IShopBuyable[];
   chips: IShopBuyable[];
   items: IShopBuyable[];
+  weapons: IShopBuyable[];
 }

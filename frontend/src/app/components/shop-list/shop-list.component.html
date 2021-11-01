@@ -1,1 +1,91 @@
-<p>shop-list works!</p>
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" (click)="addNewShop(shopEditor)">+ Add New Shop</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="shops"
+               columnMode="flex"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Currency Item" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.currencyItem }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Characters" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.characters.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Chips" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.chips.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Items" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.items.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Weapons" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.weapons.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm" (click)="editShop(shopEditor, row, rowIndex)">Edit</button>
+        <button class="btn btn-danger btn-sm ml-1" (click)="deleteShop(row)">Delete</button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #shopEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Shop
+    </h4>
+
+    <div class="has-actions text-center">
+      <button class="btn btn-sm btn-primary" (click)="confirmShopEdit()">Save</button>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-shop [model]="currentShop" *ngIf="currentShop"></app-shop>
+  </div>
+</ng-template>

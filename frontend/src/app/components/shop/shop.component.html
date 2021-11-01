@@ -1,1 +1,79 @@
-<p>event works!</p>
+
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Base Details
+  </legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Characters
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('characters')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.characters.length === 0">No characters in shop.</div>
+
+  <app-shop-entry-form *ngFor="let character of model.characters; let i = index"
+                           (remove)="remove('characters', i)"
+                           [model]="character"
+                           [index]="i"></app-shop-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Chips
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('chips')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.chips.length === 0">No chips in shop.</div>
+
+  <app-shop-entry-form *ngFor="let chip of model.chips; let i = index"
+                           (remove)="remove('chips', i)"
+                           [model]="chip"
+                           [index]="i"></app-shop-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Items
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('items')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.chips.length === 0">No items in shop.</div>
+
+  <app-shop-entry-form *ngFor="let item of model.items; let i = index"
+                           (remove)="remove('items', i)"
+                           [model]="item"
+                           [index]="i"></app-shop-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Weapons
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('weapons')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.weapons.length === 0">No weapons in shop.</div>
+
+  <app-shop-entry-form *ngFor="let weapon of model.weapons; let i = index"
+                           (remove)="remove('weapons', i)"
+                           [model]="weapon"
+                           [index]="i"></app-shop-entry-form>
+</fieldset>
