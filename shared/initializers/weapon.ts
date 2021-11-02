@@ -1,7 +1,8 @@
-import { Archetype, IWeapon, Stat } from '../interfaces';
+import { Archetype, ItemType, IWeapon, Stat } from '../interfaces';
 
 export const newWeapon = (): IWeapon => ({
   name: 'Weapon Name',
+  itemType: ItemType.Weapon,
   sellValue: 100,
   description: '',
   stars: 1,

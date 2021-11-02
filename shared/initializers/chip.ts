@@ -1,7 +1,8 @@
-import { Archetype, IChip, Stat } from '../interfaces';
+import { Archetype, IChip, ItemType, Stat } from '../interfaces';
 
 export const newChip = (): IChip => ({
   name: 'Chip Name',
+  itemType: ItemType.Chip,
   sellValue: 100,
   description: '',
   stars: 1,

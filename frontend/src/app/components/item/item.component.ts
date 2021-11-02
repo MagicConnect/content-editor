@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IItem } from '../../../../../shared/interfaces';
+import { IItem, ItemType } from '../../../../../shared/interfaces';
 import { newItem } from '../../../../../shared/initializers';
 
 @Component({
@@ -43,6 +43,17 @@ export class ItemComponent {
             description: 'It should be less than 100 characters.',
             required: false,
             maxLength: 100,
+          },
+        },
+        {
+          key: 'itemType',
+          className: 'col-3',
+          type: 'select',
+          templateOptions: {
+            label: 'Type',
+            placeholder: 'Choose type...',
+            description: 'It determines if the item has any special utility.',
+            options: Object.values(ItemType).filter(Boolean).sort().map(x => ({ label: x, value: x }))
           },
         },
         {
