@@ -38,6 +38,22 @@ export class ModManagerService {
     return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
   }
 
+  public get filteredCharacters(): Array<{ name: string, stars: string }> {
+    return this.currentPack.characters.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  }
+
+  public get filteredChips(): Array<{ name: string, stars: string }> {
+    return this.currentPack.chips.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  }
+
+  public get filteredWeapons(): Array<{ name: string, stars: string }> {
+    return this.currentPack.weapons.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  }
+
+  public get filteredItems(): Array<{ name: string, itemType: ItemType }> {
+    return this.currentPack.items.map(c => ({ name: c.name, itemType: c.itemType }));
+  }
+
   @LocalStorage() public currentPack!: IContentPack;
 
   constructor() {}

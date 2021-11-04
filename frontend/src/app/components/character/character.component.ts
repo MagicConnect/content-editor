@@ -22,7 +22,7 @@ export class CharacterComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: 'Name',
+          key: 'name',
           className: 'col-3',
           type: 'input',
           templateOptions: {
@@ -34,7 +34,7 @@ export class CharacterComponent {
           },
         },
         {
-          key: 'Archetype',
+          key: 'archetype',
           className: 'col-3',
           type: 'select',
           templateOptions: {
@@ -52,7 +52,7 @@ export class CharacterComponent {
           },
         },
         {
-          key: 'Weapon',
+          key: 'weapon',
           className: 'col-3',
           type: 'select',
           templateOptions: {
@@ -72,7 +72,7 @@ export class CharacterComponent {
           },
         },
         {
-          key: 'Star Rating',
+          key: 'stars',
           className: 'col-3',
           type: 'select',
           templateOptions: {
@@ -94,7 +94,7 @@ export class CharacterComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: 'Primary Stat',
+          key: 'primaryStat',
           className: 'col-3',
           type: 'select',
           templateOptions: {
@@ -103,10 +103,10 @@ export class CharacterComponent {
             description: 'Primary stat is the stat used for basic attacks.',
             required: true,
             options: [
-              { value: 'Attack',  label: 'Attack' },
-              { value: 'Defense', label: 'Defense' },
-              { value: 'Magic',   label: 'Magic' },
-              { value: 'Special', label: 'Special'  },
+              { value: 'attack',  label: 'Attack' },
+              { value: 'defense', label: 'Defense' },
+              { value: 'magic',   label: 'Magic' },
+              { value: 'special', label: 'Special'  },
             ],
           },
         },

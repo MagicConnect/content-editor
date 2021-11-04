@@ -27,6 +27,22 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="Archetype" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.archetype }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Weapon" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.weapon }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
   <ngx-datatable-column name="Primary Stat" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">

@@ -24,6 +24,7 @@
   <app-weighted-entry-form *ngFor="let character of model.characters; let i = index"
                            (remove)="remove('characters', i)"
                            [model]="character"
+                           type="character"
                            [index]="i"></app-weighted-entry-form>
 </fieldset>
 
@@ -41,6 +42,7 @@
   <app-weighted-entry-form *ngFor="let chip of model.chips; let i = index"
                            (remove)="remove('chips', i)"
                            [model]="chip"
+                           type="chip"
                            [index]="i"></app-weighted-entry-form>
 </fieldset>
 
@@ -53,11 +55,12 @@
     </button>
   </legend>
 
-  <div *ngIf="model.chips.length === 0">No items on banner.</div>
+  <div *ngIf="model.items.length === 0">No items on banner.</div>
 
   <app-weighted-entry-form *ngFor="let item of model.items; let i = index"
                            (remove)="remove('items', i)"
                            [model]="item"
+                           type="item"
                            [index]="i"></app-weighted-entry-form>
 </fieldset>
 
@@ -75,5 +78,6 @@
   <app-weighted-entry-form *ngFor="let weapon of model.weapons; let i = index"
                            (remove)="remove('weapons', i)"
                            [model]="weapon"
+                           type="weapon"
                            [index]="i"></app-weighted-entry-form>
 </fieldset>
