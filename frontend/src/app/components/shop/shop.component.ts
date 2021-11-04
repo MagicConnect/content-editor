@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newShop } from '../../../../../shared/initializers';
 import { IShop } from '../../../../../shared/interfaces';
+import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
   selector: 'app-shop',
@@ -48,13 +49,13 @@ export class ShopComponent {
         {
           key: 'currencyItem',
           className: 'col-4',
-          type: 'input',
+          type: 'select',
           templateOptions: {
             label: 'Currency Item',
             placeholder: 'Enter currency item here...',
-            description: 'It should match the name of an existing item.',
+            description: 'If you don\'t see any currency items, add one.',
             required: true,
-            maxLength: 100,
+            options: Object.values(this.mod.shopTokens).filter(Boolean).sort().map(x => ({ label: x.name, value: x.name }))
           },
         },
         {
@@ -85,7 +86,7 @@ export class ShopComponent {
     }
   ];
 
-  constructor() { }
+  constructor(private mod: ModManagerService) { }
 
   add(type: keyof IShop & 'characters'|'weapons'|'items'|'chips') {
     this.model[type].push({ name: '', cost: 100, quantity: -1 });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IShop, IWeapon } from '../../../../shared/interfaces';
+import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,10 @@ export class ModManagerService {
 
   public get stars() {
     return ['★', '★★', '★★★', '★★★★', '★★★★★'];
+  }
+
+  public get shopTokens(): IItem[] {
+    return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
   }
 
   @LocalStorage() public currentPack!: IContentPack;
