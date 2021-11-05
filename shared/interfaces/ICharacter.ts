@@ -7,7 +7,7 @@ export interface ICharacter {
   name: string;                           // character name
   archetype: Archetype;                   // character class/archetype
   weapon: Weapon;                         // weapon used by the character
-  stars: number;                          // character star value (3-5*)
+  stars: 3|4|5;                           // character star value (3-5*)
 
   primaryStat: PrimaryStat;               // primary character stat, used for basic attack scaling
   basePoints: Record<Archetype, number>;  // base stat points bought per class

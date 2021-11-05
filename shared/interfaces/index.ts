@@ -8,6 +8,7 @@ export * from './IChip';
 export * from './IEnemy';
 export * from './IItem';
 export * from './ILimitBreak';
+export * from './IMap';
 export * from './IShop';
 export * from './ISkill';
 export * from './IWeapon';
