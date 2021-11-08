@@ -15,8 +15,31 @@
 
     <div class="controls">
       <div><strong>Shift+Click</strong> Create new node</div>
+      <div><strong>Right Click</strong> Edit node</div>
       <div><strong>Shift+Drag</strong> Create link</div>
-      <div><strong>Click+Delete</strong> Delete node/link</div>
+      <div><strong>Ctrl+Click</strong> Select node/link</div>
+      <div><strong>Delete</strong> Delete selected node/link</div>
     </div>
   </div>
 </fieldset>
+
+<ng-template #battleEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Edit Battle
+    </h4>
+
+    <div class="has-actions text-center">
+      <button class="btn btn-sm btn-primary" (click)="confirmBattleEdit()">Save</button>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-battle [model]="currentBattle" *ngIf="currentBattle"></app-battle>
+  </div>
+</ng-template>
+

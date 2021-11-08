@@ -6,17 +6,17 @@ export interface IMap {
 
   activeStarts: string;
   activeEnds: string;
-
-  unlocksMap: string;
 }
 
 export interface IMapNode {
+  id: number;
   name: string;
   x: number;
   y: number;
   description: string;
   combat: IMapCombat;
   staminaCost: number;
+  unlocksMap: string;
 }
 
 export interface IMapCombat {
@@ -28,7 +28,7 @@ export interface IMapCombatGrid {
 }
 
 export interface IMapCombatEnemy {
-  enemy: string;
+  name: string;
   level: number;
   width: number;
   height: number;

@@ -44,6 +44,7 @@ import { ShopListComponent } from './components/shop-list/shop-list.component';
 import { ItemComponent } from './components/item/item.component';
 import { ShopEntryFormComponent } from './components/shop-entry-form/shop-entry-form.component';
 import { MapComponent } from './components/map/map.component';
+import { BattleComponent } from './components/battle/battle.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { MapComponent } from './components/map/map.component';
     ShopListComponent,
     ItemComponent,
     ShopEntryFormComponent,
-    MapComponent
+    MapComponent,
+    BattleComponent
   ],
   imports: [
     BrowserModule,

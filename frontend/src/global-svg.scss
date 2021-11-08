@@ -1,3 +1,7 @@
+$default: #bd8ac7;
+$selected: rgb(200, 100, 100);
+$hover: rgb(94, 196, 204);
+
 svg.d3map {
   .conceptG {
     text {
@@ -5,17 +9,17 @@ svg.d3map {
     }
 
     circle {
-      fill: #F6FBFF;
+      fill: $default;
       stroke: #333;
       stroke-width: 2px;
     }
 
     &:hover circle {
-      fill: rgb(94, 196, 204);
+      fill: $hover;
     }
 
     &.selected circle {
-      fill: rgb(250, 232, 255);
+      fill: $selected;
     }
 
   }
@@ -31,7 +35,7 @@ svg.d3map {
     cursor: default;
 
     &:hover {
-      stroke: rgb(94, 196, 204);
+      stroke: $hover;
     }
 
     &.hidden {
@@ -39,7 +43,7 @@ svg.d3map {
     }
 
     &.selected {
-      stroke: rgb(229, 172, 247);
+      stroke: $selected;
     }
   }
 

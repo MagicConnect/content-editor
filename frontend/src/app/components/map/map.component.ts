@@ -1,14 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 import * as d3 from 'd3';
-
+import { cloneDeep, extend } from 'lodash';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { newMap } from '../../../../../shared/initializers';
-import { IMap } from '../../../../../shared/interfaces';
+import { IMap, IMapNode } from '../../../../../shared/interfaces';
 import { D3MapCreator } from './d3-map';
 
+// TODO: map-list, load map layout (validate loading links works, loading nodes works)
 
 @Component({
   selector: 'app-map',
@@ -16,6 +18,11 @@ import { D3MapCreator } from './d3-map';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+
+  @ViewChild('battleEditor') battleEditor!: TemplateRef<any>;
+  public currentBattleRef?: IMapNode;
+  public currentBattle?: IMapNode;
+  private modalRef!: BsModalRef;
 
   @Input() model: IMap = newMap();
 
@@ -36,18 +43,6 @@ export class MapComponent implements OnInit {
           templateOptions: {
             label: 'Name',
             placeholder: 'Enter name here...',
-            description: 'It should be less than 30 characters.',
-            required: true,
-            maxLength: 30,
-          },
-        },
-        {
-          key: 'unlocksMap',
-          className: 'col-3',
-          type: 'input',
-          templateOptions: {
-            label: 'Unlocks Map',
-            placeholder: 'Enter map name here...',
             description: 'It should be less than 30 characters.',
             required: true,
             maxLength: 30,
@@ -81,7 +76,7 @@ export class MapComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
     const d3SVG = d3.select('.map-editor').append('svg')
@@ -90,25 +85,58 @@ export class MapComponent implements OnInit {
       .attr('class', 'd3map')
       .attr('style', 'border: 1px solid #000');
 
-    const addNode = (node: any) => {
-      console.log('add', node);
-
-      // node.title = '1';
+    const addNode = (node: IMapNode) => {
+       this.model.nodes.push(node);
+       this.model.nodeConnections[node.id] = [];
     };
 
-    const removeNode = (node: any) => {
-      console.log('remove', node);
+    const editNode = (node: IMapNode) => {
+      this.currentBattleRef = node;
+      this.currentBattle = cloneDeep(node);
+      this.modalRef = this.modalService.show(this.battleEditor, { keyboard: false, backdrop: 'static', class: 'big-modal' });
     };
 
-    const addLink = (link: any) => {
-      console.log('add', link);
+    const removeNode = (node: IMapNode) => {
+      this.model.nodes = this.model.nodes.filter(x => x !== node);
+      delete this.model.nodeConnections[node.id];
     };
 
-    const removeLink = (link: any) => {
-      console.log('remove', link);
+    const addLink = (link: { source: IMapNode, target: IMapNode }) => {
+      this.model.nodeConnections[link.source.id].push(link.target.id);
+      this.model.nodeConnections[link.target.id].push(link.source.id);
     };
 
-    this.map = new D3MapCreator(d3SVG, [], [], { addNode, removeNode, addLink, removeLink });
+    const removeLink = (link: { source: IMapNode, target: IMapNode }) => {
+      this.model.nodeConnections[link.source.id] = this.model.nodeConnections[link.source.id].filter(x => x !== link.target.id);
+    };
+
+    this.map = new D3MapCreator(d3SVG, this.model.nodes, this.reformatModelNodeConnections(), { addNode, editNode, removeNode, addLink, removeLink });
+  }
+
+  private reformatModelNodeConnections(): Array<{ source: IMapNode, target: IMapNode }> {
+    return Object.keys(this.model.nodeConnections).map(source => {
+      return this.model.nodeConnections[+source].map(target => ({
+        source: this.model.nodes.find(x => x.id === +source) as IMapNode,
+        target: this.model.nodes.find(x => x.id === target) as IMapNode
+      }));
+    }).flat();
+  }
+
+  confirmBattleEdit() {
+    if(!this.currentBattle || !this.currentBattle.name) return;
+
+    extend(this.currentBattleRef, this.currentBattle);
+
+    this.map.updateGraph();
+
+    this.cancelEdit();
+  }
+
+  cancelEdit() {
+    if(this.modalRef) this.modalRef.hide();
+
+    this.currentBattleRef = undefined;
+    this.currentBattle = undefined;
   }
 
 }

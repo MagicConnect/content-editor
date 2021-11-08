@@ -1,5 +1,7 @@
 
 import * as d3 from 'd3';
+import { newMapBattle } from '../../../../../shared/initializers';
+import { IMapCombatGrid, IMapNode } from '../../../../../shared/interfaces';
 
 class GraphConstants {
   public static selectedClass = 'selected';
@@ -14,7 +16,7 @@ class GraphConstants {
 }
 
 class GraphState {
-  public selectedNode: INode | null = null;
+  public selectedNode: IMapNode | null = null;
   public selectedEdge = null;
   public mouseDownNode = null;
   public mouseEnterNode = null;
@@ -27,20 +29,14 @@ class GraphState {
   public graphMouseDown = false;
 }
 
-export interface INode {
-  title: string;
-  id: number;
-  x: number;
-  y: number;
-}
-
 export interface IEdge {
-  source: INode;
-  target: INode;
+  source: IMapNode;
+  target: IMapNode;
 }
 
 interface GraphCallbacks {
   addNode: (node: any) => void;
+  editNode: (node: any) => void;
   removeNode: (node: any) => void;
   addLink: (node: any) => void;
   removeLink: (node: any) => void;
@@ -60,9 +56,9 @@ export class D3MapCreator {
 
   constructor(
     private svg: any,
-    private nodes: INode[] = [],
+    private nodes: IMapNode[] = [],
     private edges: IEdge[] = [],
-    private callbacks: GraphCallbacks = { addNode: () => {}, removeNode: () => {}, addLink: () => {}, removeLink: () => {} }
+    private callbacks: GraphCallbacks = { addNode: () => {}, editNode: () => {}, removeNode: () => {}, addLink: () => {}, removeLink: () => {} }
   ) {
     this.init();
   }
@@ -195,26 +191,37 @@ export class D3MapCreator {
     }
   }
 
-  private insertTitleLinebreaks(gEl: any, title = '') {
-    const words = title.split(/\s+/g);
-    const nwords = words.length;
+  private insertTitleLinebreaks(gEl: any, title = '', subtitle = '') {
+
+    // battle name
     const el = gEl.append('text')
       .attr('text-anchor', 'middle')
       .attr('font-size', (d: any) => {
-        const len = d.title.substring(0, d.r / 3).length;
-        let size = d.r / 3;
+        const len = d.name.substring(0, GraphConstants.nodeRadius / 3).length;
+        let size = GraphConstants.nodeRadius / 3;
         size *= 7 / len;
         size += 1;
-        return Math.round(size) + 'px';
-      })
-      .attr('dy', '-' + (nwords - 1) * 7.5);
 
-    for (let i = 0; i < words.length; i++) {
-      const tspan = el.append('tspan').text(words[i]);
-      if (i > 0) {
-        tspan.attr('x', 0).attr('dy', '15');
-      }
-    }
+        return Math.round(size) + 'px';
+      });
+
+    const tspan1 = el.append('tspan').text(title);
+    tspan1.attr('x', 0).attr('dy', '-20');
+
+    // battle level / stamina cost
+    const el2 = gEl.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('font-size', (d: any) => {
+        const len = d.name.substring(0, GraphConstants.nodeRadius / 3).length;
+        let size = GraphConstants.nodeRadius / 3;
+        size *= 6 / len;
+        size += 1;
+
+        return Math.round(size) + 'px';
+      });
+
+    const tspan2 = el2.append('tspan').text(subtitle);
+    tspan2.attr('x', 0).attr('dy', '15');
   }
 
   private spliceLinksForNode(node: any) {
@@ -234,6 +241,7 @@ export class D3MapCreator {
       this.removeSelectFromEdge();
     }
     this.state.selectedEdge = edgeData;
+    this.removeSelectFromNode();
   }
 
   private removeSelectFromEdge() {
@@ -243,13 +251,14 @@ export class D3MapCreator {
     this.state.selectedEdge = null;
   }
 
-  private replaceSelectNode(d3Node: any, nodeData: INode) {
+  private replaceSelectNode(d3Node: any, nodeData: IMapNode) {
     d3Node.classed(GraphConstants.selectedClass, true);
     if (this.state.selectedNode) {
       this.removeSelectFromNode();
     }
 
     this.state.selectedNode = nodeData;
+    this.removeSelectFromEdge();
   }
 
   private removeSelectFromNode() {
@@ -303,6 +312,8 @@ export class D3MapCreator {
   private pathMouseDown(event: any, d3path: any, d: any) {
     event.stopPropagation();
 
+    if(!event.ctrlKey) return;
+
     this.state.mouseDownLink = d;
 
     if (this.state.selectedNode) {
@@ -342,11 +353,18 @@ export class D3MapCreator {
     }
 
     const prevNode = this.state.selectedNode;
-    if (!prevNode || prevNode.id !== d.id) {
+    if (event.ctrlKey && (!prevNode || prevNode.id !== d.id)) {
       this.replaceSelectNode(d3node, d);
     } else {
       this.removeSelectFromNode();
     }
+  }
+
+  private circleCtxMenu(event: any, d3node: any, d: any) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.callbacks.editNode(d);
   }
 
   private svgMouseDown() {
@@ -363,12 +381,10 @@ export class D3MapCreator {
     } else if (this.state.graphMouseDown && event.shiftKey) {
       // clicked not dragged from svg
       const xycoords = d3.pointer(event, this.svgG.node());
-      const d = {
-        id: this.idct++,
-        title: 'New Battle',
-        x: xycoords[0],
-        y: xycoords[1],
-      };
+      const d: IMapNode = newMapBattle();
+      d.id = this.idct++;
+      d.x = xycoords[0];
+      d.y = xycoords[1];
 
       this.nodes.push(d);
       this.callbacks.addNode(d);
@@ -384,7 +400,7 @@ export class D3MapCreator {
   }
 
   private svgKeyDown(event: any) {
-    if (this.state.lastKeyDown !== -1) { return; }
+    if (this.state.lastKeyDown !== -1 || event.target.tagName !== 'BODY') { return; }
 
     this.state.lastKeyDown = event.keyCode;
     const selectedNode = this.state.selectedNode;
@@ -398,16 +414,17 @@ export class D3MapCreator {
         if (selectedNode) {
           this.nodes.splice(this.nodes.indexOf(selectedNode), 1);
           this.spliceLinksForNode(selectedNode);
-          this.state.selectedNode = null;
           this.callbacks.removeNode(selectedNode);
           this.updateGraph();
 
         } else if (selectedEdge) {
           this.edges.splice(this.edges.indexOf(selectedEdge), 1);
-          this.state.selectedEdge = null;
           this.callbacks.removeLink(selectedEdge);
           this.updateGraph();
         }
+
+        this.state.selectedNode = null;
+        this.state.selectedEdge = null;
 
         break;
     }
@@ -431,7 +448,7 @@ export class D3MapCreator {
     this.svg.attr('width', x).attr('height', y);
   }
 
-  private updateGraph() {
+  public updateGraph() {
 
     const paths = this.paths.data(this.edges, (d: any) => `${d.source.id}+${d.target.id}`);
 
@@ -487,6 +504,9 @@ export class D3MapCreator {
       .on('mousedown', (event: any, d: any) => {
         this.circleMouseDown(event, d3.select(event.currentTarget), d);
       })
+      .on('contextmenu', (event: any, d: any) => {
+        this.circleCtxMenu(event, d3.select(event.currentTarget), d);
+      })
       .call(this.drag)
       .on('click', (event: any, d: any) => {
         this.circleMouseUp(event, d3.select(event.currentTarget), d);
@@ -497,10 +517,22 @@ export class D3MapCreator {
           .append('circle')
           .attr('r', String(GraphConstants.nodeRadius));
 
-        this.insertTitleLinebreaks(d3.select(nodes[i]), d.title);
+        this.insertTitleLinebreaks(d3.select(nodes[i]), d.name, this.getNodeSubtitle(d));
       });
 
     this.circles = newGs;
+  }
+
+  private nodeLevel(node: IMapNode): number {
+    const enemyNodes = node.combat.grid.flat().filter(Boolean) ?? [];
+
+    return enemyNodes.reduce((prev: number, cur: IMapCombatGrid) => {
+      return prev + (cur?.enemy?.level ?? 0);
+    }, 0) / (enemyNodes.length || 1);
+  }
+
+  private getNodeSubtitle(node: IMapNode): string {
+    return `St. ${node.staminaCost} / Lv. ${this.nodeLevel(node)}`;
   }
 
 }
