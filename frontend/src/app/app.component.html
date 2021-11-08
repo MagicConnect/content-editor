@@ -15,7 +15,7 @@
       <label class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="item">Item</label>
-      <label class="btn btn-info btn-sm mb-0" btnRadio="map" [disabled]="true">Map</label>
+      <label class="btn btn-info btn-sm mb-0" btnRadio="map">Map</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop</label>
       <label class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon</label>
     </div>
@@ -30,6 +30,7 @@
       <app-chip-list *ngIf="currentPage === 'chip'"></app-chip-list>
       <app-enemy-list *ngIf="currentPage === 'enemy'"></app-enemy-list>
       <app-item-list *ngIf="currentPage === 'item'"></app-item-list>
+      <app-map *ngIf="currentPage === 'map'"></app-map>
       <app-shop-list *ngIf="currentPage === 'shop'"></app-shop-list>
       <app-weapon-list *ngIf="currentPage === 'weapon'"></app-weapon-list>
     </div>

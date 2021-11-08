@@ -1,0 +1,22 @@
+
+<fieldset class="border border-dark p-3">
+  <legend>Base Details</legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3">
+  <legend>Map Layout</legend>
+
+  <div class="map-container">
+    <div class="map-editor"></div>
+
+    <div class="controls">
+      <div><strong>Shift+Click</strong> Create new node</div>
+      <div><strong>Shift+Drag</strong> Create link</div>
+      <div><strong>Click+Delete</strong> Delete node/link</div>
+    </div>
+  </div>
+</fieldset>

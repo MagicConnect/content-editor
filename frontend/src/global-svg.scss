@@ -1,0 +1,53 @@
+svg.d3map {
+  .conceptG {
+    text {
+      pointer-events: none;
+    }
+
+    circle {
+      fill: #F6FBFF;
+      stroke: #333;
+      stroke-width: 2px;
+    }
+
+    &:hover circle {
+      fill: rgb(94, 196, 204);
+    }
+
+    &.selected circle {
+      fill: rgb(250, 232, 255);
+    }
+
+  }
+
+  marker {
+    fill: #333;
+  }
+
+  path.link {
+    fill: none;
+    stroke: #333;
+    stroke-width: 6px;
+    cursor: default;
+
+    &:hover {
+      stroke: rgb(94, 196, 204);
+    }
+
+    &.hidden {
+      stroke-width: 0;
+    }
+
+    &.selected {
+      stroke: rgb(229, 172, 247);
+    }
+  }
+
+  g.connect-node circle {
+    fill: #BEFFFF;
+  }
+
+  text {
+    user-select: none;
+  }
+}
