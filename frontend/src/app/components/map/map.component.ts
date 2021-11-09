@@ -100,7 +100,6 @@ export class MapComponent implements OnInit {
     };
 
     const addLink = (link: { source: IMapNode, target: IMapNode }) => {
-      console.log(this.model);
       if(link.source.id === link.target.id) return;
       this.model.nodeConnections[link.source.id].push(link.target.id);
     };
