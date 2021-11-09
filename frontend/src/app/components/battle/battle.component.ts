@@ -66,13 +66,12 @@ export class BattleComponent implements OnInit {
         {
           key: 'unlocksMap',
           className: 'col-3',
-          type: 'input',
+          type: 'select',
           templateOptions: {
             label: 'Map Unlock',
-            placeholder: 'Enter unlocked map here...',
-            description: 'THIS IS TEMPORARY AND SHOULD BE A DROPDOWN',
-            required: true,
-            maxLength: 100,
+            placeholder: 'Choose unlocked map...',
+            description: 'Usually this would be reserved for a final node in the story.',
+            options: Object.values(this.mod.mapNames).filter(Boolean).sort().map(x => ({ label: x.name, value: x.name }))
           },
         },
       ]

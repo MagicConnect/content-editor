@@ -41,6 +41,10 @@ export class ModManagerService {
     return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
   }
 
+  public get mapNames(): Array<{ name: string }> {
+    return this.currentPack.maps.map(c => ({ name: c.name }));
+  }
+
   public get filteredCharacters(): Array<{ name: string, stars: string }> {
     return this.currentPack.characters.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
   }
