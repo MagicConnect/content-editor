@@ -17,6 +17,14 @@ export class AppComponent implements OnInit {
     if(!this.currentPage) this.currentPage = 'weapon';
   }
 
+  netExport() {
+
+  }
+
+  netImport() {
+
+  }
+
   export() {
     this.mod.export();
   }
