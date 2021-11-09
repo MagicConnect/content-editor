@@ -19,6 +19,12 @@ export class MapListComponent implements OnInit {
   public editIndex = -1;
   public modalRef?: BsModalRef;
 
+  public get canSaveCurrentMap(): boolean {
+    if(!this.currentMap) return false;
+    return this.currentMap.name?.length >= 2
+        && this.currentMap.nodes.length >= 1;
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

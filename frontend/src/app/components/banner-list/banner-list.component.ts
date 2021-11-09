@@ -19,6 +19,18 @@ export class BannerListComponent implements OnInit {
   public editIndex = -1;
   public modalRef?: BsModalRef;
 
+  public get canSaveCurrentBanner(): boolean {
+    if(!this.currentBanner) return false;
+    return this.currentBanner.name?.length >= 2
+        && this.currentBanner.type
+        && (
+           this.currentBanner.characters.length > 0
+        || this.currentBanner.items.length > 0
+        || this.currentBanner.chips.length > 0
+        || this.currentBanner.weapons.length > 0
+        );
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

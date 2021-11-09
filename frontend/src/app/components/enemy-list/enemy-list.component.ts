@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sum } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newEnemy } from '../../../../../shared/initializers';
 import { IEnemy } from '../../../../../shared/interfaces';
@@ -18,6 +18,14 @@ export class EnemyListComponent implements OnInit {
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
+
+  public get canSaveCurrentEnemy(): boolean {
+    if(!this.currentEnemy) return false;
+    return this.currentEnemy.name?.length >= 2
+        && this.currentEnemy.primaryStat
+        && sum(Object.values(this.currentEnemy.basePoints)) > 0
+        && sum(Object.values(this.currentEnemy.levelPoints)) > 0;
+  }
 
   constructor(
     private modalService: BsModalService,

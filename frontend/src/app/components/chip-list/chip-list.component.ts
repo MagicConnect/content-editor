@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IChip } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sum } from 'lodash';
 import { newChip } from '../../../../../shared/initializers';
 
 @Component({
@@ -19,6 +19,14 @@ export class ChipListComponent implements OnInit {
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
+
+  public get canSaveCurrentChip(): boolean {
+    if(!this.currentChip) return false;
+    return this.currentChip.name?.length >= 2
+        && this.currentChip.primaryStat
+        && this.currentChip.stars >= 1
+        && sum(Object.values(this.currentChip.lbRewards.statPoints)) > 0;
+  }
 
   constructor(
     private modalService: BsModalService,

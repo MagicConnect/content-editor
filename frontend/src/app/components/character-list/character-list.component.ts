@@ -4,7 +4,7 @@ import { ICharacter } from '../../../../../shared/interfaces';
 import { newCharacter } from '../../../../../shared/initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sum } from 'lodash';
 
 @Component({
   selector: 'app-character-list',
@@ -19,6 +19,20 @@ export class CharacterListComponent implements OnInit {
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
+
+  public get canSaveCurrentCharacter(): boolean {
+    if(!this.currentCharacter) return false;
+    return this.currentCharacter.name?.length >= 2
+        && this.currentCharacter.primaryStat
+        && this.currentCharacter.weapon
+        && this.currentCharacter.archetype
+        && this.currentCharacter.stars >= 3
+        && this.currentCharacter.skills.length >= 1
+        && this.currentCharacter.specialSkill.name.length >= 2
+        && sum(Object.values(this.currentCharacter.basePoints)) > 0
+        && sum(Object.values(this.currentCharacter.levelPoints)) > 0
+        && sum(Object.values(this.currentCharacter.lbRewards.statPoints)) > 0;
+  }
 
   constructor(
     private modalService: BsModalService,

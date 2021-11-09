@@ -19,6 +19,18 @@ export class ShopListComponent implements OnInit {
   public editIndex = -1;
   public modalRef?: BsModalRef;
 
+  public get canSaveCurrentShop(): boolean {
+    if(!this.currentShop) return false;
+    return this.currentShop.name?.length >= 2
+        && !!this.currentShop.currencyItem
+        && (
+           this.currentShop.characters.length > 0
+        || this.currentShop.items.length > 0
+        || this.currentShop.chips.length > 0
+        || this.currentShop.weapons.length > 0
+        );
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

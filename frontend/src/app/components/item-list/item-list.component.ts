@@ -19,6 +19,13 @@ export class ItemListComponent implements OnInit {
   public editIndex = -1;
   public modalRef?: BsModalRef;
 
+  public get canSaveCurrentItem(): boolean {
+    if(!this.currentItem) return false;
+    return this.currentItem.name?.length >= 2
+        && this.currentItem.sellValue > 0
+        && !!this.currentItem.itemType;
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

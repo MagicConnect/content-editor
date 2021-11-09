@@ -2,7 +2,7 @@
 import { IBanner } from '../interfaces';
 
 export const newBanner = (): IBanner => ({
-  name: 'Banner Name',
+  name: '',
   description: '',
   type: 'characters',
   activeStarts: '',

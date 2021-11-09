@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IWeapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, sum } from 'lodash';
 import { newWeapon } from '../../../../../shared/initializers';
 
 @Component({
@@ -19,6 +19,14 @@ export class WeaponListComponent implements OnInit {
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
+
+  public get canSaveCurrentWeapon(): boolean {
+    if(!this.currentWeapon) return false;
+    return this.currentWeapon.name?.length >= 2
+        && this.currentWeapon.primaryStat
+        && this.currentWeapon.stars >= 1
+        && sum(Object.values(this.currentWeapon.lbRewards.statPoints)) > 0;
+  }
 
   constructor(
     private modalService: BsModalService,

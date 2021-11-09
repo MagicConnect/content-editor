@@ -35,6 +35,7 @@
     </ng-template>
   </ngx-datatable-column>
 
+
   <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
     <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
       <div class="float-right">
@@ -53,7 +54,7 @@
     </h4>
 
     <div class="has-actions text-center">
-      <button class="btn btn-sm btn-primary" (click)="confirmWeaponEdit()">Save</button>
+      <button class="btn btn-sm btn-primary" (click)="confirmWeaponEdit()" [disabled]="!canSaveCurrentWeapon">Save</button>
     </div>
 
     <button class="btn-close close" (click)="cancelEdit()">
