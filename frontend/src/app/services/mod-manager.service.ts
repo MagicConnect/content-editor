@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,9 @@ export class ModManagerService {
 
   private items: BehaviorSubject<IItem[]> = new BehaviorSubject<IItem[]>([]);
   public items$: Observable<IItem[]> = this.items.asObservable();
+
+  private maps: BehaviorSubject<IMap[]> = new BehaviorSubject<IMap[]>([]);
+  public maps$: Observable<IMap[]> = this.maps.asObservable();
 
   private shops: BehaviorSubject<IShop[]> = new BehaviorSubject<IShop[]>([]);
   public shops$: Observable<IShop[]> = this.shops.asObservable();
@@ -96,7 +99,8 @@ export class ModManagerService {
       enemies: [],
       items: [],
       shops: [],
-      weapons: []
+      weapons: [],
+      maps: [],
     };
   }
 
@@ -106,6 +110,7 @@ export class ModManagerService {
     this.chips.next(this.currentPack.chips);
     this.enemies.next(this.currentPack.enemies);
     this.items.next(this.currentPack.items);
+    this.maps.next(this.currentPack.maps);
     this.shops.next(this.currentPack.shops);
     this.weapons.next(this.currentPack.weapons);
   }
@@ -196,6 +201,22 @@ export class ModManagerService {
 
   public deleteItem(item: IItem): void {
     this.currentPack.items = this.currentPack.items.filter(i => i !== item);
+    this.syncAndSave();
+  }
+
+  // Map-related
+  public addMap(map: IMap): void {
+    this.currentPack.maps.push(map);
+    this.syncAndSave();
+  }
+
+  public editMap(map: IMap, index: number): void {
+    this.currentPack.maps[index] = map;
+    this.syncAndSave();
+  }
+
+  public deleteMap(map: IMap): void {
+    this.currentPack.maps = this.currentPack.maps.filter(m => m !== map);
     this.syncAndSave();
   }
 

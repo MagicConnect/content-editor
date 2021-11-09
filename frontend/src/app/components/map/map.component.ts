@@ -10,8 +10,6 @@ import { newMap } from '../../../../../shared/initializers';
 import { IMap, IMapNode } from '../../../../../shared/interfaces';
 import { D3MapCreator } from './d3-map';
 
-// TODO: map-list, load map layout (validate loading links works, loading nodes works)
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -102,15 +100,16 @@ export class MapComponent implements OnInit {
     };
 
     const addLink = (link: { source: IMapNode, target: IMapNode }) => {
+      console.log(this.model);
+      if(link.source.id === link.target.id) return;
       this.model.nodeConnections[link.source.id].push(link.target.id);
-      this.model.nodeConnections[link.target.id].push(link.source.id);
     };
 
     const removeLink = (link: { source: IMapNode, target: IMapNode }) => {
       this.model.nodeConnections[link.source.id] = this.model.nodeConnections[link.source.id].filter(x => x !== link.target.id);
     };
 
-    this.map = new D3MapCreator(d3SVG, this.model.nodes, this.reformatModelNodeConnections(), { addNode, editNode, removeNode, addLink, removeLink });
+    this.map = new D3MapCreator(d3SVG, this.model.nodes.slice(), this.reformatModelNodeConnections(), { addNode, editNode, removeNode, addLink, removeLink });
   }
 
   private reformatModelNodeConnections(): Array<{ source: IMapNode, target: IMapNode }> {

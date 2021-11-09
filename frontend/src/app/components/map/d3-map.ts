@@ -1,5 +1,6 @@
 
 import * as d3 from 'd3';
+import { maxBy } from 'lodash';
 import { newMapBattle } from '../../../../../shared/initializers';
 import { IMapCombatGrid, IMapNode } from '../../../../../shared/interfaces';
 
@@ -64,10 +65,16 @@ export class D3MapCreator {
   }
 
   private init() {
+    this.restoreIDCT();
     this.initDefs();
     this.initG();
     this.initKeybinds();
     this.initDrag();
+    this.updateGraph();
+  }
+
+  private restoreIDCT() {
+    this.idct = (maxBy(this.nodes, 'id')?.id ?? 0) + 1;
   }
 
   private initDefs() {
@@ -400,7 +407,7 @@ export class D3MapCreator {
   }
 
   private svgKeyDown(event: any) {
-    if (this.state.lastKeyDown !== -1 || event.target.tagName !== 'BODY') { return; }
+    if (this.state.lastKeyDown !== -1 || event.target.tagName !== 'MODAL-CONTAINER') { return; }
 
     this.state.lastKeyDown = event.keyCode;
     const selectedNode = this.state.selectedNode;
