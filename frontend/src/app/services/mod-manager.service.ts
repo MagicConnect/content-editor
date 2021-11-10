@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +62,7 @@ export class ModManagerService {
 
   @LocalStorage() public currentPack!: IContentPack;
 
-  constructor() {}
+  constructor(private http: HttpClient, private auth: AuthService, private api: ApiService) {}
 
   public init() {
     if(!this.currentPack) {
@@ -90,6 +93,20 @@ export class ModManagerService {
     this.syncAndSave();
   }
 
+  public importNet() {
+    this.http.get(this.api.contentUrl)
+      .subscribe((d) => {
+        const importPack: IContentPack = d as IContentPack;
+        this.currentPack = importPack;
+
+        this.sync();
+      });
+  }
+
+  public exportNet() {
+    this.http.put(this.api.contentUrl, this.currentPack).subscribe(() => {});
+  }
+
   // Pack-related
   private resetPack(): void {
     this.currentPack = {
@@ -117,6 +134,10 @@ export class ModManagerService {
 
   private save(): void {
     this.currentPack = this.currentPack;
+
+    if(this.auth.loggedIn) {
+      this.exportNet();
+    }
   }
 
   private syncAndSave(): void {

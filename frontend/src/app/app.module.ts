@@ -2,6 +2,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +47,7 @@ import { ShopEntryFormComponent } from './components/shop-entry-form/shop-entry-
 import { MapComponent } from './components/map/map.component';
 import { BattleComponent } from './components/battle/battle.component';
 import { MapListComponent } from './components/map-list/map-list.component';
+import { TokenInterceptorService } from './providers/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import { MapListComponent } from './components/map-list/map-list.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -100,6 +103,11 @@ import { MapListComponent } from './components/map-list/map-list.component';
     BsDropdownModule.forRoot()
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: (mod: ModManagerService) => () => {

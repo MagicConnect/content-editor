@@ -3,9 +3,7 @@ import { PrimaryStat } from './BuildingBlocks';
 import { IAbility } from './IAbility';
 import { IItem } from './IItem';
 
-export type IChip = IItem & {
-  name: string;                           // chip name
-  description: string;                    // chip description         
+export type IChip = IItem & {   
   stars: 1|2|3|4|5;                       // chip rarity   
   primaryStat: PrimaryStat;               // chip main stat
 

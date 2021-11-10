@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
+import { AuthService } from './services/auth.service';
 import { ModManagerService } from './services/mod-manager.service';
 
 @Component({
@@ -9,20 +11,62 @@ import { ModManagerService } from './services/mod-manager.service';
 })
 export class AppComponent implements OnInit {
 
+  @ViewChild('login') loginForm!: TemplateRef<any>;
+  private modalRef!: BsModalRef;
+
   @LocalStorage() currentPage!: string;
 
-  constructor(private mod: ModManagerService) {}
+  @LocalStorage() email!: string;
+  @LocalStorage() password!: string;
+  @LocalStorage() token!: string;
+  @LocalStorage() hasLoggedIn!: boolean;
+
+  constructor(
+    private modalService: BsModalService,
+    public auth: AuthService,
+    public mod: ModManagerService
+  ) {}
 
   ngOnInit() {
     if(!this.currentPage) this.currentPage = 'weapon';
+
+    if(this.email && this.password && this.hasLoggedIn) {
+      this.doLogin();
+    }
   }
 
-  netExport() {
-
+  showLogin() {
+    this.modalRef = this.modalService.show(this.loginForm, { backdrop: true });
   }
 
-  netImport() {
+  doLogin() {
+    this.auth.login(this.email, this.password)
+      .subscribe(
+        res => {
+          this.token = res.token;
+          this.hasLoggedIn = true;
 
+          this.mod.importNet();
+        },
+        err => {
+          console.error(err);
+          alert('Your email or password was incorrect, or you do not have an account.');
+        });
+
+    this.abortLogin();
+  }
+
+  abortLogin() {
+    if(this.modalRef) this.modalRef.hide();
+  }
+
+  logout() {
+    this.email = '';
+    this.password = '';
+    this.token = '';
+    this.hasLoggedIn = false;
+
+    this.auth.logout();
   }
 
   export() {
