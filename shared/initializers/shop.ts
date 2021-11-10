@@ -2,7 +2,7 @@
 import { IShop } from '../interfaces';
 
 export const newShop = (): IShop => ({
-  name: 'Shop Name',
+  name: '',
   description: '',
   activeStarts: '',
   activeEnds: '',

@@ -6,6 +6,7 @@ import { IItem } from './IItem';
 import { IWeapon } from './IWeapon';
 import { IShop } from './IShop';
 import { IEnemy } from './IEnemy';
+import { IMap } from './IMap';
 
 export interface IContentPack {
   banners: IBanner[];
@@ -15,4 +16,5 @@ export interface IContentPack {
   items: IItem[];
   shops: IShop[];
   weapons: IWeapon[];
+  maps: IMap[];
 }

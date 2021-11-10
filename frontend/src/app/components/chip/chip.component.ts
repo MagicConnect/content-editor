@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newChip } from '../../../../../shared/initializers';
-import { AbilityTrigger, IAbility, IChip } from '../../../../../shared/interfaces';
+import { AbilityTrigger, IAbility, IChip, Stat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-chip',
@@ -55,10 +55,10 @@ export class ChipComponent {
             description: 'Primary stat is the only stat boosted by chips.',
             required: true,
             options: [
-              { value: 'attack',  label: 'Attack' },
-              { value: 'defense', label: 'Defense' },
-              { value: 'magic',   label: 'Magic' },
-              { value: 'special', label: 'Special'  },
+              { value: Stat.Attack,  label: 'Attack' },
+              { value: Stat.Defense, label: 'Defense' },
+              { value: Stat.Magic,   label: 'Magic' },
+              { value: Stat.Special, label: 'Special'  },
             ],
           },
         },

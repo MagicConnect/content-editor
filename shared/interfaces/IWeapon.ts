@@ -1,5 +1,5 @@
 import { ILimitBreak } from './ILimitBreak';
-import { PrimaryStat, SecondaryStat } from './BuildingBlocks';
+import { PrimaryStat } from './BuildingBlocks';
 import { IAbility } from './IAbility';
 import { IItem } from './IItem';
 

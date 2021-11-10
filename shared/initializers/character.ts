@@ -2,7 +2,7 @@
 import { Archetype, Stat, Weapon, ICharacter } from '../interfaces';
 
 export const newCharacter = (): ICharacter => ({
-  name: 'Character Name',
+  name: '',
   stars: 3,
   primaryStat: Stat.Attack,
   archetype: Archetype.Archer,

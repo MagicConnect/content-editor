@@ -1,13 +1,12 @@
 
 <div class="row">
   <div class="col">
-    <button class="btn btn-primary" (click)="addNewItem(itemEditor)">+ Add New Item</button>
+    <button class="btn btn-primary" (click)="addNewMap(mapEditor)">+ Add New Map</button>
   </div>
 </div>
 
-
 <ngx-datatable class="bootstrap"
-               [rows]="items"
+               [rows]="maps"
                columnMode="flex"
                rowHeight="auto">
 
@@ -19,18 +18,10 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Type" [flexGrow]="2">
+  <ngx-datatable-column name="Combats" [flexGrow]="2">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
-        {{ row.itemType }}
-      </div>
-    </ng-template>
-  </ngx-datatable-column>
-
-  <ngx-datatable-column name="Sell Value" [flexGrow]="1">
-    <ng-template ngx-datatable-cell-template let-row="row">
-      <div class="chip">
-        {{ row.sellValue }}
+        {{ row.nodes.length }}
       </div>
     </ng-template>
   </ngx-datatable-column>
@@ -38,22 +29,22 @@
   <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
     <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
       <div class="float-right">
-        <button class="btn btn-info btn-sm" (click)="editItem(itemEditor, row, rowIndex)">Edit</button>
-        <button class="btn btn-danger btn-sm ml-1" (click)="deleteItem(row)">Delete</button>
+        <button class="btn btn-info btn-sm" (click)="editMap(mapEditor, row, rowIndex)">Edit</button>
+        <button class="btn btn-danger btn-sm ml-1" (click)="deleteMap(row)">Delete</button>
       </div>
     </ng-template>
   </ngx-datatable-column>
 
 </ngx-datatable>
 
-<ng-template #itemEditor>
+<ng-template #mapEditor>
   <div class="modal-header">
     <h4 class="modal-title">
-      Create/Edit Item
+      Create/Edit Map
     </h4>
 
     <div class="has-actions text-center">
-      <button class="btn btn-sm btn-primary" (click)="confirmItemEdit()" [disabled]="!canSaveCurrentItem">Save</button>
+      <button class="btn btn-sm btn-primary" (click)="confirmMapEdit()" [disabled]="!canSaveCurrentMap">Save</button>
     </div>
 
     <button class="btn-close close" (click)="cancelEdit()">
@@ -62,6 +53,6 @@
   </div>
 
   <div class="modal-body">
-    <app-item [model]="currentItem" *ngIf="currentItem"></app-item>
+    <app-map [model]="currentMap" *ngIf="currentMap"></app-map>
   </div>
 </ng-template>

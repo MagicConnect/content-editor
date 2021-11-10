@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newEnemy } from '../../../../../shared/initializers';
+import { Stat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-enemy',
@@ -21,7 +22,7 @@ export class EnemyComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: 'Name',
+          key: 'name',
           className: 'col-3',
           type: 'input',
           templateOptions: {
@@ -33,7 +34,7 @@ export class EnemyComponent {
           },
         },
         {
-          key: 'Primary Stat',
+          key: 'primaryStat',
           className: 'col-3',
           type: 'select',
           templateOptions: {
@@ -42,10 +43,10 @@ export class EnemyComponent {
             description: 'Primary stat is the stat used for basic attacks.',
             required: true,
             options: [
-              { value: 'Attack',  label: 'Attack' },
-              { value: 'Defense', label: 'Defense' },
-              { value: 'Magic',   label: 'Magic' },
-              { value: 'Special', label: 'Special'  },
+              { value: Stat.Attack,  label: 'Attack' },
+              { value: Stat.Defense, label: 'Defense' },
+              { value: Stat.Magic,   label: 'Magic' },
+              { value: Stat.Special, label: 'Special'  },
             ],
           },
         },

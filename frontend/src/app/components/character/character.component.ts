@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { newCharacter } from '../../../../../shared/initializers';
-import { AbilityTrigger } from '../../../../../shared/interfaces';
+import { AbilityTrigger, Stat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-character',
@@ -103,10 +103,10 @@ export class CharacterComponent {
             description: 'Primary stat is the stat used for basic attacks.',
             required: true,
             options: [
-              { value: 'attack',  label: 'Attack' },
-              { value: 'defense', label: 'Defense' },
-              { value: 'magic',   label: 'Magic' },
-              { value: 'special', label: 'Special'  },
+              { value: Stat.Attack,  label: 'Attack' },
+              { value: Stat.Defense, label: 'Defense' },
+              { value: Stat.Magic,   label: 'Magic' },
+              { value: Stat.Special, label: 'Special'  },
             ],
           },
         },

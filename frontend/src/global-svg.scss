@@ -1,0 +1,57 @@
+$default: #bd8ac7;
+$selected: rgb(200, 100, 100);
+$hover: rgb(94, 196, 204);
+
+svg.d3map {
+  .conceptG {
+    text {
+      pointer-events: none;
+    }
+
+    circle {
+      fill: $default;
+      stroke: #333;
+      stroke-width: 2px;
+    }
+
+    &:hover circle {
+      fill: $hover;
+    }
+
+    &.selected circle {
+      fill: $selected;
+    }
+
+  }
+
+  marker {
+    fill: #333;
+  }
+
+  path.link {
+    fill: none;
+    stroke: #333;
+    stroke-width: 6px;
+    cursor: default;
+
+    &:hover {
+      stroke: $hover;
+    }
+
+    &.hidden {
+      stroke-width: 0;
+    }
+
+    &.selected {
+      stroke: $selected;
+    }
+  }
+
+  g.connect-node circle {
+    fill: #BEFFFF;
+  }
+
+  text {
+    user-select: none;
+  }
+}

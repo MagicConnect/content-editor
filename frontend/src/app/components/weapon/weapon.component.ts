@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newWeapon } from '../../../../../shared/initializers';
-import { AbilityTrigger, IAbility, IWeapon } from '../../../../../shared/interfaces';
+import { AbilityTrigger, IAbility, IWeapon, Stat } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-weapon',
@@ -83,10 +83,10 @@ export class WeaponComponent {
             description: 'Primary stat is the only stat boosted by chips.',
             required: true,
             options: [
-              { value: 'attack',  label: 'Attack' },
-              { value: 'defense', label: 'Defense' },
-              { value: 'magic',   label: 'Magic' },
-              { value: 'special', label: 'Special'  },
+              { value: Stat.Attack,  label: 'Attack' },
+              { value: Stat.Defense, label: 'Defense' },
+              { value: Stat.Magic,   label: 'Magic' },
+              { value: Stat.Special, label: 'Special'  },
             ],
           },
         },
@@ -99,11 +99,11 @@ export class WeaponComponent {
             placeholder: 'Choose secondary stat...',
             description: 'Secondary stat has separate and lesser growth from the main stat.',
             options: [
-              { value: '',        label: 'None' },
-              { value: 'attack',  label: 'Attack' },
-              { value: 'defense', label: 'Defense' },
-              { value: 'magic',   label: 'Magic' },
-              { value: 'special', label: 'Special'  },
+              { value: '',           label: 'None' },
+              { value: Stat.Attack,  label: 'Attack' },
+              { value: Stat.Defense, label: 'Defense' },
+              { value: Stat.Magic,   label: 'Magic' },
+              { value: Stat.Special, label: 'Special'  },
             ],
           },
         },

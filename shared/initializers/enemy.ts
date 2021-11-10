@@ -2,7 +2,7 @@
 import { Archetype, Stat, IEnemy } from '../interfaces';
 
 export const newEnemy = (): IEnemy => ({
-  name: 'Enemy Name',
+  name: '',
 
   primaryStat: Stat.Attack,
 

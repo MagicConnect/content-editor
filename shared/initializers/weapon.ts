@@ -1,13 +1,13 @@
 import { Archetype, ItemType, IWeapon, Stat } from '../interfaces';
 
 export const newWeapon = (): IWeapon => ({
-  name: 'Weapon Name',
+  name: '',
   itemType: ItemType.Weapon,
   sellValue: 100,
   description: '',
   stars: 1,
   primaryStat: Stat.Attack,
-  secondaryStat: undefined,
+  secondaryStat: '' as any,
 
   abilities: [],
 

@@ -77,7 +77,7 @@
     </h4>
 
     <div class="has-actions text-center">
-      <button class="btn btn-sm btn-primary" (click)="confirmShopEdit()">Save</button>
+      <button class="btn btn-sm btn-primary" (click)="confirmShopEdit()" [disabled]="!canSaveCurrentShop">Save</button>
     </div>
 
     <button class="btn-close close" (click)="cancelEdit()">

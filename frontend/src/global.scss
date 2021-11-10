@@ -1,4 +1,6 @@
 
+@import "global-svg";
+
 .hidden {
   display: none;
 }
@@ -25,8 +27,16 @@ legend {
   border: 1px solid #dee2e6;
 }
 
-.modal-dialog.big-modal {
-  max-width: 95% !important;
+// for nested modals
+.modal {
+  background: rgba(0, 0, 0, .3);
+}
+
+.modal-dialog {
+
+  &.big-modal {
+    max-width: 95% !important;
+  }
 
   .modal-header {
     align-items: center;
