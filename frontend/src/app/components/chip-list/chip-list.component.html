@@ -9,6 +9,7 @@
 <ngx-datatable class="bootstrap"
                [rows]="chips"
                columnMode="flex"
+               [sorts]="[{ prop: 'name', dir: 'asc' }]"
                rowHeight="auto">
 
   <ngx-datatable-column name="Name" [flexGrow]="2">
