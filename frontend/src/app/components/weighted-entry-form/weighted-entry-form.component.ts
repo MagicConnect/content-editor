@@ -23,7 +23,7 @@ export class WeightedEntryFormComponent {
 
   @Input() model: IBannerRollable = {
     name: '',
-    weight: 1
+    isBannerSpecial: false
   };
 
   options: FormlyFormOptions = {};
@@ -85,15 +85,13 @@ export class WeightedEntryFormComponent {
           },
         },
         {
-          key: 'weight',
+          key: 'isBannerSpecial',
           className: 'col-4',
-          type: 'input',
+          type: 'checkbox',
+          defaultValue: false,
           templateOptions: {
-            label: 'Weight',
-            placeholder: 'Enter weight here...',
-            description: '',
-            required: true,
-            min: 0,
+            label: 'Is Special',
+            description: 'Whether the entry should roll separately from others in its star rating group.',
           },
         },
       ]

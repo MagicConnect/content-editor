@@ -97,7 +97,7 @@ export class BannerComponent {
   constructor() { }
 
   add(type: BannerType) {
-    this.model[type].push({ name: '', weight: 1 });
+    this.model[type].push({ name: '', isBannerSpecial: false });
   }
 
   remove(type: BannerType, index: number) {
