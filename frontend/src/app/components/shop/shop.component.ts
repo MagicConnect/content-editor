@@ -42,7 +42,6 @@ export class ShopComponent {
             label: 'Description',
             placeholder: 'Enter description here...',
             description: 'It should be less than 500 characters.',
-            required: true,
             maxLength: 500,
           },
         },
