@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep, sum } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newEnemy } from '../../../../../shared/initializers';
-import { IEnemy } from '../../../../../shared/interfaces';
+import { IEnemy, IMap, IMapNode } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { ModManagerService } from '../../services/mod-manager.service';
 export class EnemyListComponent implements OnInit {
 
   public enemies: IEnemy[] = [];
+  private maps: IMap[] = [];
 
   public currentEnemy?: IEnemy;
 
@@ -34,6 +35,7 @@ export class EnemyListComponent implements OnInit {
 
   ngOnInit() {
     this.mod.enemies$.subscribe(enemies => this.enemies = [...enemies]);
+    this.mod.maps$.subscribe(maps => this.maps = [...maps]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -75,6 +77,20 @@ export class EnemyListComponent implements OnInit {
 
     this.currentEnemy = undefined;
     this.editIndex = -1;
+  }
+
+  enemyCurrentlyUsedIn(enemy: IEnemy): string[] {
+    const isEnemyUsedInMapNode = (node: IMapNode) => node.combat.grid.flat().filter(Boolean).filter(e => e.enemy.name === enemy.name).length > 0;
+
+    return this.maps.map(map => {
+      return map.nodes.filter(node => {
+        return isEnemyUsedInMapNode(node);
+      }).map(n => `${map.name}: ${n.name}`);
+    }).flat().filter(mapList => mapList.length > 0);
+  }
+
+  isEnemyCurrentlyInUse(enemy: IEnemy): boolean {
+    return this.enemyCurrentlyUsedIn(enemy).length > 0;
   }
 
 }
