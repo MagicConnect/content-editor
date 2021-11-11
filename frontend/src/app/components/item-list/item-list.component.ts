@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newItem } from '../../../../../shared/initializers';
-import { IItem } from '../../../../../shared/interfaces';
+import { IBanner, IItem, IShop } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -13,6 +13,8 @@ import { ModManagerService } from '../../services/mod-manager.service';
 export class ItemListComponent implements OnInit {
 
   public items: IItem[] = [];
+  public banners: IBanner[] = [];
+  public shops: IShop[] = [];
 
   public currentItem?: IItem;
 
@@ -33,6 +35,8 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
     this.mod.items$.subscribe(items => this.items = [...items]);
+    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
+    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -74,5 +78,17 @@ export class ItemListComponent implements OnInit {
 
     this.currentItem = undefined;
     this.editIndex = -1;
+  }
+
+  itemCurrentlyUsedIn(item: IItem): string[] {
+    const banners = this.banners.filter(banner => banner.items.find(i => i.name === item.name)).map(b => `Banner: ${b.name}`);
+
+    const shops = this.shops.filter(shop => shop.currencyItem === item.name || shop.items.find(i => i.name === item.name)).map(s => `Shop: ${s.name}`);
+
+    return [...banners, ...shops];
+  }
+
+  isItemCurrentlyInUse(item: IItem): boolean {
+    return this.itemCurrentlyUsedIn(item).length > 0;
   }
 }
