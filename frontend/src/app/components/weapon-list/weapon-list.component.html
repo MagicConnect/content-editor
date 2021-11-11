@@ -36,12 +36,26 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="Acquistions" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip" [title]="weaponCurrentlyUsedIn(row) | json">
+        <ng-container *ngIf="weaponCurrentlyUsedIn(row) as usesArray">
+          {{ usesArray.length }} Method(s) <strong *ngIf="usesArray.length > 0">ⓘ</strong>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
 
   <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
     <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
       <div class="float-right">
         <button class="btn btn-info btn-sm" (click)="editWeapon(weaponEditor, row, rowIndex)">Edit</button>
-        <button class="btn btn-danger btn-sm ml-1" (click)="deleteWeapon(row)">Delete</button>
+
+        <button class="btn btn-danger btn-sm ml-1"
+                [disabled]="isWeaponCurrentlyInUse(row)"
+                (click)="deleteWeapon(row)">
+                Delete
+        </button>
       </div>
     </ng-template>
   </ngx-datatable-column>
