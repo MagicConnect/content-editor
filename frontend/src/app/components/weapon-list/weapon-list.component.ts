@@ -24,8 +24,7 @@ export class WeaponListComponent implements OnInit {
     if(!this.currentWeapon) return false;
     return this.currentWeapon.name?.length >= 2
         && this.currentWeapon.primaryStat
-        && this.currentWeapon.stars >= 1
-        && sum(Object.values(this.currentWeapon.lbRewards.statPoints)) > 0;
+        && this.currentWeapon.stars >= 1;
   }
 
   constructor(

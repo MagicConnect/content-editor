@@ -24,8 +24,7 @@ export class ChipListComponent implements OnInit {
     if(!this.currentChip) return false;
     return this.currentChip.name?.length >= 2
         && this.currentChip.primaryStat
-        && this.currentChip.stars >= 1
-        && sum(Object.values(this.currentChip.lbRewards.statPoints)) > 0;
+        && this.currentChip.stars >= 1;
   }
 
   constructor(
