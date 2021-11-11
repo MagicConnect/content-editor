@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IChip } from '../../../../../shared/interfaces';
+import { IBanner, IChip, IShop } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep, sum } from 'lodash';
@@ -14,6 +14,8 @@ import { newChip } from '../../../../../shared/initializers';
 export class ChipListComponent implements OnInit {
 
   public chips: IChip[] = [];
+  public banners: IBanner[] = [];
+  public shops: IShop[] = [];
 
   public currentChip?: IChip;
 
@@ -34,6 +36,8 @@ export class ChipListComponent implements OnInit {
 
   ngOnInit() {
     this.mod.chips$.subscribe(chips => this.chips = [...chips]);
+    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
+    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -75,6 +79,18 @@ export class ChipListComponent implements OnInit {
 
     this.currentChip = undefined;
     this.editIndex = -1;
+  }
+
+  chipCurrentlyUsedIn(chip: IChip): string[] {
+    const banners = this.banners.filter(banner => banner.chips.find(c => c.name === chip.name)).map(b => `Banner: ${b.name}`);
+
+    const shops = this.shops.filter(shop => shop.chips.find(c => c.name === chip.name)).map(s => `Shop: ${s.name}`);
+
+    return [...banners, ...shops];
+  }
+
+  isChipCurrentlyInUse(chip: IChip): boolean {
+    return this.chipCurrentlyUsedIn(chip).length > 0;
   }
 
 }
