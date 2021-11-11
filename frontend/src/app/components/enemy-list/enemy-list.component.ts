@@ -23,9 +23,15 @@ export class EnemyListComponent implements OnInit {
   public get canSaveCurrentEnemy(): boolean {
     if(!this.currentEnemy) return false;
     return this.currentEnemy.name?.length >= 2
+        && !this.isCurrentEnemyDuplicateName
         && this.currentEnemy.primaryStat
         && sum(Object.values(this.currentEnemy.basePoints)) > 0
         && sum(Object.values(this.currentEnemy.levelPoints)) > 0;
+  }
+
+  public get isCurrentEnemyDuplicateName(): boolean {
+    if(!this.currentEnemy) return false;
+    return !!this.enemies.find(b => b.name === this.currentEnemy?.name);
   }
 
   constructor(

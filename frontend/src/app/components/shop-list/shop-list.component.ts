@@ -22,6 +22,7 @@ export class ShopListComponent implements OnInit {
   public get canSaveCurrentShop(): boolean {
     if(!this.currentShop) return false;
     return this.currentShop.name?.length >= 2
+        && !this.isCurrentShopDuplicateName
         && !!this.currentShop.currencyItem
         && (
            this.currentShop.characters.length > 0
@@ -29,6 +30,11 @@ export class ShopListComponent implements OnInit {
         || this.currentShop.chips.length > 0
         || this.currentShop.weapons.length > 0
         );
+  }
+
+  public get isCurrentShopDuplicateName(): boolean {
+    if(!this.currentShop) return false;
+    return !!this.shops.find(b => b.name === this.currentShop?.name);
   }
 
   constructor(

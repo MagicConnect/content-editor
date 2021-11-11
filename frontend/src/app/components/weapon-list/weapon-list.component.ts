@@ -25,8 +25,14 @@ export class WeaponListComponent implements OnInit {
   public get canSaveCurrentWeapon(): boolean {
     if(!this.currentWeapon) return false;
     return this.currentWeapon.name?.length >= 2
+        && !this.isCurrentWeaponDuplicateName
         && this.currentWeapon.primaryStat
         && this.currentWeapon.stars >= 1;
+  }
+
+  public get isCurrentWeaponDuplicateName(): boolean {
+    if(!this.currentWeapon) return false;
+    return !!this.weapons.find(b => b.name === this.currentWeapon?.name);
   }
 
   constructor(

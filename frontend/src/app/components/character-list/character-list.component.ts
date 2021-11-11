@@ -25,6 +25,7 @@ export class CharacterListComponent implements OnInit {
   public get canSaveCurrentCharacter(): boolean {
     if(!this.currentCharacter) return false;
     return this.currentCharacter.name?.length >= 2
+        && !this.isCurrentCharacterDuplicateName
         && this.currentCharacter.primaryStat
         && this.currentCharacter.weapon
         && this.currentCharacter.archetype
@@ -34,6 +35,11 @@ export class CharacterListComponent implements OnInit {
         && sum(Object.values(this.currentCharacter.basePoints)) > 0
         && sum(Object.values(this.currentCharacter.levelPoints)) > 0
         && sum(Object.values(this.currentCharacter.lbRewards.statPoints)) > 0;
+  }
+
+  public get isCurrentCharacterDuplicateName(): boolean {
+    if(!this.currentCharacter) return false;
+    return !!this.characters.find(b => b.name === this.currentCharacter?.name);
   }
 
   constructor(

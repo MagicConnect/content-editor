@@ -24,8 +24,14 @@ export class ItemListComponent implements OnInit {
   public get canSaveCurrentItem(): boolean {
     if(!this.currentItem) return false;
     return this.currentItem.name?.length >= 2
+        && !this.isCurrentItemDuplicateName
         && this.currentItem.sellValue > 0
         && !!this.currentItem.itemType;
+  }
+
+  public get isCurrentItemDuplicateName(): boolean {
+    if(!this.currentItem) return false;
+    return !!this.items.find(b => b.name === this.currentItem?.name);
   }
 
   constructor(

@@ -40,13 +40,30 @@ legend {
 
   .modal-header {
     align-items: center;
+    justify-content: center;
 
     .has-actions {
-      flex: 1
+      flex: 1;
+
+      display: flex;
+      justify-content: center;
     }
   }
 }
 
 .fw-button {
   width: 32px;
+}
+
+.errors {
+  min-width: 200px;
+
+  color: red;
+  font-size: .8rem;
+  font-style: italic;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

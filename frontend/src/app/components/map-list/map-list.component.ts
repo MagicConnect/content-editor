@@ -22,7 +22,13 @@ export class MapListComponent implements OnInit {
   public get canSaveCurrentMap(): boolean {
     if(!this.currentMap) return false;
     return this.currentMap.name?.length >= 2
+        && !this.isCurrentMapDuplicateName
         && this.currentMap.nodes.length >= 1;
+  }
+
+  public get isCurrentMapDuplicateName(): boolean {
+    if(!this.currentMap) return false;
+    return !!this.maps.find(b => b.name === this.currentMap?.name);
   }
 
   constructor(

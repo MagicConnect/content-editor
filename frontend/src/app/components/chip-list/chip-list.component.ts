@@ -25,8 +25,14 @@ export class ChipListComponent implements OnInit {
   public get canSaveCurrentChip(): boolean {
     if(!this.currentChip) return false;
     return this.currentChip.name?.length >= 2
+        && !this.isCurrentChipDuplicateName
         && this.currentChip.primaryStat
         && this.currentChip.stars >= 1;
+  }
+
+  public get isCurrentChipDuplicateName(): boolean {
+    if(!this.currentChip) return false;
+    return !!this.chips.find(b => b.name === this.currentChip?.name);
   }
 
   constructor(
