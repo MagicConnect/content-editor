@@ -3,7 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IBanner, IChip, IShop } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
-import { cloneDeep, sum } from 'lodash';
+import { cloneDeep } from 'lodash';
 import { newChip } from '../../../../../shared/initializers';
 
 @Component({

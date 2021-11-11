@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ICharacter } from '../../../../../shared/interfaces';
+import { IBanner, ICharacter, IShop } from '../../../../../shared/interfaces';
 import { newCharacter } from '../../../../../shared/initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 
@@ -14,6 +14,8 @@ import { cloneDeep, sum } from 'lodash';
 export class CharacterListComponent implements OnInit {
 
   public characters: ICharacter[] = [];
+  public banners: IBanner[] = [];
+  public shops: IShop[] = [];
 
   public currentCharacter?: ICharacter;
 
@@ -41,6 +43,8 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit() {
     this.mod.characters$.subscribe(characters => this.characters = [...characters]);
+    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
+    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -82,6 +86,18 @@ export class CharacterListComponent implements OnInit {
 
     this.currentCharacter = undefined;
     this.editIndex = -1;
+  }
+
+  characterCurrentlyUsedIn(character: ICharacter): string[] {
+    const banners = this.banners.filter(banner => banner.characters.find(c => c.name === character.name)).map(b => `Banner: ${b.name}`);
+
+    const shops = this.shops.filter(shop => shop.characters.find(c => c.name === character.name)).map(s => `Shop: ${s.name}`);
+
+    return [...banners, ...shops];
+  }
+
+  isCharacterCurrentlyInUse(character: ICharacter): boolean {
+    return this.characterCurrentlyUsedIn(character).length > 0;
   }
 
 }
