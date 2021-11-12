@@ -13,6 +13,8 @@ import { newChip } from '../../../../../shared/initializers';
 })
 export class ChipListComponent implements OnInit {
 
+  private allChips: IChip[] = [];
+
   public chips: IChip[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
@@ -41,7 +43,7 @@ export class ChipListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.chips$.subscribe(chips => this.chips = [...chips]);
+    this.mod.chips$.subscribe(chips => this.chips = this.allChips = [...chips]);
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
@@ -56,10 +58,10 @@ export class ChipListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editChip(template: TemplateRef<any>, chip: IChip, index: number) {
+  editChip(template: TemplateRef<any>, chip: IChip) {
     this.currentChip = cloneDeep(chip);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allChips.findIndex(i => i.name === chip.name);
   }
 
   confirmChipEdit() {

@@ -13,6 +13,8 @@ import { cloneDeep, sum } from 'lodash';
 })
 export class CharacterListComponent implements OnInit {
 
+  private allCharacters: ICharacter[] = [];
+
   public characters: ICharacter[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
@@ -48,7 +50,7 @@ export class CharacterListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.characters$.subscribe(characters => this.characters = [...characters]);
+    this.mod.characters$.subscribe(characters => this.characters = this.allCharacters = [...characters]);
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
@@ -63,10 +65,10 @@ export class CharacterListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editCharacter(template: TemplateRef<any>, weapon: ICharacter, index: number) {
-    this.currentCharacter = cloneDeep(weapon);
+  editCharacter(template: TemplateRef<any>, character: ICharacter) {
+    this.currentCharacter = cloneDeep(character);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allCharacters.findIndex(i => i.name === character.name);
   }
 
   confirmCharacterEdit() {

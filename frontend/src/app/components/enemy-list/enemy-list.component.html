@@ -39,9 +39,9 @@
   </ngx-datatable-column>
 
   <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
-    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
+    <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm" (click)="editEnemy(enemyEditor, row, rowIndex)">Edit</button>
+        <button class="btn btn-info btn-sm" (click)="editEnemy(enemyEditor, row)">Edit</button>
 
         <button class="btn btn-danger btn-sm ml-1"
                 [disabled]="isEnemyCurrentlyInUse(row)"

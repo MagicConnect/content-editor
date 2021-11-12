@@ -12,6 +12,8 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class ShopListComponent implements OnInit {
 
+  private allShops: IShop[] = [];
+
   public shops: IShop[] = [];
 
   public currentShop?: IShop;
@@ -43,7 +45,7 @@ export class ShopListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+    this.mod.shops$.subscribe(shops => this.shops = this.allShops = [...shops]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -56,10 +58,10 @@ export class ShopListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editShop(template: TemplateRef<any>, shop: IShop, index: number) {
+  editShop(template: TemplateRef<any>, shop: IShop) {
     this.currentShop = cloneDeep(shop);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allShops.findIndex(i => i.name === shop.name);
   }
 
   confirmShopEdit() {

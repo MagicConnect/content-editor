@@ -12,6 +12,8 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class MapListComponent implements OnInit {
 
+  private allMaps: IMap[] = [];
+
   public maps: IMap[] = [];
 
   public currentMap?: IMap;
@@ -37,7 +39,7 @@ export class MapListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.maps$.subscribe(maps => this.maps = [...maps]);
+    this.mod.maps$.subscribe(maps => this.maps = this.allMaps = [...maps]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -50,10 +52,10 @@ export class MapListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editMap(template: TemplateRef<any>, map: IMap, index: number) {
+  editMap(template: TemplateRef<any>, map: IMap) {
     this.currentMap = cloneDeep(map);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allMaps.findIndex(i => i.name === map.name);
   }
 
   confirmMapEdit() {

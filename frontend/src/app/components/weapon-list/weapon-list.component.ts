@@ -13,6 +13,8 @@ import { newWeapon } from '../../../../../shared/initializers';
 })
 export class WeaponListComponent implements OnInit {
 
+  private allWeapons: IWeapon[] = [];
+
   public weapons: IWeapon[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
@@ -41,7 +43,7 @@ export class WeaponListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.weapons$.subscribe(weapons => this.weapons = [...weapons]);
+    this.mod.weapons$.subscribe(weapons => this.weapons = this.allWeapons = [...weapons]);
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
@@ -56,10 +58,10 @@ export class WeaponListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editWeapon(template: TemplateRef<any>, weapon: IWeapon, index: number) {
+  editWeapon(template: TemplateRef<any>, weapon: IWeapon) {
     this.currentWeapon = cloneDeep(weapon);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allWeapons.findIndex(i => i.name === weapon.name);
   }
 
   confirmWeaponEdit() {
