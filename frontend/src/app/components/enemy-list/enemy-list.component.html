@@ -28,11 +28,26 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="Combat Uses" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip" [title]="enemyCurrentlyUsedIn(row) | json">
+        <ng-container *ngIf="enemyCurrentlyUsedIn(row) as usesArray">
+          {{ usesArray.length }} Combat(s) <strong *ngIf="usesArray.length > 0">ⓘ</strong>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
   <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
     <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
       <div class="float-right">
         <button class="btn btn-info btn-sm" (click)="editEnemy(enemyEditor, row, rowIndex)">Edit</button>
-        <button class="btn btn-danger btn-sm ml-1" (click)="deleteEnemy(row)">Delete</button>
+
+        <button class="btn btn-danger btn-sm ml-1"
+                [disabled]="isEnemyCurrentlyInUse(row)"
+                (click)="deleteEnemy(row)">
+                Delete
+        </button>
       </div>
     </ng-template>
   </ngx-datatable-column>
@@ -46,7 +61,13 @@
     </h4>
 
     <div class="has-actions text-center">
-      <button class="btn btn-sm btn-primary" (click)="confirmEnemyEdit()" [disabled]="!canSaveCurrentEnemy">Save</button>
+      <div class="d-flex justify-content-space-around">
+        <button class="btn btn-sm btn-primary" (click)="confirmEnemyEdit()" [disabled]="!canSaveCurrentEnemy">Save</button>
+
+        <div class="ml-1 errors">
+          <div class="error" *ngIf="isCurrentEnemyDuplicateName">Duplicate name.</div>
+        </div>
+      </div>
     </div>
 
     <button class="btn-close close" (click)="cancelEdit()">

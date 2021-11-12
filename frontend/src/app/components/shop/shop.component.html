@@ -55,7 +55,7 @@
     </button>
   </legend>
 
-  <div *ngIf="model.chips.length === 0">No items in shop.</div>
+  <div *ngIf="model.items.length === 0">No items in shop.</div>
 
   <app-shop-entry-form *ngFor="let item of model.items; let i = index"
                            (remove)="remove('items', i)"

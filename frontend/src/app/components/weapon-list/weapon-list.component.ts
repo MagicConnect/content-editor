@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IWeapon } from '../../../../../shared/interfaces';
+import { IBanner, IShop, IWeapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep, sum } from 'lodash';
@@ -14,6 +14,8 @@ import { newWeapon } from '../../../../../shared/initializers';
 export class WeaponListComponent implements OnInit {
 
   public weapons: IWeapon[] = [];
+  public banners: IBanner[] = [];
+  public shops: IShop[] = [];
 
   public currentWeapon?: IWeapon;
 
@@ -23,8 +25,14 @@ export class WeaponListComponent implements OnInit {
   public get canSaveCurrentWeapon(): boolean {
     if(!this.currentWeapon) return false;
     return this.currentWeapon.name?.length >= 2
+        && !this.isCurrentWeaponDuplicateName
         && this.currentWeapon.primaryStat
         && this.currentWeapon.stars >= 1;
+  }
+
+  public get isCurrentWeaponDuplicateName(): boolean {
+    if(!this.currentWeapon) return false;
+    return !!this.weapons.find(b => b.name === this.currentWeapon?.name);
   }
 
   constructor(
@@ -34,6 +42,8 @@ export class WeaponListComponent implements OnInit {
 
   ngOnInit() {
     this.mod.weapons$.subscribe(weapons => this.weapons = [...weapons]);
+    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
+    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -75,6 +85,18 @@ export class WeaponListComponent implements OnInit {
 
     this.currentWeapon = undefined;
     this.editIndex = -1;
+  }
+
+  weaponCurrentlyUsedIn(weapon: IWeapon): string[] {
+    const banners = this.banners.filter(banner => banner.weapons.find(w => w.name === weapon.name)).map(b => `Banner: ${b.name}`);
+
+    const shops = this.shops.filter(shop => shop.weapons.find(w => w.name === weapon.name)).map(s => `Shop: ${s.name}`);
+
+    return [...banners, ...shops];
+  }
+
+  isWeaponCurrentlyInUse(weapon: IWeapon): boolean {
+    return this.weaponCurrentlyUsedIn(weapon).length > 0;
   }
 
 }

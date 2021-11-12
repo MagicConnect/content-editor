@@ -40,9 +40,8 @@ export class BannerComponent {
           templateOptions: {
             label: 'Description',
             placeholder: 'Enter description here...',
-            description: 'It should be less than 100 characters.',
-            required: true,
-            maxLength: 100,
+            description: 'It should be less than 500 characters.',
+            maxLength: 500,
           },
         },
         {
@@ -97,7 +96,7 @@ export class BannerComponent {
   constructor() { }
 
   add(type: BannerType) {
-    this.model[type].push({ name: '', weight: 1 });
+    this.model[type].push({ name: '', isBannerSpecial: false });
   }
 
   remove(type: BannerType, index: number) {

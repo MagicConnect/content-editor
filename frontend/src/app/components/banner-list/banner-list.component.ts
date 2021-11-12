@@ -21,7 +21,9 @@ export class BannerListComponent implements OnInit {
 
   public get canSaveCurrentBanner(): boolean {
     if(!this.currentBanner) return false;
+
     return this.currentBanner.name?.length >= 2
+        && !this.isCurrentBannerDuplicateName
         && this.currentBanner.type
         && (
            this.currentBanner.characters.length > 0
@@ -29,6 +31,11 @@ export class BannerListComponent implements OnInit {
         || this.currentBanner.chips.length > 0
         || this.currentBanner.weapons.length > 0
         );
+  }
+
+  public get isCurrentBannerDuplicateName(): boolean {
+    if(!this.currentBanner) return false;
+    return !!this.banners.find(b => b.name === this.currentBanner?.name);
   }
 
   constructor(

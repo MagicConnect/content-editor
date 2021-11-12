@@ -3,7 +3,7 @@ export type BannerType = 'characters' | 'chips' | 'items' | 'weapons';
 
 export interface IBannerRollable {
   name: string;
-  weight: number;
+  isBannerSpecial: boolean;
 }
 
 export interface IBanner {

@@ -45,9 +45,8 @@ export class BattleComponent implements OnInit {
           templateOptions: {
             label: 'Description',
             placeholder: 'Enter description here...',
-            description: 'It should be less than 100 characters.',
-            required: true,
-            maxLength: 100,
+            description: 'It should be less than 500 characters.',
+            maxLength: 500,
           },
         },
         {
