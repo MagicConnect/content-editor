@@ -38,7 +38,7 @@
 
   <ngx-datatable-column name="Acquistions" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
-      <div class="chip" [title]="chipCurrentlyUsedIn(row) | json">
+      <div class="chip" placement="right" [tooltip]="chipCurrentlyUsedIn(row) | json">
         <ng-container *ngIf="chipCurrentlyUsedIn(row) as usesArray">
           {{ usesArray.length }} Method(s) <strong *ngIf="usesArray.length > 0">ⓘ</strong>
         </ng-container>

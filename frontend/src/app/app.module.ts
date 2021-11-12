@@ -48,6 +48,7 @@ import { MapComponent } from './components/map/map.component';
 import { BattleComponent } from './components/battle/battle.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { TokenInterceptorService } from './providers/token-interceptor.service';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { TokenInterceptorService } from './providers/token-interceptor.service';
       }
     }),
     ModalModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     {
