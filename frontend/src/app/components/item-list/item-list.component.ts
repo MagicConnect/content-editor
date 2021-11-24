@@ -12,6 +12,8 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class ItemListComponent implements OnInit {
 
+  private allItems: IItem[] = [];
+
   public items: IItem[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
@@ -40,7 +42,7 @@ export class ItemListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.items$.subscribe(items => this.items = [...items]);
+    this.mod.items$.subscribe(items => this.items = this.allItems = [...items]);
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
   }
@@ -55,10 +57,10 @@ export class ItemListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editItem(template: TemplateRef<any>, item: IItem, index: number) {
+  editItem(template: TemplateRef<any>, item: IItem) {
     this.currentItem = cloneDeep(item);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allItems.findIndex(i => i.name === item.name);
   }
 
   confirmItemEdit() {

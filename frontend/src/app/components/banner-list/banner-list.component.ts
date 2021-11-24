@@ -12,6 +12,8 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class BannerListComponent implements OnInit {
 
+  private allBanners: IBanner[] = [];
+
   public banners: IBanner[] = [];
 
   public currentBanner?: IBanner;
@@ -44,7 +46,7 @@ export class BannerListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
+    this.mod.banners$.subscribe(banners => this.banners = this.allBanners = [...banners]);
   }
 
   openEditModal(template: TemplateRef<any>) {
@@ -57,10 +59,10 @@ export class BannerListComponent implements OnInit {
     this.openEditModal(template);
   }
 
-  editBanner(template: TemplateRef<any>, banner: IBanner, index: number) {
+  editBanner(template: TemplateRef<any>, banner: IBanner) {
     this.currentBanner = cloneDeep(banner);
     this.openEditModal(template);
-    this.editIndex = index;
+    this.editIndex = this.allBanners.findIndex(i => i.name === banner.name);
   }
 
   confirmBannerEdit() {
