@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Archetype, ArchetypeStatMatrix, PrimaryStat, SecondaryStat, Stat, StatAllocationMatrix } from '../../../../../shared/interfaces';
+import { Archetype, ArchetypeStatMatrix, Stat, StatAllocationMatrix } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-stats-form',
