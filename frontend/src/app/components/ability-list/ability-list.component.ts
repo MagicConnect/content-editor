@@ -35,7 +35,7 @@ export class AbilityListComponent implements OnInit {
 
   public get isCurrentAbilityDuplicateName(): boolean {
     if(!this.currentAbility) return false;
-    return !!this.abilities.find(b => b.name === this.currentAbility?.name);
+    return !!this.abilities.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentAbility?.name);
   }
 
   constructor(

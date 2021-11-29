@@ -30,7 +30,7 @@ export class MapListComponent implements OnInit {
 
   public get isCurrentMapDuplicateName(): boolean {
     if(!this.currentMap) return false;
-    return !!this.maps.find(b => b.name === this.currentMap?.name);
+    return !!this.maps.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentMap?.name);
   }
 
   constructor(

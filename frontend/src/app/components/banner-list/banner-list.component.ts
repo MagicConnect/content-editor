@@ -37,7 +37,7 @@ export class BannerListComponent implements OnInit {
 
   public get isCurrentBannerDuplicateName(): boolean {
     if(!this.currentBanner) return false;
-    return !!this.banners.find(b => b.name === this.currentBanner?.name);
+    return !!this.banners.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentBanner?.name);
   }
 
   constructor(

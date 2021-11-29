@@ -36,7 +36,7 @@ export class ShopListComponent implements OnInit {
 
   public get isCurrentShopDuplicateName(): boolean {
     if(!this.currentShop) return false;
-    return !!this.shops.find(b => b.name === this.currentShop?.name);
+    return !!this.shops.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentShop?.name);
   }
 
   constructor(

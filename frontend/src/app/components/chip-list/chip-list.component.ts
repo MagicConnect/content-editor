@@ -34,7 +34,7 @@ export class ChipListComponent implements OnInit {
 
   public get isCurrentChipDuplicateName(): boolean {
     if(!this.currentChip) return false;
-    return !!this.chips.find(b => b.name === this.currentChip?.name);
+    return !!this.chips.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentChip?.name);
   }
 
   constructor(

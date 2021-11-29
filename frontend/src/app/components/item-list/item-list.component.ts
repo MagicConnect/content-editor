@@ -33,7 +33,7 @@ export class ItemListComponent implements OnInit {
 
   public get isCurrentItemDuplicateName(): boolean {
     if(!this.currentItem) return false;
-    return !!this.items.find(b => b.name === this.currentItem?.name);
+    return !!this.items.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentItem?.name);
   }
 
   constructor(

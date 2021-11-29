@@ -34,7 +34,7 @@ export class WeaponListComponent implements OnInit {
 
   public get isCurrentWeaponDuplicateName(): boolean {
     if(!this.currentWeapon) return false;
-    return !!this.weapons.find(b => b.name === this.currentWeapon?.name);
+    return !!this.weapons.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentWeapon?.name);
   }
 
   constructor(

@@ -41,7 +41,7 @@ export class CharacterListComponent implements OnInit {
 
   public get isCurrentCharacterDuplicateName(): boolean {
     if(!this.currentCharacter) return false;
-    return !!this.characters.find(b => b.name === this.currentCharacter?.name);
+    return !!this.characters.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentCharacter?.name);
   }
 
   constructor(

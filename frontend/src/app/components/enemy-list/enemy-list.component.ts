@@ -33,7 +33,7 @@ export class EnemyListComponent implements OnInit {
 
   public get isCurrentEnemyDuplicateName(): boolean {
     if(!this.currentEnemy) return false;
-    return !!this.enemies.find(b => b.name === this.currentEnemy?.name);
+    return !!this.enemies.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentEnemy?.name);
   }
 
   constructor(
