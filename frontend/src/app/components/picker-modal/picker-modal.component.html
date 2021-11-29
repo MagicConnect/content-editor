@@ -7,9 +7,13 @@
 </div>
 
 <div class="modal-body">
+  <div class="picker-filter p-1">
+    <input class="form-control" type="text" [(ngModel)]="filter" placeholder="Filter {{ type }} List" (keyup)="filterEntries()" />
+  </div>
+
   <div class="picker-list">
     <div class="picker-item"
-         *ngFor="let entry of entries"
+         *ngFor="let entry of visibleEntries"
          (click)="chooseEntry(entry)"
          [class.disabled]="disabledEntries.includes(entry.name)"
          [class.selected]="choice === entry">

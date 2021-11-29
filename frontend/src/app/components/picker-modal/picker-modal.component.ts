@@ -16,12 +16,13 @@ export class PickerModalComponent implements OnInit {
 
   public visibleEntries: Array<{ name: string, description: string }> = [];
 
+  public filter = '';
   public choice!: { name: string, description: string };
 
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
-    this.visibleEntries = this.entries.slice(0);
+    this.filterEntries();
   }
 
   chooseEntry(entry: { name: string, description: string }) {
@@ -33,6 +34,18 @@ export class PickerModalComponent implements OnInit {
   confirmChoice(entry: { name: string, description: string }) {
     this.choose.next(entry);
     this.bsModalRef.hide();
+  }
+
+  filterEntries() {
+    if(!this.filter) {
+      this.visibleEntries = this.entries.slice(0);
+      return;
+    }
+
+    this.visibleEntries = this.entries.filter(entry => {
+      return entry.name.toLowerCase().includes(this.filter.toLowerCase())
+          || entry.description.toLowerCase().includes(this.filter.toLowerCase());
+    });
   }
 
 }
