@@ -145,4 +145,17 @@ export class CharacterComponent {
     this.model.skills.splice(index, 1);
   }
 
+  addAbility() {
+    this.model.abilities.push({
+      conditions: [],
+      effects: [],
+      name: '',
+      trigger: AbilityTrigger.Always,
+    });
+  }
+
+  removeAbility(index: number) {
+    this.model.abilities.splice(index, 1);
+  }
+
 }

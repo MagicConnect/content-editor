@@ -29,6 +29,23 @@
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>
+    Abilities
+
+    <button class="btn btn-info btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 5">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.abilities.length === 0">No abilities created.</div>
+
+  <app-ability-form *ngFor="let ability of model.abilities; let i = index"
+                  (remove)="removeAbility(i)"
+                  [model]="ability"
+                  [index]="i"></app-ability-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
     Skills
 
     <button class="btn btn-info btn-sm float-right" (click)="addSkill()" [disabled]="model.skills.length >= 3">

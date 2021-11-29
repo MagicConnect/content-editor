@@ -43,8 +43,8 @@
               <ng-template tabHeading>
                 Abilities
 
-                <span class="badge badge-secondary bg-secondary" *ngIf="model.abilities[activeLB]">
-                  {{ model.abilities[activeLB].length }}
+                <span class="badge badge-secondary bg-secondary" *ngIf="model.abilities[activeLB] || []">
+                  {{ model.abilities[activeLB]?.length ?? 0 }}
                 </span>
 
                 <button class="btn btn-info btn-sm btn-in-tab ml-2" (click)="addAbility.emit(activeLB)" *ngIf="tabAbilities.active">+</button>
