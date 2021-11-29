@@ -171,19 +171,19 @@ export class ModManagerService {
     this.currentPack.abilities[index] = ability;
 
     this.currentPack.characters.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
     });
 
     this.currentPack.chips.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
     });
 
     this.currentPack.enemies.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
     });
 
     this.currentPack.weapons.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
     });
 
     this.syncAndSave();
@@ -223,7 +223,17 @@ export class ModManagerService {
   }
 
   public editCharacter(character: ICharacter, index: number): void {
+    const oldName = this.currentPack.characters[index].name;
     this.currentPack.characters[index] = character;
+
+    this.currentPack.banners.forEach(c => {
+      c.characters = c.characters.map(a => ({...a, name: a.name === oldName ? character.name : a.name }));
+    });
+
+    this.currentPack.shops.forEach(c => {
+      c.characters = c.characters.map(a => ({...a, name: a.name === oldName ? character.name : a.name }));
+    });
+
     this.syncAndSave();
   }
 
@@ -240,7 +250,17 @@ export class ModManagerService {
   }
 
   public editChip(chip: IChip, index: number): void {
+    const oldName = this.currentPack.chips[index].name;
     this.currentPack.chips[index] = chip;
+
+    this.currentPack.banners.forEach(c => {
+      c.chips = c.chips.map(a => ({...a, name: a.name === oldName ? chip.name : a.name }));
+    });
+
+    this.currentPack.shops.forEach(c => {
+      c.chips = c.chips.map(a => ({...a, name: a.name === oldName ? chip.name : a.name }));
+    });
+
     this.syncAndSave();
   }
 
@@ -257,7 +277,21 @@ export class ModManagerService {
   }
 
   public editEnemy(enemy: IEnemy, index: number): void {
+    const oldName = this.currentPack.enemies[index].name;
     this.currentPack.enemies[index] = enemy;
+
+    this.currentPack.maps.forEach(c => {
+      c.nodes.forEach(n => {
+        n.combat.grid.forEach(row => {
+          row.forEach(cell => {
+            if(!cell || !cell.enemy || cell.enemy.name !== oldName) return;
+
+            cell.enemy.name = enemy.name;
+          });
+        });
+      });
+    });
+
     this.syncAndSave();
   }
 
@@ -274,7 +308,17 @@ export class ModManagerService {
   }
 
   public editItem(item: IItem, index: number): void {
+    const oldName = this.currentPack.items[index].name;
     this.currentPack.items[index] = item;
+
+    this.currentPack.banners.forEach(c => {
+      c.items = c.items.map(a => ({...a, name: a.name === oldName ? item.name : a.name }));
+    });
+
+    this.currentPack.shops.forEach(c => {
+      c.items = c.items.map(a => ({...a, name: a.name === oldName ? item.name : a.name }));
+    });
+
     this.syncAndSave();
   }
 
@@ -325,7 +369,17 @@ export class ModManagerService {
   }
 
   public editWeapon(weapon: IWeapon, index: number): void {
+    const oldName = this.currentPack.weapons[index].name;
     this.currentPack.weapons[index] = weapon;
+
+    this.currentPack.banners.forEach(c => {
+      c.weapons = c.weapons.map(a => ({...a, name: a.name === oldName ? weapon.name : a.name }));
+    });
+
+    this.currentPack.shops.forEach(c => {
+      c.weapons = c.weapons.map(a => ({...a, name: a.name === oldName ? weapon.name : a.name }));
+    });
+
     this.syncAndSave();
   }
 
