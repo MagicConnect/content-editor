@@ -1,0 +1,25 @@
+
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Choose {{ type }}</h4>
+  <button type="button" class="close pull-right" (click)="bsModalRef.hide()">
+    <span>&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="picker-list">
+    <div class="picker-item"
+         *ngFor="let entry of entries"
+         (click)="chooseEntry(entry)"
+         [class.disabled]="disabledEntries.includes(entry.name)"
+         [class.selected]="choice === entry">
+      <strong>{{ entry.name }}</strong>
+      <br>
+      <em><small>{{ entry.description }}</small></em>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" [disabled]="!choice" (click)="confirmChoice(choice)">Choose</button>
+</div>

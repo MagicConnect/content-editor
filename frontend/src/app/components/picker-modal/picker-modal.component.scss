@@ -1,0 +1,25 @@
+
+.modal-body {
+  padding: 0;
+}
+
+.picker-list {
+
+  max-height: 500px;
+  overflow-y: scroll;
+
+  .picker-item {
+    padding: 1rem;
+    cursor: pointer;
+
+    &.disabled {
+      font-style: italic;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.selected {
+      background-color: #d1d1f5;
+    }
+  }
+}

@@ -49,6 +49,8 @@ import { BattleComponent } from './components/battle/battle.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { TokenInterceptorService } from './providers/token-interceptor.service';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AbilityListComponent } from './components/ability-list/ability-list.component';
+import { PickerModalComponent } from './components/picker-modal/picker-modal.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     ShopEntryFormComponent,
     MapComponent,
     BattleComponent,
-    MapListComponent
+    MapListComponent,
+    AbilityListComponent,
+    PickerModalComponent
   ],
   imports: [
     BrowserModule,

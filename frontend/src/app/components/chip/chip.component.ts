@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { newChip } from '../../../../../shared/initializers';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { newAbility, newChip } from '../../../../../shared/initializers';
 import { AbilityTrigger, IAbility, IChip, Stat } from '../../../../../shared/interfaces';
+import { ModManagerService } from '../../services/mod-manager.service';
+import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
 @Component({
   selector: 'app-chip',
@@ -87,33 +90,21 @@ export class ChipComponent {
     },
   ];
 
-  constructor() { }
+  constructor(private modal: BsModalService, public mod: ModManagerService) { }
 
   addAbility() {
-    (this.model.abilities as IAbility[]).push({
-      name: '',
-      trigger: AbilityTrigger.Always,
+    const modalRef = this.modal.show(PickerModalComponent, {
+      class: 'modal-lg',
+      initialState: { type: 'Ability', entries: this.mod.chooseableAbilities, disabledEntries: this.model.abilities }
+    });
 
-      effects: [],
-      conditions: []
+    modalRef.content?.choose.subscribe(choice => {
+      this.model.abilities.push(choice.name);
     });
   }
 
   removeAbility(index: number) {
     this.model.abilities.splice(index, 1);
-  }
-
-  addLBAbility(lb: number) {
-    const abilities = this.model.lbRewards.abilities[lb] ?? [];
-    this.model.lbRewards.abilities[lb] = abilities;
-
-    abilities.push({
-      name: '',
-      trigger: AbilityTrigger.Always,
-
-      effects: [],
-      conditions: []
-    });
   }
 
 }

@@ -36,12 +36,25 @@
     </button>
   </legend>
 
-  <div *ngIf="model.abilities.length === 0">No abilities created.</div>
+  <div *ngIf="model.abilities.length === 0">No abilities chosen.</div>
 
-  <app-ability-form *ngFor="let ability of model.abilities; let i = index"
-                  (remove)="removeAbility(i)"
-                  [model]="ability"
-                  [index]="i"></app-ability-form>
+  <ul class="picked-list">
+    <ng-container *ngFor="let ability of model.abilities; let i = index">
+      <li>
+        <div class="row">
+          <div class="col-8">
+            <strong>{{ ability }}</strong>
+            <br>
+            <em><small>{{ mod.getAbilityDescription(ability) }}</small></em>
+          </div>
+
+          <div class="col-4 text-right">
+            <button class="btn btn-danger" (click)="removeAbility(i)">Remove {{ ability }}</button>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">
@@ -68,16 +81,4 @@
 
   <app-skill-form [model]="model.specialSkill"
                   [index]="-1"></app-skill-form>
-</fieldset>
-
-<fieldset class="border border-dark p-3 mt-3 mb-3">
-  <legend>
-    Limit Break Rewards
-  </legend>
-
-  <app-lb-form [model]="model.lbRewards"
-               [allowAbilities]="true"
-               [allowStats]="true"
-               [existingAbilities]="model.abilities"
-               (addAbility)="addLBAbility($event)"></app-lb-form>
 </fieldset>

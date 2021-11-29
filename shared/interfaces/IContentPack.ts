@@ -7,8 +7,10 @@ import { IWeapon } from './IWeapon';
 import { IShop } from './IShop';
 import { IEnemy } from './IEnemy';
 import { IMap } from './IMap';
+import { IAbility } from './IAbility';
 
 export interface IContentPack {
+  abilities: IAbility[];
   banners: IBanner[];
   characters: ICharacter[];
   chips: IChip[];

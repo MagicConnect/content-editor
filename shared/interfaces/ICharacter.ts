@@ -1,6 +1,5 @@
 import { ILimitBreak } from './ILimitBreak';
 import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
-import { IAbility } from './IAbility';
 import { ISkill } from './ISkill';
 
 export interface ICharacter {
@@ -16,7 +15,7 @@ export interface ICharacter {
   levelPoints: Record<Archetype, number>; // level stat points bought per class
   levelStats: Record<Stat, number>;       // stats gained per level
 
-  abilities: IAbility[];                  // character abilities
+  abilities: string[];                  // character abilities
   skills: ISkill[];                       // character skills
   specialSkill: ISkill;                   // character special ability
 

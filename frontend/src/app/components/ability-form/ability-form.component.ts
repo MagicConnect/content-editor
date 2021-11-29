@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { newAbility } from '../../../../../shared/initializers';
 
 import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbility } from '../../../../../shared/interfaces';
 
@@ -12,17 +13,13 @@ import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbilit
 export class AbilityFormComponent implements OnInit {
 
   @Input() index = -1;
-  @Input() copyableAbilities: IAbility[] = [];
-  @Output() remove = new EventEmitter();
+  @Input() showLBChanges = true;
+
+  public activeLB = 0;
 
   form = new FormGroup({});
 
-  @Input() model: IAbility = {
-    name: '',
-    trigger: AbilityTrigger.Always,
-    effects: [],
-    conditions: []
-  };
+  @Input() model: IAbility = newAbility();
 
   options: FormlyFormOptions = {};
 
@@ -40,6 +37,18 @@ export class AbilityFormComponent implements OnInit {
             description: 'It should be less than 30 characters.',
             required: true,
             maxLength: 30,
+          },
+        },
+        {
+          key: 'description',
+          className: 'col-4',
+          type: 'input',
+          templateOptions: {
+            label: 'Description',
+            placeholder: 'Enter description here...',
+            description: 'It should be less than 500 characters.',
+            required: true,
+            maxLength: 500,
           },
         },
         {
@@ -82,12 +91,6 @@ export class AbilityFormComponent implements OnInit {
 
   removeEffect(index: number) {
     this.model.effects.splice(index, 1);
-  }
-
-  isAbilityOverwriting(): boolean {
-    if(this.copyableAbilities.length === 0) return false;
-
-    return this.copyableAbilities.some(x => x.name === this.model.name);
   }
 
   autoName(): string {

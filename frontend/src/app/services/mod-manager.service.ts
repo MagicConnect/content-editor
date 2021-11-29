@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -11,6 +12,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ModManagerService {
+
+  private abilities: BehaviorSubject<IAbility[]> = new BehaviorSubject<IAbility[]>([]);
+  public abilities$: Observable<IAbility[]> = this.abilities.asObservable();
 
   private banners: BehaviorSubject<IBanner[]> = new BehaviorSubject<IBanner[]>([]);
   public banners$: Observable<IBanner[]> = this.banners.asObservable();
@@ -64,6 +68,10 @@ export class ModManagerService {
     return this.currentPack.items.map(c => ({ name: c.name, itemType: c.itemType }));
   }
 
+  public get chooseableAbilities(): Array<{ name: string, description: string }> {
+    return sortBy(this.currentPack.abilities.map(a => ({ name: a.name, description: a.description })), 'name');
+  }
+
   @LocalStorage() public currentPack!: IContentPack;
 
   constructor(private http: HttpClient, private auth: AuthService, private api: ApiService) {}
@@ -114,6 +122,7 @@ export class ModManagerService {
   // Pack-related
   private resetPack(): void {
     this.currentPack = {
+      abilities: [],
       banners: [],
       characters: [],
       chips: [],
@@ -126,14 +135,15 @@ export class ModManagerService {
   }
 
   private sync(): void {
-    this.banners.next(this.currentPack.banners);
-    this.characters.next(this.currentPack.characters);
-    this.chips.next(this.currentPack.chips);
-    this.enemies.next(this.currentPack.enemies);
-    this.items.next(this.currentPack.items);
-    this.maps.next(this.currentPack.maps);
-    this.shops.next(this.currentPack.shops);
-    this.weapons.next(this.currentPack.weapons);
+    this.abilities.next(this.currentPack.abilities ?? []);
+    this.banners.next(this.currentPack.banners ?? []);
+    this.characters.next(this.currentPack.characters ?? []);
+    this.chips.next(this.currentPack.chips ?? []);
+    this.enemies.next(this.currentPack.enemies ?? []);
+    this.items.next(this.currentPack.items ?? []);
+    this.maps.next(this.currentPack.maps ?? []);
+    this.shops.next(this.currentPack.shops ?? []);
+    this.weapons.next(this.currentPack.weapons ?? []);
   }
 
   private save(): void {
@@ -149,8 +159,48 @@ export class ModManagerService {
     this.save();
   }
 
+  // Ability-related
+  public addAbility(ability: IAbility): void {
+    if(!this.currentPack.abilities) this.currentPack.abilities = [];
+    this.currentPack.abilities.push(ability);
+    this.syncAndSave();
+  }
+
+  public editAbility(ability: IAbility, index: number): void {
+    const oldName = this.currentPack.abilities[index].name;
+    this.currentPack.abilities[index] = ability;
+
+    this.currentPack.characters.forEach(c => {
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+    });
+
+    this.currentPack.chips.forEach(c => {
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+    });
+
+    this.currentPack.enemies.forEach(c => {
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+    });
+
+    this.currentPack.weapons.forEach(c => {
+      c.abilities = c.abilities.map(a => a === oldName ? ability.name : oldName);
+    });
+
+    this.syncAndSave();
+  }
+
+  public deleteAbility(ability: IAbility): void {
+    this.currentPack.abilities = this.currentPack.abilities.filter(a => a !== ability);
+    this.syncAndSave();
+  }
+
+  public getAbilityDescription(name: string): string {
+    return this.chooseableAbilities.find(x => x.name === name)?.description ?? 'Unknown';
+  }
+
   // Banner-related
   public addBanner(banner: IBanner): void {
+    if(!this.currentPack.banners) this.currentPack.banners = [];
     this.currentPack.banners.push(banner);
     this.syncAndSave();
   }
@@ -167,6 +217,7 @@ export class ModManagerService {
 
   // Character-related
   public addCharacter(character: ICharacter): void {
+    if(!this.currentPack.characters) this.currentPack.characters = [];
     this.currentPack.characters.push(character);
     this.syncAndSave();
   }
@@ -183,6 +234,7 @@ export class ModManagerService {
 
   // Chip-related
   public addChip(chip: IChip): void {
+    if(!this.currentPack.chips) this.currentPack.chips = [];
     this.currentPack.chips.push(chip);
     this.syncAndSave();
   }
@@ -199,6 +251,7 @@ export class ModManagerService {
 
   // Enemy-related
   public addEnemy(enemy: IEnemy): void {
+    if(!this.currentPack.enemies) this.currentPack.enemies = [];
     this.currentPack.enemies.push(enemy);
     this.syncAndSave();
   }
@@ -215,6 +268,7 @@ export class ModManagerService {
 
   // Item-related
   public addItem(item: IItem): void {
+    if(!this.currentPack.items) this.currentPack.items = [];
     this.currentPack.items.push(item);
     this.syncAndSave();
   }
@@ -231,6 +285,7 @@ export class ModManagerService {
 
   // Map-related
   public addMap(map: IMap): void {
+    if(!this.currentPack.maps) this.currentPack.maps = [];
     this.currentPack.maps.push(map);
     this.syncAndSave();
   }
@@ -247,6 +302,7 @@ export class ModManagerService {
 
   // Shop-related
   public addShop(shop: IShop): void {
+    if(!this.currentPack.shops) this.currentPack.shops = [];
     this.currentPack.shops.push(shop);
     this.syncAndSave();
   }
@@ -263,6 +319,7 @@ export class ModManagerService {
 
   // Weapon-related
   public addWeapon(weapon: IWeapon): void {
+    if(!this.currentPack.weapons) this.currentPack.weapons = [];
     this.currentPack.weapons.push(weapon);
     this.syncAndSave();
   }

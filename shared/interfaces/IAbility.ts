@@ -187,8 +187,11 @@ export interface IAbilityCondition {
 
 export interface IAbility {
   name: string;
+  description: string;
 
   trigger: AbilityTrigger;
   effects: IAbilityEffect[];
   conditions: IAbilityCondition[];
+
+  lbChanges: Record<number, IAbility & { shouldHide: boolean }>;
 }

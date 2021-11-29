@@ -12,6 +12,6 @@ export interface IEnemy {
   levelPoints: Record<Archetype, number>; // level stat points bought per class
   levelStats: Record<Stat, number>;       // stats gained per level
 
-  abilities: IAbility[];                  // character abilities
+  abilities: string[];                    // character abilities
   skills: ISkill[];
 }

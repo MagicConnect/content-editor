@@ -29,6 +29,36 @@
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>
+    Abilities
+
+    <button class="btn btn-info btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 5">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.abilities.length === 0">No abilities chosen.</div>
+
+  <ul class="picked-list">
+    <ng-container *ngFor="let ability of model.abilities; let i = index">
+      <li>
+        <div class="row">
+          <div class="col-8">
+            <strong>{{ ability }}</strong>
+            <br>
+            <em><small>{{ mod.getAbilityDescription(ability) }}</small></em>
+          </div>
+
+          <div class="col-4 text-right">
+            <button class="btn btn-danger" (click)="removeAbility(i)">Remove {{ ability }}</button>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
     Skills
 
     <button class="btn btn-info btn-sm float-right" (click)="addSkill()" [disabled]="model.skills.length >= 3">

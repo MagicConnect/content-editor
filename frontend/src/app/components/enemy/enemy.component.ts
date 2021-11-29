@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { newEnemy } from '../../../../../shared/initializers';
 import { Stat } from '../../../../../shared/interfaces';
+import { ModManagerService } from '../../services/mod-manager.service';
+import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
 @Component({
   selector: 'app-enemy',
@@ -54,7 +57,22 @@ export class EnemyComponent {
     },
   ];
 
-  constructor() { }
+  constructor(private modal: BsModalService, public mod: ModManagerService) { }
+
+  addAbility() {
+    const modalRef = this.modal.show(PickerModalComponent, {
+      class: 'modal-lg',
+      initialState: { type: 'Ability', entries: this.mod.chooseableAbilities, disabledEntries: this.model.abilities }
+    });
+
+    modalRef.content?.choose.subscribe(choice => {
+      this.model.abilities.push(choice.name);
+    });
+  }
+
+  removeAbility(index: number) {
+    this.model.abilities.splice(index, 1);
+  }
 
   addSkill() {
     this.model.skills.push({
