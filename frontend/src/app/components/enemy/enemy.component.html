@@ -8,23 +8,40 @@
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">
-  <legend>Base Stats</legend>
+  <legend>Stats</legend>
 
-  <app-stats-form [model]="model.baseStats"
-                  [pointBuyEnabled]="true"
-                  [maxPoints]="25"
-                  [statKey]="'baseStatPoints'"
-                  [statPointModel]="model.basePoints"></app-stats-form>
-</fieldset>
+  <tabset [justified]="true">
 
-<fieldset class="border border-dark p-3 mt-3 mb-3">
-  <legend>Level-up Stats</legend>
+    <tab class="p-3">
+      <ng-template tabHeading>
+        Base Stats
 
-  <app-stats-form [model]="model.levelStats"
-                  [pointBuyEnabled]="true"
-                  [maxPoints]="25"
-                  [statKey]="'levelupPoints'"
-                  [statPointModel]="model.levelPoints"></app-stats-form>
+        <span class="badge point-badge" [ngClass]="['badge-' + archetype.color]" *ngFor="let archetype of mod.archetypes">{{ model.basePoints[archetype.name] ?? 0 }}</span>
+      </ng-template>
+
+      <app-stats-form [model]="model.baseStats"
+                      [pointBuyEnabled]="true"
+                      [maxPoints]="25"
+                      [statKey]="'baseStatPoints'"
+                      [statPointModel]="model.basePoints"></app-stats-form>
+
+    </tab>
+
+    <tab class="p-3">
+      <ng-template tabHeading>
+        Level-up Stats
+
+        <span class="badge point-badge" [ngClass]="['badge-' + archetype.color]" *ngFor="let archetype of mod.archetypes">{{ model.levelPoints[archetype.name] ?? 0 }}</span>
+      </ng-template>
+
+      <app-stats-form [model]="model.levelStats"
+                      [pointBuyEnabled]="true"
+                      [maxPoints]="25"
+                      [statKey]="'levelupPoints'"
+                      [statPointModel]="model.levelPoints"></app-stats-form>
+
+    </tab>
+  </tabset>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">

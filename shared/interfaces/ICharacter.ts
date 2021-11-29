@@ -15,7 +15,10 @@ export interface ICharacter {
   levelPoints: Record<Archetype, number>; // level stat points bought per class
   levelStats: Record<Stat, number>;       // stats gained per level
 
-  abilities: string[];                  // character abilities
+  lbPoints: Record<Archetype, number>;    // lb stat points bought per class
+  lbStats: Record<Stat, number>;          // stats gained per lb
+
+  abilities: string[];                    // character abilities
   skills: ISkill[];                       // character skills
   specialSkill: ISkill;                   // character special ability
 

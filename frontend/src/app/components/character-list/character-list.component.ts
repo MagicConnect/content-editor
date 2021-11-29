@@ -36,7 +36,7 @@ export class CharacterListComponent implements OnInit {
         && this.currentCharacter.specialSkill.name.length >= 2
         && sum(Object.values(this.currentCharacter.basePoints)) > 0
         && sum(Object.values(this.currentCharacter.levelPoints)) > 0
-        && sum(Object.values(this.currentCharacter.lbRewards.statPoints)) > 0;
+        && sum(Object.values(this.currentCharacter.lbPoints)) > 0;
   }
 
   public get isCurrentCharacterDuplicateName(): boolean {

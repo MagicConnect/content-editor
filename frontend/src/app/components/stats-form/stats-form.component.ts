@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Archetype, ArchetypeStatMatrix, Stat, StatAllocationMatrix } from '../../../../../shared/interfaces';
+import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
   selector: 'app-stats-form',
@@ -36,13 +37,7 @@ export class StatsFormComponent {
     [Stat.MeleeEvasion]: 0,
   };
 
-  public archetypes: Array<{ name: Archetype, color: string }> = [
-    { name: Archetype.Archer,     color: 'primary' },
-    { name: Archetype.Attacker,   color: 'danger' },
-    { name: Archetype.Caster,     color: 'secondary' },
-    { name: Archetype.Defender,   color: 'warning' },
-    { name: Archetype.Healer,     color: 'success' },
-  ];
+  archetypes = this.mod.archetypes;
 
   form = new FormGroup({});
 
@@ -165,7 +160,7 @@ export class StatsFormComponent {
     }
   ];
 
-  constructor() { }
+  constructor(public mod: ModManagerService) { }
 
   totalPoints(): number {
     return Object.values(this.statPointModel).reduce((a, b) => a + b, 0);

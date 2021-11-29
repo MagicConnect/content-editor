@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { Archetype, IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -43,6 +43,16 @@ export class ModManagerService {
   public get stars() {
     return ['★', '★★', '★★★', '★★★★', '★★★★★'];
   }
+
+  public get archetypes(): Array<{ name: Archetype, color: string }> {
+    return [
+      { name: Archetype.Archer,     color: 'primary' },
+      { name: Archetype.Attacker,   color: 'danger' },
+      { name: Archetype.Caster,     color: 'secondary' },
+      { name: Archetype.Defender,   color: 'warning' },
+      { name: Archetype.Healer,     color: 'success' }
+    ];
+  };
 
   public get shopTokens(): IItem[] {
     return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);

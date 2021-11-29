@@ -1,6 +1,5 @@
 import { ILimitBreak } from './ILimitBreak';
 import { PrimaryStat } from './BuildingBlocks';
-import { IAbility } from './IAbility';
 import { IItem } from './IItem';
 
 export type IChip = IItem & {   

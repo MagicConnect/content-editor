@@ -1,19 +1,4 @@
 
-
-<div class="row" *ngIf="allowStats">
-  <div class="col">
-    <fieldset class="border border-dark p-3 mt-3 mb-3">
-      <legend>Stats</legend>
-
-      <app-stats-form [model]="model.stats"
-                      [pointBuyEnabled]="true"
-                      [maxPoints]="25"
-                      [statKey]="'limitBreakPoints'"
-                      [statPointModel]="model.statPoints"></app-stats-form>
-    </fieldset>
-  </div>
-</div>
-
 <div class="row">
   <div class="col">
     <fieldset class="border border-dark p-3 mt-3 mb-3">
@@ -25,7 +10,6 @@
             <li class="nav-item mx-1" *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
               <a class="nav-link" [class.active]="x === activeLB">
                 {{ x + 1 }}
-                <span class="badge badge-success" *ngIf="model.abilities && model.abilities[x] && model.abilities[x].length > 0">A</span>
                 <span class="badge badge-danger" *ngIf="model.skills && model.skills[x] && model.skills[x].length > 0">S</span>
               </a>
             </li>
