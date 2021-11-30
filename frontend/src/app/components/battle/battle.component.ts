@@ -8,6 +8,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newMapBattle } from '../../../../../shared/initializers';
 import { IEnemy, IMapNode } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
+import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
 @Component({
   selector: 'app-battle',
@@ -83,7 +84,7 @@ export class BattleComponent implements OnInit {
 
   public enemies: IEnemy[] = [];
 
-  constructor(private modalService: BsModalService, private mod: ModManagerService) { }
+  constructor(private modal: BsModalService, public mod: ModManagerService) { }
 
   ngOnInit() {
     this.mod.enemies$.subscribe(enemies => this.enemies = sortBy([...enemies], 'name'));
@@ -96,7 +97,7 @@ export class BattleComponent implements OnInit {
     this.editingGridSpace.y = row;
     this.editingGridSpace.enemy = this.model.combat.grid[row]?.[cell]?.enemy?.name;
     this.editingGridSpace.level = this.model.combat.grid[row]?.[cell]?.enemy?.level ?? 1;
-    this.modalRef = this.modalService.show(template, { backdrop: true });
+    this.modalRef = this.modal.show(template, { backdrop: true });
   }
 
   clearEnemyFor(event: any, row: number, cell: number): void {
@@ -129,6 +130,21 @@ export class BattleComponent implements OnInit {
 
   resetEditGridSpace(): void {
     this.editingGridSpace = { x: 0, y: 0, enemy: '', level: 1 };
+  }
+
+  addAbility() {
+    const modalRef = this.modal.show(PickerModalComponent, {
+      class: 'modal-lg',
+      initialState: { type: 'Ability', entries: this.mod.chooseableAbilities, disabledEntries: this.model.abilities }
+    });
+
+    modalRef.content?.choose.subscribe(choice => {
+      this.model.abilities.push(choice.name);
+    });
+  }
+
+  removeAbility(index: number) {
+    this.model.abilities.splice(index, 1);
   }
 
 }

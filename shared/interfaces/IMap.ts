@@ -1,4 +1,3 @@
-
 export interface IMap {
   name: string;
   nodes: IMapNode[];
@@ -17,6 +16,8 @@ export interface IMapNode {
   combat: IMapCombat;
   staminaCost: number;
   unlocksMap: string;
+
+  abilities: string[];
 }
 
 export interface IMapCombat {
