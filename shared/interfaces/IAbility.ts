@@ -94,6 +94,7 @@ export enum AbilityEffect {
 
 export enum AbilityTarget {
   Self = 'Self',
+  All = 'All',
 
   AllEnemies = 'AllEnemies',
   AllAllies = 'AllAllies',
