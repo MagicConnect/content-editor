@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class EnemyListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IEnemy[] = [];
+
   private allEnemies: IEnemy[] = [];
 
   public enemies: IEnemy[] = [];
@@ -42,8 +45,27 @@ export class EnemyListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.enemies$.subscribe(enemies => this.enemies = this.allEnemies = [...enemies]);
+    this.mod.enemies$.subscribe(enemies => {
+      this.enemies = this.allEnemies = [...enemies];
+      this.filter();
+    });
+
     this.mod.maps$.subscribe(maps => this.maps = [...maps]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allEnemies.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allEnemies.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.abilities.some(b => b.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.skills.some(b => b.toLowerCase().includes(this.searchText.toLowerCase()))
+          || this.enemyCurrentlyUsedIn(a).some(b => b.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

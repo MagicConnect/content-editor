@@ -13,6 +13,9 @@ import { newWeapon } from '../../../../../shared/initializers';
 })
 export class WeaponListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IWeapon[] = [];
+
   private allWeapons: IWeapon[] = [];
 
   public weapons: IWeapon[] = [];
@@ -43,9 +46,28 @@ export class WeaponListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.weapons$.subscribe(weapons => this.weapons = this.allWeapons = [...weapons]);
+    this.mod.weapons$.subscribe(weapons => {
+      this.weapons = this.allWeapons = [...weapons];
+      this.filter();
+    });
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allWeapons.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allWeapons.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.secondaryStat?.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.abilities.some(a => a.toLowerCase().includes(this.searchText.toLowerCase()))
+          || this.weaponCurrentlyUsedIn(a).some(a => a.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

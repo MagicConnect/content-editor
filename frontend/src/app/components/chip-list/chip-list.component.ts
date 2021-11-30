@@ -13,6 +13,9 @@ import { newChip } from '../../../../../shared/initializers';
 })
 export class ChipListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IChip[] = [];
+
   private allChips: IChip[] = [];
 
   public chips: IChip[] = [];
@@ -43,9 +46,28 @@ export class ChipListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.chips$.subscribe(chips => this.chips = this.allChips = [...chips]);
+    this.mod.chips$.subscribe(chips => {
+      this.chips = this.allChips = [...chips];
+      this.filter();
+    });
+
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allChips.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allChips.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.abilities.some(a => a.toLowerCase().includes(this.searchText.toLowerCase()))
+          || this.chipCurrentlyUsedIn(a).some(a => a.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

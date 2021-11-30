@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class MapListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IMap[] = [];
+
   private allMaps: IMap[] = [];
 
   public maps: IMap[] = [];
@@ -39,7 +42,22 @@ export class MapListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.maps$.subscribe(maps => this.maps = this.allMaps = [...maps]);
+    this.mod.maps$.subscribe(maps => {
+      this.maps = this.allMaps = [...maps];
+      this.filter();
+    });
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allMaps.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allMaps.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.nodes.find(b => b.name.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

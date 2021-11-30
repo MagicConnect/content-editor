@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class ShopListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IShop[] = [];
+
   private allShops: IShop[] = [];
 
   public shops: IShop[] = [];
@@ -45,7 +48,27 @@ export class ShopListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.shops$.subscribe(shops => this.shops = this.allShops = [...shops]);
+    this.mod.shops$.subscribe(shops => {
+      this.shops = this.allShops = [...shops];
+      this.filter();
+    });
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allShops.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allShops.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.currencyItem.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.characters.some(b => b.name.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.items.some(b => b.name.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.chips.some(b => b.name.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.weapons.some(b => b.name.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

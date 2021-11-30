@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class AbilityListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IAbility[] = [];
+
   private allAbilities: IAbility[] = [];
 
   public abilities: IAbility[] = [];
@@ -44,11 +47,28 @@ export class AbilityListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.abilities$.subscribe(abilities => this.abilities = this.allAbilities = [...abilities]);
+    this.mod.abilities$.subscribe(abilities => {
+      this.abilities = this.allAbilities = [...abilities];
+      this.filter();
+    });
+
     this.mod.characters$.subscribe(characters => this.characters = [...characters]);
     this.mod.chips$.subscribe(chips => this.chips = [...chips]);
     this.mod.enemies$.subscribe(enemies => this.enemies = [...enemies]);
     this.mod.weapons$.subscribe(weapons => this.weapons = [...weapons]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allAbilities.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allAbilities.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || this.abilityCurrentlyUsedIn(a).join(', ').toLowerCase().includes(this.searchText.toLowerCase());
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

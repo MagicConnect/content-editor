@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class BannerListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IBanner[] = [];
+
   private allBanners: IBanner[] = [];
 
   public banners: IBanner[] = [];
@@ -46,7 +49,26 @@ export class BannerListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.banners$.subscribe(banners => this.banners = this.allBanners = [...banners]);
+    this.mod.banners$.subscribe(banners => {
+      this.banners = this.allBanners = [...banners];
+      this.filter();
+    });
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allBanners.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allBanners.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.characters.filter(c => c.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
+          || a.items.filter(i => i.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
+          || a.chips.filter(c => c.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
+          || a.weapons.filter(w => w.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0;
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

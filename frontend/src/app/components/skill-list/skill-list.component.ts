@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class SkillListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: ISkill[] = [];
+
   private allSkills: ISkill[] = [];
 
   public skills: ISkill[] = [];
@@ -42,9 +45,28 @@ export class SkillListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.skills$.subscribe(skills => this.skills = this.allSkills = [...skills]);
+    this.mod.skills$.subscribe(skills => {
+      this.skills = this.allSkills = [...skills];
+      this.filter();
+    });
+
     this.mod.characters$.subscribe(characters => this.characters = [...characters]);
     this.mod.enemies$.subscribe(enemies => this.enemies = [...enemies]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allSkills.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allSkills.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || this.skillCurrentlyUsedIn(a).some(b => b.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.actions.some(b => b.elements.some(c => c.toLowerCase().includes(this.searchText.toLowerCase()))
+                              || b.statusEffectChanges.some(c => c.effect.toLowerCase().includes(this.searchText.toLowerCase())));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

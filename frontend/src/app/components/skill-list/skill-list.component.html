@@ -1,13 +1,16 @@
 
 <div class="row">
-  <div class="col">
+  <div class="col-9">
+    <input class="form-control" type="text" placeholder="Search Skills" [(ngModel)]="searchText" (keyup)="filter()">
+  </div>
+  <div class="col-3 text-right">
     <button class="btn btn-primary" (click)="addNewSkill(skillEditor)">+ Add New Skill</button>
   </div>
 </div>
 
 
 <ngx-datatable class="bootstrap"
-               [rows]="skills"
+               [rows]="searchResults"
                columnMode="flex"
                [sorts]="[{ prop: 'name', dir: 'asc' }]"
                rowHeight="auto">

@@ -13,6 +13,9 @@ import { cloneDeep, sum } from 'lodash';
 })
 export class CharacterListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: ICharacter[] = [];
+
   private allCharacters: ICharacter[] = [];
 
   public characters: ICharacter[] = [];
@@ -50,9 +53,31 @@ export class CharacterListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.characters$.subscribe(characters => this.characters = this.allCharacters = [...characters]);
+    this.mod.characters$.subscribe(characters => {
+      this.characters = this.allCharacters = [...characters];
+      this.filter();
+    });
+
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allCharacters.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allCharacters.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.archetype.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.weapon.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.specialSkill.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.abilities.some(a => a.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.skills.some(s => s.toLowerCase().includes(this.searchText.toLowerCase()))
+          || this.characterCurrentlyUsedIn(a).some(s => s.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {

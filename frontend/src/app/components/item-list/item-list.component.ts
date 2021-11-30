@@ -12,6 +12,9 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class ItemListComponent implements OnInit {
 
+  public searchText = '';
+  public searchResults: IItem[] = [];
+
   private allItems: IItem[] = [];
 
   public items: IItem[] = [];
@@ -42,9 +45,27 @@ export class ItemListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.items$.subscribe(items => this.items = this.allItems = [...items]);
+    this.mod.items$.subscribe(items => {
+      this.items = this.allItems = [...items];
+      this.filter();
+    });
+
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+  }
+
+  filter() {
+    if(!this.searchText) {
+      this.searchResults = this.allItems.slice(0);
+      return;
+    }
+
+    this.searchResults = this.allItems.filter(a => {
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.itemType.toLowerCase().includes(this.searchText.toLowerCase())
+          || this.itemCurrentlyUsedIn(a).find(i => i.toLowerCase().includes(this.searchText.toLowerCase()));
+    });
   }
 
   openEditModal(template: TemplateRef<any>) {
