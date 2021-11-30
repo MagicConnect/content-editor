@@ -12,7 +12,6 @@ import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbilit
 })
 export class AbilityFormComponent implements OnInit {
 
-  @Input() index = -1;
   @Input() showLBChanges = true;
 
   public activeLB = 0;

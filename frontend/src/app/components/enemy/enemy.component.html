@@ -83,10 +83,29 @@
     </button>
   </legend>
 
-  <div *ngIf="model.skills.length === 0">No skills created.</div>
+  <div *ngIf="model.skills.length === 0">No skills chosen.</div>
 
+  <ul class="picked-list">
+    <ng-container *ngFor="let skill of model.skills; let i = index">
+      <li>
+        <div class="row">
+          <div class="col-8">
+            <strong>{{ skill }}</strong>
+            <br>
+            <em><small>{{ mod.getSkillDescription(skill) }}</small></em>
+          </div>
+
+          <div class="col-4 text-right">
+            <button class="btn btn-danger" (click)="removeSkill(i)">Remove {{ skill }}</button>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+
+  <!--
   <app-skill-form *ngFor="let skill of model.skills; let i = index"
                   (remove)="removeSkill(i)"
                   [model]="skill"
-                  [index]="i"></app-skill-form>
+                  [index]="i"></app-skill-form>-->
 </fieldset>

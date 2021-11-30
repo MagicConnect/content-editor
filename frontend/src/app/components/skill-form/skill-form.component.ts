@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from '../../../../../shared/interfaces';
@@ -9,9 +9,6 @@ import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from '../../../..
   styleUrls: ['./skill-form.component.scss']
 })
 export class SkillFormComponent {
-
-  @Output() remove = new EventEmitter();
-  @Input() index = 0;
 
   form = new FormGroup({});
 

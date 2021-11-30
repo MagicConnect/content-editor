@@ -11,6 +11,7 @@
       <button class="btn btn-info btn-sm mb-0" btnRadio="item">Item</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="map">Map</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="skill">Skill</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon</button>
     </div>
 
@@ -46,6 +47,7 @@
       <app-item-list *ngIf="currentPage === 'item'"></app-item-list>
       <app-map-list *ngIf="currentPage === 'map'"></app-map-list>
       <app-shop-list *ngIf="currentPage === 'shop'"></app-shop-list>
+      <app-skill-list *ngIf="currentPage === 'skill'"></app-skill-list>
       <app-weapon-list *ngIf="currentPage === 'weapon'"></app-weapon-list>
     </div>
   </div>

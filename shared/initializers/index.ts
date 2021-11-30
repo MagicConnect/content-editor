@@ -7,4 +7,5 @@ export * from './enemy';
 export * from './item';
 export * from './map';
 export * from './shop';
+export * from './skill';
 export * from './weapon';

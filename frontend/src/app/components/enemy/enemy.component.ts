@@ -75,14 +75,13 @@ export class EnemyComponent {
   }
 
   addSkill() {
-    this.model.skills.push({
-      name: '',
-      description: '',
-      actions: [],
-      cooldown: 0,
-      hpCost: 0,
-      mpCost: 0,
-      spcCost: 0
+    const modalRef = this.modal.show(PickerModalComponent, {
+      class: 'modal-lg',
+      initialState: { type: 'Skill', entries: this.mod.chooseableSkills, disabledEntries: this.model.skills }
+    });
+
+    modalRef.content?.choose.subscribe(choice => {
+      this.model.skills.push(choice.name);
     });
   }
 

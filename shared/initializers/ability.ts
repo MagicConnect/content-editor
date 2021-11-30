@@ -18,6 +18,6 @@ export const newAbility = (): IAbility => ({
     6:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
     7:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
     8:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-  9:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
+    9:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
   }
 });

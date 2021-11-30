@@ -8,9 +8,5 @@ export const newChip = (): IChip => ({
   stars: 1,
   primaryStat: Stat.Defense,
 
-  abilities: [],
-
-  lbRewards: {
-    skills: {}
-  }
+  abilities: []
 });

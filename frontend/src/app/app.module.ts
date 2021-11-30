@@ -51,6 +51,7 @@ import { TokenInterceptorService } from './providers/token-interceptor.service';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AbilityListComponent } from './components/ability-list/ability-list.component';
 import { PickerModalComponent } from './components/picker-modal/picker-modal.component';
+import { SkillListComponent } from './components/skill-list/skill-list.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { PickerModalComponent } from './components/picker-modal/picker-modal.com
     BattleComponent,
     MapListComponent,
     AbilityListComponent,
-    PickerModalComponent
+    PickerModalComponent,
+    SkillListComponent
   ],
   imports: [
     BrowserModule,

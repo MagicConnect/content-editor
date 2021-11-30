@@ -1,17 +1,11 @@
 
-<hr *ngIf="index > 0">
-
-<div class="ability-container" [ngClass]="'ability-' + index">
+<div class="ability-container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12">
 
       <form [formGroup]="form">
         <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
       </form>
-    </div>
-
-    <div class="col-2">
-      <button class="btn btn-danger float-right" (click)="remove.emit()" *ngIf="index !== -1">Remove S#{{ index + 1 }}</button>
     </div>
   </div>
 

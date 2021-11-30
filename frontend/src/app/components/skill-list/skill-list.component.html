@@ -1,0 +1,81 @@
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" (click)="addNewSkill(skillEditor)">+ Add New Skill</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="skills"
+               columnMode="flex"
+               [sorts]="[{ prop: 'name', dir: 'asc' }]"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="# Actions" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.actions.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Uses" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip" placement="top" container="body" [tooltip]="skillCurrentlyUsedIn(row) | json">
+        <ng-container *ngIf="skillCurrentlyUsedIn(row) as usesArray">
+          {{ usesArray.length }} Use(s) <strong *ngIf="usesArray.length > 0">ⓘ</strong>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm" (click)="editSkill(skillEditor, row)">Edit</button>
+
+        <button class="btn btn-danger btn-sm ml-1"
+                [disabled]="isSkillCurrentlyInUse(row)"
+                (click)="deleteSkill(row)">
+                Delete
+        </button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #skillEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Skill
+    </h4>
+
+    <div class="has-actions text-center">
+      <div class="d-flex justify-content-space-around">
+        <button class="btn btn-sm btn-primary" (click)="confirmSkillEdit()" [disabled]="!canSaveCurrentSkill">Save</button>
+
+        <div class="ml-1 errors">
+          <div class="error" *ngIf="isCurrentSkillDuplicateName">Duplicate name.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-skill-form [model]="currentSkill" *ngIf="currentSkill"></app-skill-form>
+  </div>
+</ng-template>

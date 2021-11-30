@@ -8,6 +8,7 @@ import { IShop } from './IShop';
 import { IEnemy } from './IEnemy';
 import { IMap } from './IMap';
 import { IAbility } from './IAbility';
+import { ISkill } from '.';
 
 export interface IContentPack {
   abilities: IAbility[];
@@ -16,7 +17,8 @@ export interface IContentPack {
   chips: IChip[];
   enemies: IEnemy[];
   items: IItem[];
-  shops: IShop[];
-  weapons: IWeapon[];
   maps: IMap[];
+  shops: IShop[];
+  skills: ISkill[];
+  weapons: IWeapon[];
 }

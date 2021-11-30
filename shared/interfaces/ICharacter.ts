@@ -1,6 +1,4 @@
-import { ILimitBreak } from './ILimitBreak';
 import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
-import { ISkill } from './ISkill';
 
 export interface ICharacter {
   name: string;                           // character name
@@ -19,8 +17,6 @@ export interface ICharacter {
   lbStats: Record<Stat, number>;          // stats gained per lb
 
   abilities: string[];                    // character abilities
-  skills: ISkill[];                       // character skills
-  specialSkill: ISkill;                   // character special ability
-
-  lbRewards: ILimitBreak;                 // rewards gained for a specific LB (can change stats, abilities, attacks, etc)
+  skills: string[];                       // character skills
+  specialSkill: string;                   // character special ability
 }

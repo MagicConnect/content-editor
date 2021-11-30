@@ -28,6 +28,22 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="# Abilities" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.abilities.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="# Skills" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.skills.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
   <ngx-datatable-column name="Combat Uses" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip" placement="right" [tooltip]="enemyCurrentlyUsedIn(row) | json">

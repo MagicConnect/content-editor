@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Archetype, IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { Archetype, IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -36,6 +36,9 @@ export class ModManagerService {
 
   private shops: BehaviorSubject<IShop[]> = new BehaviorSubject<IShop[]>([]);
   public shops$: Observable<IShop[]> = this.shops.asObservable();
+
+  private skills: BehaviorSubject<ISkill[]> = new BehaviorSubject<ISkill[]>([]);
+  public skills$: Observable<ISkill[]> = this.skills.asObservable();
 
   private weapons: BehaviorSubject<IWeapon[]> = new BehaviorSubject<IWeapon[]>([]);
   public weapons$: Observable<IWeapon[]> = this.weapons.asObservable();
@@ -80,6 +83,10 @@ export class ModManagerService {
 
   public get chooseableAbilities(): Array<{ name: string, description: string }> {
     return sortBy(this.currentPack.abilities.map(a => ({ name: a.name, description: a.description })), 'name');
+  }
+
+  public get chooseableSkills(): Array<{ name: string, description: string }> {
+    return sortBy(this.currentPack.skills.map(a => ({ name: a.name, description: a.description })), 'name');
   }
 
   @LocalStorage() public currentPack!: IContentPack;
@@ -139,6 +146,7 @@ export class ModManagerService {
       enemies: [],
       items: [],
       shops: [],
+      skills: [],
       weapons: [],
       maps: [],
     };
@@ -153,6 +161,7 @@ export class ModManagerService {
     this.items.next(this.currentPack.items ?? []);
     this.maps.next(this.currentPack.maps ?? []);
     this.shops.next(this.currentPack.shops ?? []);
+    this.skills.next(this.currentPack.skills ?? []);
     this.weapons.next(this.currentPack.weapons ?? []);
   }
 
@@ -206,6 +215,10 @@ export class ModManagerService {
 
   public getAbilityDescription(name: string): string {
     return this.chooseableAbilities.find(x => x.name === name)?.description ?? 'Unknown';
+  }
+
+  public getSkillDescription(name: string): string {
+    return this.chooseableSkills.find(x => x.name === name)?.description ?? 'Unknown';
   }
 
   // Banner-related
@@ -368,6 +381,33 @@ export class ModManagerService {
 
   public deleteShop(shop: IShop): void {
     this.currentPack.shops = this.currentPack.shops.filter(s => s !== shop);
+    this.syncAndSave();
+  }
+
+  // Skill-related
+  public addSkill(skill: ISkill): void {
+    if(!this.currentPack.skills) this.currentPack.skills = [];
+    this.currentPack.skills.push(skill);
+    this.syncAndSave();
+  }
+
+  public editSkill(skill: ISkill, index: number): void {
+    const oldName = this.currentPack.skills[index].name;
+    this.currentPack.skills[index] = skill;
+
+    this.currentPack.characters.forEach(c => {
+      c.skills = c.skills.map(a => a === oldName ? skill.name : a);
+    });
+
+    this.currentPack.enemies.forEach(c => {
+      c.skills = c.skills.map(a => a === oldName ? skill.name : a);
+    });
+
+    this.syncAndSave();
+  }
+
+  public deleteSkill(skill: ISkill): void {
+    this.currentPack.skills = this.currentPack.skills.filter(s => s !== skill);
     this.syncAndSave();
   }
 

@@ -33,7 +33,7 @@ export class CharacterListComponent implements OnInit {
         && this.currentCharacter.archetype
         && this.currentCharacter.stars >= 3
         && this.currentCharacter.skills.length >= 1
-        && this.currentCharacter.specialSkill.name.length >= 2
+        && !!this.currentCharacter.specialSkill
         && sum(Object.values(this.currentCharacter.basePoints)) > 0
         && sum(Object.values(this.currentCharacter.levelPoints)) > 0
         && sum(Object.values(this.currentCharacter.lbPoints)) > 0;

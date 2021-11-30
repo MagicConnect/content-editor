@@ -13,5 +13,5 @@ export interface IEnemy {
   levelStats: Record<Stat, number>;       // stats gained per level
 
   abilities: string[];                    // character abilities
-  skills: ISkill[];
+  skills: string[];                       // character skills
 }

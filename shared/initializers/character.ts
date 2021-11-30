@@ -78,17 +78,5 @@ export const newCharacter = (): ICharacter => ({
 
   skills: [],
 
-  specialSkill: {
-    name: '',
-    description: '',
-    cooldown: 0,
-    hpCost: 0,
-    mpCost: 0,
-    spcCost: 0,
-    actions: []
-  },
-
-  lbRewards: {
-    skills: {}
-  }
+  specialSkill: ''
 });
