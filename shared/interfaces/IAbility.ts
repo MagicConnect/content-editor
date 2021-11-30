@@ -34,9 +34,9 @@ export enum AbilityEffect {
   HPLeech = 'HPLeech',
   MPLeech = 'MPLeech',
 
-  // SpecialGaugeBoost = 'SpecialGaugeBoost',
-  // SpecialGaugeRegen = 'SpecialGaugeRegen',
-  // SpecialGaugeLeech = 'SpecialGaugeLeech',
+  SpecialGaugeBoost = 'SpecialGaugeBoost',
+  SpecialGaugeRegen = 'SpecialGaugeRegen',
+  SpecialGaugeLeech = 'SpecialGaugeLeech',
 
   CooldownReduction = 'CooldownReduction',
 
