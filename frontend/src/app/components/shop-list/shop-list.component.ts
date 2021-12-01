@@ -34,7 +34,11 @@ export class ShopListComponent implements OnInit {
         || this.currentShop.items.length > 0
         || this.currentShop.chips.length > 0
         || this.currentShop.weapons.length > 0
-        );
+        )
+        && this.currentShop.characters.every(c => c.name)
+        && this.currentShop.items.every(c => c.name)
+        && this.currentShop.chips.every(c => c.name)
+        && this.currentShop.weapons.every(c => c.name);
   }
 
   public get isCurrentShopDuplicateName(): boolean {
