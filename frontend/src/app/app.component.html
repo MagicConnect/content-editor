@@ -23,7 +23,8 @@
     </div>
 
     <div class="btn-group ml-auto" *ngIf="!auth.loggedIn">
-      <button class="btn btn-info btn-sm mb-0"
+      <button class="btn btn-sm mb-0"
+              [ngClass]="['btn-' + currentColor]"
               (click)="showLogin()"
               placement="left"
               tooltip="If you are not logged in, your data will not be saved, and additionally will be overwritten when you do log in. Exercise caution."
