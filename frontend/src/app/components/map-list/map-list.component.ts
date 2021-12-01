@@ -28,7 +28,14 @@ export class MapListComponent implements OnInit {
     if(!this.currentMap) return false;
     return this.currentMap.name?.length >= 2
         && !this.isCurrentMapDuplicateName
-        && this.currentMap.nodes.length >= 1;
+        && this.currentMap.nodes.length >= 1
+        && this.currentMap.nodes.every(x => x.name
+          && x.drops.every(d => d.name
+                             && d.dropPercent > 0
+                             && d.dropPercent <= 100
+                             && d.quantity >= 1)
+          && x.combat.grid.flat().every(c => c.enemy.name && c.enemy.level >= 1)
+          );
   }
 
   public get isCurrentMapDuplicateName(): boolean {
