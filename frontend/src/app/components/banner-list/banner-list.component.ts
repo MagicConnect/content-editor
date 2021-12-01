@@ -35,7 +35,11 @@ export class BannerListComponent implements OnInit {
         || this.currentBanner.items.length > 0
         || this.currentBanner.chips.length > 0
         || this.currentBanner.weapons.length > 0
-        );
+        )
+        && this.currentBanner.characters.every(c => c.name)
+        && this.currentBanner.items.every(c => c.name)
+        && this.currentBanner.chips.every(c => c.name)
+        && this.currentBanner.weapons.every(c => c.name);
   }
 
   public get isCurrentBannerDuplicateName(): boolean {
