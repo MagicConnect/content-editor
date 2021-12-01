@@ -32,7 +32,7 @@ export class SkillActionEffectFormComponent {
         {
           key: 'effect',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Status Effect',
             placeholder: 'Choose status effect...',
@@ -56,7 +56,7 @@ export class SkillActionEffectFormComponent {
         {
           key: 'valueScaleStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Scale Stat',
             placeholder: 'Choose scale stat...',

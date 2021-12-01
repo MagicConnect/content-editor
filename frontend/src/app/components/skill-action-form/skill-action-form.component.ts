@@ -50,7 +50,7 @@ export class SkillActionFormComponent {
         {
           key: 'pattern',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Action Pattern',
             placeholder: 'Choose action pattern...',
@@ -62,7 +62,7 @@ export class SkillActionFormComponent {
         {
           key: 'validTargets',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Valid Targets',
             placeholder: 'Choose valid targets...',

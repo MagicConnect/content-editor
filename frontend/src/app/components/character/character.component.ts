@@ -39,7 +39,7 @@ export class CharacterComponent {
         {
           key: 'archetype',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Archetype',
             placeholder: 'Choose archetype...',
@@ -57,7 +57,7 @@ export class CharacterComponent {
         {
           key: 'weapon',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Weapon',
             placeholder: 'Choose weapon...',
@@ -77,7 +77,7 @@ export class CharacterComponent {
         {
           key: 'stars',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Star Rating',
             placeholder: 'Choose star rating...',
@@ -99,7 +99,7 @@ export class CharacterComponent {
         {
           key: 'primaryStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',

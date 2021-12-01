@@ -35,7 +35,7 @@ export class ShopEntryFormComponent {
         {
           key: 'name',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: () => this.type !== 'character',
           templateOptions: {
             label: 'Character',
@@ -48,7 +48,7 @@ export class ShopEntryFormComponent {
         {
           key: 'name',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: () => this.type !== 'weapon',
           templateOptions: {
             label: 'Weapon',
@@ -61,7 +61,7 @@ export class ShopEntryFormComponent {
         {
           key: 'name',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: () => this.type !== 'chip',
           templateOptions: {
             label: 'Chip',
@@ -74,7 +74,7 @@ export class ShopEntryFormComponent {
         {
           key: 'name',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: () => this.type !== 'item',
           templateOptions: {
             label: 'Item',

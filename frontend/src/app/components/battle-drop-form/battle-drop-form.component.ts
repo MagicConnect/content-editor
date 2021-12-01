@@ -32,7 +32,7 @@ export class BattleDropFormComponent {
         {
           key: 'name',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Item',
             placeholder: 'Pick item...',

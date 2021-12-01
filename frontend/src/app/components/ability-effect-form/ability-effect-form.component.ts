@@ -31,7 +31,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'value',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Effect Type',
             placeholder: 'Choose effect type...',
@@ -43,7 +43,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'target',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Effect Target',
             placeholder: 'Choose effect target...',
@@ -82,7 +82,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.effectTarget',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![AbilityEffect.HPLeech, AbilityEffect.MPLeech].includes(model.value);
             if(matches) delete model.props.effectTarget;
@@ -99,7 +99,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.baseStat',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![
               AbilityEffect.StatBoost, AbilityEffect.ConvertStat,
@@ -119,7 +119,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.convertToStat',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![AbilityEffect.ConvertStat].includes(model.value);
             if(matches) delete model.props.convertToStat;
@@ -152,7 +152,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.monsterType',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![AbilityEffect.IncomingMonsterTypeDamage, AbilityEffect.OutgoingMonsterTypeDamage].includes(model.value);
             if(matches) delete model.props.monsterType;
@@ -169,7 +169,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.statusEffect',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![
               AbilityEffect.ResistStatusEffect, AbilityEffect.InflictStatusEffect,
@@ -191,7 +191,7 @@ export class AbilityEffectFormComponent {
         {
           key: 'props.element',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![
               AbilityEffect.IncomingElementDamage, AbilityEffect.OutgoingElementDamage,

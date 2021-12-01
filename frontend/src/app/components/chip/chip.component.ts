@@ -50,7 +50,7 @@ export class ChipComponent {
         {
           key: 'primaryStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',
@@ -67,7 +67,7 @@ export class ChipComponent {
         {
           key: 'stars',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Star Rating',
             placeholder: 'Choose star rating...',

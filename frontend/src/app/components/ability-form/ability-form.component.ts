@@ -53,7 +53,7 @@ export class AbilityFormComponent implements OnInit {
         {
           key: 'trigger',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Trigger',
             placeholder: 'Choose trigger...',

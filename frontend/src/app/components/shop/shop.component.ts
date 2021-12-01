@@ -48,7 +48,7 @@ export class ShopComponent {
         {
           key: 'currencyItem',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Currency Item',
             placeholder: 'Enter currency item here...',

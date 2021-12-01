@@ -39,7 +39,7 @@ export class EnemyComponent {
         {
           key: 'primaryStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',

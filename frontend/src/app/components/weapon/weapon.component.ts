@@ -50,7 +50,7 @@ export class WeaponComponent {
         {
           key: 'stars',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Star Rating',
             placeholder: 'Choose star rating...',
@@ -78,7 +78,7 @@ export class WeaponComponent {
         {
           key: 'primaryStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',
@@ -95,7 +95,7 @@ export class WeaponComponent {
         {
           key: 'secondaryStat',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Secondary Stat',
             placeholder: 'Choose secondary stat...',

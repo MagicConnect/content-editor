@@ -66,7 +66,7 @@ export class BattleComponent implements OnInit {
         {
           key: 'unlocksMap',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Map Unlock',
             placeholder: 'Choose unlocked map...',

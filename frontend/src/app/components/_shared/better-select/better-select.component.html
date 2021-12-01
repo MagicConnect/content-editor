@@ -1,0 +1,27 @@
+<ng-container *ngIf="to.options | formlySelectOptions:field | async as opts">
+  <ng-container *ngIf="to._flatOptions; else group">
+    <ng-select
+      [bindValue]="'value'"
+      [items]="opts"
+      [formControl]="formControl">
+    </ng-select>
+  </ng-container>
+
+  <ng-template #group>
+    <ng-select
+      [bindValue]="'value'"
+      [groupBy]="'group'"
+      [items]="opts"
+      [formControl]="formControl">
+
+      <ng-template ng-optgroup-tmp let-item="item">
+          {{item.label}}
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+          {{item.label}}
+      </ng-template>
+
+    </ng-select>
+  </ng-template>
+</ng-container>

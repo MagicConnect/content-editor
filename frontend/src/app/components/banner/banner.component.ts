@@ -47,7 +47,7 @@ export class BannerComponent {
         {
           key: 'type',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Banner Type',
             placeholder: 'Choose banner type here...',

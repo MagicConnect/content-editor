@@ -47,7 +47,7 @@ export class ItemComponent {
         {
           key: 'itemType',
           className: 'col-3',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Type',
             placeholder: 'Choose type...',

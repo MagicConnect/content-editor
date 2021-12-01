@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -52,6 +54,8 @@ import { AbilityListComponent } from './components/ability-list/ability-list.com
 import { PickerModalComponent } from './components/picker-modal/picker-modal.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { BattleDropFormComponent } from './components/battle-drop-form/battle-drop-form.component';
+import { BetterSelectComponent } from './components/_shared/better-select/better-select.component';
+import { FormlySelectModule } from '@ngx-formly/core/select';
 
 @NgModule({
   declarations: [
@@ -85,7 +89,8 @@ import { BattleDropFormComponent } from './components/battle-drop-form/battle-dr
     AbilityListComponent,
     PickerModalComponent,
     SkillListComponent,
-    BattleDropFormComponent
+    BattleDropFormComponent,
+    BetterSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,16 @@ import { BattleDropFormComponent } from './components/battle-drop-form/battle-dr
     FormsModule,
     ReactiveFormsModule,
     NgxWebstorageModule.forRoot(),
-    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    NgSelectModule,
+    FormlySelectModule,
+    FormlyModule.forRoot({
+      types: [{
+        name: 'better-select',
+        component: BetterSelectComponent,
+        wrappers: ['form-field']
+      }],
+      extras: { lazyRender: true }
+    }),
     FormlyBootstrapModule,
     BrowserAnimationsModule,
     ButtonsModule.forRoot(),
@@ -108,7 +122,7 @@ import { BattleDropFormComponent } from './components/battle-drop-form/battle-dr
     }),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
   ],
   providers: [
     {

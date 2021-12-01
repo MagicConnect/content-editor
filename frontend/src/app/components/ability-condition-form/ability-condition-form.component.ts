@@ -29,7 +29,7 @@ export class AbilityConditionFormComponent {
         {
           key: 'value',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           templateOptions: {
             label: 'Condition Type',
             placeholder: 'Choose condition type...',
@@ -43,7 +43,7 @@ export class AbilityConditionFormComponent {
           className: 'col-4',
           type: 'checkbox',
           hideExpression: (model: IAbilityCondition) => {
-            const matches = [AbilityCondition.FirstTurns].includes(model.value);
+            const matches = [AbilityCondition.FirstTurns, AbilityCondition.FrontlineCharacters, AbilityCondition.NotFrontlineCharacters].includes(model.value);
             if(matches) delete model.props.isPercent;
 
             return matches;
@@ -144,7 +144,7 @@ export class AbilityConditionFormComponent {
         {
           key: 'props.selfStatusEffect',
           className: 'col-4',
-          type: 'select',
+          type: 'better-select',
           hideExpression: (model: IAbilityCondition) => {
             const matches = ![AbilityCondition.SelfNoStatusEffect, AbilityCondition.SelfStatusEffect].includes(model.value);
             if(matches) delete model.props.selfStatusEffect;
