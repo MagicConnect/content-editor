@@ -44,9 +44,9 @@ export class AbilityConditionFormComponent {
           type: 'checkbox',
           hideExpression: (model: IAbilityCondition) => {
             const matches = [AbilityCondition.FirstTurns, AbilityCondition.FrontlineCharacters, AbilityCondition.NotFrontlineCharacters].includes(model.value);
-            if(matches) delete model.props.isPercent;
+            if(matches || !model.value) delete model.props.isPercent;
 
-            return matches;
+            return matches || !model.value;
           },
           defaultValue: false,
           templateOptions: {

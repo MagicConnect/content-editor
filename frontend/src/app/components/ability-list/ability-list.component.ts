@@ -33,7 +33,16 @@ export class AbilityListComponent implements OnInit {
 
     return this.currentAbility.name?.length >= 2
         && !this.isCurrentAbilityDuplicateName
-        && this.currentAbility.effects.length > 0;
+        && this.currentAbility.effects.length > 0
+        && this.currentAbility.effects.every(e => e.value && e.target)
+        && this.currentAbility.conditions.every(e => e.value)
+        && Object.values(this.currentAbility.lbChanges).every(lb => {
+          if(lb.shouldHide) return true;
+
+          return lb.effects.length > 0
+              && lb.effects.every(e => e.value && e.target)
+              && lb.conditions.every(e => e.value);
+        });
   }
 
   public get isCurrentAbilityDuplicateName(): boolean {

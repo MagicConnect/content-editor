@@ -93,7 +93,7 @@ export class AbilityFormComponent implements OnInit {
   }
 
   autoName(): string {
-    const uc = (s: string) => s.replace(/[^A-Z]/g, '');
+    const uc = (s: string) => (s || '').replace(/[^A-Z]/g, '');
 
     const baseString = this.model.effects.map(x => {
       return [
