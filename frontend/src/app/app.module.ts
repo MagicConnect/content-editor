@@ -52,6 +52,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AbilityListComponent } from './components/ability-list/ability-list.component';
 import { PickerModalComponent } from './components/picker-modal/picker-modal.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
+import { BattleDropFormComponent } from './components/battle-drop-form/battle-drop-form.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { SkillListComponent } from './components/skill-list/skill-list.component
     MapListComponent,
     AbilityListComponent,
     PickerModalComponent,
-    SkillListComponent
+    SkillListComponent,
+    BattleDropFormComponent
   ],
   imports: [
     BrowserModule,

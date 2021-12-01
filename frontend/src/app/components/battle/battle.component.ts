@@ -147,4 +147,12 @@ export class BattleComponent implements OnInit {
     this.model.abilities.splice(index, 1);
   }
 
+  addDropItem() {
+    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1 });
+  }
+
+  removeDropItem(index: number) {
+    this.model.drops.splice(index, 1);
+  }
+
 }

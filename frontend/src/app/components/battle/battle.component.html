@@ -52,6 +52,24 @@
   </div>
 </fieldset>
 
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Dropped Items
+
+    <button class="btn btn-info btn-sm float-right" (click)="addDropItem()">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.drops.length === 0">No items drop from this battle.</div>
+
+  <app-battle-drop-form *ngFor="let item of model.drops; let i = index"
+                           (remove)="removeDropItem(i)"
+                           [model]="item"
+                           type="item"
+                           [index]="i"></app-battle-drop-form>
+</fieldset>
+
 <ng-template #monsterChooser>
   <div class="modal-header">
     <h4 class="modal-title">

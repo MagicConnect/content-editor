@@ -1,3 +1,10 @@
+
+export interface IMapNodeDroppable {
+  name: string;
+  dropPercent: number;
+  quantity: number;
+}
+
 export interface IMap {
   name: string;
   nodes: IMapNode[];
@@ -18,6 +25,7 @@ export interface IMapNode {
   unlocksMap: string;
 
   abilities: string[];
+  drops: IMapNodeDroppable[];
 }
 
 export interface IMapCombat {

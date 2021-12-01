@@ -25,5 +25,6 @@ export const newMapBattle = (): IMapNode => ({
   },
   staminaCost: 1,
   unlocksMap: '',
-  abilities: []
+  abilities: [],
+  drops: []
 });
