@@ -89,11 +89,8 @@
     <div class="row">
       <div class="col-3 text-right font-weight-bold">Enemy</div>
       <div class="col-9">
-        <select class="form-control" [(ngModel)]="editingGridSpace.enemy" placeholder="Choose an enemy...">
-          <option *ngFor="let enemy of enemies">
-            {{ enemy.name }}
-          </option>
-        </select>
+        <ng-select bindLabel="name" bindValue="name" [items]="enemies" [(ngModel)]="editingGridSpace.enemy" placeholder="Choose an enemy...">
+        </ng-select>
       </div>
     </div>
 
