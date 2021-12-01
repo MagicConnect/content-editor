@@ -27,7 +27,6 @@ import { ChipComponent } from './components/chip/chip.component';
 import { AbilityFormComponent } from './components/ability-form/ability-form.component';
 import { AbilityEffectFormComponent } from './components/ability-effect-form/ability-effect-form.component';
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
-import { LbFormComponent } from './components/lb-form/lb-form.component';
 import { StatsFormComponent } from './components/stats-form/stats-form.component';
 import { ChipListComponent } from './components/chip-list/chip-list.component';
 import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
@@ -66,7 +65,6 @@ import { BattleDropFormComponent } from './components/battle-drop-form/battle-dr
     AbilityFormComponent,
     AbilityEffectFormComponent,
     AbilityConditionFormComponent,
-    LbFormComponent,
     StatsFormComponent,
     ChipListComponent,
     WeaponListComponent,
