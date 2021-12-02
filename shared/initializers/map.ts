@@ -2,6 +2,7 @@ import { IMap, IMapNode } from '../interfaces';
 
 export const newMap = (): IMap => ({
   name: '',
+  art: '',
   nodes: [],
   nodeConnections: {},
 

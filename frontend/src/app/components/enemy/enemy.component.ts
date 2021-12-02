@@ -53,6 +53,32 @@ export class EnemyComponent {
             ],
           },
         },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the enemy.',
+            required: true,
+            options: this.mod.allArtData.enemies.map(art => ({ value: art, label: art })),
+          },
+        },
+
+        {
+          key: 'spritesheet',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Spritesheet',
+            placeholder: 'Choose base spritesheet...',
+            description: 'This determines the combat art for the enemy.',
+            required: true,
+            options: this.mod.allArtData.enemysheets.map(art => ({ value: art, label: art })),
+          },
+        },
       ]
     },
   ];

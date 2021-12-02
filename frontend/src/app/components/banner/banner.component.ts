@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BannerType, IBanner } from '../../../../../shared/interfaces';
 import { newBanner } from '../../../../../shared/initializers';
+import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
   selector: 'app-banner',
@@ -89,11 +90,24 @@ export class BannerComponent {
             maxLength: 16,
           },
         },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the banner.',
+            required: true,
+            options: this.mod.allArtData.banners.map(art => ({ value: art, label: art })),
+          },
+        },
       ]
     }
   ];
 
-  constructor() { }
+  constructor(private mod: ModManagerService) { }
 
   add(type: BannerType) {
     this.model[type].push({ name: '', isBannerSpecial: false });

@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Archetype, IAbility, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -42,6 +42,23 @@ export class ModManagerService {
 
   private weapons: BehaviorSubject<IWeapon[]> = new BehaviorSubject<IWeapon[]>([]);
   public weapons$: Observable<IWeapon[]> = this.weapons.asObservable();
+
+  private artData: IArtPack = {
+    meta: { fileExt: 'webp', basePath: 'assets/art' },
+    banners: [],
+    characters: [],
+    charactersheets: [],
+    chips: [],
+    enemies: [],
+    enemysheets: [],
+    items: [],
+    maps: [],
+    weapons: []
+  };
+
+  public get allArtData(): IArtPack {
+    return this.artData;
+  }
 
   public get stars() {
     return ['★', '★★', '★★★', '★★★★', '★★★★★'];
@@ -99,6 +116,14 @@ export class ModManagerService {
     };
 
     this.sync();
+    this.fetchArt();
+  }
+
+  private async fetchArt(): Promise<void> {
+    const artDataRef = await fetch('https://art.magic-connect.com/artdata.json');
+    const artData = await artDataRef.json();
+
+    this.artData = artData;
   }
 
   // Management-related

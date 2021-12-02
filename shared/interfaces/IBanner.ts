@@ -8,6 +8,7 @@ export interface IBannerRollable {
 
 export interface IBanner {
   name: string;
+  art: string;
   description: string;
   type: BannerType;
 

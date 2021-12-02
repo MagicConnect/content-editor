@@ -7,6 +7,7 @@ export interface IMapNodeDroppable {
 
 export interface IMap {
   name: string;
+  art: string;
   nodes: IMapNode[];
   nodeConnections: Record<number, number[]>;
 

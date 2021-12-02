@@ -86,6 +86,19 @@ export class ChipComponent {
             },
           },
         },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the chip.',
+            required: true,
+            options: this.mod.allArtData.chips.map(art => ({ value: art, label: art })),
+          },
+        },
       ]
     },
   ];

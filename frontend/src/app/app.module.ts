@@ -56,6 +56,7 @@ import { SkillListComponent } from './components/skill-list/skill-list.component
 import { BattleDropFormComponent } from './components/battle-drop-form/battle-drop-form.component';
 import { BetterSelectComponent } from './components/_shared/better-select/better-select.component';
 import { FormlySelectModule } from '@ngx-formly/core/select';
+import { BackgroundImageComponent } from './components/_shared/background-image/background-image.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { FormlySelectModule } from '@ngx-formly/core/select';
     PickerModalComponent,
     SkillListComponent,
     BattleDropFormComponent,
-    BetterSelectComponent
+    BetterSelectComponent,
+    BackgroundImageComponent
   ],
   imports: [
     BrowserModule,

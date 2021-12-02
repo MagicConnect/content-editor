@@ -22,3 +22,20 @@ export interface IContentPack {
   skills: ISkill[];
   weapons: IWeapon[];
 }
+
+export interface IArtPack {
+  meta: {
+    fileExt: string;
+    basePath: string;
+  };
+
+  banners: string[];
+  characters: string[];
+  charactersheets: string[];
+  chips: string[];
+  enemies: string[];
+  enemysheets: string[];
+  items: string[];
+  maps: string[];
+  weapons: string[];
+}

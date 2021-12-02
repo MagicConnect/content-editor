@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { IItem, ItemType } from '../../../../../shared/interfaces';
 import { newItem } from '../../../../../shared/initializers';
+import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
   selector: 'app-item',
@@ -67,8 +68,23 @@ export class ItemComponent {
             min: 0
           },
         },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the item.',
+            required: true,
+            options: this.mod.allArtData.items.map(art => ({ value: art, label: art })),
+          },
+        },
       ]
     },
   ];
+
+  constructor(private mod: ModManagerService) {}
 
 }

@@ -19,6 +19,7 @@ export enum ItemType {
 
 export interface IItem {
   name: string;
+  art: string;
   description: string;
   sellValue: number;
   itemType: ItemType;

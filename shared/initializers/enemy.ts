@@ -3,6 +3,8 @@ import { Archetype, Stat, IEnemy } from '../interfaces';
 
 export const newEnemy = (): IEnemy => ({
   name: '',
+  art: '',
+  spritesheet: '',
 
   primaryStat: Stat.Attack,
 

@@ -58,7 +58,7 @@ legend {
 .errors {
   min-width: 200px;
 
-  color: red;
+  color: blue;
   font-size: .8rem;
   font-style: italic;
 
@@ -66,9 +66,28 @@ legend {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .error {
+    color: red;
+  }
+
+  .warning {
+    color: goldenrod;
+  }
 }
 
 .tooltip-inner {
   width: 400px !important;
   max-width: 400px !important;
+}
+
+.background-image {
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 0;
+  opacity: 0.2;
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  justify-content: center;
 }

@@ -40,6 +40,11 @@ export class ChipListComponent implements OnInit {
     return !!this.chips.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentChip?.name);
   }
 
+  public get isCurrentChipDuplicateArt(): boolean {
+    if(!this.currentChip) return false;
+    return !!this.chips.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentChip?.art);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

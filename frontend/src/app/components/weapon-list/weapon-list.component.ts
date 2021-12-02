@@ -40,6 +40,11 @@ export class WeaponListComponent implements OnInit {
     return !!this.weapons.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentWeapon?.name);
   }
 
+  public get isCurrentWeaponDuplicateArt(): boolean {
+    if(!this.currentWeapon) return false;
+    return !!this.weapons.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentWeapon?.art);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

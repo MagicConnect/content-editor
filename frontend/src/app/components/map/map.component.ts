@@ -8,6 +8,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { newMap } from '../../../../../shared/initializers';
 import { IMap, IMapNode } from '../../../../../shared/interfaces';
+import { ModManagerService } from '../../services/mod-manager.service';
 import { D3MapCreator } from './d3-map';
 
 @Component({
@@ -70,11 +71,24 @@ export class MapComponent implements OnInit {
             maxLength: 16,
           },
         },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the background art for the map.',
+            required: true,
+            options: this.mod.allArtData.maps.map(art => ({ value: art, label: art })),
+          },
+        },
       ]
     }
   ];
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private mod: ModManagerService) { }
 
   ngOnInit() {
     const d3SVG = d3.select('.map-editor').append('svg')

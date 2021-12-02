@@ -1,9 +1,9 @@
 import { Archetype, PrimaryStat, Stat } from './BuildingBlocks';
-import { IAbility } from './IAbility';
-import { ISkill } from './ISkill';
 
 export interface IEnemy {
   name: string;                           // character name
+  art: string;
+  spritesheet: string;
 
   primaryStat: PrimaryStat;               // primary character stat, used for basic attack scaling
   basePoints: Record<Archetype, number>;  // base stat points bought per class

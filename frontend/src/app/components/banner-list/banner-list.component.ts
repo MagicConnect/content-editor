@@ -47,6 +47,11 @@ export class BannerListComponent implements OnInit {
     return !!this.banners.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentBanner?.name);
   }
 
+  public get isCurrentBannerDuplicateArt(): boolean {
+    if(!this.currentBanner) return false;
+    return !!this.banners.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentBanner?.art);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

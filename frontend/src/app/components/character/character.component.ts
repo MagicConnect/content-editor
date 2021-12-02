@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { newAbility, newCharacter } from '../../../../../shared/initializers';
+import { newCharacter } from '../../../../../shared/initializers';
 import { Stat } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
@@ -111,6 +111,32 @@ export class CharacterComponent {
               { value: Stat.Magic,   label: 'Magic' },
               { value: Stat.Special, label: 'Special'  },
             ],
+          },
+        },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the character.',
+            required: true,
+            options: this.mod.allArtData.characters.map(art => ({ value: art, label: art })),
+          },
+        },
+
+        {
+          key: 'spritesheet',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Spritesheet',
+            placeholder: 'Choose base spritesheet...',
+            description: 'This determines the combat art for the character.',
+            required: true,
+            options: this.mod.allArtData.charactersheets.map(art => ({ value: art, label: art })),
           },
         },
       ]

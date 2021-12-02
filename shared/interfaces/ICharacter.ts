@@ -2,6 +2,9 @@ import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
 
 export interface ICharacter {
   name: string;                           // character name
+  art: string;                            // character base splash art
+  spritesheet: string;                    // character base spritesheet
+
   archetype: Archetype;                   // character class/archetype
   weapon: Weapon;                         // weapon used by the character
   stars: 3|4|5;                           // character star value (3-5*)

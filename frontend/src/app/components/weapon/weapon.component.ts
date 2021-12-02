@@ -92,6 +92,7 @@ export class WeaponComponent {
             ],
           },
         },
+
         {
           key: 'secondaryStat',
           className: 'col-3',
@@ -107,6 +108,19 @@ export class WeaponComponent {
               { value: Stat.Magic,   label: 'Magic' },
               { value: Stat.Special, label: 'Special'  },
             ],
+          },
+        },
+
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the weapon.',
+            required: true,
+            options: this.mod.allArtData.weapons.map(art => ({ value: art, label: art })),
           },
         },
       ]

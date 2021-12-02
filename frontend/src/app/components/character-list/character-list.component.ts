@@ -47,6 +47,11 @@ export class CharacterListComponent implements OnInit {
     return !!this.characters.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentCharacter?.name);
   }
 
+  public get isCurrentCharacterDuplicateArt(): boolean {
+    if(!this.currentCharacter) return false;
+    return !!this.characters.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentCharacter?.art || b.spritesheet === this.currentCharacter?.spritesheet);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

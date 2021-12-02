@@ -39,6 +39,11 @@ export class ItemListComponent implements OnInit {
     return !!this.items.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentItem?.name);
   }
 
+  public get isCurrentItemDuplicateArt(): boolean {
+    if(!this.currentItem) return false;
+    return !!this.items.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentItem?.art);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

@@ -39,6 +39,11 @@ export class EnemyListComponent implements OnInit {
     return !!this.enemies.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentEnemy?.name);
   }
 
+  public get isCurrentEnemyDuplicateArt(): boolean {
+    if(!this.currentEnemy) return false;
+    return !!this.enemies.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentEnemy?.art || b.spritesheet === this.currentEnemy?.spritesheet);
+  }
+
   constructor(
     private modalService: BsModalService,
     public mod: ModManagerService

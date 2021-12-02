@@ -34,13 +34,18 @@ export class MapListComponent implements OnInit {
                              && d.dropPercent > 0
                              && d.dropPercent <= 100
                              && d.quantity >= 1)
-          && x.combat.grid.flat().every(c => c.enemy.name && c.enemy.level >= 1)
+          && x.combat.grid.flat().every(c => c && c.enemy.name && c.enemy.level >= 1)
           );
   }
 
   public get isCurrentMapDuplicateName(): boolean {
     if(!this.currentMap) return false;
     return !!this.maps.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentMap?.name);
+  }
+
+  public get isCurrentMapDuplicateArt(): boolean {
+    if(!this.currentMap) return false;
+    return !!this.maps.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentMap?.art);
   }
 
   constructor(
