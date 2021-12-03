@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { newAbility, newChip } from '../../../../../shared/initializers';
-import { AbilityTrigger, IAbility, IChip, Stat } from '../../../../../shared/interfaces';
+import { newChip } from '../../../../../shared/initializers';
+import { IChip, Stat } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
