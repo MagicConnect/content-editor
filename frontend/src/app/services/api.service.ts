@@ -10,10 +10,6 @@ export class ApiService {
     return environment.apiUrl;
   }
 
-  public get loginUrl(): string {
-    return `${this.baseUrl}/auth/login`;
-  }
-
   public get contentUrl(): string {
     return `${this.baseUrl}/content`;
   }

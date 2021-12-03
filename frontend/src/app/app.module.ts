@@ -4,15 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { FormlyModule } from '@ngx-formly/core';
+import { FormlySelectModule } from '@ngx-formly/core/select';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -37,7 +39,6 @@ import { SkillFormComponent } from './components/skill-form/skill-form.component
 import { SkillActionFormComponent } from './components/skill-action-form/skill-action-form.component';
 import { SkillActionEffectFormComponent } from './components/skill-action-effect-form/skill-action-effect-form.component';
 
-import { ModManagerService } from './services/mod-manager.service';
 import { WeightedEntryFormComponent } from './components/weighted-entry-form/weighted-entry-form.component';
 import { BannerListComponent } from './components/banner-list/banner-list.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
@@ -49,14 +50,19 @@ import { MapComponent } from './components/map/map.component';
 import { BattleComponent } from './components/battle/battle.component';
 import { MapListComponent } from './components/map-list/map-list.component';
 import { TokenInterceptorService } from './providers/token-interceptor.service';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AbilityListComponent } from './components/ability-list/ability-list.component';
 import { PickerModalComponent } from './components/picker-modal/picker-modal.component';
 import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { BattleDropFormComponent } from './components/battle-drop-form/battle-drop-form.component';
 import { BetterSelectComponent } from './components/_shared/better-select/better-select.component';
-import { FormlySelectModule } from '@ngx-formly/core/select';
 import { BackgroundImageComponent } from './components/_shared/background-image/background-image.component';
+
+import { ModManagerService } from './services/mod-manager.service';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -125,6 +131,8 @@ import { BackgroundImageComponent } from './components/_shared/background-image/
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [
     {

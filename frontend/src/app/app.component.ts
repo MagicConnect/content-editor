@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
   @LocalStorage() email!: string;
   @LocalStorage() password!: string;
-  @LocalStorage() token!: string;
   @LocalStorage() hasLoggedIn!: boolean;
 
   constructor(
@@ -53,19 +52,15 @@ export class AppComponent implements OnInit {
     this.modalRef = this.modalService.show(this.loginForm, { backdrop: true });
   }
 
-  doLogin() {
-    this.auth.login(this.email, this.password)
-      .subscribe(
-        res => {
-          this.token = res.token;
-          this.hasLoggedIn = true;
+  async doLogin() {
+    const res = await this.auth.login(this.email, this.password);
+    if(!res) {
+      alert('Your email or password was incorrect, or you do not have an account.');
+      return;
+    }
 
-          this.mod.importNet();
-        },
-        err => {
-          console.error(err);
-          alert('Your email or password was incorrect, or you do not have an account.');
-        });
+    this.hasLoggedIn = true;
+    this.mod.importNet();
 
     this.abortLogin();
   }
@@ -77,7 +72,6 @@ export class AppComponent implements OnInit {
   logout() {
     this.email = '';
     this.password = '';
-    this.token = '';
     this.hasLoggedIn = false;
 
     this.auth.logout();

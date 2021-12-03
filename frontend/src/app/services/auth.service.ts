@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { ApiService } from './api.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { LocalStorage } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +10,12 @@ export class AuthService {
   private _isLoggingIn = false;
   private _hasLoggedIn = false;
 
+  @LocalStorage() private token!: string;
+
+  public get idToken(): string {
+    return this.token;
+  }
+
   public get loginInProcess(): boolean {
     return this._isLoggingIn;
   }
@@ -20,25 +24,29 @@ export class AuthService {
     return this._hasLoggedIn;
   }
 
-  constructor(private http: HttpClient, private api: ApiService) { }
+  constructor(private auth: AngularFireAuth) { }
 
-  login(email: string, password: string): Observable<any> {
+  async login(email: string, password: string): Promise<any> {
     this._isLoggingIn = true;
 
-    const res = this.http.post(this.api.loginUrl, { email, password })
-      .pipe(tap(() => this._isLoggingIn = false))
-      .pipe(catchError(v => {
-        return throwError(v);
-      }));
-
-    res.subscribe(() => {
+    try {
+      const res = await this.auth.signInWithEmailAndPassword(email, password);
+      const currentUser = await this.auth.currentUser;
+      this.token = await currentUser?.getIdToken() ?? '';
       this._hasLoggedIn = true;
-    });
+      return res;
 
-    return res;
+    } catch (err) {
+      console.error(err);
+
+    } finally {
+      this._isLoggingIn = false;
+    }
+
   }
 
   logout() {
+    this.token = '';
     this._hasLoggedIn = false;
   }
 }
