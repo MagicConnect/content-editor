@@ -152,6 +152,7 @@ export class ModManagerService {
       .subscribe((d) => {
         const importPack: IContentPack = d as IContentPack;
         this.currentPack = importPack;
+        this.ensurePackData();
 
         this.sync();
       });
@@ -162,6 +163,19 @@ export class ModManagerService {
   }
 
   // Pack-related
+  private ensurePackData(): void {
+    if(!this.currentPack.abilities) this.currentPack.abilities = [];
+    if(!this.currentPack.banners) this.currentPack.banners = [];
+    if(!this.currentPack.characters) this.currentPack.characters = [];
+    if(!this.currentPack.chips) this.currentPack.chips = [];
+    if(!this.currentPack.enemies) this.currentPack.enemies = [];
+    if(!this.currentPack.items) this.currentPack.items = [];
+    if(!this.currentPack.maps) this.currentPack.maps = [];
+    if(!this.currentPack.shops) this.currentPack.shops = [];
+    if(!this.currentPack.skills) this.currentPack.skills = [];
+    if(!this.currentPack.weapons) this.currentPack.weapons = [];
+  }
+
   private resetPack(): void {
     this.currentPack = {
       abilities: [],
@@ -170,10 +184,10 @@ export class ModManagerService {
       chips: [],
       enemies: [],
       items: [],
+      maps: [],
       shops: [],
       skills: [],
       weapons: [],
-      maps: [],
     };
   }
 
