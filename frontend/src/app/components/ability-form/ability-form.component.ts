@@ -73,7 +73,7 @@ export class AbilityFormComponent implements OnInit {
       if(this.model.name && !this.model.name.startsWith('AG-')) return;
 
       this.fields[0].fieldGroup![0].formControl!.setValue(this.autoName());
-    }, 1000);
+    }, 5000);
   }
 
   addCondition() {
