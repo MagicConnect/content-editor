@@ -59,7 +59,7 @@
   <ul class="picked-list">
     <ng-container *ngFor="let ability of model.abilities; let i = index">
       <li>
-        <div class="row">
+        <div class="row mb-3">
           <div class="col-8">
             <strong>{{ ability }}</strong>
             <br>
@@ -89,7 +89,7 @@
   <ul class="picked-list">
     <ng-container *ngFor="let skill of model.skills; let i = index">
       <li>
-        <div class="row">
+        <div class="row mb-3">
           <div class="col-8">
             <strong>{{ skill }}</strong>
             <br>
@@ -103,10 +103,4 @@
       </li>
     </ng-container>
   </ul>
-
-  <!--
-  <app-skill-form *ngFor="let skill of model.skills; let i = index"
-                  (remove)="removeSkill(i)"
-                  [model]="skill"
-                  [index]="i"></app-skill-form>-->
 </fieldset>
