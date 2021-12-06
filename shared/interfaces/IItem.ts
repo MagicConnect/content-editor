@@ -9,7 +9,7 @@ export enum ItemType {
   WeaponThreeStarDraw = 'WeaponThreeStarDraw',
   WeaponFourStarDraw = 'WeaponFourStarDraw',
   WeaponFiveStarDraw = 'WeaponFiveStarDraw',
-  
+
   ChipThreeStarDraw = 'ChipThreeStarDraw',
   ChipFourStarDraw = 'ChipFourStarDraw',
   ChipFiveStarDraw = 'ChipFiveStarDraw',
@@ -23,6 +23,10 @@ export enum ItemType {
   CosmeticBackdrop = 'CosmeticBackdrop',
   CosmeticCharacter = 'CosmeticCharacter',
   CosmeticBanner = 'CosmeticBanner',
+
+  LBSmall = 'LBSmall',
+  LBMedium = 'LBMedium',
+  LBLarge = 'LBLarge',
 }
 
 export interface IItem {
