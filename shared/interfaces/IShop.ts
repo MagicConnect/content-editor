@@ -1,4 +1,11 @@
 
+export enum ShopReset {
+  None = 'None',
+  Daily = 'Daily',
+  Weekly = 'Weekly',
+  Monthly = 'Monthly',
+}
+
 export interface IShopBuyable {
   name: string;
   cost: number;
@@ -11,6 +18,7 @@ export interface IShop {
   currencyItem: string;
   activeStarts: string;
   activeEnds: string;
+  shopReset: ShopReset;
 
   characters: IShopBuyable[];
   chips: IShopBuyable[];

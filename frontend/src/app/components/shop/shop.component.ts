@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newShop } from '../../../../../shared/initializers';
-import { IShop } from '../../../../../shared/interfaces';
+import { IShop, ShopReset } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ShopComponent {
       fieldGroup: [
         {
           key: 'name',
-          className: 'col-3',
+          className: 'col-4',
           type: 'input',
           templateOptions: {
             label: 'Name',
@@ -36,13 +36,25 @@ export class ShopComponent {
         },
         {
           key: 'description',
-          className: 'col-9',
+          className: 'col-4',
           type: 'input',
           templateOptions: {
             label: 'Description',
             placeholder: 'Enter description here...',
             description: 'It should be less than 500 characters.',
             maxLength: 500,
+          },
+        },
+        {
+          key: 'shopReset',
+          className: 'col-4',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Shop Reset',
+            placeholder: 'Choose shop reset period...',
+            description: 'Most shops don\'t reset.',
+            required: true,
+            options: Object.values(ShopReset).filter(Boolean).map(x => ({ label: x, value: x }))
           },
         },
         {
