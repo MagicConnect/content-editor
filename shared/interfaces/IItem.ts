@@ -35,6 +35,30 @@ export enum ItemType {
   EssenceMAG = 'EssenceMAG',
   EssenceSPC = 'EssenceSPC',
   EssenceCRT = 'EssenceCRT',
+
+  ReinforcePurpleSmall = 'ReinforcePurpleSmall',
+  ReinforcePurpleMedium = 'ReinforcePurpleMedium',
+  ReinforcePurpleLarge = 'ReinforcePurpleLarge',
+
+  ReinforceBlueSmall = 'ReinforceBlueSmall',
+  ReinforceBlueMedium = 'ReinforceBlueMedium',
+  ReinforceBlueLarge = 'ReinforceBlueLarge',
+
+  ReinforceGreenSmall = 'ReinforceGreenSmall',
+  ReinforceGreenMedium = 'ReinforceGreenMedium',
+  ReinforceGreenLarge = 'ReinforceGreenLarge',
+
+  ReinforceYellowSmall = 'ReinforceYellowSmall',
+  ReinforceYellowMedium = 'ReinforceYellowMedium',
+  ReinforceYellowLarge = 'ReinforceYellowLarge',
+
+  ReinforceRedSmall = 'ReinforceRedSmall',
+  ReinforceRedMedium = 'ReinforceRedMedium',
+  ReinforceRedLarge = 'ReinforceRedLarge',
+
+  ReinforceRainbowSmall = 'ReinforceRainbowSmall',
+  ReinforceRainbowMedium = 'ReinforceRainbowMedium',
+  ReinforceRainbowLarge = 'ReinforceRainbowLarge',
 }
 
 export interface IItem {
