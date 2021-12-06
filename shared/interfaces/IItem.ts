@@ -27,6 +27,14 @@ export enum ItemType {
   LBSmall = 'LBSmall',
   LBMedium = 'LBMedium',
   LBLarge = 'LBLarge',
+
+  EssenceHP = 'EssenceHP',
+  EssenceMP = 'EssenceMP',
+  EssenceATK = 'EssenceATK',
+  EssenceDEF = 'EssenceDEF',
+  EssenceMAG = 'EssenceMAG',
+  EssenceSPC = 'EssenceSPC',
+  EssenceCRT = 'EssenceCRT',
 }
 
 export interface IItem {
