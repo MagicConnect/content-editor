@@ -60,7 +60,6 @@ export class AbilityEffectFormComponent {
             label: 'Base Value',
             placeholder: 'Choose base value...',
             description: 'Base value determines the base for the effect.',
-            min: 0
           },
         },
         {
