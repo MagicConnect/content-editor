@@ -4,6 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { IItem, ItemType } from '../../../../../shared/interfaces';
 import { newItem } from '../../../../../shared/initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
+import { sortBy } from 'lodash';
 
 @Component({
   selector: 'app-item',
@@ -53,7 +54,7 @@ export class ItemComponent {
             label: 'Type',
             placeholder: 'Choose type...',
             description: 'It determines if the item has any special utility.',
-            options: Object.values(ItemType).filter(Boolean).sort().map(x => ({ label: x, value: x }))
+            options: [... new Set(['None', ...Object.values(ItemType).filter(Boolean).sort()])].map(x => ({ label: x, value: x }))
           },
         },
         {
@@ -79,6 +80,20 @@ export class ItemComponent {
             description: 'This determines the splash art for the item.',
             required: true,
             options: this.mod.allArtData.items.map(art => ({ value: art, label: art })),
+          },
+        },
+
+        {
+          key: 'name',
+          className: 'col-3',
+          type: 'better-select',
+          hideExpression: () => this.model.itemType !== ItemType.CosmeticCharacter,
+          templateOptions: {
+            label: 'Character',
+            placeholder: 'Pick character...',
+            description: 'If you don\'t see any characters, add one.',
+            options: sortBy(Object.values(this.mod.filteredCharacters).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
+            groupProp: 'stars'
           },
         },
       ]

@@ -14,7 +14,11 @@ export enum ItemType {
   CharacterThreeStarDraw = 'CharacterThreeStarDraw',
   CharacterFourStarDraw = 'CharacterFourStarDraw',
   CharacterFiveStarDraw = 'CharacterFiveStarDraw',
-  Sticker = 'Sticker'
+  Sticker = 'Sticker',
+
+  CosmeticBackdrop = 'CosmeticBackdrop',
+  CosmeticCharacter = 'CosmeticCharacter',
+  CosmeticBanner = 'CosmeticBanner',
 }
 
 export interface IItem {
@@ -23,4 +27,6 @@ export interface IItem {
   description: string;
   sellValue: number;
   itemType: ItemType;
+
+  cosmeticCharacterFor?: string;
 }
