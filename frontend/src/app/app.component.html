@@ -3,16 +3,16 @@
 
   <div class="collapse navbar-collapse">
     <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
-      <button class="btn btn-info btn-sm mb-0" btnRadio="ability">Ability</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="banner">Banner</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="character">Character</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="item">Item</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="map">Map</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="skill">Skill</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="ability">Ability ({{ mod.currentPack.abilities.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="banner">Banner ({{ mod.currentPack.banners.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="character">Character ({{ mod.currentPack.characters.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip ({{ mod.currentPack.chips.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy ({{ mod.currentPack.enemies.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="item">Item ({{ mod.currentPack.items.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="map">Map ({{ mod.currentPack.maps.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop ({{ mod.currentPack.shops.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="skill">Skill ({{ mod.currentPack.skills.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon ({{ mod.currentPack.weapons.length }})</button>
     </div>
 
     <div class="btn-group ml-auto mr-auto" *ngIf="!auth.loggedIn">
