@@ -56,6 +56,12 @@ export class AbilityEffectFormComponent {
           key: 'props.baseValue',
           className: 'col-4',
           type: 'input',
+          hideExpression: (model: IAbilityEffect) => {
+            const matches = [AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement].includes(model.value);
+            if(matches) delete model.props.baseValue;
+
+            return matches;
+          },
           templateOptions: {
             label: 'Base Value',
             placeholder: 'Choose base value...',
@@ -67,7 +73,7 @@ export class AbilityEffectFormComponent {
           className: 'col-4',
           type: 'checkbox',
           hideExpression: (model: IAbilityEffect) => {
-            const matches = [AbilityEffect.NegateDamageInstances].includes(model.value);
+            const matches = [AbilityEffect.NegateDamageInstances, AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement].includes(model.value);
             if(matches) delete model.props.isPercent;
 
             return matches;
