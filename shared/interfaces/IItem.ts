@@ -17,6 +17,7 @@ export enum ItemType {
   CharacterThreeStarDraw = 'CharacterThreeStarDraw',
   CharacterFourStarDraw = 'CharacterFourStarDraw',
   CharacterFiveStarDraw = 'CharacterFiveStarDraw',
+  CharacterFiveStarDrawChoose = 'CharacterFiveStarDrawChoose',
 
   Sticker = 'Sticker',
 
