@@ -10,11 +10,11 @@ export enum MonsterType {
 }
 
 export enum Archetype {
-  Archer = 'Archer',
   Attacker = 'Attacker',
   Caster = 'Caster',
   Defender = 'Defender',
-  Healer = 'Healer'
+  Healer = 'Healer',
+  Ranger = 'Ranger'
 }
 
 export enum Weapon {

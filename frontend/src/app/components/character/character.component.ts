@@ -46,11 +46,11 @@ export class CharacterComponent {
             description: 'Archetype gives them a rough outline for stat gain.',
             required: true,
             options: [
-              { value: 'Archer',    label: 'Archer' },
               { value: 'Attacker',  label: 'Attacker' },
               { value: 'Caster',    label: 'Caster'  },
               { value: 'Defender',  label: 'Defender' },
               { value: 'Healer',    label: 'Healer'  },
+              { value: 'Ranger',    label: 'Ranger' }
             ],
           },
         },

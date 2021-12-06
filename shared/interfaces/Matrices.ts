@@ -10,50 +10,6 @@ export interface ArchetypeStatMatrix {
 // pick 25 LB points, 25 levelup points, 25 base stat points
 
 export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
-  [Archetype.Archer]: {
-    baseStatPoints: {
-      [Stat.Attack]: 4,
-      [Stat.Defense]: 1,
-      [Stat.Magic]: 2,
-      [Stat.Special]: 1,
-  
-      [Stat.HP]: 20,
-      [Stat.MP]: 10,
-      [Stat.Accuracy]: 0,
-      [Stat.Critical]: 0,
-      [Stat.MagicEvasion]: 0,
-      [Stat.MeleeEvasion]: 0,
-    },
-
-    levelupPoints: {
-      [Stat.Attack]: 1,
-      [Stat.Defense]: 0,
-      [Stat.Magic]: 1,
-      [Stat.Special]: 0,
-  
-      [Stat.HP]: 2,
-      [Stat.MP]: 1,
-      [Stat.Accuracy]: 0,
-      [Stat.Critical]: 0,
-      [Stat.MagicEvasion]: 0,
-      [Stat.MeleeEvasion]: 0,
-    },
-
-    limitBreakPoints: {
-      [Stat.Attack]: 2,
-      [Stat.Defense]: 0,
-      [Stat.Magic]: 2,
-      [Stat.Special]: 2,
-  
-      [Stat.HP]: 10,
-      [Stat.MP]: 5,
-      [Stat.Accuracy]: 0,
-      [Stat.Critical]: 0,
-      [Stat.MagicEvasion]: 0,
-      [Stat.MeleeEvasion]: 0,
-    }
-  },
-
   [Archetype.Attacker]: {
     baseStatPoints: {
       [Stat.Attack]: 6,
@@ -228,5 +184,49 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
       [Stat.MagicEvasion]: 0,
       [Stat.MeleeEvasion]: 0,
     }
-  }
+  },
+  
+  [Archetype.Ranger]: {
+    baseStatPoints: {
+      [Stat.Attack]: 4,
+      [Stat.Defense]: 1,
+      [Stat.Magic]: 2,
+      [Stat.Special]: 1,
+  
+      [Stat.HP]: 20,
+      [Stat.MP]: 10,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
+    },
+
+    levelupPoints: {
+      [Stat.Attack]: 1,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 1,
+      [Stat.Special]: 0,
+  
+      [Stat.HP]: 2,
+      [Stat.MP]: 1,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
+    },
+
+    limitBreakPoints: {
+      [Stat.Attack]: 2,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 2,
+      [Stat.Special]: 2,
+  
+      [Stat.HP]: 10,
+      [Stat.MP]: 5,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
+    }
+  },
 }

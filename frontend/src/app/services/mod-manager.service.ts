@@ -66,11 +66,11 @@ export class ModManagerService {
 
   public get archetypes(): Array<{ name: Archetype, color: string }> {
     return [
-      { name: Archetype.Archer,     color: 'primary' },
       { name: Archetype.Attacker,   color: 'danger' },
       { name: Archetype.Caster,     color: 'secondary' },
       { name: Archetype.Defender,   color: 'warning' },
-      { name: Archetype.Healer,     color: 'success' }
+      { name: Archetype.Healer,     color: 'success' },
+      { name: Archetype.Ranger,     color: 'primary' },
     ];
   };
 

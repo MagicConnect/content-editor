@@ -8,15 +8,15 @@ export const newCharacter = (): ICharacter => ({
   
   stars: 3,
   primaryStat: Stat.Attack,
-  archetype: Archetype.Archer,
+  archetype: Archetype.Ranger,
   weapon: Weapon.Bow,
 
   basePoints: {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   },
 
   baseStats: {
@@ -34,11 +34,11 @@ export const newCharacter = (): ICharacter => ({
   },
 
   levelPoints: {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   },
 
   levelStats: {
@@ -56,11 +56,11 @@ export const newCharacter = (): ICharacter => ({
   },
 
   lbPoints: {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   },
 
   lbStats: {

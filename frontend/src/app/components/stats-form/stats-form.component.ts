@@ -16,11 +16,11 @@ export class StatsFormComponent {
   @Input() statKey!: keyof ArchetypeStatMatrix;
 
   @Input() statPointModel: Record<Archetype, number> = {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   };
 
   @Input() model: Record<Stat, number> = {

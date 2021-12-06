@@ -9,11 +9,11 @@ export const newEnemy = (): IEnemy => ({
   primaryStat: Stat.Attack,
 
   basePoints: {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   },
 
   baseStats: {
@@ -31,11 +31,11 @@ export const newEnemy = (): IEnemy => ({
   },
 
   levelPoints: {
-    [Archetype.Archer]: 0,
     [Archetype.Attacker]: 0,
     [Archetype.Caster]: 0,
     [Archetype.Defender]: 0,
     [Archetype.Healer]: 0,
+    [Archetype.Ranger]: 0,
   },
 
   levelStats: {
