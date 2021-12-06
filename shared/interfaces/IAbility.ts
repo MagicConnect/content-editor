@@ -38,8 +38,6 @@ export enum AbilityEffect {
   SpecialGaugeRegen = 'SpecialGaugeRegen',
   SpecialGaugeLeech = 'SpecialGaugeLeech',
 
-  CooldownReduction = 'CooldownReduction',
-
   // damage related
   Counterattack = 'Counterattack', 
   
@@ -85,7 +83,8 @@ export enum AbilityEffect {
   SurviveDeath = 'SurviveDeath',
   AdditionalHit = 'AdditionalHit',
 
-  CastSpeed = 'CastSpeed',
+  CastSpeedChange = 'CastSpeedChange',
+  CooldownChange = 'CooldownReductionChange',
   Overheal = 'Overheal',
 
   ModifyBaseSkill = 'ModifyBaseSkill'
