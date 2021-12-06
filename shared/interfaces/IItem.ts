@@ -59,6 +59,18 @@ export enum ItemType {
   ReinforceRainbowSmall = 'ReinforceRainbowSmall',
   ReinforceRainbowMedium = 'ReinforceRainbowMedium',
   ReinforceRainbowLarge = 'ReinforceRainbowLarge',
+
+  XPWeaponSmall = 'XPWeaponSmall',
+  XPWeaponMedium = 'XPWeaponMedium',
+  XPWeaponLarge = 'XPWeaponLarge',
+
+  XPCharacterSmall = 'XPCharacterSmall',
+  XPCharacterMedium = 'XPCharacterMedium',
+  XPCharacterLarge = 'XPCharacterLarge',
+
+  XPChipSmall = 'XPChipSmall',
+  XPChipMedium = 'XPChipMedium',
+  XPChipLarge = 'XPChipLarge',
 }
 
 export interface IItem {
