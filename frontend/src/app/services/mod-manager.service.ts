@@ -221,6 +221,8 @@ export class ModManagerService {
   private save(): void {
     this.currentPack = this.currentPack;
 
+    this.cleanData();
+
     if(this.auth.loggedIn) {
       this.exportNet();
     }
@@ -229,6 +231,22 @@ export class ModManagerService {
   private syncAndSave(): void {
     this.sync();
     this.save();
+  }
+
+  private cleanData(): void {
+
+    // trim all strings recursively from the data
+    const trimAll = (obj: any) => {
+      Object.keys(obj).map(key => {
+        if (typeof obj[key] === 'string') {
+          obj[key] = obj[key].trim();
+        } else {
+          trimAll(obj[key]);
+        }
+      });
+    };
+
+    trimAll(this.currentPack);
   }
 
   // Ability-related
