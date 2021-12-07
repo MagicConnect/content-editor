@@ -22,7 +22,7 @@
 
       <app-stats-form [model]="model.baseStats"
                       [pointBuyEnabled]="true"
-                      [maxPoints]="25"
+                      [maxPoints]="model.stars * 5"
                       [statKey]="'baseStatPoints'"
                       [statPointModel]="model.basePoints"></app-stats-form>
 
@@ -37,7 +37,7 @@
 
       <app-stats-form [model]="model.levelStats"
                       [pointBuyEnabled]="true"
-                      [maxPoints]="25"
+                      [maxPoints]="model.stars * 5"
                       [statKey]="'levelupPoints'"
                       [statPointModel]="model.levelPoints"></app-stats-form>
 
@@ -52,7 +52,7 @@
 
       <app-stats-form [model]="model.lbStats"
                       [pointBuyEnabled]="true"
-                      [maxPoints]="25"
+                      [maxPoints]="model.stars * 5"
                       [statKey]="'limitBreakPoints'"
                       [statPointModel]="model.lbPoints"></app-stats-form>
 
