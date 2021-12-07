@@ -1,5 +1,10 @@
 import { Archetype, PrimaryStat, Stat, Weapon } from './BuildingBlocks';
 
+export interface ICharacterAbility {
+  name: string;                           // the name of the ability group
+  abilities: string[];                    // the abilities in the group
+}
+
 export interface ICharacter {
   name: string;                           // character name
   art: string;                            // character base splash art
@@ -19,7 +24,7 @@ export interface ICharacter {
   lbPoints: Record<Archetype, number>;    // lb stat points bought per class
   lbStats: Record<Stat, number>;          // stats gained per lb
 
-  abilities: string[];                    // character abilities
+  abilities: ICharacterAbility[];         // character abilities
   skills: string[];                       // character skills
   specialSkill: string;                   // character special ability
 }

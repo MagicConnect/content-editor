@@ -65,30 +65,50 @@
   <legend>
     Abilities
 
-    <button class="btn btn-info btn-sm float-right" (click)="addAbility()" [disabled]="model.abilities.length >= 5">
+    <button class="btn btn-info btn-sm float-right" (click)="addAbilityGroup()" [disabled]="model.abilities.length >= 5">
       Add
     </button>
   </legend>
 
-  <div *ngIf="model.abilities.length === 0">No abilities chosen.</div>
+  <div *ngIf="model.abilities.length === 0">No abilities groupings made.</div>
 
-  <ul class="picked-list">
-    <ng-container *ngFor="let ability of model.abilities; let i = index">
-      <li>
-        <div class="row mb-3">
-          <div class="col-8">
-            <strong>{{ ability }}</strong>
-            <br>
-            <em><small>{{ mod.getAbilityDescription(ability) }}</small></em>
-          </div>
+  <fieldset class="border border-dark p-3 mb-3" *ngFor="let ability of model.abilities; let i = index">
+    <legend>
+      {{ ability.name}}
 
-          <div class="col-4 text-right">
-            <button class="btn btn-danger" (click)="removeAbility(i)">Remove {{ ability }}</button>
+      <button class="btn btn-danger btn-sm float-right ml-1" (click)="removeAbilityGroup(i)">
+        Remove
+      </button>
+
+      <button class="btn btn-info btn-sm float-right ml-1" (click)="renameAbility(i)">
+        Rename
+      </button>
+
+      <button class="btn btn-info btn-sm float-right" (click)="addAbility(i)" [disabled]="model.abilities[i].abilities.length >= 5">
+        Add
+      </button>
+    </legend>
+
+    <div *ngIf="model.abilities[i].abilities.length === 0">No abilities chosen.</div>
+
+    <ul class="picked-list">
+      <ng-container *ngFor="let childAbility of model.abilities[i].abilities; let j = index">
+        <li>
+          <div class="row mb-3">
+            <div class="col-8">
+              <strong>{{ childAbility }}</strong>
+              <br>
+              <em><small>{{ mod.getAbilityDescription(childAbility) }}</small></em>
+            </div>
+
+            <div class="col-4 text-right">
+              <button class="btn btn-danger" (click)="removeAbility(i, j)">Remove {{ childAbility }}</button>
+            </div>
           </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </fieldset>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">

@@ -137,7 +137,7 @@ export class AbilityListComponent implements OnInit {
   }
 
   abilityCurrentlyUsedIn(ability: IAbility): string[] {
-    const characters = this.characters.filter(c => c.abilities.includes(ability.name)).map(b => `Character: ${b.name}`);
+    const characters = this.characters.filter(c => c.abilities.filter(a => a.abilities.includes(ability.name))).map(b => `Character: ${b.name}`);
 
     const chips = this.chips.filter(c => c.abilities.includes(ability.name)).map(b => `Chip: ${b.name}`);
 

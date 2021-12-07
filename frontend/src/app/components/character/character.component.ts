@@ -165,19 +165,34 @@ export class CharacterComponent {
     });
   }
 
-  addAbility() {
+  addAbilityGroup() {
+    this.model.abilities.push({ name: 'New Ability', abilities: [] });
+  }
+
+  removeAbilityGroup(index: number) {
+    this.model.abilities.splice(index, 1);
+  }
+
+  addAbility(i: number) {
     const modalRef = this.modal.show(PickerModalComponent, {
       class: 'modal-lg',
-      initialState: { type: 'Ability', entries: this.mod.chooseableAbilities, disabledEntries: this.model.abilities }
+      initialState: { type: 'Ability', entries: this.mod.chooseableAbilities, disabledEntries: this.model.abilities.map(x => x.abilities).flat() }
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.abilities.push(choice.name);
+      this.model.abilities[i].abilities.push(choice.name);
     });
   }
 
-  removeAbility(index: number) {
-    this.model.abilities.splice(index, 1);
+  renameAbility(index: number): void {
+    const newName = prompt('Enter new name for ability group:');
+    if(!newName || !newName.trim()) return;
+
+    this.model.abilities[index].name = newName;
+  }
+
+  removeAbility(index: number, childIndex: number) {
+    this.model.abilities[index].abilities.splice(childIndex, 1);
   }
 
 }

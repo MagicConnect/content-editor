@@ -261,7 +261,9 @@ export class ModManagerService {
     this.currentPack.abilities[index] = ability;
 
     this.currentPack.characters.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
+      c.abilities = c.abilities.map(a => {
+        return { ...a, abilities: a.abilities.map(b => b === oldName ? ability.name : b) };
+      });
     });
 
     this.currentPack.chips.forEach(c => {

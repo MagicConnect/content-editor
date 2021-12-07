@@ -38,6 +38,7 @@ export class CharacterListComponent implements OnInit {
         && this.currentCharacter.stars >= 3
         && this.currentCharacter.skills.length >= 1
         && !!this.currentCharacter.specialSkill
+        && this.currentCharacter.abilities.every(a => a.abilities.length > 0)
         && sum(Object.values(this.currentCharacter.basePoints)) > 0
         && sum(Object.values(this.currentCharacter.levelPoints)) > 0
         && sum(Object.values(this.currentCharacter.lbPoints)) > 0;
@@ -85,7 +86,7 @@ export class CharacterListComponent implements OnInit {
           || a.weapon.toLowerCase().includes(this.searchText.toLowerCase())
           || a.specialSkill.toLowerCase().includes(this.searchText.toLowerCase())
           || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.abilities.some(a => a.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.abilities.some(a => a.abilities.some(b => b.toLowerCase().includes(this.searchText.toLowerCase())))
           || a.skills.some(s => s.toLowerCase().includes(this.searchText.toLowerCase()))
           || this.characterCurrentlyUsedIn(a).some(s => s.toLowerCase().includes(this.searchText.toLowerCase()));
     });
