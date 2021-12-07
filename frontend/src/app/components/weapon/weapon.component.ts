@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { newWeapon } from '../../../../../shared/initializers';
-import { IWeapon, Stat } from '../../../../../shared/interfaces';
+import { IWeapon, Stat, Weapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -45,6 +45,26 @@ export class WeaponComponent {
             placeholder: 'Enter description here...',
             description: 'It should be less than 500 characters.',
             maxLength: 500,
+          },
+        },
+        {
+          key: 'weaponType',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Type',
+            placeholder: 'Choose type...',
+            description: 'The type of weapon, to be equipped by characters who can use it.',
+            required: true,
+            options: [
+              { value: Weapon.Axe,             label: 'Axe' },
+              { value: Weapon.Bow,             label: 'Bow' },
+              { value: Weapon.Dagger,          label: 'Dagger' },
+              { value: Weapon.Greatsword,      label: 'Greatsword' },
+              { value: Weapon.Knuckles,        label: 'Knuckles' },
+              { value: Weapon.Staff,           label: 'Staff' },
+              { value: Weapon.SwordAndShield,  label: 'Sword & Shield' },
+            ],
           },
         },
         {

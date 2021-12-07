@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { newCharacter } from '../../../../../shared/initializers';
-import { Stat } from '../../../../../shared/interfaces';
+import { Archetype, Stat, Weapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -45,13 +45,7 @@ export class CharacterComponent {
             placeholder: 'Choose archetype...',
             description: 'Archetype gives them a rough outline for stat gain.',
             required: true,
-            options: [
-              { value: 'Attacker',  label: 'Attacker' },
-              { value: 'Caster',    label: 'Caster'  },
-              { value: 'Defender',  label: 'Defender' },
-              { value: 'Healer',    label: 'Healer'  },
-              { value: 'Ranger',    label: 'Ranger' }
-            ],
+            options: Object.values(Archetype).filter(Boolean).map(x => ({ value: x, label: x }))
           },
         },
         {
@@ -64,13 +58,13 @@ export class CharacterComponent {
             description: 'This is their only weapon choice.',
             required: true,
             options: [
-              { value: 'Axe',             label: 'Axe' },
-              { value: 'Bow',             label: 'Bow' },
-              { value: 'Dagger',          label: 'Dagger' },
-              { value: 'Greatsword',      label: 'Greatsword' },
-              { value: 'Knuckles',        label: 'Knuckles' },
-              { value: 'Staff',           label: 'Staff' },
-              { value: 'SwordAndShield',  label: 'Sword & Shield' },
+              { value: Weapon.Axe,             label: 'Axe' },
+              { value: Weapon.Bow,             label: 'Bow' },
+              { value: Weapon.Dagger,          label: 'Dagger' },
+              { value: Weapon.Greatsword,      label: 'Greatsword' },
+              { value: Weapon.Knuckles,        label: 'Knuckles' },
+              { value: Weapon.Staff,           label: 'Staff' },
+              { value: Weapon.SwordAndShield,  label: 'Sword & Shield' },
             ],
           },
         },

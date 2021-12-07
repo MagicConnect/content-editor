@@ -32,7 +32,8 @@ export class WeaponListComponent implements OnInit {
     return this.currentWeapon.name?.length >= 2
         && !this.isCurrentWeaponDuplicateName
         && this.currentWeapon.primaryStat
-        && this.currentWeapon.stars >= 1;
+        && this.currentWeapon.stars >= 1
+        && !!this.currentWeapon.weaponType;
   }
 
   public get isCurrentWeaponDuplicateName(): boolean {
@@ -67,6 +68,7 @@ export class WeaponListComponent implements OnInit {
 
     this.searchResults = this.allWeapons.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.weaponType.toLowerCase().includes(this.searchText.toLowerCase())
           || a.description.toLowerCase().includes(this.searchText.toLowerCase())
           || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
           || a.secondaryStat?.toLowerCase().includes(this.searchText.toLowerCase())

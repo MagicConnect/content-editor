@@ -23,6 +23,14 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="Weapon Type" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.weaponType }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
   <ngx-datatable-column name="Stars" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
