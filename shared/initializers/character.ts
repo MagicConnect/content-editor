@@ -8,8 +8,8 @@ export const newCharacter = (): ICharacter => ({
   
   stars: 3,
   primaryStat: Stat.Attack,
-  archetype: Archetype.Ranger,
-  weapon: Weapon.Bow,
+  archetype: Archetype.Attacker,
+  weapon: Weapon.Axe,
 
   basePoints: {
     [Archetype.Attacker]: 0,

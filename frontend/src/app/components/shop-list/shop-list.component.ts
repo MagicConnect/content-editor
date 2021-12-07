@@ -41,6 +41,11 @@ export class ShopListComponent implements OnInit {
         && this.currentShop.weapons.every(c => c.name);
   }
 
+  public get isCurrentShopClone(): boolean {
+    if(!this.currentShop) return false;
+    return this.currentShop.name.includes('(Clone)');
+  }
+
   public get isCurrentShopDuplicateName(): boolean {
     if(!this.currentShop) return false;
     return !!this.shops.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentShop?.name);
@@ -82,6 +87,12 @@ export class ShopListComponent implements OnInit {
   addNewShop(template: TemplateRef<any>) {
     this.currentShop = newShop();
 
+    this.openEditModal(template);
+  }
+
+  cloneShop(template: TemplateRef<any>, shop: IShop) {
+    this.currentShop = cloneDeep(shop);
+    this.currentShop.name = `${this.currentShop.name} (Clone)`;
     this.openEditModal(template);
   }
 

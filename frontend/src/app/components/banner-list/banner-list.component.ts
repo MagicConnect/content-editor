@@ -42,6 +42,11 @@ export class BannerListComponent implements OnInit {
         && this.currentBanner.weapons.every(c => c.name);
   }
 
+  public get isCurrentBannerClone(): boolean {
+    if(!this.currentBanner) return false;
+    return this.currentBanner.name.includes('(Clone)');
+  }
+
   public get isCurrentBannerDuplicateName(): boolean {
     if(!this.currentBanner) return false;
     return !!this.banners.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentBanner?.name);
@@ -87,6 +92,12 @@ export class BannerListComponent implements OnInit {
   addNewBanner(template: TemplateRef<any>) {
     this.currentBanner = newBanner();
 
+    this.openEditModal(template);
+  }
+
+  cloneBanner(template: TemplateRef<any>, banner: IBanner) {
+    this.currentBanner = cloneDeep(banner);
+    this.currentBanner.name = `${this.currentBanner.name} (Clone)`;
     this.openEditModal(template);
   }
 

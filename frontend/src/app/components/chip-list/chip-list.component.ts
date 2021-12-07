@@ -31,8 +31,14 @@ export class ChipListComponent implements OnInit {
     if(!this.currentChip) return false;
     return this.currentChip.name?.length >= 2
         && !this.isCurrentChipDuplicateName
+        && !this.isCurrentChipClone
         && this.currentChip.primaryStat
         && this.currentChip.stars >= 1;
+  }
+
+  public get isCurrentChipClone(): boolean {
+    if(!this.currentChip) return false;
+    return this.currentChip.name.includes('(Clone)');
   }
 
   public get isCurrentChipDuplicateName(): boolean {
@@ -82,6 +88,12 @@ export class ChipListComponent implements OnInit {
   addNewChip(template: TemplateRef<any>) {
     this.currentChip = newChip();
 
+    this.openEditModal(template);
+  }
+
+  cloneChip(template: TemplateRef<any>, chip: IChip) {
+    this.currentChip = cloneDeep(chip);
+    this.currentChip.name = `${this.currentChip.name} (Clone)`;
     this.openEditModal(template);
   }
 

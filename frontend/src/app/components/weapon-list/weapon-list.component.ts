@@ -36,6 +36,11 @@ export class WeaponListComponent implements OnInit {
         && !!this.currentWeapon.weaponType;
   }
 
+  public get isCurrentWeaponClone(): boolean {
+    if(!this.currentWeapon) return false;
+    return this.currentWeapon.name.includes('(Clone)');
+  }
+
   public get isCurrentWeaponDuplicateName(): boolean {
     if(!this.currentWeapon) return false;
     return !!this.weapons.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentWeapon?.name);
@@ -84,6 +89,12 @@ export class WeaponListComponent implements OnInit {
   addNewWeapon(template: TemplateRef<any>) {
     this.currentWeapon = newWeapon();
 
+    this.openEditModal(template);
+  }
+
+  cloneWeapon(template: TemplateRef<any>, weapon: IWeapon) {
+    this.currentWeapon = cloneDeep(weapon);
+    this.currentWeapon.name = `${this.currentWeapon.name} (Clone)`;
     this.openEditModal(template);
   }
 

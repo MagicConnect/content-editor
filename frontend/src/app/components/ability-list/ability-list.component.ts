@@ -45,6 +45,11 @@ export class AbilityListComponent implements OnInit {
         });
   }
 
+  public get isCurrentAbilityClone(): boolean {
+    if(!this.currentAbility) return false;
+    return this.currentAbility.name.includes('(Clone)');
+  }
+
   public get isCurrentAbilityDuplicateName(): boolean {
     if(!this.currentAbility) return false;
     return !!this.abilities.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentAbility?.name);
@@ -87,6 +92,12 @@ export class AbilityListComponent implements OnInit {
   addNewAbility(template: TemplateRef<any>) {
     this.currentAbility = newAbility();
 
+    this.openEditModal(template);
+  }
+
+  cloneAbility(template: TemplateRef<any>, ability: IAbility) {
+    this.currentAbility = cloneDeep(ability);
+    this.currentAbility.name = `${this.currentAbility.name} (Clone)`;
     this.openEditModal(template);
   }
 

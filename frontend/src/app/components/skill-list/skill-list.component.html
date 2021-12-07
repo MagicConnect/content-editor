@@ -44,10 +44,12 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+  <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm" (click)="editSkill(skillEditor, row)">Edit</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneSkill(skillEditor, row)">Clone</button>
+
+        <button class="btn btn-info btn-sm ml-1" (click)="editSkill(skillEditor, row)">Edit</button>
 
         <button class="btn btn-danger btn-sm ml-1"
                 [disabled]="isSkillCurrentlyInUse(row)"
@@ -72,6 +74,7 @@
 
         <div class="ml-1 errors">
           <div class="error" *ngIf="isCurrentSkillDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentSkillClone">Rename clone.</div>
         </div>
       </div>
     </div>

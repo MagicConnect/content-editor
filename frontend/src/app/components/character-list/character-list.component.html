@@ -68,10 +68,12 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+  <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm" (click)="editCharacter(characterEditor, row)">Edit</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneCharacter(characterEditor, row)">Clone</button>
+
+        <button class="btn btn-info btn-sm ml-1" (click)="editCharacter(characterEditor, row)">Edit</button>
 
         <button class="btn btn-danger btn-sm ml-1"
                 [disabled]="isCharacterCurrentlyInUse(row)"
@@ -96,6 +98,7 @@
 
         <div class="ml-1 errors">
           <div class="error" *ngIf="isCurrentCharacterDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentCharacterClone">Rename clone.</div>
           <div class="warning" *ngIf="isCurrentCharacterDuplicateArt">Duplicate art.</div>
         </div>
       </div>

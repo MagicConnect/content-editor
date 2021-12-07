@@ -34,6 +34,11 @@ export class SkillListComponent implements OnInit {
         && this.currentSkill.actions.length > 0;
   }
 
+  public get isCurrentSkillClone(): boolean {
+    if(!this.currentSkill) return false;
+    return this.currentSkill.name.includes('(Clone)');
+  }
+
   public get isCurrentSkillDuplicateName(): boolean {
     if(!this.currentSkill) return false;
     return !!this.skills.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentSkill?.name);
@@ -76,6 +81,12 @@ export class SkillListComponent implements OnInit {
   addNewSkill(template: TemplateRef<any>) {
     this.currentSkill = newSkill();
 
+    this.openEditModal(template);
+  }
+
+  cloneSkill(template: TemplateRef<any>, skill: ISkill) {
+    this.currentSkill = cloneDeep(skill);
+    this.currentSkill.name = `${this.currentSkill.name} (Clone)`;
     this.openEditModal(template);
   }
 

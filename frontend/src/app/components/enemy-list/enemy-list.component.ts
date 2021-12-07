@@ -34,6 +34,11 @@ export class EnemyListComponent implements OnInit {
         && sum(Object.values(this.currentEnemy.levelPoints)) > 0;
   }
 
+  public get isCurrentEnemyClone(): boolean {
+    if(!this.currentEnemy) return false;
+    return this.currentEnemy.name.includes('(Clone)');
+  }
+
   public get isCurrentEnemyDuplicateName(): boolean {
     if(!this.currentEnemy) return false;
     return !!this.enemies.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentEnemy?.name);
@@ -80,6 +85,12 @@ export class EnemyListComponent implements OnInit {
   addNewEnemy(template: TemplateRef<any>) {
     this.currentEnemy = newEnemy();
 
+    this.openEditModal(template);
+  }
+
+  cloneEnemy(template: TemplateRef<any>, enemy: IEnemy) {
+    this.currentEnemy = cloneDeep(enemy);
+    this.currentEnemy.name = `${this.currentEnemy.name} (Clone)`;
     this.openEditModal(template);
   }
 

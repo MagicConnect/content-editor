@@ -33,10 +33,11 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Actions" [flexGrow]="1" [sortable]="false">
+  <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm" (click)="editMap(mapEditor, row)">Edit</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneMap(mapEditor, row)">Clone</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="editMap(mapEditor, row)">Edit</button>
         <button class="btn btn-danger btn-sm ml-1" (click)="deleteMap(row)">Delete</button>
       </div>
     </ng-template>
@@ -56,6 +57,7 @@
 
         <div class="ml-1 errors">
           <div class="error" *ngIf="isCurrentMapDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentMapClone">Rename clone.</div>
           <div class="warning" *ngIf="isCurrentMapDuplicateArt">Duplicate art.</div>
         </div>
       </div>

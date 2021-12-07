@@ -38,6 +38,11 @@ export class MapListComponent implements OnInit {
           );
   }
 
+  public get isCurrentMapClone(): boolean {
+    if(!this.currentMap) return false;
+    return this.currentMap.name.includes('(Clone)');
+  }
+
   public get isCurrentMapDuplicateName(): boolean {
     if(!this.currentMap) return false;
     return !!this.maps.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentMap?.name);
@@ -79,6 +84,12 @@ export class MapListComponent implements OnInit {
   addNewMap(template: TemplateRef<any>) {
     this.currentMap = newMap();
 
+    this.openEditModal(template);
+  }
+
+  cloneMap(template: TemplateRef<any>, map: IMap) {
+    this.currentMap = cloneDeep(map);
+    this.currentMap.name = `${this.currentMap.name} (Clone)`;
     this.openEditModal(template);
   }
 

@@ -31,6 +31,7 @@ export class CharacterListComponent implements OnInit {
     if(!this.currentCharacter) return false;
     return this.currentCharacter.name?.length >= 2
         && !this.isCurrentCharacterDuplicateName
+        && !this.isCurrentCharacterClone
         && this.currentCharacter.primaryStat
         && this.currentCharacter.weapon
         && this.currentCharacter.archetype
@@ -40,6 +41,11 @@ export class CharacterListComponent implements OnInit {
         && sum(Object.values(this.currentCharacter.basePoints)) > 0
         && sum(Object.values(this.currentCharacter.levelPoints)) > 0
         && sum(Object.values(this.currentCharacter.lbPoints)) > 0;
+  }
+
+  public get isCurrentCharacterClone(): boolean {
+    if(!this.currentCharacter) return false;
+    return this.currentCharacter.name.includes('(Clone)');
   }
 
   public get isCurrentCharacterDuplicateName(): boolean {
@@ -92,6 +98,12 @@ export class CharacterListComponent implements OnInit {
   addNewCharacter(template: TemplateRef<any>) {
     this.currentCharacter = newCharacter();
 
+    this.openEditModal(template);
+  }
+
+  cloneCharacter(template: TemplateRef<any>, character: ICharacter) {
+    this.currentCharacter = cloneDeep(character);
+    this.currentCharacter.name = `${this.currentCharacter.name} (Clone)`;
     this.openEditModal(template);
   }
 

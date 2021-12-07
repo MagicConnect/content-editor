@@ -34,6 +34,11 @@ export class ItemListComponent implements OnInit {
         && !!this.currentItem.itemType;
   }
 
+  public get isCurrentItemClone(): boolean {
+    if(!this.currentItem) return false;
+    return this.currentItem.name.includes('(Clone)');
+  }
+
   public get isCurrentItemDuplicateName(): boolean {
     if(!this.currentItem) return false;
     return !!this.items.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentItem?.name);
@@ -80,6 +85,12 @@ export class ItemListComponent implements OnInit {
   addNewItem(template: TemplateRef<any>) {
     this.currentItem = newItem();
 
+    this.openEditModal(template);
+  }
+
+  cloneItem(template: TemplateRef<any>, item: IItem) {
+    this.currentItem = cloneDeep(item);
+    this.currentItem.name = `${this.currentItem.name} (Clone)`;
     this.openEditModal(template);
   }
 
