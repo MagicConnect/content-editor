@@ -13,6 +13,9 @@ import { AuthService } from './auth.service';
 })
 export class ModManagerService {
 
+  // content pack
+  @LocalStorage() public currentPack!: IContentPack;
+
   private abilities: BehaviorSubject<IAbility[]> = new BehaviorSubject<IAbility[]>([]);
   public abilities$: Observable<IAbility[]> = this.abilities.asObservable();
 
@@ -43,6 +46,7 @@ export class ModManagerService {
   private weapons: BehaviorSubject<IWeapon[]> = new BehaviorSubject<IWeapon[]>([]);
   public weapons$: Observable<IWeapon[]> = this.weapons.asObservable();
 
+  // art pack
   private artData: IArtPack = {
     meta: { fileExt: 'webp', basePath: 'assets/art' },
     banners: [],
@@ -56,6 +60,7 @@ export class ModManagerService {
     weapons: []
   };
 
+  // miscellaneous data for views
   public get allArtData(): IArtPack {
     return this.artData;
   }
@@ -106,7 +111,12 @@ export class ModManagerService {
     return sortBy(this.currentPack.skills.map(a => ({ name: a.name, description: a.description })), 'name');
   }
 
-  @LocalStorage() public currentPack!: IContentPack;
+  // loading
+  private _loading = false;
+
+  public get isLoading(): boolean {
+    return this._loading;
+  }
 
   constructor(private http: HttpClient, private auth: AuthService, private api: ApiService) {}
 
@@ -148,6 +158,8 @@ export class ModManagerService {
   }
 
   public importNet() {
+    this._loading = true;
+
     this.http.get(this.api.contentUrl)
       .subscribe((d) => {
         const importPack: IContentPack = d as IContentPack;
@@ -155,6 +167,8 @@ export class ModManagerService {
         this.ensurePackData();
 
         this.sync();
+
+        this._loading = false;
       });
   }
 
