@@ -37,7 +37,7 @@
   <ngx-datatable-column name="Sell Value" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
-        {{ row.sellValue }}
+        {{ row.sellValue | number }}g
       </div>
     </ng-template>
   </ngx-datatable-column>
