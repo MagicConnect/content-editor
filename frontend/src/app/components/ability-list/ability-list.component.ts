@@ -31,18 +31,27 @@ export class AbilityListComponent implements OnInit {
   public get canSaveCurrentAbility(): boolean {
     if(!this.currentAbility) return false;
 
-    return this.currentAbility.name?.length >= 2
-        && !this.isCurrentAbilityDuplicateName
-        && this.currentAbility.effects.length > 0
-        && this.currentAbility.effects.every(e => e.value && e.target)
-        && this.currentAbility.conditions.every(e => e.value)
-        && Object.values(this.currentAbility.lbChanges).every(lb => {
-          if(lb.shouldHide) return true;
+    const isValidAbility = (ability: IAbility) => {
+      return ability.effects.length > 0
+          && ability.effects.every(e => e.value && e.target)
+          && ability.conditions.every(e => e.value);
+    };
 
-          return lb.effects.length > 0
-              && lb.effects.every(e => e.value && e.target)
-              && lb.conditions.every(e => e.value);
-        });
+    const isValidBaseAbility = isValidAbility(this.currentAbility);
+    if(this.currentAbility.effects.length > 0 && !isValidBaseAbility) return false;
+
+    const numLBAbilities = Object.values(this.currentAbility.lbChanges).filter(x => !x.shouldHide).length;
+
+    const isValidLBAbilities = Object.values(this.currentAbility.lbChanges).every(lb => {
+      if(lb.shouldHide) return true;
+
+      return isValidAbility(lb);
+    });
+
+    if(numLBAbilities > 0 && !isValidLBAbilities) return false;
+
+    return this.currentAbility.name?.length >= 2
+        && !this.isCurrentAbilityDuplicateName;
   }
 
   public get isCurrentAbilityClone(): boolean {
