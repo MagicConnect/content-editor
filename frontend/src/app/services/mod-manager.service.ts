@@ -237,6 +237,8 @@ export class ModManagerService {
 
     // trim all strings recursively from the data
     const trimAll = (obj: any) => {
+      if(!obj) return;
+
       Object.keys(obj).map(key => {
         if (typeof obj[key] === 'string') {
           obj[key] = obj[key].trim();

@@ -26,12 +26,12 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     levelupPoints: {
-      [Stat.Attack]: 2,
+      [Stat.Attack]: 4,
       [Stat.Defense]: 0,
       [Stat.Magic]: 0,
-      [Stat.Special]: 0,
+      [Stat.Special]: 1,
   
-      [Stat.HP]: 3,
+      [Stat.HP]: 6,
       [Stat.MP]: 0,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
@@ -40,13 +40,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     limitBreakPoints: {
-      [Stat.Attack]: 3,
+      [Stat.Attack]: 4,
       [Stat.Defense]: 0,
       [Stat.Magic]: 0,
       [Stat.Special]: 2,
   
-      [Stat.HP]: 10,
-      [Stat.MP]: 5,
+      [Stat.HP]: 20,
+      [Stat.MP]: 10,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -72,11 +72,11 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     levelupPoints: {
       [Stat.Attack]: 0,
       [Stat.Defense]: 0,
-      [Stat.Magic]: 2,
-      [Stat.Special]: 0,
+      [Stat.Magic]: 4,
+      [Stat.Special]: 2,
   
-      [Stat.HP]: 1,
-      [Stat.MP]: 2,
+      [Stat.HP]: 2,
+      [Stat.MP]: 4,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -84,13 +84,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     limitBreakPoints: {
-      [Stat.Attack]: 1,
+      [Stat.Attack]: 2,
       [Stat.Defense]: 0,
       [Stat.Magic]: 4,
-      [Stat.Special]: 1,
+      [Stat.Special]: 2,
   
-      [Stat.HP]: 5,
-      [Stat.MP]: 15,
+      [Stat.HP]: 10,
+      [Stat.MP]: 30,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -114,13 +114,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     levelupPoints: {
-      [Stat.Attack]: 1,
-      [Stat.Defense]: 1,
+      [Stat.Attack]: 2,
+      [Stat.Defense]: 4,
       [Stat.Magic]: 0,
-      [Stat.Special]: 0,
+      [Stat.Special]: 2,
   
-      [Stat.HP]: 2,
-      [Stat.MP]: 1,
+      [Stat.HP]: 4,
+      [Stat.MP]: 2,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -128,13 +128,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     limitBreakPoints: {
-      [Stat.Attack]: 1,
-      [Stat.Defense]: 3,
-      [Stat.Magic]: 1,
-      [Stat.Special]: 1,
+      [Stat.Attack]: 2,
+      [Stat.Defense]: 6,
+      [Stat.Magic]: 2,
+      [Stat.Special]: 2,
   
-      [Stat.HP]: 15,
-      [Stat.MP]: 5,
+      [Stat.HP]: 30,
+      [Stat.MP]: 10,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -160,11 +160,11 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     levelupPoints: {
       [Stat.Attack]: 0,
       [Stat.Defense]: 1,
-      [Stat.Magic]: 1,
-      [Stat.Special]: 0,
+      [Stat.Magic]: 2,
+      [Stat.Special]: 2,
   
-      [Stat.HP]: 2,
-      [Stat.MP]: 1,
+      [Stat.HP]: 4,
+      [Stat.MP]: 2,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -172,13 +172,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     limitBreakPoints: {
-      [Stat.Attack]: 1,
-      [Stat.Defense]: 1,
-      [Stat.Magic]: 2,
-      [Stat.Special]: 2,
+      [Stat.Attack]: 2,
+      [Stat.Defense]: 2,
+      [Stat.Magic]: 4,
+      [Stat.Special]: 4,
   
-      [Stat.HP]: 10,
-      [Stat.MP]: 10,
+      [Stat.HP]: 20,
+      [Stat.MP]: 20,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -202,13 +202,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     levelupPoints: {
-      [Stat.Attack]: 1,
+      [Stat.Attack]: 2,
       [Stat.Defense]: 0,
-      [Stat.Magic]: 1,
-      [Stat.Special]: 0,
+      [Stat.Magic]: 2,
+      [Stat.Special]: 3,
   
-      [Stat.HP]: 2,
-      [Stat.MP]: 1,
+      [Stat.HP]: 4,
+      [Stat.MP]: 2,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,
@@ -216,13 +216,13 @@ export const StatAllocationMatrix: Record<Archetype, ArchetypeStatMatrix> = {
     },
 
     limitBreakPoints: {
-      [Stat.Attack]: 2,
+      [Stat.Attack]: 4,
       [Stat.Defense]: 0,
-      [Stat.Magic]: 2,
-      [Stat.Special]: 2,
+      [Stat.Magic]: 4,
+      [Stat.Special]: 4,
   
-      [Stat.HP]: 10,
-      [Stat.MP]: 5,
+      [Stat.HP]: 20,
+      [Stat.MP]: 10,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,

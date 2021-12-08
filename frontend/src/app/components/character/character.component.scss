@@ -2,4 +2,15 @@
 .point-badge {
   min-width: 25px;
   margin-right: 3px;
+  pointer-events: none;
+}
+
+.stat-table thead {
+  cursor: pointer;
+}
+
+.stat-table {
+  .number {
+    font-weight: bold;
+  }
 }

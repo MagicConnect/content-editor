@@ -59,6 +59,45 @@
     </tab>
 
   </tabset>
+
+  <table class="mt-3 table table-striped stat-table">
+    <thead (click)="showStatTable = !showStatTable">
+      <tr>
+        <th>Level</th>
+        <th>LB</th>
+        <th>HP</th>
+        <th>MP</th>
+        <th>Attack</th>
+        <th>Defense</th>
+        <th>Magic</th>
+        <th>Special</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="!showStatTable">
+      <tr>
+        <td colspan="8" class="text-center">
+          <strong><em>Click table header to show/hide table.</em></strong>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="showStatTable">
+      <tr *ngFor="let inc of statTableIncrements">
+        <td class="text-right">LV <span class="number">{{ inc.level }}</span></td>
+        <td>LB <span class="number">{{ inc.lb }}</span></td>
+
+        <ng-container *ngIf="calculatedStats(inc.level, inc.lb) as stats">
+          <td><span class="number">{{ stats.hp | number }}</span> HP</td>
+          <td><span class="number">{{ stats.mp | number }}</span> MP</td>
+          <td><span class="number">{{ stats.attack | number }}</span> ATK</td>
+          <td><span class="number">{{ stats.defense | number }}</span> DEF</td>
+          <td><span class="number">{{ stats.magic | number }}</span> MAG</td>
+          <td><span class="number">{{ stats.special | number }}</span> SPC</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">

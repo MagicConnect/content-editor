@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { LocalStorage } from 'ngx-webstorage';
 import { newCharacter } from '../../../../../shared/initializers';
-import { Archetype, Stat, Weapon } from '../../../../../shared/interfaces';
+import { Archetype, Stat, StatAllocationMatrix, Weapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -137,6 +138,35 @@ export class CharacterComponent {
     },
   ];
 
+  @LocalStorage() showStatTable!: boolean;
+
+  public readonly statTableIncrements = [
+    { level: 1,  lb: 0  },
+    { level: 1,  lb: 1  },
+    { level: 1,  lb: 5  },
+    { level: 1,  lb: 10 },
+    { level: 10, lb: 0  },
+    { level: 10, lb: 1  },
+    { level: 10, lb: 5  },
+    { level: 10, lb: 10 },
+    { level: 30, lb: 0  },
+    { level: 30, lb: 1  },
+    { level: 30, lb: 5  },
+    { level: 30, lb: 10 },
+    { level: 50, lb: 0  },
+    { level: 50, lb: 1  },
+    { level: 50, lb: 5  },
+    { level: 50, lb: 10 },
+    { level: 60, lb: 0  },
+    { level: 60, lb: 1  },
+    { level: 60, lb: 5  },
+    { level: 60, lb: 10 },
+    { level: 70, lb: 0  },
+    { level: 70, lb: 1  },
+    { level: 70, lb: 5  },
+    { level: 70, lb: 10 },
+  ];
+
   constructor(private modal: BsModalService, public mod: ModManagerService) { }
 
   addSkill() {
@@ -193,6 +223,46 @@ export class CharacterComponent {
 
   removeAbility(index: number, childIndex: number) {
     this.model.abilities[index].abilities.splice(childIndex, 1);
+  }
+
+  public calculatedStats(level: number, lb: number): Record<Stat, number> {
+
+    const stats = {
+      [Stat.Attack]: 0,
+      [Stat.Defense]: 0,
+      [Stat.Magic]: 0,
+      [Stat.Special]: 0,
+
+      [Stat.HP]: 0,
+      [Stat.MP]: 0,
+      [Stat.Accuracy]: 0,
+      [Stat.Critical]: 0,
+      [Stat.MagicEvasion]: 0,
+      [Stat.MeleeEvasion]: 0,
+    };
+
+    const applyToStats = (modelKey: 'basePoints'|'lbPoints'|'levelPoints', matrix: 'baseStatPoints'|'levelupPoints'|'limitBreakPoints', times = 1) => {
+
+      const model = this.model[modelKey];
+
+      Object.keys(model).forEach(archetype => {
+        Object.keys(StatAllocationMatrix[archetype as Archetype][matrix]).forEach(stat => {
+          stats[stat as Stat] += model[archetype as Archetype] * StatAllocationMatrix[archetype as Archetype][matrix][stat as Stat] * times;
+        });
+      });
+    };
+
+    applyToStats('basePoints', 'baseStatPoints', 1);
+
+    if(level > 1) {
+      applyToStats('levelPoints', 'levelupPoints', level - 1);
+    }
+
+    if(lb > 0) {
+      applyToStats('lbPoints', 'limitBreakPoints', lb);
+    }
+
+    return stats;
   }
 
 }
