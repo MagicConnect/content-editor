@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep, sum } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { newEnemy } from '../../../../../shared/initializers';
+import { newEnemy } from '../../initializers';
 import { IEnemy, IMap, IMapNode } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 

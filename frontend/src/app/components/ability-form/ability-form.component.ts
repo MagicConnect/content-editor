@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { newAbility } from '../../../../../shared/initializers';
+import { newAbility } from '../../initializers';
 
 import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger, IAbility } from 'content-interfaces';
 

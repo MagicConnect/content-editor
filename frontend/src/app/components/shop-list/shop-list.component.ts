@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { newShop } from '../../../../../shared/initializers';
+import { newShop } from '../../initializers';
 import { IShop } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 

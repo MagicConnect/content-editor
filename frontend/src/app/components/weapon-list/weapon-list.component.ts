@@ -4,7 +4,7 @@ import { IBanner, IShop, IWeapon } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';
-import { newWeapon } from '../../../../../shared/initializers';
+import { newWeapon } from '../../initializers';
 
 @Component({
   selector: 'app-weapon-list',

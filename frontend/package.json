@@ -26,6 +26,7 @@
     "@ngx-formly/core": "^5.10.24",
     "@swimlane/ngx-datatable": "^20.0.0",
     "bootstrap": "^4.5.3",
+    "content-interfaces": "github:MagicConnect/content-interfaces",
     "d3": "^6.1.1",
     "firebase": "^9.4.0",
     "lodash": "^4.17.21",

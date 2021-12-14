@@ -16,8 +16,5 @@
   "homepage": "https://github.com/MagicConnect/content#readme",
   "devDependencies": {
     "ts-node": "^10.3.0"
-  },
-  "dependencies": {
-    "content-interfaces": "github:MagicConnect/content-interfaces"
   }
 }

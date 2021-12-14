@@ -1,7 +1,7 @@
 
 import * as d3 from 'd3';
 import { maxBy } from 'lodash';
-import { newMapBattle } from '../../../../../shared/initializers';
+import { newMapBattle } from '../../initializers';
 import { IMapCombatGrid, IMapNode } from 'content-interfaces';
 
 class GraphConstants {

@@ -5,7 +5,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { sortBy } from 'lodash';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { newMapBattle } from '../../../../../shared/initializers';
+import { newMapBattle } from '../../initializers';
 import { IEnemy, IMapNode } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';

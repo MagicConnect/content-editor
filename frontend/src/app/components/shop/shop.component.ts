@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { newShop } from '../../../../../shared/initializers';
+import { newShop } from '../../initializers';
 import { IShop, ShopReset } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 

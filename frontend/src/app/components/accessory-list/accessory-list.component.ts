@@ -4,7 +4,7 @@ import { IBanner, IAccessory, IShop } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';
-import { newAccessory } from '../../../../../shared/initializers';
+import { newAccessory } from '../../initializers';
 
 @Component({
   selector: 'app-accessory-list',
