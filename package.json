@@ -1,20 +1,60 @@
 {
-  "name": "magicon-content",
-  "version": "1.0.0",
-  "description": "MagiCon! content",
+  "name": "frontend",
+  "version": "0.0.0",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "ng": "ng",
+    "start": "ng serve --port 7491 --open",
+    "start:local": "ng serve --port 7491 --open --configuration local",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MagicConnect/content.git"
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.2.0",
+    "@angular/common": "~12.2.0",
+    "@angular/compiler": "~12.2.0",
+    "@angular/core": "~12.2.0",
+    "@angular/fire": "^7.2.0",
+    "@angular/forms": "~12.2.0",
+    "@angular/platform-browser": "~12.2.0",
+    "@angular/platform-browser-dynamic": "~12.2.0",
+    "@angular/router": "~12.2.0",
+    "@ng-select/ng-select": "^7.4.0",
+    "@ngx-formly/bootstrap": "^5.10.24",
+    "@ngx-formly/core": "^5.10.24",
+    "@swimlane/ngx-datatable": "^20.0.0",
+    "bootstrap": "^4.5.3",
+    "content-interfaces": "github:MagicConnect/content-interfaces",
+    "d3": "^6.1.1",
+    "firebase": "^9.4.0",
+    "lodash": "^4.17.21",
+    "ngx-bootstrap": "^7.1.0",
+    "ngx-webstorage": "^8.0.0",
+    "rxfire": "^6.0.0",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.3.0",
+    "uuid": "^8.3.2",
+    "zone.js": "~0.11.4"
   },
-  "author": "Kyle Kemp <kyle@magic-connect.com>",
-  "bugs": {
-    "url": "https://github.com/MagicConnect/content/issues"
-  },
-  "homepage": "https://github.com/MagicConnect/content#readme",
   "devDependencies": {
-    "ts-node": "^10.3.0"
+    "@angular-devkit/build-angular": "~12.2.11",
+    "@angular-eslint/builder": "12.5.0",
+    "@angular-eslint/eslint-plugin": "12.5.0",
+    "@angular-eslint/eslint-plugin-template": "12.5.0",
+    "@angular-eslint/schematics": "12.5.0",
+    "@angular-eslint/template-parser": "12.5.0",
+    "@angular/cli": "~12.2.11",
+    "@angular/compiler-cli": "~12.2.0",
+    "@ngx-formly/schematics": "^5.10.23",
+    "@types/d3": "^7.1.0",
+    "@types/lodash": "^4.14.176",
+    "@types/node": "^12.11.1",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "4.28.2",
+    "@typescript-eslint/parser": "4.28.2",
+    "eslint": "^7.26.0",
+    "typescript": "~4.3.5"
   }
 }

@@ -21,8 +21,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: cd frontend && npm install
+    - run: npm install
 
-    - run: cd frontend && npm run lint
+    - run: npm run lint
 
-    - run: cd frontend && npm run build
+    - run: npm run build
