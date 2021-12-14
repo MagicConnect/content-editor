@@ -1,5 +1,5 @@
 
-import { ISkill } from '../interfaces';
+import { ISkill } from 'content-interfaces';
 
 export const newSkill = (): ISkill => ({
   name: '',

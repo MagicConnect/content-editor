@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IShopBuyable } from '../../../../../shared/interfaces';
+import { IShopBuyable } from 'content-interfaces';
 
 import { sortBy } from 'lodash';
 import { ModManagerService } from '../../services/mod-manager.service';

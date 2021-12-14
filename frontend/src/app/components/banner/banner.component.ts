@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { BannerType, IBanner } from '../../../../../shared/interfaces';
+import { BannerType, IBanner } from 'content-interfaces';
 import { newBanner } from '../../../../../shared/initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 

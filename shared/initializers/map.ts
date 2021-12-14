@@ -1,4 +1,4 @@
-import { IMap, IMapNode } from '../interfaces';
+import { IMap, IMapNode } from 'content-interfaces';
 
 export const newMap = (): IMap => ({
   name: '',

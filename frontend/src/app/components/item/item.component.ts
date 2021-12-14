@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IItem, ItemType } from '../../../../../shared/interfaces';
+import { IItem, ItemType } from 'content-interfaces';
 import { newItem } from '../../../../../shared/initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { sortBy } from 'lodash';

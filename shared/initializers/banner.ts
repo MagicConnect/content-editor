@@ -1,5 +1,5 @@
 
-import { IBanner } from '../interfaces';
+import { IBanner } from 'content-interfaces';
 
 export const newBanner = (): IBanner => ({
   name: '',

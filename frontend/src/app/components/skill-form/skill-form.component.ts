@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from '../../../../../shared/interfaces';
+import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
 
 @Component({
   selector: 'app-skill-form',

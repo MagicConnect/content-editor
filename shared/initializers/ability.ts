@@ -1,5 +1,5 @@
 
-import { AbilityTrigger, IAbility } from '../interfaces';
+import { AbilityTrigger, IAbility } from 'content-interfaces';
 
 export const newAbility = (): IAbility => ({
   name: '',

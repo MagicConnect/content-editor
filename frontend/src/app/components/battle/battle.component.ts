@@ -6,7 +6,7 @@ import { sortBy } from 'lodash';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newMapBattle } from '../../../../../shared/initializers';
-import { IEnemy, IMapNode } from '../../../../../shared/interfaces';
+import { IEnemy, IMapNode } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Element, ISkillAction, SkillActionPattern, SkillValidTargets, Stat, StatusEffect } from '../../../../../shared/interfaces';
+import { Element, ISkillAction, SkillActionPattern, SkillValidTargets, Stat, StatusEffect } from 'content-interfaces';
 
 @Component({
   selector: 'app-skill-action-form',

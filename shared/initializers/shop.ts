@@ -1,5 +1,5 @@
 
-import { IShop, ShopReset } from '../interfaces';
+import { IShop, ShopReset } from 'content-interfaces';
 
 export const newShop = (): IShop => ({
   name: '',

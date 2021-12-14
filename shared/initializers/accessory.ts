@@ -1,4 +1,4 @@
-import { IAccessory, ItemType, Stat } from '../interfaces';
+import { IAccessory, ItemType, Stat } from 'content-interfaces';
 
 export const newAccessory = (): IAccessory => ({
   name: '',

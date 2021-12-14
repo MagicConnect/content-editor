@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 

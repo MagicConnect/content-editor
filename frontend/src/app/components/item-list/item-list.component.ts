@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newItem } from '../../../../../shared/initializers';
-import { IBanner, IItem, IShop } from '../../../../../shared/interfaces';
+import { IBanner, IItem, IShop } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

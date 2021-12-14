@@ -1,5 +1,5 @@
 
-import { Archetype, Stat, IEnemy } from '../interfaces';
+import { Archetype, Stat, IEnemy } from 'content-interfaces';
 
 export const newEnemy = (): IEnemy => ({
   name: '',

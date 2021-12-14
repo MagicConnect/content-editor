@@ -1,5 +1,5 @@
 
-import { Archetype, Stat, Weapon, ICharacter } from '../interfaces';
+import { Archetype, Stat, Weapon, ICharacter } from 'content-interfaces';
 
 export const newCharacter = (): ICharacter => ({
   name: '',

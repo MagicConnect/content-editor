@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { AbilityCondition, IAbilityCondition, StatusEffect } from '../../../../../shared/interfaces';
+import { AbilityCondition, IAbilityCondition, StatusEffect } from 'content-interfaces';
 
 @Component({
   selector: 'app-ability-condition-form',

@@ -1,4 +1,4 @@
-import { IItem, ItemType } from '../interfaces';
+import { IItem, ItemType } from 'content-interfaces';
 
 export const newItem = (): IItem => ({
   name: '',
