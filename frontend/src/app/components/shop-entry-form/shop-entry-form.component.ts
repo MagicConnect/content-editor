@@ -64,10 +64,10 @@ export class ShopEntryFormComponent {
           type: 'better-select',
           hideExpression: () => this.type !== 'chip',
           templateOptions: {
-            label: 'Chip',
-            placeholder: 'Pick chip...',
-            description: 'If you don\'t see any chips, add one.',
-            options: sortBy(Object.values(this.mod.filteredChips).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
+            label: 'Accessory',
+            placeholder: 'Pick accessory...',
+            description: 'If you don\'t see any accessories, add one.',
+            options: sortBy(Object.values(this.mod.filteredAccessories).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
             groupProp: 'stars'
           },
         },

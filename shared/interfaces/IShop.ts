@@ -21,7 +21,7 @@ export interface IShop {
   shopReset: ShopReset;
 
   characters: IShopBuyable[];
-  chips: IShopBuyable[];
+  accessories: IShopBuyable[];
   items: IShopBuyable[];
   weapons: IShopBuyable[];
 }

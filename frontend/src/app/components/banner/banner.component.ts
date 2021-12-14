@@ -54,11 +54,11 @@ export class BannerComponent {
             placeholder: 'Choose banner type here...',
             description: 'Banner type determines what can come out of the banner.',
             required: true,
-            options: ['characters', 'chips', 'items', 'weapons'].sort().map(x => ({ label: x, value: x })),
+            options: ['characters', 'accessories', 'items', 'weapons'].sort().map(x => ({ label: x, value: x })),
             change: (field, $event) => {
               const type = $event.target.value.split(' ')[1];
 
-              (['characters', 'chips', 'items', 'weapons'] as BannerType[]).forEach(bannerType => {
+              (['characters', 'accessories', 'items', 'weapons'] as BannerType[]).forEach(bannerType => {
                 if(type === bannerType) return;
 
                 this.model[bannerType] = [];

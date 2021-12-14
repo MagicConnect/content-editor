@@ -1,7 +1,7 @@
 
 import { IBanner } from './IBanner';
 import { ICharacter } from './ICharacter';
-import { IChip } from './IChip';
+import { IAccessory } from './IAccessory';
 import { IItem } from './IItem';
 import { IWeapon } from './IWeapon';
 import { IShop } from './IShop';
@@ -12,9 +12,9 @@ import { ISkill } from '.';
 
 export interface IContentPack {
   abilities: IAbility[];
+  accessories: IAccessory[];
   banners: IBanner[];
   characters: ICharacter[];
-  chips: IChip[];
   enemies: IEnemy[];
   items: IItem[];
   maps: IMap[];
@@ -29,10 +29,10 @@ export interface IArtPack {
     basePath: string;
   };
 
+  accessories: string[];
   banners: string[];
   characters: string[];
   charactersheets: string[];
-  chips: string[];
   enemies: string[];
   enemysheets: string[];
   items: string[];

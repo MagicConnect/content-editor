@@ -33,12 +33,12 @@ export class BannerListComponent implements OnInit {
         && (
            this.currentBanner.characters.length > 0
         || this.currentBanner.items.length > 0
-        || this.currentBanner.chips.length > 0
+        || this.currentBanner.accessories.length > 0
         || this.currentBanner.weapons.length > 0
         )
         && this.currentBanner.characters.every(c => c.name)
         && this.currentBanner.items.every(c => c.name)
-        && this.currentBanner.chips.every(c => c.name)
+        && this.currentBanner.accessories.every(c => c.name)
         && this.currentBanner.weapons.every(c => c.name);
   }
 
@@ -80,7 +80,7 @@ export class BannerListComponent implements OnInit {
           || a.description.toLowerCase().includes(this.searchText.toLowerCase())
           || a.characters.filter(c => c.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
           || a.items.filter(i => i.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
-          || a.chips.filter(c => c.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
+          || a.accessories.filter(c => c.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0
           || a.weapons.filter(w => w.name.toLowerCase().includes(this.searchText.toLowerCase())).length > 0;
     });
   }

@@ -99,11 +99,11 @@ export class ShopComponent {
 
   constructor(private mod: ModManagerService) { }
 
-  add(type: keyof IShop & 'characters'|'weapons'|'items'|'chips') {
+  add(type: keyof IShop & 'characters'|'weapons'|'items'|'accessories') {
     this.model[type].push({ name: '', cost: 100, quantity: -1 });
   }
 
-  remove(type: keyof IShop & 'characters'|'weapons'|'items'|'chips', index: number) {
+  remove(type: keyof IShop & 'characters'|'weapons'|'items'|'accessories', index: number) {
     this.model[type].splice(index, 1);
   }
 

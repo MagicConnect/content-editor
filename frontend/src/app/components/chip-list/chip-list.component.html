@@ -1,10 +1,10 @@
 
 <div class="row">
   <div class="col-9">
-    <input class="form-control" type="text" placeholder="Search Chips" [(ngModel)]="searchText" (keyup)="filter()">
+    <input class="form-control" type="text" placeholder="Search Accessories" [(ngModel)]="searchText" (keyup)="filter()">
   </div>
   <div class="col-3 text-right">
-    <button class="btn btn-primary" (click)="addNewChip(chipEditor)">+ Add New Chip</button>
+    <button class="btn btn-primary" (click)="addNewAccessory(accessoryEditor)">+ Add New Accessory</button>
   </div>
 </div>
 
@@ -44,8 +44,8 @@
 
   <ngx-datatable-column name="Acquistions" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
-      <div class="chip" placement="right" [tooltip]="chipCurrentlyUsedIn(row) | json">
-        <ng-container *ngIf="chipCurrentlyUsedIn(row) as usesArray">
+      <div class="chip" placement="right" [tooltip]="accessoryCurrentlyUsedIn(row) | json">
+        <ng-container *ngIf="accessoryCurrentlyUsedIn(row) as usesArray">
           {{ usesArray.length }} Method(s) <strong *ngIf="usesArray.length > 0">ⓘ</strong>
         </ng-container>
       </div>
@@ -55,13 +55,13 @@
   <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm ml-1" (click)="cloneChip(chipEditor, row)">Clone</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneAccessory(accessoryEditor, row)">Clone</button>
 
-        <button class="btn btn-info btn-sm ml-1" (click)="editChip(chipEditor, row)">Edit</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="editAccessory(accessoryEditor, row)">Edit</button>
 
         <button class="btn btn-danger btn-sm ml-1"
-                [disabled]="isChipCurrentlyInUse(row)"
-                (click)="deleteChip(row)">
+                [disabled]="isAccessoryCurrentlyInUse(row)"
+                (click)="deleteAccessory(row)">
                 Delete
         </button>
       </div>
@@ -70,20 +70,20 @@
 
 </ngx-datatable>
 
-<ng-template #chipEditor>
+<ng-template #accessoryEditor>
   <div class="modal-header">
     <h4 class="modal-title">
-      Create/Edit Chip
+      Create/Edit Accessory
     </h4>
 
     <div class="has-actions text-center">
       <div class="d-flex justify-content-space-around">
-        <button class="btn btn-sm btn-primary" (click)="confirmChipEdit()" [disabled]="!canSaveCurrentChip">Save</button>
+        <button class="btn btn-sm btn-primary" (click)="confirmAccessoryEdit()" [disabled]="!canSaveCurrentAccessory">Save</button>
 
         <div class="ml-1 errors">
-          <div class="error" *ngIf="isCurrentChipDuplicateName">Duplicate name.</div>
-          <div class="error" *ngIf="isCurrentChipClone">Rename clone.</div>
-          <div class="warning" *ngIf="isCurrentChipDuplicateArt">Duplicate art.</div>
+          <div class="error" *ngIf="isCurrentAccessoryDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentAccessoryClone">Rename clone.</div>
+          <div class="warning" *ngIf="isCurrentAccessoryDuplicateArt">Duplicate art.</div>
         </div>
       </div>
     </div>
@@ -94,6 +94,6 @@
   </div>
 
   <div class="modal-body">
-    <app-chip [model]="currentChip" *ngIf="currentChip"></app-chip>
+    <app-chip [model]="currentAccessory" *ngIf="currentAccessory"></app-chip>
   </div>
 </ng-template>

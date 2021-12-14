@@ -10,9 +10,9 @@
   <div class="collapse navbar-collapse">
     <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
       <button class="btn btn-info btn-sm mb-0" btnRadio="ability">Ability ({{ mod.currentPack.abilities.length }})</button>
+      <button class="btn btn-info btn-sm mb-0" btnRadio="accessory">Accessory ({{ mod.currentPack.accessories.length }})</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="banner">Banner ({{ mod.currentPack.banners.length }})</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="character">Character ({{ mod.currentPack.characters.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="chip">Chip ({{ mod.currentPack.chips.length }})</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy ({{ mod.currentPack.enemies.length }})</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="item">Item ({{ mod.currentPack.items.length }})</button>
       <button class="btn btn-info btn-sm mb-0" btnRadio="map">Map ({{ mod.currentPack.maps.length }})</button>
@@ -47,9 +47,9 @@
   <div class="row">
     <div class="col-md-12">
       <app-ability-list *ngIf="currentPage === 'ability'"></app-ability-list>
+      <app-chip-list *ngIf="currentPage === 'accessory'"></app-chip-list>
       <app-banner-list *ngIf="currentPage === 'banner'"></app-banner-list>
       <app-character-list *ngIf="currentPage === 'character'"></app-character-list>
-      <app-chip-list *ngIf="currentPage === 'chip'"></app-chip-list>
       <app-enemy-list *ngIf="currentPage === 'enemy'"></app-enemy-list>
       <app-item-list *ngIf="currentPage === 'item'"></app-item-list>
       <app-map-list *ngIf="currentPage === 'map'"></app-map-list>

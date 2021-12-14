@@ -10,7 +10,7 @@ export const newBanner = (): IBanner => ({
   activeEnds: '',
 
   characters: [],
-  chips: [],
+  accessories: [],
   items: [],
   weapons: [],
 });

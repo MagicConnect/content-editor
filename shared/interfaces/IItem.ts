@@ -3,16 +3,16 @@ export enum ItemType {
   None = 'None',
   
   Weapon = 'Weapon',
-  Chip = 'Chip',
+  Accessory = 'Accessory',
   ShopToken = 'ShopToken',
 
   WeaponThreeStarDraw = 'WeaponThreeStarDraw',
   WeaponFourStarDraw = 'WeaponFourStarDraw',
   WeaponFiveStarDraw = 'WeaponFiveStarDraw',
 
-  ChipThreeStarDraw = 'ChipThreeStarDraw',
-  ChipFourStarDraw = 'ChipFourStarDraw',
-  ChipFiveStarDraw = 'ChipFiveStarDraw',
+  AccessoryThreeStarDraw = 'AccessoryThreeStarDraw',
+  AccessoryFourStarDraw = 'AccessoryFourStarDraw',
+  AccessoryFiveStarDraw = 'AccessoryFiveStarDraw',
 
   CharacterThreeStarDraw = 'CharacterThreeStarDraw',
   CharacterFourStarDraw = 'CharacterFourStarDraw',

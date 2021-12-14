@@ -1,8 +1,9 @@
 
 export * from './ability';
+export * from './accessory';
 export * from './banner';
 export * from './character';
-export * from './chip';
+export * from './accessory';
 export * from './enemy';
 export * from './item';
 export * from './map';

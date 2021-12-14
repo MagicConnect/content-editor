@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { newChip } from '../../../../../shared/initializers';
-import { IChip, Stat } from '../../../../../shared/interfaces';
+import { newAccessory } from '../../../../../shared/initializers';
+import { IAccessory, Stat } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -14,7 +14,7 @@ import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 })
 export class ChipComponent {
 
-  @Input() model: IChip = newChip();
+  @Input() model: IAccessory = newAccessory();
 
   form = new FormGroup({});
 
@@ -54,7 +54,7 @@ export class ChipComponent {
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',
-            description: 'Primary stat is the only stat boosted by chips.',
+            description: 'Primary stat is the only stat boosted by accessories.',
             required: true,
             options: [
               { value: Stat.Attack,  label: 'Attack' },
@@ -96,7 +96,7 @@ export class ChipComponent {
             placeholder: 'Choose base art...',
             description: 'This determines the splash art for the chip.',
             required: true,
-            options: this.mod.allArtData.chips.map(art => ({ value: art, label: art })),
+            options: this.mod.allArtData.accessories.map(art => ({ value: art, label: art })),
           },
         },
       ]

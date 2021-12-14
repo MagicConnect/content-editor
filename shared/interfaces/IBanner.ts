@@ -1,5 +1,5 @@
 
-export type BannerType = 'characters' | 'chips' | 'items' | 'weapons';
+export type BannerType = 'characters' | 'accessories' | 'items' | 'weapons';
 
 export interface IBannerRollable {
   name: string;
@@ -16,7 +16,7 @@ export interface IBanner {
   activeEnds: string;
 
   characters: IBannerRollable[];
-  chips: IBannerRollable[];
+  accessories: IBannerRollable[];
   items: IBannerRollable[];
   weapons: IBannerRollable[];
 }

@@ -8,7 +8,7 @@ export const newShop = (): IShop => ({
   activeStarts: '',
   activeEnds: '',
   characters: [],
-  chips: [],
+  accessories: [],
   items: [],
   weapons: [],
   currencyItem: ''

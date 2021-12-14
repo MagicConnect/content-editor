@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newAbility } from '../../../../../shared/initializers';
-import { IAbility, ICharacter, IChip, IEnemy, IWeapon } from '../../../../../shared/interfaces';
+import { IAbility, ICharacter, IAccessory, IEnemy, IWeapon } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AbilityListComponent implements OnInit {
 
   public abilities: IAbility[] = [];
   public characters: ICharacter[] = [];
-  public chips: IChip[] = [];
+  public accessories: IAccessory[] = [];
   public enemies: IEnemy[] = [];
   public weapons: IWeapon[] = [];
 
@@ -72,7 +72,7 @@ export class AbilityListComponent implements OnInit {
     });
 
     this.mod.characters$.subscribe(characters => this.characters = [...characters]);
-    this.mod.chips$.subscribe(chips => this.chips = [...chips]);
+    this.mod.accessories$.subscribe(accessories => this.accessories = [...accessories]);
     this.mod.enemies$.subscribe(enemies => this.enemies = [...enemies]);
     this.mod.weapons$.subscribe(weapons => this.weapons = [...weapons]);
   }
@@ -144,13 +144,13 @@ export class AbilityListComponent implements OnInit {
   abilityCurrentlyUsedIn(ability: IAbility): string[] {
     const characters = this.characters.filter(c => c.abilities.filter(a => a.abilities.includes(ability.name))).map(b => `Character: ${b.name}`);
 
-    const chips = this.chips.filter(c => c.abilities.includes(ability.name)).map(b => `Chip: ${b.name}`);
+    const accessories = this.accessories.filter(c => c.abilities.includes(ability.name)).map(b => `Accessory: ${b.name}`);
 
     const enemies = this.enemies.filter(c => c.abilities.includes(ability.name)).map(b => `Enemy: ${b.name}`);
 
     const weapons = this.weapons.filter(c => c.abilities.includes(ability.name)).map(b => `Weapon: ${b.name}`);
 
-    return [...characters, ...chips, ...enemies, ...weapons];
+    return [...characters, ...accessories, ...enemies, ...weapons];
   }
 
 }

@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IChip, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from '../../../../shared/interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -25,8 +25,8 @@ export class ModManagerService {
   private characters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
   public characters$: Observable<ICharacter[]> = this.characters.asObservable();
 
-  private chips: BehaviorSubject<IChip[]> = new BehaviorSubject<IChip[]>([]);
-  public chips$: Observable<IChip[]> = this.chips.asObservable();
+  private accessories: BehaviorSubject<IAccessory[]> = new BehaviorSubject<IAccessory[]>([]);
+  public accessories$: Observable<IAccessory[]> = this.accessories.asObservable();
 
   private enemies: BehaviorSubject<IEnemy[]> = new BehaviorSubject<IEnemy[]>([]);
   public enemies$: Observable<IEnemy[]> = this.enemies.asObservable();
@@ -52,7 +52,7 @@ export class ModManagerService {
     banners: [],
     characters: [],
     charactersheets: [],
-    chips: [],
+    accessories: [],
     enemies: [],
     enemysheets: [],
     items: [],
@@ -91,8 +91,8 @@ export class ModManagerService {
     return this.currentPack.characters.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
   }
 
-  public get filteredChips(): Array<{ name: string, stars: string }> {
-    return this.currentPack.chips.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  public get filteredAccessories(): Array<{ name: string, stars: string }> {
+    return this.currentPack.accessories.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
   }
 
   public get filteredWeapons(): Array<{ name: string, stars: string }> {
@@ -179,9 +179,9 @@ export class ModManagerService {
   // Pack-related
   private ensurePackData(): void {
     if(!this.currentPack.abilities) this.currentPack.abilities = [];
+    if(!this.currentPack.accessories) this.currentPack.accessories = [];
     if(!this.currentPack.banners) this.currentPack.banners = [];
     if(!this.currentPack.characters) this.currentPack.characters = [];
-    if(!this.currentPack.chips) this.currentPack.chips = [];
     if(!this.currentPack.enemies) this.currentPack.enemies = [];
     if(!this.currentPack.items) this.currentPack.items = [];
     if(!this.currentPack.maps) this.currentPack.maps = [];
@@ -193,9 +193,9 @@ export class ModManagerService {
   private resetPack(): void {
     this.currentPack = {
       abilities: [],
+      accessories: [],
       banners: [],
       characters: [],
-      chips: [],
       enemies: [],
       items: [],
       maps: [],
@@ -209,7 +209,7 @@ export class ModManagerService {
     this.abilities.next(this.currentPack.abilities ?? []);
     this.banners.next(this.currentPack.banners ?? []);
     this.characters.next(this.currentPack.characters ?? []);
-    this.chips.next(this.currentPack.chips ?? []);
+    this.accessories.next(this.currentPack.accessories ?? []);
     this.enemies.next(this.currentPack.enemies ?? []);
     this.items.next(this.currentPack.items ?? []);
     this.maps.next(this.currentPack.maps ?? []);
@@ -268,7 +268,7 @@ export class ModManagerService {
       });
     });
 
-    this.currentPack.chips.forEach(c => {
+    this.currentPack.accessories.forEach(c => {
       c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
     });
 
@@ -294,6 +294,33 @@ export class ModManagerService {
 
   public getSkillDescription(name: string): string {
     return this.chooseableSkills.find(x => x.name === name)?.description ?? 'Unknown';
+  }
+
+  // Accessory-related
+  public addAccessory(acc: IAccessory): void {
+    if(!this.currentPack.accessories) this.currentPack.accessories = [];
+    this.currentPack.accessories.push(acc);
+    this.syncAndSave();
+  }
+
+  public editAccessory(acc: IAccessory, index: number): void {
+    const oldName = this.currentPack.accessories[index].name;
+    this.currentPack.accessories[index] = acc;
+
+    this.currentPack.banners.forEach(c => {
+      c.accessories = c.accessories.map(a => ({...a, name: a.name === oldName ? acc.name : a.name }));
+    });
+
+    this.currentPack.shops.forEach(c => {
+      c.accessories = c.accessories.map(a => ({...a, name: a.name === oldName ? acc.name : a.name }));
+    });
+
+    this.syncAndSave();
+  }
+
+  public deleteAccessory(acc: IAccessory): void {
+    this.currentPack.accessories = this.currentPack.accessories.filter(c => c !== acc);
+    this.syncAndSave();
   }
 
   // Banner-related
@@ -337,33 +364,6 @@ export class ModManagerService {
 
   public deleteCharacter(character: ICharacter): void {
     this.currentPack.characters = this.currentPack.characters.filter(c => c !== character);
-    this.syncAndSave();
-  }
-
-  // Chip-related
-  public addChip(chip: IChip): void {
-    if(!this.currentPack.chips) this.currentPack.chips = [];
-    this.currentPack.chips.push(chip);
-    this.syncAndSave();
-  }
-
-  public editChip(chip: IChip, index: number): void {
-    const oldName = this.currentPack.chips[index].name;
-    this.currentPack.chips[index] = chip;
-
-    this.currentPack.banners.forEach(c => {
-      c.chips = c.chips.map(a => ({...a, name: a.name === oldName ? chip.name : a.name }));
-    });
-
-    this.currentPack.shops.forEach(c => {
-      c.chips = c.chips.map(a => ({...a, name: a.name === oldName ? chip.name : a.name }));
-    });
-
-    this.syncAndSave();
-  }
-
-  public deleteChip(chip: IChip): void {
-    this.currentPack.chips = this.currentPack.chips.filter(c => c !== chip);
     this.syncAndSave();
   }
 

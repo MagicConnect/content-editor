@@ -102,7 +102,7 @@ export class WeaponComponent {
           templateOptions: {
             label: 'Primary Stat',
             placeholder: 'Choose primary stat...',
-            description: 'Primary stat is the only stat boosted by chips.',
+            description: 'Primary stat is the only stat boosted by accessories.',
             required: true,
             options: [
               { value: Stat.Attack,  label: 'Attack' },

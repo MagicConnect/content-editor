@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IBanner, IChip, IShop } from '../../../../../shared/interfaces';
+import { IBanner, IAccessory, IShop } from '../../../../../shared/interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';
-import { newChip } from '../../../../../shared/initializers';
+import { newAccessory } from '../../../../../shared/initializers';
 
 @Component({
   selector: 'app-chip-list',
@@ -14,41 +14,41 @@ import { newChip } from '../../../../../shared/initializers';
 export class ChipListComponent implements OnInit {
 
   public searchText = '';
-  public searchResults: IChip[] = [];
+  public searchResults: IAccessory[] = [];
 
-  private allChips: IChip[] = [];
+  private allAccessories: IAccessory[] = [];
 
-  public chips: IChip[] = [];
+  public accessories: IAccessory[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
 
-  public currentChip?: IChip;
+  public currentAccessory?: IAccessory;
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
 
-  public get canSaveCurrentChip(): boolean {
-    if(!this.currentChip) return false;
-    return this.currentChip.name?.length >= 2
-        && !this.isCurrentChipDuplicateName
-        && !this.isCurrentChipClone
-        && this.currentChip.primaryStat
-        && this.currentChip.stars >= 1;
+  public get canSaveCurrentAccessory(): boolean {
+    if(!this.currentAccessory) return false;
+    return this.currentAccessory.name?.length >= 2
+        && !this.isCurrentAccessoryDuplicateName
+        && !this.isCurrentAccessoryClone
+        && this.currentAccessory.primaryStat
+        && this.currentAccessory.stars >= 1;
   }
 
-  public get isCurrentChipClone(): boolean {
-    if(!this.currentChip) return false;
-    return this.currentChip.name.includes('(Clone)');
+  public get isCurrentAccessoryClone(): boolean {
+    if(!this.currentAccessory) return false;
+    return this.currentAccessory.name.includes('(Clone)');
   }
 
-  public get isCurrentChipDuplicateName(): boolean {
-    if(!this.currentChip) return false;
-    return !!this.chips.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentChip?.name);
+  public get isCurrentAccessoryDuplicateName(): boolean {
+    if(!this.currentAccessory) return false;
+    return !!this.accessories.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentAccessory?.name);
   }
 
-  public get isCurrentChipDuplicateArt(): boolean {
-    if(!this.currentChip) return false;
-    return !!this.chips.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentChip?.art);
+  public get isCurrentAccessoryDuplicateArt(): boolean {
+    if(!this.currentAccessory) return false;
+    return !!this.accessories.filter((x, i) => i !== this.editIndex).find(b => b.art === this.currentAccessory?.art);
   }
 
   constructor(
@@ -57,8 +57,8 @@ export class ChipListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.chips$.subscribe(chips => {
-      this.chips = this.allChips = [...chips];
+    this.mod.accessories$.subscribe(accessories => {
+      this.accessories = this.allAccessories = [...accessories];
       this.filter();
     });
 
@@ -68,16 +68,16 @@ export class ChipListComponent implements OnInit {
 
   filter() {
     if(!this.searchText) {
-      this.searchResults = this.allChips.slice(0);
+      this.searchResults = this.allAccessories.slice(0);
       return;
     }
 
-    this.searchResults = this.allChips.filter(a => {
+    this.searchResults = this.allAccessories.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
           || a.description.toLowerCase().includes(this.searchText.toLowerCase())
           || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
           || a.abilities.some(a => a.toLowerCase().includes(this.searchText.toLowerCase()))
-          || this.chipCurrentlyUsedIn(a).some(a => a.toLowerCase().includes(this.searchText.toLowerCase()));
+          || this.accessoryCurrentlyUsedIn(a).some(a => a.toLowerCase().includes(this.searchText.toLowerCase()));
     });
   }
 
@@ -85,59 +85,59 @@ export class ChipListComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { keyboard: false, backdrop: 'static', class: 'big-modal' });
   }
 
-  addNewChip(template: TemplateRef<any>) {
-    this.currentChip = newChip();
+  addNewAccessory(template: TemplateRef<any>) {
+    this.currentAccessory = newAccessory();
 
     this.openEditModal(template);
   }
 
-  cloneChip(template: TemplateRef<any>, chip: IChip) {
-    this.currentChip = cloneDeep(chip);
-    this.currentChip.name = `${this.currentChip.name} (Clone)`;
+  cloneAccessory(template: TemplateRef<any>, acc: IAccessory) {
+    this.currentAccessory = cloneDeep(acc);
+    this.currentAccessory.name = `${this.currentAccessory.name} (Clone)`;
     this.openEditModal(template);
   }
 
-  editChip(template: TemplateRef<any>, chip: IChip) {
-    this.currentChip = cloneDeep(chip);
+  editAccessory(template: TemplateRef<any>, acc: IAccessory) {
+    this.currentAccessory = cloneDeep(acc);
     this.openEditModal(template);
-    this.editIndex = this.allChips.findIndex(i => i.name === chip.name);
+    this.editIndex = this.allAccessories.findIndex(i => i.name === acc.name);
   }
 
-  confirmChipEdit() {
-    if(!this.currentChip || !this.currentChip.name) return;
+  confirmAccessoryEdit() {
+    if(!this.currentAccessory || !this.currentAccessory.name) return;
 
     if(this.editIndex === -1) {
-      this.mod.addChip(this.currentChip);
+      this.mod.addAccessory(this.currentAccessory);
     } else {
-      this.mod.editChip(this.currentChip, this.editIndex);
+      this.mod.editAccessory(this.currentAccessory, this.editIndex);
     }
 
     this.cancelEdit();
   }
 
-  deleteChip(chip: IChip) {
-    if(!confirm('Are you sure you want to delete this chip?')) return;
+  deleteAccessory(acc: IAccessory) {
+    if(!confirm('Are you sure you want to delete this accessory?')) return;
 
-    this.mod.deleteChip(chip);
+    this.mod.deleteAccessory(acc);
   }
 
   cancelEdit() {
     if(this.modalRef) this.modalRef.hide();
 
-    this.currentChip = undefined;
+    this.currentAccessory = undefined;
     this.editIndex = -1;
   }
 
-  chipCurrentlyUsedIn(chip: IChip): string[] {
-    const banners = this.banners.filter(banner => banner.chips.find(c => c.name === chip.name)).map(b => `Banner: ${b.name}`);
+  accessoryCurrentlyUsedIn(acc: IAccessory): string[] {
+    const banners = this.banners.filter(banner => banner.accessories.find(c => c.name === acc.name)).map(b => `Banner: ${b.name}`);
 
-    const shops = this.shops.filter(shop => shop.chips.find(c => c.name === chip.name)).map(s => `Shop: ${s.name}`);
+    const shops = this.shops.filter(shop => shop.accessories.find(c => c.name === acc.name)).map(s => `Shop: ${s.name}`);
 
     return [...banners, ...shops];
   }
 
-  isChipCurrentlyInUse(chip: IChip): boolean {
-    return this.chipCurrentlyUsedIn(chip).length > 0;
+  isAccessoryCurrentlyInUse(acc: IAccessory): boolean {
+    return this.accessoryCurrentlyUsedIn(acc).length > 0;
   }
 
 }
