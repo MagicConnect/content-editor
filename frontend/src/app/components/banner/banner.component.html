@@ -21,10 +21,10 @@
 
   <div *ngIf="model.accessories.length === 0">No accessories on banner.</div>
 
-  <app-weighted-entry-form *ngFor="let chip of model.accessories; let i = index"
+  <app-weighted-entry-form *ngFor="let accessory of model.accessories; let i = index"
                            (remove)="remove('accessories', i)"
-                           [model]="chip"
-                           type="chip"
+                           [model]="accessory"
+                           type="accessory"
                            [index]="i"></app-weighted-entry-form>
 </fieldset>
 

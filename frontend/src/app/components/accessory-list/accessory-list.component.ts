@@ -7,11 +7,11 @@ import { cloneDeep } from 'lodash';
 import { newAccessory } from '../../../../../shared/initializers';
 
 @Component({
-  selector: 'app-chip-list',
-  templateUrl: './chip-list.component.html',
-  styleUrls: ['./chip-list.component.scss']
+  selector: 'app-accessory-list',
+  templateUrl: './accessory-list.component.html',
+  styleUrls: ['./accessory-list.component.scss']
 })
-export class ChipListComponent implements OnInit {
+export class AccessoryListComponent implements OnInit {
 
   public searchText = '';
   public searchResults: IAccessory[] = [];

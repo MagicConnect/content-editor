@@ -27,12 +27,12 @@ import { EnemyComponent } from './components/enemy/enemy.component';
 import { WeaponComponent } from './components/weapon/weapon.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { ShopComponent } from './components/shop/shop.component';
-import { ChipComponent } from './components/chip/chip.component';
+import { AccessoryComponent } from './components/accessory/accessory.component';
 import { AbilityFormComponent } from './components/ability-form/ability-form.component';
 import { AbilityEffectFormComponent } from './components/ability-effect-form/ability-effect-form.component';
 import { AbilityConditionFormComponent } from './components/ability-condition-form/ability-condition-form.component';
 import { StatsFormComponent } from './components/stats-form/stats-form.component';
-import { ChipListComponent } from './components/chip-list/chip-list.component';
+import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { WeaponListComponent } from './components/weapon-list/weapon-list.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import { SkillFormComponent } from './components/skill-form/skill-form.component';
@@ -72,12 +72,12 @@ import { environment } from '../environments/environment';
     WeaponComponent,
     BannerComponent,
     ShopComponent,
-    ChipComponent,
+    AccessoryComponent,
     AbilityFormComponent,
     AbilityEffectFormComponent,
     AbilityConditionFormComponent,
     StatsFormComponent,
-    ChipListComponent,
+    AccessoryListComponent,
     WeaponListComponent,
     CharacterListComponent,
     SkillFormComponent,

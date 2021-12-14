@@ -13,7 +13,7 @@ import { ModManagerService } from '../../services/mod-manager.service';
 })
 export class ShopEntryFormComponent {
 
-  @Input() type: 'weapon' | 'character' | 'item' | 'chip' = 'item';
+  @Input() type: 'weapon' | 'character' | 'item' | 'accessory' = 'item';
 
   @Output() remove = new EventEmitter();
   @Input() index = 0;
@@ -62,7 +62,7 @@ export class ShopEntryFormComponent {
           key: 'name',
           className: 'col-4',
           type: 'better-select',
-          hideExpression: () => this.type !== 'chip',
+          hideExpression: () => this.type !== 'accessory',
           templateOptions: {
             label: 'Accessory',
             placeholder: 'Pick accessory...',

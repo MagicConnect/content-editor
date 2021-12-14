@@ -39,10 +39,10 @@
 
   <div *ngIf="model.accessories.length === 0">No accessories in shop.</div>
 
-  <app-shop-entry-form *ngFor="let chip of model.accessories; let i = index"
+  <app-shop-entry-form *ngFor="let accessory of model.accessories; let i = index"
                            (remove)="remove('accessories', i)"
-                           [model]="chip"
-                           type="chip"
+                           [model]="accessory"
+                           type="accessory"
                            [index]="i"></app-shop-entry-form>
 </fieldset>
 

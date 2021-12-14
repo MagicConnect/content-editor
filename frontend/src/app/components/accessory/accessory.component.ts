@@ -8,11 +8,11 @@ import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
 @Component({
-  selector: 'app-chip',
-  templateUrl: './chip.component.html',
-  styleUrls: ['./chip.component.scss']
+  selector: 'app-accessory',
+  templateUrl: './accessory.component.html',
+  styleUrls: ['./accessory.component.scss']
 })
-export class ChipComponent {
+export class AccessoryComponent {
 
   @Input() model: IAccessory = newAccessory();
 
@@ -94,7 +94,7 @@ export class ChipComponent {
           templateOptions: {
             label: 'Base Art',
             placeholder: 'Choose base art...',
-            description: 'This determines the splash art for the chip.',
+            description: 'This determines the splash art for the accessory.',
             required: true,
             options: this.mod.allArtData.accessories.map(art => ({ value: art, label: art })),
           },
