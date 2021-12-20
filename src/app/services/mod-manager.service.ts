@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { sortBy } from 'lodash';
+import { sortBy, isUndefined } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -173,7 +173,20 @@ export class ModManagerService {
   }
 
   public exportNet() {
-    this.http.put(this.api.contentUrl, this.currentPack).subscribe(() => {});
+    this.http.put(this.api.contentUrl, this.currentPack).subscribe((res) => {
+      console.log(res);
+    },
+    (err) => {
+      console.error(err);
+      if(!err.error) return;
+
+      const validationErrors = err.error.validationErrors.map((errs: any) => {
+        return errs.context.filter((e: any) => e.key).map((e: any) => e.key).join('.');
+      });
+
+      alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed to be a number:
+      \n${validationErrors.join('\n')}`);
+    });
   }
 
   // Pack-related
@@ -248,7 +261,92 @@ export class ModManagerService {
       });
     };
 
+    // ensure something is a number
+    const ensureNumber = (val: number | string) => +val;
+
     trimAll(this.currentPack);
+
+    // ensure ability->baseValue is a number
+    this.currentPack.abilities.forEach(a => {
+      a.effects.forEach(e => {
+        if(isUndefined(e.props.baseValue)) return;
+
+        e.props.baseValue = ensureNumber(e.props.baseValue);
+      });
+
+      Object.values(a.lbChanges).forEach(c => {
+        c.effects.forEach(e => {
+          if(isUndefined(e.props.baseValue)) return;
+
+          e.props.baseValue = ensureNumber(e.props.baseValue);
+        });
+      });
+    });
+
+    // delete empty strings
+    this.currentPack.weapons.forEach(w => {
+      if(w.secondaryStat) return;
+
+      delete w.secondaryStat;
+    });
+
+    // ensure item->sellValue is a number
+    this.currentPack.items.forEach(i => {
+      i.sellValue = ensureNumber(i.sellValue);
+    });
+
+    // ensure shop->{quantity,cost}
+    this.currentPack.shops.forEach(s => {
+      s.items.forEach(i => {
+        i.quantity = ensureNumber(i.quantity);
+        i.cost = ensureNumber(i.cost);
+      });
+    });
+
+    // ensure skill->{hpCost,mpCost,spcCost,statScaling[],actions[].statusEffectChanges[]}
+    this.currentPack.skills.forEach(s => {
+
+      if(!isUndefined(s.hpCost)) {
+        s.hpCost = ensureNumber(s.hpCost);
+      }
+
+      if(!isUndefined(s.mpCost)) {
+        s.mpCost = ensureNumber(s.mpCost);
+      }
+
+      if(!isUndefined(s.spcCost)) {
+        s.spcCost = ensureNumber(s.spcCost);
+      }
+
+      if(!isUndefined(s.cooldown)) {
+        s.cooldown = ensureNumber(s.cooldown);
+      }
+
+      s.actions.forEach(a => {
+        if(a.hits) {
+          a.hits = ensureNumber(a.hits);
+        }
+
+        if(a.statScaling) {
+          Object.keys(a.statScaling).forEach(key => {
+            if(isUndefined(a.statScaling[key as Stat])) return;
+            a.statScaling[key as Stat] = ensureNumber(a.statScaling[key as Stat]);
+          });
+        }
+
+        a.statusEffectChanges.forEach(e => {
+          if(!isUndefined(e.value)) {
+            e.value = ensureNumber(e.value);
+          }
+
+          if(!isUndefined(e.duration)) {
+            e.duration = ensureNumber(e.duration);
+          }
+        });
+
+      });
+
+    });
   }
 
   // Ability-related
