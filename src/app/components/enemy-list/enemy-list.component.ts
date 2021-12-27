@@ -91,6 +91,7 @@ export class EnemyListComponent implements OnInit {
   cloneEnemy(template: TemplateRef<any>, enemy: IEnemy) {
     this.currentEnemy = cloneDeep(enemy);
     this.currentEnemy.name = `${this.currentEnemy.name} (Clone)`;
+    this.mod.rerollID(this.currentEnemy);
     this.openEditModal(template);
   }
 

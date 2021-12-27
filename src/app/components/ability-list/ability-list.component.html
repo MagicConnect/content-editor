@@ -104,4 +104,8 @@
   <div class="modal-body">
     <app-ability-form [model]="currentAbility" *ngIf="currentAbility"></app-ability-form>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentAbility?.id }}</div>
+  </div>
 </ng-template>

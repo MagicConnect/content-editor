@@ -1,6 +1,7 @@
 import { ItemType, IWeapon, Stat, Weapon } from 'content-interfaces';
 
 export const newWeapon = (): IWeapon => ({
+  id: '',
   name: '',
   art: '',
   itemType: ItemType.Weapon,

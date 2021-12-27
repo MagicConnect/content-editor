@@ -98,6 +98,7 @@ export class BannerListComponent implements OnInit {
   cloneBanner(template: TemplateRef<any>, banner: IBanner) {
     this.currentBanner = cloneDeep(banner);
     this.currentBanner.name = `${this.currentBanner.name} (Clone)`;
+    this.mod.rerollID(this.currentBanner);
     this.openEditModal(template);
   }
 

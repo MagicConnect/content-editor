@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
+import { newSkill } from '../../initializers';
 
 @Component({
   selector: 'app-skill-form',
@@ -12,15 +13,7 @@ export class SkillFormComponent {
 
   form = new FormGroup({});
 
-  @Input() model: ISkill = {
-    name: '',
-    description: '',
-    actions: [],
-    cooldown: 0,
-    hpCost: 0,
-    mpCost: 0,
-    spcCost: 0
-  };
+  @Input() model: ISkill = newSkill();
 
   options: FormlyFormOptions = {};
 

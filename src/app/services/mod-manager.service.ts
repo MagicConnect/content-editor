@@ -4,9 +4,12 @@ import { sortBy, isUndefined } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { v4 as uuid } from 'uuid';
+
 import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
+import { IIdentifiable } from 'content-interfaces/lib/IIdentifiable';
 
 @Injectable({
   providedIn: 'root'
@@ -347,11 +350,31 @@ export class ModManagerService {
       });
 
     });
+
+    this.currentPack.characters.forEach(c => {
+      c.abilities = c.abilities.map(a => {
+        return { ...a, abilities: a.abilities.map(b => this.currentPack.abilities.find(z => z.name === b)?.id ?? b) };
+      });
+    });
+
+  }
+
+  public rerollID(ident: IIdentifiable): void {
+    ident.id = uuid();
+  }
+
+  private ensureID(ident: IIdentifiable): void {
+    if(ident.id) return;
+
+    this.rerollID(ident);
   }
 
   // Ability-related
   public addAbility(ability: IAbility): void {
     if(!this.currentPack.abilities) this.currentPack.abilities = [];
+
+    if(!ability.id) ability.id = uuid();
+
     this.currentPack.abilities.push(ability);
     this.syncAndSave();
   }
@@ -397,6 +420,9 @@ export class ModManagerService {
   // Accessory-related
   public addAccessory(acc: IAccessory): void {
     if(!this.currentPack.accessories) this.currentPack.accessories = [];
+
+    this.ensureID(acc);
+
     this.currentPack.accessories.push(acc);
     this.syncAndSave();
   }
@@ -424,6 +450,9 @@ export class ModManagerService {
   // Banner-related
   public addBanner(banner: IBanner): void {
     if(!this.currentPack.banners) this.currentPack.banners = [];
+
+    this.ensureID(banner);
+
     this.currentPack.banners.push(banner);
     this.syncAndSave();
   }
@@ -441,6 +470,9 @@ export class ModManagerService {
   // Character-related
   public addCharacter(character: ICharacter): void {
     if(!this.currentPack.characters) this.currentPack.characters = [];
+
+    this.ensureID(character);
+
     this.currentPack.characters.push(character);
     this.syncAndSave();
   }
@@ -468,6 +500,9 @@ export class ModManagerService {
   // Enemy-related
   public addEnemy(enemy: IEnemy): void {
     if(!this.currentPack.enemies) this.currentPack.enemies = [];
+
+    this.ensureID(enemy);
+
     this.currentPack.enemies.push(enemy);
     this.syncAndSave();
   }
@@ -499,6 +534,9 @@ export class ModManagerService {
   // Item-related
   public addItem(item: IItem): void {
     if(!this.currentPack.items) this.currentPack.items = [];
+
+    this.ensureID(item);
+
     this.currentPack.items.push(item);
     this.syncAndSave();
   }
@@ -526,6 +564,9 @@ export class ModManagerService {
   // Map-related
   public addMap(map: IMap): void {
     if(!this.currentPack.maps) this.currentPack.maps = [];
+
+    this.ensureID(map);
+
     this.currentPack.maps.push(map);
     this.syncAndSave();
   }
@@ -543,6 +584,9 @@ export class ModManagerService {
   // Shop-related
   public addShop(shop: IShop): void {
     if(!this.currentPack.shops) this.currentPack.shops = [];
+
+    this.ensureID(shop);
+
     this.currentPack.shops.push(shop);
     this.syncAndSave();
   }
@@ -560,6 +604,9 @@ export class ModManagerService {
   // Skill-related
   public addSkill(skill: ISkill): void {
     if(!this.currentPack.skills) this.currentPack.skills = [];
+
+    this.ensureID(skill);
+
     this.currentPack.skills.push(skill);
     this.syncAndSave();
   }
@@ -587,6 +634,9 @@ export class ModManagerService {
   // Weapon-related
   public addWeapon(weapon: IWeapon): void {
     if(!this.currentPack.weapons) this.currentPack.weapons = [];
+
+    this.ensureID(weapon);
+
     this.currentPack.weapons.push(weapon);
     this.syncAndSave();
   }

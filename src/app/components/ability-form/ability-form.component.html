@@ -1,52 +1,9 @@
 
 <div class="ability-container">
-  <div class="row">
-    <div class="col-12">
 
-      <form [formGroup]="form">
-        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
-      </form>
-    </div>
+  <app-ability-content-form [model]="model"></app-ability-content-form>
 
-  </div>
-
-  <fieldset class="border border-dark p-3 mt-3">
-    <legend>
-      Effects
-
-      <button class="btn btn-info btn-sm float-right" (click)="addEffect()" [disabled]="model.effects.length >= 5">
-        Add
-      </button>
-    </legend>
-
-    <div *ngIf="model.effects.length === 0">No effects created.</div>
-
-    <app-ability-effect-form *ngFor="let effect of model.effects; let i = index"
-                            (remove)="removeEffect(i)"
-                            [model]="effect"
-                            [index]="i"></app-ability-effect-form>
-
-  </fieldset>
-
-  <fieldset class="border border-dark p-3 mt-3">
-    <legend>
-      Conditions
-
-      <button class="btn btn-info btn-sm float-right" (click)="addCondition()" [disabled]="model.conditions.length >= 2">
-        Add
-      </button>
-    </legend>
-
-    <div *ngIf="model.conditions.length === 0">No conditions created.</div>
-
-    <app-ability-condition-form *ngFor="let condition of model.conditions; let i = index"
-                                (remove)="removeCondition(i)"
-                                [model]="condition"
-                                [index]="i"></app-ability-condition-form>
-
-  </fieldset>
-
-  <fieldset class="border border-dark p-3 mt-3 mb-3" *ngIf="showLBChanges">
+  <fieldset class="border border-dark p-3 mt-3 mb-3">
     <legend>Limit Break Changes</legend>
 
     <div class="row">
@@ -71,7 +28,7 @@
           <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Limit Break Level</label>
         </div>
 
-        <app-ability-form [model]="model.lbChanges[activeLB]" [showLBChanges]="false"  *ngIf="!model.lbChanges[activeLB].shouldHide"></app-ability-form>
+        <app-ability-content-form [model]="model.lbChanges[activeLB]" *ngIf="!model.lbChanges[activeLB].shouldHide"></app-ability-content-form>
       </div>
     </div>
 

@@ -2,10 +2,11 @@
 import { Archetype, Stat, Weapon, ICharacter } from 'content-interfaces';
 
 export const newCharacter = (): ICharacter => ({
+  id: '',
   name: '',
   art: '',
   spritesheet: '',
-  
+
   stars: 3,
   primaryStat: Stat.Attack,
   archetype: Archetype.Attacker,

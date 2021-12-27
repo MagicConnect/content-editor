@@ -112,4 +112,8 @@
   <div class="modal-body">
     <app-character [model]="currentCharacter" *ngIf="currentCharacter"></app-character>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentCharacter?.id }}</div>
+  </div>
 </ng-template>

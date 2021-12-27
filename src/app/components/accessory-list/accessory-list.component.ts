@@ -94,6 +94,7 @@ export class AccessoryListComponent implements OnInit {
   cloneAccessory(template: TemplateRef<any>, acc: IAccessory) {
     this.currentAccessory = cloneDeep(acc);
     this.currentAccessory.name = `${this.currentAccessory.name} (Clone)`;
+    this.mod.rerollID(this.currentAccessory);
     this.openEditModal(template);
   }
 

@@ -104,4 +104,8 @@
   <div class="modal-body">
     <app-weapon [model]="currentWeapon" *ngIf="currentWeapon"></app-weapon>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentWeapon?.id }}</div>
+  </div>
 </ng-template>

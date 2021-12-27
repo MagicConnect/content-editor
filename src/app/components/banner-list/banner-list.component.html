@@ -104,4 +104,8 @@
   <div class="modal-body">
     <app-banner [model]="currentBanner" *ngIf="currentBanner"></app-banner>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentBanner?.id }}</div>
+  </div>
 </ng-template>

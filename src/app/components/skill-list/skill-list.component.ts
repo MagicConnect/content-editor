@@ -87,6 +87,7 @@ export class SkillListComponent implements OnInit {
   cloneSkill(template: TemplateRef<any>, skill: ISkill) {
     this.currentSkill = cloneDeep(skill);
     this.currentSkill.name = `${this.currentSkill.name} (Clone)`;
+    this.mod.rerollID(this.currentSkill);
     this.openEditModal(template);
   }
 

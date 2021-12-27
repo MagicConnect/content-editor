@@ -96,4 +96,8 @@
   <div class="modal-body">
     <app-item [model]="currentItem" *ngIf="currentItem"></app-item>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentItem?.id }}</div>
+  </div>
 </ng-template>

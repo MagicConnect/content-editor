@@ -1,6 +1,7 @@
 import { IMap, IMapNode } from 'content-interfaces';
 
 export const newMap = (): IMap => ({
+  id: '',
   name: '',
   art: '',
   nodes: [],
@@ -16,13 +17,13 @@ export const newMapBattle = (): IMapNode => ({
   x: 0,
   y: 0,
   description: '',
-  combat: { 
+  combat: {
     grid: [
       [],
       [],
       [],
       []
-    ] 
+    ]
   },
   staminaCost: 1,
   unlocksMap: '',

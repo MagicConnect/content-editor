@@ -2,6 +2,7 @@
 import { ISkill } from 'content-interfaces';
 
 export const newSkill = (): ISkill => ({
+  id: '',
   name: '',
   description: '',
   actions: [],

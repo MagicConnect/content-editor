@@ -99,6 +99,7 @@ export class ShopListComponent implements OnInit {
   editShop(template: TemplateRef<any>, shop: IShop) {
     this.currentShop = cloneDeep(shop);
     this.openEditModal(template);
+    this.mod.rerollID(this.currentShop);
     this.editIndex = this.allShops.findIndex(i => i.name === shop.name);
   }
 

@@ -95,6 +95,7 @@ export class WeaponListComponent implements OnInit {
   cloneWeapon(template: TemplateRef<any>, weapon: IWeapon) {
     this.currentWeapon = cloneDeep(weapon);
     this.currentWeapon.name = `${this.currentWeapon.name} (Clone)`;
+    this.mod.rerollID(this.currentWeapon);
     this.openEditModal(template);
   }
 

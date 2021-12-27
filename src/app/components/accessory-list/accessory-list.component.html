@@ -96,4 +96,8 @@
   <div class="modal-body">
     <app-accessory [model]="currentAccessory" *ngIf="currentAccessory"></app-accessory>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentAccessory?.id }}</div>
+  </div>
 </ng-template>

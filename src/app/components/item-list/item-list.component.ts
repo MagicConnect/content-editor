@@ -97,6 +97,7 @@ export class ItemListComponent implements OnInit {
   editItem(template: TemplateRef<any>, item: IItem) {
     this.currentItem = cloneDeep(item);
     this.openEditModal(template);
+    this.mod.rerollID(this.currentItem);
     this.editIndex = this.allItems.findIndex(i => i.name === item.name);
   }
 

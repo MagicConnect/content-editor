@@ -63,6 +63,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
+import { AbilityContentFormComponent } from './components/ability-content-form/ability-content-form.component';
+import { InfoAbilityComponent } from './components/info-ability/info-ability.component';
+import { InfoSkillComponent } from './components/info-skill/info-skill.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +101,10 @@ import { environment } from '../environments/environment';
     SkillListComponent,
     BattleDropFormComponent,
     BetterSelectComponent,
-    BackgroundImageComponent
+    BackgroundImageComponent,
+    AbilityContentFormComponent,
+    InfoAbilityComponent,
+    InfoSkillComponent
   ],
   imports: [
     BrowserModule,

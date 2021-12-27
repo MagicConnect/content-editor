@@ -2,6 +2,7 @@
 import { Archetype, Stat, IEnemy } from 'content-interfaces';
 
 export const newEnemy = (): IEnemy => ({
+  id: '',
   name: '',
   art: '',
   spritesheet: '',

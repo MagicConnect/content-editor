@@ -103,4 +103,8 @@
   <div class="modal-body">
     <app-shop [model]="currentShop" *ngIf="currentShop"></app-shop>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentShop?.id }}</div>
+  </div>
 </ng-template>

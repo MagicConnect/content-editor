@@ -135,13 +135,11 @@
         <li>
           <div class="row mb-3">
             <div class="col-8">
-              <strong>{{ childAbility }}</strong>
-              <br>
-              <em><small>{{ mod.getAbilityDescription(childAbility) }}</small></em>
+              <app-info-ability [id]="childAbility"></app-info-ability>
             </div>
 
             <div class="col-4 text-right">
-              <button class="btn btn-danger" (click)="removeAbility(i, j)">Remove {{ childAbility }}</button>
+              <button class="btn btn-danger" (click)="removeAbility(i, j)">Remove</button>
             </div>
           </div>
         </li>
@@ -166,13 +164,11 @@
       <li>
         <div class="row mb-3">
           <div class="col-8">
-            <strong>{{ skill }}</strong>
-            <br>
-            <em><small>{{ mod.getSkillDescription(skill) }}</small></em>
+            <app-info-skill [id]="skill"></app-info-skill>
           </div>
 
           <div class="col-4 text-right">
-            <button class="btn btn-danger" (click)="removeSkill(i)">Remove {{ skill }}</button>
+            <button class="btn btn-danger" (click)="removeSkill(i)">Remove</button>
           </div>
         </div>
       </li>
@@ -193,9 +189,7 @@
 
   <div class="row" *ngIf="model.specialSkill">
     <div class="col-12">
-      <strong>{{ model.specialSkill }}</strong>
-      <br>
-      <em><small>{{ mod.getSkillDescription(model.specialSkill) }}</small></em>
+      <app-info-skill [id]="model.specialSkill"></app-info-skill>
     </div>
   </div>
 </fieldset>

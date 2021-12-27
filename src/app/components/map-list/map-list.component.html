@@ -71,4 +71,8 @@
   <div class="modal-body">
     <app-map [model]="currentMap" *ngIf="currentMap"></app-map>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentMap?.id }}</div>
+  </div>
 </ng-template>

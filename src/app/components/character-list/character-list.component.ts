@@ -105,6 +105,7 @@ export class CharacterListComponent implements OnInit {
   cloneCharacter(template: TemplateRef<any>, character: ICharacter) {
     this.currentCharacter = cloneDeep(character);
     this.currentCharacter.name = `${this.currentCharacter.name} (Clone)`;
+    this.mod.rerollID(this.currentCharacter);
     this.openEditModal(template);
   }
 

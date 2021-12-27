@@ -1,6 +1,7 @@
 import { IAccessory, ItemType, Stat } from 'content-interfaces';
 
 export const newAccessory = (): IAccessory => ({
+  id: '',
   name: '',
   art: '',
   itemType: ItemType.Accessory,

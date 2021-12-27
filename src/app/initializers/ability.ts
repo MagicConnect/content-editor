@@ -1,23 +1,29 @@
 
-import { AbilityTrigger, IAbility } from 'content-interfaces';
+import { AbilityTrigger, IAbility, IAbilityUtility } from 'content-interfaces';
 
 export const newAbility = (): IAbility => ({
-  name: '',
-  description: '',
-  conditions: [],
-  effects: [],
-  trigger: AbilityTrigger.Always,
+  id: '',
+
+  ...newAbilityUtility(),
 
   lbChanges: {
-    0:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    1:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    2:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    3:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    4:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    5:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    6:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    7:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    8:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
-    9:  { shouldHide: true, name: '', description: '', conditions: [], effects: [], trigger: AbilityTrigger.Always, lbChanges: {} },
+    0:  { shouldHide: true, ...newAbilityUtility() },
+    1:  { shouldHide: true, ...newAbilityUtility() },
+    2:  { shouldHide: true, ...newAbilityUtility() },
+    3:  { shouldHide: true, ...newAbilityUtility() },
+    4:  { shouldHide: true, ...newAbilityUtility() },
+    5:  { shouldHide: true, ...newAbilityUtility() },
+    6:  { shouldHide: true, ...newAbilityUtility() },
+    7:  { shouldHide: true, ...newAbilityUtility() },
+    8:  { shouldHide: true, ...newAbilityUtility() },
+    9:  { shouldHide: true, ...newAbilityUtility() },
   }
+});
+
+export const newAbilityUtility = (): IAbilityUtility => ({
+  name: '',
+  description: '',
+  trigger: AbilityTrigger.Always,
+  conditions: [],
+  effects: [],
 });

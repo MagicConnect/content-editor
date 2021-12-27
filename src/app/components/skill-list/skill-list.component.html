@@ -87,4 +87,8 @@
   <div class="modal-body">
     <app-skill-form [model]="currentSkill" *ngIf="currentSkill"></app-skill-form>
   </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentSkill?.id }}</div>
+  </div>
 </ng-template>

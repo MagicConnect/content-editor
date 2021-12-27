@@ -90,6 +90,7 @@ export class MapListComponent implements OnInit {
   cloneMap(template: TemplateRef<any>, map: IMap) {
     this.currentMap = cloneDeep(map);
     this.currentMap.name = `${this.currentMap.name} (Clone)`;
+    this.mod.rerollID(this.currentMap);
     this.openEditModal(template);
   }
 

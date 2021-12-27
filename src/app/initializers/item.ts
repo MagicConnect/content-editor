@@ -1,6 +1,7 @@
 import { IItem, ItemType } from 'content-interfaces';
 
 export const newItem = (): IItem => ({
+  id: '',
   name: '',
   art: '',
   sellValue: 100,
