@@ -159,21 +159,33 @@
 
   <div *ngIf="model.skills.length === 0">No skills chosen.</div>
 
-  <ul class="picked-list">
-    <ng-container *ngFor="let skill of model.skills; let i = index">
-      <li>
-        <div class="row mb-3">
-          <div class="col-8">
-            <app-info-skill [id]="skill"></app-info-skill>
-          </div>
+  <table class="table table-striped">
+    <thead>
+      <th>Skill</th>
+      <th>Limit Break Earned</th>
+    </thead>
 
-          <div class="col-4 text-right">
-            <button class="btn btn-danger" (click)="removeSkill(i)">Remove</button>
-          </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
+    <tbody>
+      <tr *ngFor="let skill of model.skills; let i = index">
+        <td>
+          <app-info-skill [id]="skill.name"></app-info-skill>
+        </td>
+
+        <td>
+          <select class="form-control" [(ngModel)]="skill.lb">
+            <option value="0">Known By Default</option>
+            <option *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="i">
+              LB {{ i }}
+            </option>
+          </select>
+        </td>
+
+        <td class="text-right">
+          <button class="btn btn-danger" (click)="removeSkill(i)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </fieldset>
 
 <fieldset class="border border-dark p-3 mt-3 mb-3">

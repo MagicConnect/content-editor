@@ -127,7 +127,7 @@ export class SkillListComponent implements OnInit {
   }
 
   skillCurrentlyUsedIn(skill: ISkill): string[] {
-    const characters = this.characters.filter(c => c.skills.includes(skill.name)).map(b => `Character: ${b.name}`);
+    const characters = this.characters.filter(c => c.skills.map(x => x.name).includes(skill.name)).map(b => `Character: ${b.name}`);
 
     const enemies = this.enemies.filter(c => c.skills.includes(skill.name)).map(b => `Enemy: ${b.name}`);
 

@@ -6,10 +6,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
-import { IIdentifiable } from 'content-interfaces/lib/IIdentifiable';
 
 @Injectable({
   providedIn: 'root'
@@ -188,7 +187,7 @@ export class ModManagerService {
       if(!err.error) return;
 
       const validationErrors = err.error.validationErrors.map((errs: any) => {
-        return errs.context.filter((e: any) => e.key).map((e: any) => e.key).join('.');
+        return errs.prettyPathString;
       });
 
       alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
@@ -295,6 +294,13 @@ export class ModManagerService {
       if(w.secondaryStat) return;
 
       delete w.secondaryStat;
+    });
+
+    // ensure character->skill->lb is a number
+    this.currentPack.characters.forEach(c => {
+      c.skills.forEach(s => {
+        s.lb = ensureNumber(s.lb);
+      });
     });
 
     // ensure item->sellValue is a number

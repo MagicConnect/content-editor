@@ -87,7 +87,7 @@ export class CharacterListComponent implements OnInit {
           || a.specialSkill.toLowerCase().includes(this.searchText.toLowerCase())
           || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
           || a.abilities.some(a => a.abilities.some(b => b.toLowerCase().includes(this.searchText.toLowerCase())))
-          || a.skills.some(s => s.toLowerCase().includes(this.searchText.toLowerCase()))
+          || a.skills.map(x => x.name).some(s => s.toLowerCase().includes(this.searchText.toLowerCase()))
           || this.characterCurrentlyUsedIn(a).some(s => s.toLowerCase().includes(this.searchText.toLowerCase()));
     });
   }

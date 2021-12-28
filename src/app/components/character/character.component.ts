@@ -172,11 +172,11 @@ export class CharacterComponent {
   addSkill() {
     const modalRef = this.modal.show(PickerModalComponent, {
       class: 'modal-lg',
-      initialState: { type: 'Skill', entries: this.mod.chooseableSkills, disabledEntries: this.model.skills }
+      initialState: { type: 'Skill', entries: this.mod.chooseableSkills, disabledEntries: this.model.skills.map(x => x.name) }
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.skills.push(choice.id);
+      this.model.skills.push({ name: choice.id, lb: 0 });
     });
   }
 
@@ -187,7 +187,7 @@ export class CharacterComponent {
   chooseSpecialSkill() {
     const modalRef = this.modal.show(PickerModalComponent, {
       class: 'modal-lg',
-      initialState: { type: 'Skill', entries: this.mod.chooseableSkills, disabledEntries: this.model.skills }
+      initialState: { type: 'Skill', entries: this.mod.chooseableSkills, disabledEntries: this.model.skills.map(x => x.name) }
     });
 
     modalRef.content?.choose.subscribe(choice => {
