@@ -1,19 +1,18 @@
 
 <div class="ability-container">
 
-  <app-ability-content-form [model]="model"></app-ability-content-form>
-
   <fieldset class="border border-dark p-3 mt-3 mb-3">
-    <legend>Limit Break Changes</legend>
+    <legend>Base Ability & Limit Break Changes</legend>
 
     <div class="row">
       <div class="col-12">
         <ul class="nav nav-pills nav-fill">
-          <li class="nav-item mx-1" *ngFor="let x of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
+          <li class="nav-item mx-1" *ngFor="let x of [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
             <a class="nav-link" [class.active]="x === activeLB">
-              {{ x + 1 }}
+              <span *ngIf="x === -1">Base</span>
+              <span *ngIf="x >= 0">LB {{ x + 1 }}</span>
 
-              <span class="badge badge-success" *ngIf="!model.lbChanges[x].shouldHide">C</span>
+              <span class="badge badge-success" *ngIf="x >= 0 && !model.lbChanges[x].shouldHide">C</span>
             </a>
           </li>
         </ul>
@@ -23,12 +22,20 @@
     <div class="row mt-3">
       <div class="col">
 
-        <div class="form-check">
-          <input type="checkbox" [id]="'should-use-' + activeLB" [(ngModel)]="model.lbChanges[activeLB].shouldHide" />
-          <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Limit Break Level</label>
-        </div>
+        <ng-container *ngIf="activeLB === -1">
+          <app-ability-content-form [model]="model"></app-ability-content-form>
+        </ng-container>
 
-        <app-ability-content-form [model]="model.lbChanges[activeLB]" *ngIf="!model.lbChanges[activeLB].shouldHide"></app-ability-content-form>
+        <ng-container *ngIf="activeLB >= 0">
+          <div class="form-check">
+            <input type="checkbox" [id]="'should-use-' + activeLB" [(ngModel)]="model.lbChanges[activeLB].shouldHide" />
+            <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Limit Break Level</label>
+          </div>
+
+          <app-ability-content-form [model]="model.lbChanges[activeLB]" *ngIf="!model.lbChanges[activeLB].shouldHide"></app-ability-content-form>
+        </ng-container>
+
+
       </div>
     </div>
 

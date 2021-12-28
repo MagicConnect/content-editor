@@ -11,7 +11,7 @@ export class AbilityFormComponent {
 
   @Input() model: IAbility = newAbility();
 
-  public activeLB = 0;
+  public activeLB = -1;
 
 
 }
