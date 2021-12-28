@@ -29,7 +29,6 @@ export class BannerListComponent implements OnInit {
 
     return this.currentBanner.name?.length >= 2
         && !this.isCurrentBannerDuplicateName
-        && this.currentBanner.type
         && (
            this.currentBanner.characters.length > 0
         || this.currentBanner.items.length > 0

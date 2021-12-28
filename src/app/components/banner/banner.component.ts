@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { BannerType, IBanner } from 'content-interfaces';
+import { IBanner } from 'content-interfaces';
 import { newBanner } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 
@@ -43,27 +43,6 @@ export class BannerComponent {
             placeholder: 'Enter description here...',
             description: 'It should be less than 500 characters.',
             maxLength: 500,
-          },
-        },
-        {
-          key: 'type',
-          className: 'col-3',
-          type: 'better-select',
-          templateOptions: {
-            label: 'Banner Type',
-            placeholder: 'Choose banner type here...',
-            description: 'Banner type determines what can come out of the banner.',
-            required: true,
-            options: ['characters', 'accessories', 'items', 'weapons'].sort().map(x => ({ label: x, value: x })),
-            change: (field, $event) => {
-              const type = $event.target.value.split(' ')[1];
-
-              (['characters', 'accessories', 'items', 'weapons'] as BannerType[]).forEach(bannerType => {
-                if(type === bannerType) return;
-
-                this.model[bannerType] = [];
-              });
-            },
           },
         },
         {
@@ -109,11 +88,11 @@ export class BannerComponent {
 
   constructor(private mod: ModManagerService) { }
 
-  add(type: BannerType) {
+  add(type: 'characters' | 'accessories' | 'items' | 'weapons') {
     this.model[type].push({ name: '', isBannerSpecial: false });
   }
 
-  remove(type: BannerType, index: number) {
+  remove(type: 'characters' | 'accessories' | 'items' | 'weapons', index: number) {
     this.model[type].splice(index, 1);
   }
 
