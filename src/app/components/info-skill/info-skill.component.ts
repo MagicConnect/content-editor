@@ -16,7 +16,7 @@ export class InfoSkillComponent implements OnInit {
   constructor(private mod: ModManagerService) { }
 
   ngOnInit(): void {
-    this.name = this.id; // this.mod.chooseableSkills.find(x => x.id === this.id)?.name ?? 'UNKNOWN';
+    this.name = this.mod.chooseableSkills.find(x => x.id === this.id)?.name ?? 'UNKNOWN';
     this.desc = this.mod.getSkillDescription(this.id);
   }
 

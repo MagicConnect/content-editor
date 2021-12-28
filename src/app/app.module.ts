@@ -66,6 +66,8 @@ import { environment } from '../environments/environment';
 import { AbilityContentFormComponent } from './components/ability-content-form/ability-content-form.component';
 import { InfoAbilityComponent } from './components/info-ability/info-ability.component';
 import { InfoSkillComponent } from './components/info-skill/info-skill.component';
+import { InfoItemComponent } from './components/info-item/info-item.component';
+import { InfoEnemyComponent } from './components/info-enemy/info-enemy.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,9 @@ import { InfoSkillComponent } from './components/info-skill/info-skill.component
     BackgroundImageComponent,
     AbilityContentFormComponent,
     InfoAbilityComponent,
-    InfoSkillComponent
+    InfoSkillComponent,
+    InfoItemComponent,
+    InfoEnemyComponent
   ],
   imports: [
     BrowserModule,

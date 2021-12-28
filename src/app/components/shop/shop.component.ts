@@ -66,7 +66,7 @@ export class ShopComponent {
             placeholder: 'Enter currency item here...',
             description: 'If you don\'t see any currency items, add one.',
             required: true,
-            options: Object.values(this.mod.shopTokens).filter(Boolean).sort().map(x => ({ label: x.name, value: x.name }))
+            options: Object.values(this.mod.shopTokens).filter(Boolean).sort().map(x => ({ label: x.name, value: x.id }))
           },
         },
         {

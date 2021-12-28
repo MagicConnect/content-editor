@@ -139,7 +139,7 @@ export class BattleComponent implements OnInit {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.abilities.push(choice.name);
+      this.model.abilities.push(choice.id);
     });
   }
 

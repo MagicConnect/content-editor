@@ -41,7 +41,7 @@ export class ShopEntryFormComponent {
             label: 'Character',
             placeholder: 'Pick character...',
             description: 'If you don\'t see any characters, add one.',
-            options: sortBy(Object.values(this.mod.filteredCharacters).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
+            options: sortBy(Object.values(this.mod.filteredCharacters).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.id, stars: x.stars })),
             groupProp: 'stars'
           },
         },
@@ -54,7 +54,7 @@ export class ShopEntryFormComponent {
             label: 'Weapon',
             placeholder: 'Pick weapon...',
             description: 'If you don\'t see any weapons, add one.',
-            options: sortBy(Object.values(this.mod.filteredWeapons).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
+            options: sortBy(Object.values(this.mod.filteredWeapons).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.id, stars: x.stars })),
             groupProp: 'stars'
           },
         },
@@ -67,7 +67,7 @@ export class ShopEntryFormComponent {
             label: 'Accessory',
             placeholder: 'Pick accessory...',
             description: 'If you don\'t see any accessories, add one.',
-            options: sortBy(Object.values(this.mod.filteredAccessories).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.name, stars: x.stars })),
+            options: sortBy(Object.values(this.mod.filteredAccessories).filter(Boolean), ['name', 'stars']).map((x: any) => ({ label: x.name, value: x.id, stars: x.stars })),
             groupProp: 'stars'
           },
         },
@@ -80,7 +80,7 @@ export class ShopEntryFormComponent {
             label: 'Item',
             placeholder: 'Pick item...',
             description: 'If you don\'t see any items, add one.',
-            options: sortBy(Object.values(this.mod.filteredItems).filter(Boolean), ['name', 'itemType']).map((x: any) => ({ label: x.name, value: x.name, itemType: x.itemType }))
+            options: sortBy(Object.values(this.mod.filteredItems).filter(Boolean), ['name', 'itemType']).map((x: any) => ({ label: x.name, value: x.id, itemType: x.itemType }))
           },
         },
         {

@@ -15,7 +15,7 @@
     <div class="picker-item"
          *ngFor="let entry of visibleEntries"
          (click)="chooseEntry(entry)"
-         [class.disabled]="disabledEntries.includes(entry.name)"
+         [class.disabled]="disabledEntries.includes(entry.id)"
          [class.selected]="choice === entry">
       <strong>{{ entry.name }}</strong>
       <br>

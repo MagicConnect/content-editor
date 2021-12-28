@@ -29,7 +29,7 @@
   <ngx-datatable-column name="Currency Item" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
-        {{ row.currencyItem }}
+        <app-info-item [id]="row.currencyItem"></app-info-item>
       </div>
     </ng-template>
   </ngx-datatable-column>

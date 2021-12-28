@@ -10,28 +10,33 @@ import { Subject } from 'rxjs';
 export class PickerModalComponent implements OnInit {
 
   @Input() type = 'Thing';
-  @Input() entries: Array<{ name: string, description: string }> = [];
+  @Input() entries: Array<{ id: string, name: string, description: string }> = [];
   @Input() disabledEntries: string[] = [];
-  @Output() choose: Subject<{ name: string, description: string }> = new Subject();
+  @Output() choose: Subject<{ id: string, name: string, description: string }> = new Subject();
 
-  public visibleEntries: Array<{ name: string, description: string }> = [];
+  public visibleEntries: Array<{ id: string, name: string, description: string }> = [];
 
   public filter = '';
-  public choice!: { name: string, description: string };
+  public choice!: { id: string, name: string, description: string };
 
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
     this.filterEntries();
+
+    this.entries.forEach(entry => {
+      if(!entry.name) throw new Error('Entry without name: ' + JSON.stringify(entry));
+      if(!entry.id) throw new Error('Entry without id: ' + JSON.stringify(entry));
+    });
   }
 
-  chooseEntry(entry: { name: string, description: string }) {
-    if(this.disabledEntries.includes(entry.name)) return;
+  chooseEntry(entry: { id: string, name: string, description: string }) {
+    if(this.disabledEntries.includes(entry.id)) return;
 
     this.choice = entry;
   }
 
-  confirmChoice(entry: { name: string, description: string }) {
+  confirmChoice(entry: { id: string, name: string, description: string }) {
     this.choose.next(entry);
     this.bsModalRef.hide();
   }

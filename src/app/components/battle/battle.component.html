@@ -23,13 +23,11 @@
       <li>
         <div class="row mb-3">
           <div class="col-8">
-            <strong>{{ ability }}</strong>
-            <br>
-            <em><small>{{ mod.getAbilityDescription(ability) }}</small></em>
+            <app-info-ability [id]="ability"></app-info-ability>
           </div>
 
           <div class="col-4 text-right">
-            <button class="btn btn-danger" (click)="removeAbility(i)">Remove {{ ability }}</button>
+            <button class="btn btn-danger" (click)="removeAbility(i)">Remove</button>
           </div>
         </div>
       </li>
@@ -43,10 +41,7 @@
   <div class="battle-container">
     <div class="battle-row" *ngFor="let row of [0, 1, 2, 3]">
       <div class="battle-cell" *ngFor="let cell of [0, 1, 2, 3, 4, 5, 6, 7]" [class.disabled]="cell > 3" (click)="chooseEnemyFor(monsterChooser, row, cell)" (contextmenu)="clearEnemyFor($event, row, cell)">
-        <div *ngIf="model.combat.grid[row][cell]?.enemy as enemy">
-          <div><strong>{{ enemy.name }}</strong></div>
-          <div>Lv. {{ enemy.level }}</div>
-        </div>
+        <app-info-enemy *ngIf="model.combat.grid[row][cell]?.enemy as enemy" [id]="enemy.name" [level]="enemy.level"></app-info-enemy>
       </div>
     </div>
   </div>
@@ -89,7 +84,7 @@
     <div class="row">
       <div class="col-3 text-right font-weight-bold">Enemy</div>
       <div class="col-9">
-        <ng-select bindLabel="name" bindValue="name" [items]="enemies" [(ngModel)]="editingGridSpace.enemy" placeholder="Choose an enemy...">
+        <ng-select bindLabel="name" bindValue="id" [items]="enemies" [(ngModel)]="editingGridSpace.enemy" placeholder="Choose an enemy...">
         </ng-select>
       </div>
     </div>

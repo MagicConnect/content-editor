@@ -16,7 +16,7 @@ export class InfoAbilityComponent implements OnInit {
   constructor(private mod: ModManagerService) { }
 
   ngOnInit(): void {
-    this.name = this.id; // this.mod.chooseableAbilities.find(x => x.id === this.id)?.name ?? 'UNKNOWN';
+    this.name = this.mod.chooseableAbilities.find(x => x.id === this.id)?.name ?? 'UNKNOWN';
     this.desc = this.mod.getAbilityDescription(this.id);
   }
 

@@ -24,13 +24,11 @@
       <li>
         <div class="row mb-3">
           <div class="col-8">
-            <strong>{{ ability }}</strong>
-            <br>
-            <em><small>{{ mod.getAbilityDescription(ability) }}</small></em>
+            <app-info-ability [id]="ability"></app-info-ability>
           </div>
 
           <div class="col-4 text-right">
-            <button class="btn btn-danger" (click)="removeAbility(i)">Remove {{ ability }}</button>
+            <button class="btn btn-danger" (click)="removeAbility(i)">Remove</button>
           </div>
         </div>
       </li>

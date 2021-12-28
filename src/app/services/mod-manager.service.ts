@@ -86,32 +86,36 @@ export class ModManagerService {
     return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
   }
 
-  public get mapNames(): Array<{ name: string }> {
-    return this.currentPack.maps.map(c => ({ name: c.name }));
+  public get mapNames(): Array<{ id: string, name: string }> {
+    return this.currentPack.maps.map(c => ({ id: c.id, name: c.name }));
   }
 
-  public get filteredCharacters(): Array<{ name: string, stars: string }> {
-    return this.currentPack.characters.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  public get filteredCharacters(): Array<{ id: string, name: string, stars: string }> {
+    return this.currentPack.characters.map(c => ({ id: c.id, name: c.name, stars: this.stars[c.stars - 1] }));
   }
 
-  public get filteredAccessories(): Array<{ name: string, stars: string }> {
-    return this.currentPack.accessories.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  public get filteredAccessories(): Array<{ id: string, name: string, stars: string }> {
+    return this.currentPack.accessories.map(c => ({ id: c.id, name: c.name, stars: this.stars[c.stars - 1] }));
   }
 
-  public get filteredWeapons(): Array<{ name: string, stars: string }> {
-    return this.currentPack.weapons.map(c => ({ name: c.name, stars: this.stars[c.stars - 1] }));
+  public get filteredWeapons(): Array<{ id: string, name: string, stars: string }> {
+    return this.currentPack.weapons.map(c => ({ id: c.id, name: c.name, stars: this.stars[c.stars - 1] }));
   }
 
-  public get filteredItems(): Array<{ name: string, itemType: ItemType }> {
-    return this.currentPack.items.map(c => ({ name: c.name, itemType: c.itemType }));
+  public get filteredEnemies(): Array<{ id: string, name: string }> {
+    return this.currentPack.enemies.map(c => ({ id: c.id, name: c.name }));
   }
 
-  public get chooseableAbilities(): Array<{ name: string, description: string }> {
-    return sortBy(this.currentPack.abilities.map(a => ({ name: a.name, description: a.description })), 'name');
+  public get filteredItems(): Array<{ id: string, name: string, itemType: ItemType }> {
+    return this.currentPack.items.map(c => ({ id: c.id, name: c.name, itemType: c.itemType }));
   }
 
-  public get chooseableSkills(): Array<{ name: string, description: string }> {
-    return sortBy(this.currentPack.skills.map(a => ({ name: a.name, description: a.description })), 'name');
+  public get chooseableAbilities(): Array<{ id: string, name: string, description: string }> {
+    return sortBy(this.currentPack.abilities.map(a => ({ id: a.id, name: a.name, description: a.description })), 'name');
+  }
+
+  public get chooseableSkills(): Array<{ id: string, name: string, description: string }> {
+    return sortBy(this.currentPack.skills.map(a => ({ id: a.id, name: a.name, description: a.description })), 'name');
   }
 
   // loading
@@ -187,7 +191,7 @@ export class ModManagerService {
         return errs.context.filter((e: any) => e.key).map((e: any) => e.key).join('.');
       });
 
-      alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed to be a number:
+      alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
       \n${validationErrors.join('\n')}`);
     });
   }
@@ -351,12 +355,6 @@ export class ModManagerService {
 
     });
 
-    this.currentPack.characters.forEach(c => {
-      c.abilities = c.abilities.map(a => {
-        return { ...a, abilities: a.abilities.map(b => this.currentPack.abilities.find(z => z.name === b)?.id ?? b) };
-      });
-    });
-
   }
 
   public rerollID(ident: IIdentifiable): void {
@@ -380,27 +378,7 @@ export class ModManagerService {
   }
 
   public editAbility(ability: IAbility, index: number): void {
-    const oldName = this.currentPack.abilities[index].name;
     this.currentPack.abilities[index] = ability;
-
-    this.currentPack.characters.forEach(c => {
-      c.abilities = c.abilities.map(a => {
-        return { ...a, abilities: a.abilities.map(b => b === oldName ? ability.name : b) };
-      });
-    });
-
-    this.currentPack.accessories.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
-    });
-
-    this.currentPack.enemies.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
-    });
-
-    this.currentPack.weapons.forEach(c => {
-      c.abilities = c.abilities.map(a => a === oldName ? ability.name : a);
-    });
-
     this.syncAndSave();
   }
 
@@ -409,12 +387,12 @@ export class ModManagerService {
     this.syncAndSave();
   }
 
-  public getAbilityDescription(name: string): string {
-    return this.chooseableAbilities.find(x => x.name === name)?.description ?? 'Unknown';
+  public getAbilityDescription(id: string): string {
+    return this.chooseableAbilities.find(x => x.id === id)?.description ?? 'Unknown';
   }
 
-  public getSkillDescription(name: string): string {
-    return this.chooseableSkills.find(x => x.name === name)?.description ?? 'Unknown';
+  public getSkillDescription(id: string): string {
+    return this.chooseableSkills.find(x => x.id === id)?.description ?? 'Unknown';
   }
 
   // Accessory-related
@@ -428,16 +406,7 @@ export class ModManagerService {
   }
 
   public editAccessory(acc: IAccessory, index: number): void {
-    const oldName = this.currentPack.accessories[index].name;
     this.currentPack.accessories[index] = acc;
-
-    this.currentPack.banners.forEach(c => {
-      c.accessories = c.accessories.map(a => ({...a, name: a.name === oldName ? acc.name : a.name }));
-    });
-
-    this.currentPack.shops.forEach(c => {
-      c.accessories = c.accessories.map(a => ({...a, name: a.name === oldName ? acc.name : a.name }));
-    });
 
     this.syncAndSave();
   }
@@ -478,16 +447,7 @@ export class ModManagerService {
   }
 
   public editCharacter(character: ICharacter, index: number): void {
-    const oldName = this.currentPack.characters[index].name;
     this.currentPack.characters[index] = character;
-
-    this.currentPack.banners.forEach(c => {
-      c.characters = c.characters.map(a => ({...a, name: a.name === oldName ? character.name : a.name }));
-    });
-
-    this.currentPack.shops.forEach(c => {
-      c.characters = c.characters.map(a => ({...a, name: a.name === oldName ? character.name : a.name }));
-    });
 
     this.syncAndSave();
   }
@@ -508,20 +468,7 @@ export class ModManagerService {
   }
 
   public editEnemy(enemy: IEnemy, index: number): void {
-    const oldName = this.currentPack.enemies[index].name;
     this.currentPack.enemies[index] = enemy;
-
-    this.currentPack.maps.forEach(c => {
-      c.nodes.forEach(n => {
-        n.combat.grid.forEach(row => {
-          row.forEach(cell => {
-            if(!cell || !cell.enemy || cell.enemy.name !== oldName) return;
-
-            cell.enemy.name = enemy.name;
-          });
-        });
-      });
-    });
 
     this.syncAndSave();
   }
@@ -542,16 +489,7 @@ export class ModManagerService {
   }
 
   public editItem(item: IItem, index: number): void {
-    const oldName = this.currentPack.items[index].name;
     this.currentPack.items[index] = item;
-
-    this.currentPack.banners.forEach(c => {
-      c.items = c.items.map(a => ({...a, name: a.name === oldName ? item.name : a.name }));
-    });
-
-    this.currentPack.shops.forEach(c => {
-      c.items = c.items.map(a => ({...a, name: a.name === oldName ? item.name : a.name }));
-    });
 
     this.syncAndSave();
   }
@@ -612,16 +550,7 @@ export class ModManagerService {
   }
 
   public editSkill(skill: ISkill, index: number): void {
-    const oldName = this.currentPack.skills[index].name;
     this.currentPack.skills[index] = skill;
-
-    this.currentPack.characters.forEach(c => {
-      c.skills = c.skills.map(a => a === oldName ? skill.name : a);
-    });
-
-    this.currentPack.enemies.forEach(c => {
-      c.skills = c.skills.map(a => a === oldName ? skill.name : a);
-    });
 
     this.syncAndSave();
   }
@@ -642,16 +571,7 @@ export class ModManagerService {
   }
 
   public editWeapon(weapon: IWeapon, index: number): void {
-    const oldName = this.currentPack.weapons[index].name;
     this.currentPack.weapons[index] = weapon;
-
-    this.currentPack.banners.forEach(c => {
-      c.weapons = c.weapons.map(a => ({...a, name: a.name === oldName ? weapon.name : a.name }));
-    });
-
-    this.currentPack.shops.forEach(c => {
-      c.weapons = c.weapons.map(a => ({...a, name: a.name === oldName ? weapon.name : a.name }));
-    });
 
     this.syncAndSave();
   }

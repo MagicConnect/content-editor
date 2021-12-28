@@ -92,7 +92,7 @@ export class EnemyComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.abilities.push(choice.name);
+      this.model.abilities.push(choice.id);
     });
   }
 
@@ -107,7 +107,7 @@ export class EnemyComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.skills.push(choice.name);
+      this.model.skills.push(choice.id);
     });
   }
 

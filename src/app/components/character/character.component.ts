@@ -176,7 +176,7 @@ export class CharacterComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.skills.push(choice.name);
+      this.model.skills.push(choice.id);
     });
   }
 
@@ -191,7 +191,7 @@ export class CharacterComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.specialSkill = choice.name;
+      this.model.specialSkill = choice.id;
     });
   }
 
