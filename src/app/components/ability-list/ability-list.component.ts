@@ -47,7 +47,8 @@ export class AbilityListComponent implements OnInit {
     if(numLBAbilities > 0 && !isValidLBAbilities) return false;
 
     return this.currentAbility.name?.length >= 2
-        && !this.isCurrentAbilityDuplicateName;
+        && !this.isCurrentAbilityDuplicateName
+        && (isValidBaseAbility || (numLBAbilities > 0 && isValidLBAbilities));
   }
 
   public get isCurrentAbilityClone(): boolean {

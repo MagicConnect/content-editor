@@ -16,6 +16,7 @@ export class AbilityContentFormComponent implements OnInit {
   form = new FormGroup({});
 
   @Input() model: IAbilityUtility = newAbilityUtility();
+  @Input() showAllFields = true;
 
   options: FormlyFormOptions = {};
 
@@ -51,6 +52,7 @@ export class AbilityContentFormComponent implements OnInit {
           key: 'trigger',
           className: 'col-4',
           type: 'better-select',
+          hideExpression: () => !this.showAllFields,
           templateOptions: {
             label: 'Trigger',
             placeholder: 'Choose trigger...',

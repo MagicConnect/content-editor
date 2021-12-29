@@ -4,6 +4,7 @@ import { AbilityTrigger, IAbility, IAbilityUtility } from 'content-interfaces';
 export const newAbility = (): IAbility => ({
   id: '',
 
+  isAbilityUsedAtLB0: true,
   ...newAbilityUtility(),
 
   lbChanges: {
