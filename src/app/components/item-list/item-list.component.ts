@@ -127,9 +127,9 @@ export class ItemListComponent implements OnInit {
   }
 
   itemCurrentlyUsedIn(item: IItem): string[] {
-    const banners = this.banners.filter(banner => banner.items.find(i => i.name === item.name)).map(b => `Banner: ${b.name}`);
+    const banners = this.banners.filter(banner => banner.items.find(i => i.name === item.id)).map(b => `Banner: ${b.name}`);
 
-    const shops = this.shops.filter(shop => shop.currencyItem === item.name || shop.items.find(i => i.name === item.name)).map(s => `Shop: ${s.name}`);
+    const shops = this.shops.filter(shop => shop.currencyItem === item.name || shop.items.find(i => i.name === item.id)).map(s => `Shop: ${s.name}`);
 
     return [...banners, ...shops];
   }

@@ -141,9 +141,9 @@ export class CharacterListComponent implements OnInit {
   }
 
   characterCurrentlyUsedIn(character: ICharacter): string[] {
-    const banners = this.banners.filter(banner => banner.characters.find(c => c.name === character.name)).map(b => `Banner: ${b.name}`);
+    const banners = this.banners.filter(banner => banner.characters.find(c => c.name === character.id)).map(b => `Banner: ${b.name}`);
 
-    const shops = this.shops.filter(shop => shop.characters.find(c => c.name === character.name)).map(s => `Shop: ${s.name}`);
+    const shops = this.shops.filter(shop => shop.characters.find(c => c.name === character.id)).map(s => `Shop: ${s.name}`);
 
     return [...banners, ...shops];
   }

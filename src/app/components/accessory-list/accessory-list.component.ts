@@ -130,9 +130,9 @@ export class AccessoryListComponent implements OnInit {
   }
 
   accessoryCurrentlyUsedIn(acc: IAccessory): string[] {
-    const banners = this.banners.filter(banner => banner.accessories.find(c => c.name === acc.name)).map(b => `Banner: ${b.name}`);
+    const banners = this.banners.filter(banner => banner.accessories.find(c => c.name === acc.id)).map(b => `Banner: ${b.name}`);
 
-    const shops = this.shops.filter(shop => shop.accessories.find(c => c.name === acc.name)).map(s => `Shop: ${s.name}`);
+    const shops = this.shops.filter(shop => shop.accessories.find(c => c.name === acc.id)).map(s => `Shop: ${s.name}`);
 
     return [...banners, ...shops];
   }
