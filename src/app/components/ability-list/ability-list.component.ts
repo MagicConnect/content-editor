@@ -143,13 +143,13 @@ export class AbilityListComponent implements OnInit {
   }
 
   abilityCurrentlyUsedIn(ability: IAbility): string[] {
-    const characters = this.characters.filter(c => c.abilities.filter(a => a.abilities.includes(ability.name))).map(b => `Character: ${b.name}`);
+    const characters = this.characters.filter(c => c.abilities.map(a => a.abilities).flat().find(a => a === ability.id)).map(b => `Character: ${b.name}`);
 
-    const accessories = this.accessories.filter(c => c.abilities.includes(ability.name)).map(b => `Accessory: ${b.name}`);
+    const accessories = this.accessories.filter(c => c.abilities.includes(ability.id)).map(b => `Accessory: ${b.name}`);
 
-    const enemies = this.enemies.filter(c => c.abilities.includes(ability.name)).map(b => `Enemy: ${b.name}`);
+    const enemies = this.enemies.filter(c => c.abilities.includes(ability.id)).map(b => `Enemy: ${b.name}`);
 
-    const weapons = this.weapons.filter(c => c.abilities.includes(ability.name)).map(b => `Weapon: ${b.name}`);
+    const weapons = this.weapons.filter(c => c.abilities.includes(ability.id)).map(b => `Weapon: ${b.name}`);
 
     return [...characters, ...accessories, ...enemies, ...weapons];
   }
