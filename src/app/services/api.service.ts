@@ -14,5 +14,9 @@ export class ApiService {
     return `${this.baseUrl}/content`;
   }
 
+  public get contentUrlRaw(): string {
+    return `${this.contentUrl}/raw`;
+  }
+
   constructor() { }
 }

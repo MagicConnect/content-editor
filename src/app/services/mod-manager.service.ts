@@ -166,7 +166,7 @@ export class ModManagerService {
   public importNet() {
     this._loading = true;
 
-    this.http.get(this.api.contentUrl)
+    this.http.get(this.api.contentUrlRaw)
       .subscribe((d) => {
         const importPack: IContentPack = d as IContentPack;
         this.currentPack = importPack;
