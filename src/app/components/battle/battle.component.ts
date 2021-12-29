@@ -107,9 +107,13 @@ export class BattleComponent implements OnInit {
     if(cell > 3) return;
 
     delete this.model.combat.grid[row][cell];
+    if(Object.values(this.model.combat.grid[row]).length === 0) delete this.model.combat.grid[row];
   }
 
   confirmAddMonster(): void {
+    this.model.combat.grid[this.editingGridSpace.y] = this.model.combat.grid[this.editingGridSpace.y] ?? {};
+    this.model.combat.grid[this.editingGridSpace.y][this.editingGridSpace.x] = this.model.combat.grid[this.editingGridSpace.y][this.editingGridSpace.x] ?? {};
+
     this.model.combat.grid[this.editingGridSpace.y][this.editingGridSpace.x] = {
       enemy: {
         name: this.editingGridSpace.enemy ?? '',

@@ -127,7 +127,8 @@ export class EnemyListComponent implements OnInit {
   }
 
   enemyCurrentlyUsedIn(enemy: IEnemy): string[] {
-    const isEnemyUsedInMapNode = (node: IMapNode) => node.combat.grid.flat().filter(Boolean).filter(e => e.enemy.name === enemy.name).length > 0;
+    const combatPlaces = (node: IMapNode) => Object.values(node.combat.grid).map(x => Object.values(x)).flat();
+    const isEnemyUsedInMapNode = (node: IMapNode) => combatPlaces(node).filter(Boolean).filter(e => e.enemy.name === enemy.name).length > 0;
 
     return this.maps.map(map => {
       return map.nodes.filter(node => {

@@ -18,12 +18,7 @@ export const newMapBattle = (): IMapNode => ({
   y: 0,
   description: '',
   combat: {
-    grid: [
-      [],
-      [],
-      [],
-      []
-    ]
+    grid: {}
   },
   staminaCost: 1,
   unlocksMap: '',

@@ -39,7 +39,7 @@
   <div class="battle-container">
     <div class="battle-row" *ngFor="let row of [0, 1, 2, 3]">
       <div class="battle-cell" *ngFor="let cell of [0, 1, 2, 3, 4, 5, 6, 7]" [class.disabled]="cell > 3" (click)="chooseEnemyFor(monsterChooser, row, cell)" (contextmenu)="clearEnemyFor($event, row, cell)">
-        <app-info-enemy *ngIf="model.combat.grid[row][cell]?.enemy as enemy" [id]="enemy.name" [level]="enemy.level"></app-info-enemy>
+        <app-info-enemy *ngIf="model.combat.grid[row]?.[cell]?.enemy as enemy" [id]="enemy.name" [level]="enemy.level"></app-info-enemy>
       </div>
     </div>
   </div>

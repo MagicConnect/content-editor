@@ -531,7 +531,8 @@ export class D3MapCreator {
   }
 
   private nodeLevel(node: IMapNode): number {
-    const enemyNodes = node.combat.grid.flat().filter(Boolean) ?? [];
+    const combatPlaces = (node: IMapNode) => Object.values(node.combat.grid).map(x => Object.values(x)).flat();
+    const enemyNodes = combatPlaces(node).filter(Boolean) ?? [];
 
     return enemyNodes.reduce((prev: number, cur: IMapCombatGrid) => {
       return prev + (cur?.enemy?.level ?? 0);

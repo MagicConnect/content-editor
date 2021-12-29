@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newMap } from '../../initializers';
-import { IMap } from 'content-interfaces';
+import { IMap, IMapCombatEnemy } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -34,7 +34,10 @@ export class MapListComponent implements OnInit {
                              && d.dropPercent > 0
                              && d.dropPercent <= 100
                              && d.quantity >= 1)
-          && x.combat.grid.flat().every(c => c && c.enemy.name && c.enemy.level >= 1)
+          && Object.values(x.combat.grid)
+                .map(y => Object.values(y))
+                .flat()
+                .every(c => c && c.enemy.name && c.enemy.level >= 1)
           );
   }
 
