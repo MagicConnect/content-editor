@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -316,15 +316,11 @@ export class ModManagerService {
       });
     });
 
-    // ensure skill->{hpCost,mpCost,spcCost,statScaling[],actions[].statusEffectChanges[]}
+    // ensure skill->{hpCost,spcCost,statScaling[],actions[].statusEffectChanges[]}
     this.currentPack.skills.forEach(s => {
 
       if(!isUndefined(s.hpCost)) {
         s.hpCost = ensureNumber(s.hpCost);
-      }
-
-      if(!isUndefined(s.mpCost)) {
-        s.mpCost = ensureNumber(s.mpCost);
       }
 
       if(!isUndefined(s.spcCost)) {

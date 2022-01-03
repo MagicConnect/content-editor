@@ -72,23 +72,6 @@ export class AbilityConditionFormComponent {
           },
         },
         {
-          key: 'props.mpValue',
-          className: 'col-4',
-          type: 'input',
-          hideExpression: (model: IAbilityCondition) => {
-            const matches = ![AbilityCondition.AboveMP, AbilityCondition.BelowMP].includes(model.value);
-            if(matches) delete model.props.mpValue;
-
-            return matches;
-          },
-          templateOptions: {
-            label: 'MP Value',
-            placeholder: 'Choose MP value...',
-            description: 'MP value determines what MP is required.',
-            min: 0
-          },
-        },
-        {
           key: 'props.spcValue',
           className: 'col-4',
           type: 'input',

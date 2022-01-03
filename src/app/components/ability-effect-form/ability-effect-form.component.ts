@@ -89,7 +89,7 @@ export class AbilityEffectFormComponent {
           className: 'col-4',
           type: 'better-select',
           hideExpression: (model: IAbilityEffect) => {
-            const matches = ![AbilityEffect.HPLeech, AbilityEffect.MPLeech].includes(model.value);
+            const matches = ![AbilityEffect.HPLeech].includes(model.value);
             if(matches) delete model.props.effectTarget;
 
             return matches;

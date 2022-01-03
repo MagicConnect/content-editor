@@ -63,18 +63,6 @@ export class SkillFormComponent {
           },
         },
         {
-          key: 'mpCost',
-          className: 'col-3',
-          type: 'input',
-          templateOptions: {
-            label: 'MP Cost',
-            placeholder: 'Enter MP cost here...',
-            description: 'Most skills will cost some MP.',
-            required: true,
-            min: 0
-          },
-        },
-        {
           key: 'spcCost',
           className: 'col-3',
           type: 'input',
@@ -115,7 +103,6 @@ export class SkillFormComponent {
       push: 0,
       statScaling: {
         [Stat.HP]: 0,
-        [Stat.MP]: 0,
         [Stat.Attack]: 0,
         [Stat.Defense]: 0,
         [Stat.Magic]: 0,

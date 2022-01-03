@@ -234,7 +234,6 @@ export class CharacterComponent {
       [Stat.Special]: 0,
 
       [Stat.HP]: 0,
-      [Stat.MP]: 0,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
       [Stat.MagicEvasion]: 0,

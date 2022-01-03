@@ -27,7 +27,6 @@ export class SkillActionFormComponent {
     statusEffectChanges: [],
     statScaling: {
       [Stat.HP]: 0,
-      [Stat.MP]: 0,
       [Stat.Attack]: 0,
       [Stat.Defense]: 0,
       [Stat.Magic]: 0,

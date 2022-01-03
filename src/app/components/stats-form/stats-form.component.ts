@@ -32,7 +32,6 @@ export class StatsFormComponent {
     [Stat.Accuracy]: 0,
     [Stat.Critical]: 0,
     [Stat.HP]: 0,
-    [Stat.MP]: 0,
     [Stat.MagicEvasion]: 0,
     [Stat.MeleeEvasion]: 0,
   };
@@ -106,16 +105,6 @@ export class StatsFormComponent {
     {
       fieldGroupClassName: 'row',
       fieldGroup: [
-        {
-          key: Stat.MP,
-          className: 'col-2',
-          type: 'input',
-          templateOptions: {
-            label: 'MP',
-            placeholder: 'Enter MP here...',
-            min: 0
-          },
-        },
         {
           key: Stat.MeleeEvasion,
           className: 'col-2',
