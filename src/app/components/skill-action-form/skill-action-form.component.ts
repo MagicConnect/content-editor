@@ -13,7 +13,7 @@ export class SkillActionFormComponent {
   @Output() remove = new EventEmitter();
   @Input() index = 0;
 
-  elements = Object.values(Element);
+  elements = Object.values(Element).filter(x => x !== Element.Neutral);
 
   form = new FormGroup({});
 
