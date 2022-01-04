@@ -68,6 +68,7 @@ import { InfoAbilityComponent } from './components/info-ability/info-ability.com
 import { InfoSkillComponent } from './components/info-skill/info-skill.component';
 import { InfoItemComponent } from './components/info-item/info-item.component';
 import { InfoEnemyComponent } from './components/info-enemy/info-enemy.component';
+import { ElementQuantityFormComponent } from './components/element-quantity-form/element-quantity-form.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { InfoEnemyComponent } from './components/info-enemy/info-enemy.component
     InfoAbilityComponent,
     InfoSkillComponent,
     InfoItemComponent,
-    InfoEnemyComponent
+    InfoEnemyComponent,
+    ElementQuantityFormComponent
   ],
   imports: [
     BrowserModule,

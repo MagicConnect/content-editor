@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
+import { Element, ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
 import { newSkill } from '../../initializers';
 
 @Component({
@@ -119,6 +119,26 @@ export class SkillFormComponent {
 
   removeAction(index: number) {
     this.model.actions.splice(index, 1);
+  }
+
+  recommendedElements() {
+    const elements = {
+      [Element.Neutral]: 0,
+      [Element.Fire]: 0,
+      [Element.Ice]: 0,
+      [Element.Light]: 0,
+      [Element.Dark]: 0,
+      [Element.Lightning]: 0,
+      [Element.Earth]: 0
+    };
+
+    this.model.actions.forEach(act => {
+      act.elements.forEach(el => {
+        elements[el]++;
+      });
+    });
+
+    this.model.generatedElements = elements;
   }
 
 }

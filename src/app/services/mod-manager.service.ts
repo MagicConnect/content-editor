@@ -331,6 +331,14 @@ export class ModManagerService {
         s.cooldown = ensureNumber(s.cooldown);
       }
 
+      Object.keys(s.generatedElements).forEach(el => {
+        s.generatedElements[el as Element] = ensureNumber(s.generatedElements[el as Element]);
+      });
+
+      Object.keys(s.consumedElements).forEach(el => {
+        s.consumedElements[el as Element] = ensureNumber(s.consumedElements[el as Element]);
+      });
+
       s.actions.forEach(a => {
         if(a.hits) {
           a.hits = ensureNumber(a.hits);
