@@ -21,7 +21,7 @@ export class ElementQuantityFormComponent implements OnInit, OnDestroy {
     [Element.Fire]: 0,
     [Element.Ice]: 0,
     [Element.Light]: 0,
-    [Element.Lightning]: 0,
+    [Element.Thunder]: 0,
     [Element.Neutral]: 0,
   };
 
@@ -30,7 +30,7 @@ export class ElementQuantityFormComponent implements OnInit, OnDestroy {
   fields: FormlyFieldConfig[] = [
     {
       fieldGroupClassName: 'row',
-      fieldGroup: [Element.Dark, Element.Earth, Element.Fire, Element.Ice, Element.Light, Element.Lightning].map(element => ({
+      fieldGroup: [Element.Dark, Element.Earth, Element.Fire, Element.Ice, Element.Light, Element.Thunder].map(element => ({
         key: element,
         className: 'col-2',
         type: 'input',

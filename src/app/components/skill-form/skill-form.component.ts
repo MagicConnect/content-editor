@@ -128,7 +128,7 @@ export class SkillFormComponent {
       [Element.Ice]: 0,
       [Element.Light]: 0,
       [Element.Dark]: 0,
-      [Element.Lightning]: 0,
+      [Element.Thunder]: 0,
       [Element.Earth]: 0
     };
 
