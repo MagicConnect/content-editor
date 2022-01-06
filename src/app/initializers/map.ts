@@ -1,4 +1,4 @@
-import { IMap, IMapNode } from 'content-interfaces';
+import { Element, IMap, IMapNode } from 'content-interfaces';
 
 export const newMap = (): IMap => ({
   id: '',
@@ -18,7 +18,27 @@ export const newMapBattle = (): IMapNode => ({
   y: 0,
   description: '',
   combat: {
-    grid: {}
+    grid: {},
+    usesDefaultSaturation: true,
+    usesDefaultHardCap: true,
+    elementSaturation: {
+      [Element.Neutral]: 0,
+      [Element.Fire]: 0,
+      [Element.Ice]: 0,
+      [Element.Light]: 0,
+      [Element.Dark]: 0,
+      [Element.Thunder]: 0,
+      [Element.Earth]: 0,
+    },
+    elementHardCap: {
+      [Element.Neutral]: 0,
+      [Element.Fire]: 0,
+      [Element.Ice]: 0,
+      [Element.Light]: 0,
+      [Element.Dark]: 0,
+      [Element.Thunder]: 0,
+      [Element.Earth]: 0,
+    }
   },
   staminaCost: 1,
   unlocksMap: '',

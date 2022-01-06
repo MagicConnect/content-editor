@@ -7,6 +7,32 @@
   </form>
 </fieldset>
 
+<fieldset class="border border-dark p-3 mt-3">
+  <legend>
+    Element Saturation
+  </legend>
+
+  <div class="form-check">
+    <input type="checkbox" id="defaultSaturation" [(ngModel)]="model.combat.usesDefaultSaturation" />
+    <label class="ml-3" for="defaultSaturation">Use Default Saturation</label>
+  </div>
+
+  <app-element-quantity-form [model]="model.combat.elementSaturation" [disabled]="model.combat.usesDefaultSaturation"></app-element-quantity-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3">
+  <legend>
+    Element Hard Cap
+  </legend>
+
+  <div class="form-check">
+    <input type="checkbox" id="defaultHardCap" [(ngModel)]="model.combat.usesDefaultHardCap" />
+    <label class="ml-3" for="defaultHardCap">Use Default Hard Cap</label>
+</div>
+
+  <app-element-quantity-form [model]="model.combat.elementHardCap" [disabled]="model.combat.usesDefaultHardCap"></app-element-quantity-form>
+</fieldset>
+
 <fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>
     Field Abilities
