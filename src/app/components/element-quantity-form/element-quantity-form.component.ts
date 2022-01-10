@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Element } from 'content-interfaces';
@@ -9,11 +9,13 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './element-quantity-form.component.html',
   styleUrls: ['./element-quantity-form.component.scss']
 })
-export class ElementQuantityFormComponent implements OnInit, OnDestroy {
+export class ElementQuantityFormComponent implements OnInit, OnChanges, OnDestroy {
 
   private watcher$!: Subscription;
 
   form = new FormGroup({});
+
+  @Input() disabled = false;
 
   @Input() model: Record<Element, number> = {
     [Element.Dark]: 0,
@@ -50,10 +52,32 @@ export class ElementQuantityFormComponent implements OnInit, OnDestroy {
         this.form.get(element)?.setValue(this.model[element as Element] ?? 0);
       });
     });
+
+    setTimeout(() => {
+      this.setFieldsEnableOrDisable(this.disabled);
+    }, 0);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const isDisabled = !!changes.disabled.currentValue;
+    this.setFieldsEnableOrDisable(isDisabled);
   }
 
   ngOnDestroy() {
     if(this.watcher$) this.watcher$.unsubscribe();
+  }
+
+  private setFieldsEnableOrDisable(isDisabled: boolean) {
+    this.fields.forEach(field => {
+      if(!field.formControl) return;
+
+      if(isDisabled) {
+        field.formControl.disable();
+        return;
+      }
+
+      field.formControl.enable();
+    });
   }
 
 }
