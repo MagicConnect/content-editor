@@ -8,18 +8,21 @@
   <a class="navbar-brand" href="#">MagiCon! Tools</a>
 
   <div class="collapse navbar-collapse">
-    <div class="btn-group ml-auto" btnRadioGroup [(ngModel)]="currentPage">
-      <button class="btn btn-info btn-sm mb-0" btnRadio="ability">Ability ({{ mod.currentPack.abilities.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="accessory">Accessory ({{ mod.currentPack.accessories.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="banner">Banner ({{ mod.currentPack.banners.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="character">Character ({{ mod.currentPack.characters.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="enemy">Enemy ({{ mod.currentPack.enemies.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="item">Item ({{ mod.currentPack.items.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="map">Map ({{ mod.currentPack.maps.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="shop">Shop ({{ mod.currentPack.shops.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="skill">Skill ({{ mod.currentPack.skills.length }})</button>
-      <button class="btn btn-info btn-sm mb-0" btnRadio="weapon">Weapon ({{ mod.currentPack.weapons.length }})</button>
-    </div>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" dropdownToggle>
+          {{ currentPage }} ({{ numEntries(currentPage) }}) <span class="caret"></span>
+        </a>
+
+        <ul *dropdownMenu class="dropdown-menu">
+          <li *ngFor="let editor of editors">
+            <a class="dropdown-item" (click)="changeCurrent(editor.name)">
+              {{ editor.name }} ({{ numEntries(editor.name) }})
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
 
     <div class="btn-group ml-auto mr-auto" *ngIf="!auth.loggedIn">
       <button class="btn btn-info btn-sm mb-0" (click)="export()" [disabled]="auth.loginInProcess">Export</button>
@@ -46,16 +49,17 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-md-12">
-      <app-ability-list *ngIf="currentPage === 'ability'"></app-ability-list>
-      <app-accessory-list *ngIf="currentPage === 'accessory'"></app-accessory-list>
-      <app-banner-list *ngIf="currentPage === 'banner'"></app-banner-list>
-      <app-character-list *ngIf="currentPage === 'character'"></app-character-list>
-      <app-enemy-list *ngIf="currentPage === 'enemy'"></app-enemy-list>
-      <app-item-list *ngIf="currentPage === 'item'"></app-item-list>
-      <app-map-list *ngIf="currentPage === 'map'"></app-map-list>
-      <app-shop-list *ngIf="currentPage === 'shop'"></app-shop-list>
-      <app-skill-list *ngIf="currentPage === 'skill'"></app-skill-list>
-      <app-weapon-list *ngIf="currentPage === 'weapon'"></app-weapon-list>
+      <app-ability-list *ngIf="currentPage === 'Ability'"></app-ability-list>
+      <app-accessory-list *ngIf="currentPage === 'Accessory'"></app-accessory-list>
+      <app-achievement-list *ngIf="currentPage === 'Achievement'"></app-achievement-list>
+      <app-banner-list *ngIf="currentPage === 'Banner'"></app-banner-list>
+      <app-character-list *ngIf="currentPage === 'Character'"></app-character-list>
+      <app-enemy-list *ngIf="currentPage === 'Enemy'"></app-enemy-list>
+      <app-item-list *ngIf="currentPage === 'Item'"></app-item-list>
+      <app-map-list *ngIf="currentPage === 'Map'"></app-map-list>
+      <app-shop-list *ngIf="currentPage === 'Shop'"></app-shop-list>
+      <app-skill-list *ngIf="currentPage === 'Skill'"></app-skill-list>
+      <app-weapon-list *ngIf="currentPage === 'Weapon'"></app-weapon-list>
     </div>
   </div>
 </div>

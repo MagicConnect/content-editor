@@ -1,6 +1,7 @@
 
 export * from './ability';
 export * from './accessory';
+export * from './achievement';
 export * from './banner';
 export * from './character';
 export * from './accessory';

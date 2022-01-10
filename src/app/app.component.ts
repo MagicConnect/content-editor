@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { IContentPack } from 'content-interfaces';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { interval } from 'rxjs';
@@ -24,6 +25,20 @@ export class AppComponent implements OnInit {
   @LocalStorage() password!: string;
   @LocalStorage() hasLoggedIn!: boolean;
 
+  public readonly editors: Array<{ name: string, key: keyof IContentPack }> = [
+    { name: 'Ability',      key: 'abilities' },
+    { name: 'Accessory',    key: 'accessories' },
+    { name: 'Achievement',  key: 'achievements' },
+    { name: 'Banner',       key: 'banners' },
+    { name: 'Character',    key: 'characters' },
+    { name: 'Enemy',        key: 'enemies' },
+    { name: 'Item',         key: 'items' },
+    { name: 'Map',          key: 'maps' },
+    { name: 'Shop',         key: 'shops' },
+    { name: 'Skill',        key: 'skills' },
+    { name: 'Weapon',       key: 'weapons' },
+  ];
+
   constructor(
     private modalService: BsModalService,
     public auth: AuthService,
@@ -38,6 +53,17 @@ export class AppComponent implements OnInit {
     }
 
     this.watchLoginButtonColor();
+  }
+
+  numEntries(editorName: string): number {
+    const editorKey = this.editors.find(e => e.name === editorName)?.key;
+    if(!editorKey) return -1;
+
+    return this.mod.currentPack[editorKey].length;
+  }
+
+  changeCurrent(newEditor: string) {
+    this.currentPage = newEditor;
   }
 
   watchLoginButtonColor() {

@@ -1,0 +1,116 @@
+
+<div class="row">
+  <div class="col-9">
+    <input class="form-control" type="text" placeholder="Search Achievements" [(ngModel)]="searchText" (keyup)="filter()">
+  </div>
+  <div class="col-3 text-right">
+    <button class="btn btn-primary" (click)="addNewItem(itemEditor)">+ Add New Achievement</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="searchResults"
+               columnMode="flex"
+               [sorts]="[{ prop: 'name', dir: 'asc' }]"
+               [limit]="10"
+               [headerHeight]="50"
+               [footerHeight]="50"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Locked By" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ achievementName(row.lockedBy) }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Stat" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.requirements.stat }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Value" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.requirements.statValue }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Map" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ mapName(row.requirements.mapName) }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Map Node" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ mapNodeName(row.requirements.mapName, row.requirements.mapNodeId) }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneItem(itemEditor, row)">Clone</button>
+
+        <button class="btn btn-info btn-sm ml-1" (click)="editItem(itemEditor, row)">Edit</button>
+
+        <button class="btn btn-danger btn-sm ml-1"
+                (click)="deleteItem(row)">
+                Delete
+        </button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #itemEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Achievement
+    </h4>
+
+    <div class="has-actions text-center">
+      <div class="d-flex justify-content-space-around">
+        <button class="btn btn-sm btn-primary" (click)="confirmItemEdit()" [disabled]="!canSaveCurrentItem">Save</button>
+
+        <div class="ml-1 errors">
+          <div class="error" *ngIf="isCurrentItemDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentItemClone">Rename clone.</div>
+          <div class="warning" *ngIf="isCurrentItemDuplicateArt">Duplicate art.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-achievement [model]="currentItem" *ngIf="currentItem"></app-achievement>
+  </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentItem?.id }}</div>
+  </div>
+</ng-template>

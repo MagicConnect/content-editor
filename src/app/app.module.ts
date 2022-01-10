@@ -22,6 +22,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { ModManagerService } from './services/mod-manager.service';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { environment } from '../environments/environment';
+
 import { CharacterComponent } from './components/character/character.component';
 import { EnemyComponent } from './components/enemy/enemy.component';
 import { WeaponComponent } from './components/weapon/weapon.component';
@@ -56,19 +63,15 @@ import { SkillListComponent } from './components/skill-list/skill-list.component
 import { BattleDropFormComponent } from './components/battle-drop-form/battle-drop-form.component';
 import { BetterSelectComponent } from './components/_shared/better-select/better-select.component';
 import { BackgroundImageComponent } from './components/_shared/background-image/background-image.component';
-
-import { ModManagerService } from './services/mod-manager.service';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { environment } from '../environments/environment';
 import { AbilityContentFormComponent } from './components/ability-content-form/ability-content-form.component';
 import { InfoAbilityComponent } from './components/info-ability/info-ability.component';
 import { InfoSkillComponent } from './components/info-skill/info-skill.component';
 import { InfoItemComponent } from './components/info-item/info-item.component';
 import { InfoEnemyComponent } from './components/info-enemy/info-enemy.component';
 import { ElementQuantityFormComponent } from './components/element-quantity-form/element-quantity-form.component';
+import { AchievementComponent } from './components/achievement/achievement.component';
+import { AchievementListComponent } from './components/achievement-list/achievement-list.component';
+import { AchievementRewardEntryFormComponent } from './components/achievement-reward-entry-form/achievement-reward-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +113,10 @@ import { ElementQuantityFormComponent } from './components/element-quantity-form
     InfoSkillComponent,
     InfoItemComponent,
     InfoEnemyComponent,
-    ElementQuantityFormComponent
+    ElementQuantityFormComponent,
+    AchievementComponent,
+    AchievementListComponent,
+    AchievementRewardEntryFormComponent
   ],
   imports: [
     BrowserModule,
