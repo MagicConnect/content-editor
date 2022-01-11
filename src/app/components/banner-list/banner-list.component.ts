@@ -35,6 +35,7 @@ export class BannerListComponent implements OnInit {
         || this.currentBanner.accessories.length > 0
         || this.currentBanner.weapons.length > 0
         )
+        && !!this.currentBanner.rollItem
         && this.currentBanner.characters.every(c => c.name)
         && this.currentBanner.items.every(c => c.name)
         && this.currentBanner.accessories.every(c => c.name)

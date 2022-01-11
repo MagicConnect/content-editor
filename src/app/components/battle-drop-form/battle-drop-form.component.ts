@@ -20,7 +20,8 @@ export class BattleDropFormComponent {
   @Input() model: IMapNodeDroppable = {
     name: '',
     dropPercent: 100,
-    quantity: 1
+    quantity: 1,
+    onlyOneTime: false
   };
 
   options: FormlyFormOptions = {};

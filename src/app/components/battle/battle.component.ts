@@ -152,7 +152,7 @@ export class BattleComponent implements OnInit {
   }
 
   addDropItem() {
-    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1 });
+    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1, onlyOneTime: false });
   }
 
   removeDropItem(index: number) {
