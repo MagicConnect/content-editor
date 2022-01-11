@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { sortBy, isUndefined, isNumber } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
+import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
@@ -18,6 +19,10 @@ export class ModManagerService {
   // content pack
   @LocalStorage() public currentPack!: IContentPack;
 
+  // json patch observer
+  private packObserver!: jsonPatch.Observer<any>;
+
+  // observables
   private abilities: BehaviorSubject<IAbility[]> = new BehaviorSubject<IAbility[]>([]);
   public abilities$: Observable<IAbility[]> = this.abilities.asObservable();
 
@@ -187,24 +192,30 @@ export class ModManagerService {
         this.sync();
 
         this._loading = false;
+
+        this.packObserver = jsonPatch.observe(this.currentPack);
       });
   }
 
   public exportNet() {
-    this.http.put(this.api.contentUrl, this.currentPack).subscribe((res) => {
-      console.log(res);
-    },
-    (err) => {
-      console.error(err);
-      if(!err.error) return;
 
-      const validationErrors = err.error.validationErrors.map((errs: any) => {
-        return errs.prettyPathString;
+    const patches = jsonPatch.generate(this.packObserver);
+    if(patches.length > 0) {
+      this.http.patch(this.api.contentUrl, patches).subscribe(res => {
+        console.log('Saved patches.');
+      },
+      (err) => {
+        console.error(err);
+        if(!err.error) return;
+
+        const validationErrors = err.error.validationErrors.map((errs: any) => {
+          return errs.prettyPathString;
+        });
+
+        alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
+        \n${validationErrors.join('\n')}`);
       });
-
-      alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
-      \n${validationErrors.join('\n')}`);
-    });
+    }
   }
 
   // Pack-related
