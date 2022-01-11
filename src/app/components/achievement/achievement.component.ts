@@ -6,8 +6,6 @@ import { AchievementStat, IAchievement } from 'content-interfaces';
 import { newAchievement } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { Subscription } from 'rxjs';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
 @Component({
   selector: 'app-achievement',
