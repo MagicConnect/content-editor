@@ -393,6 +393,8 @@ export class D3MapCreator {
       d.x = xycoords[0];
       d.y = xycoords[1];
 
+      if(this.nodes.length === 0) d.isDefaultAvailable = true;
+
       this.nodes.push(d);
       this.callbacks.addNode(d);
       this.updateGraph();
@@ -540,7 +542,7 @@ export class D3MapCreator {
   }
 
   private getNodeSubtitle(node: IMapNode): string {
-    return `St. ${node.staminaCost} / Lv. ${this.nodeLevel(node)}`;
+    return `${node.isDefaultAvailable ? '★' : ''} St. ${node.staminaCost} / Lv. ${this.nodeLevel(node)}`;
   }
 
 }
