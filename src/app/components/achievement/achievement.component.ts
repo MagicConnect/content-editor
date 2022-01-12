@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
-import { AchievementStat, IAchievement } from 'content-interfaces';
+import { AchievementCategory, AchievementStat, IAchievement } from 'content-interfaces';
 import { newAchievement } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { Subscription } from 'rxjs';
@@ -61,15 +61,14 @@ export class AchievementComponent {
           },
         },
         {
-          key: 'art',
+          key: 'category',
           className: 'col-3',
           type: 'better-select',
           templateOptions: {
-            label: 'Base Art',
-            placeholder: 'Choose base art...',
-            description: 'This determines the splash art for the item.',
-            required: true,
-            options: this.mod.allArtData.achievements.map(art => ({ value: art, label: art })),
+            label: 'Category',
+            placeholder: 'Choose category...',
+            description: 'The category determines where the achievement can be found.',
+            options: Object.values(AchievementCategory).filter(Boolean).sort().map(x => ({ label: x, value: x }))
           },
         },
       ]
@@ -150,6 +149,34 @@ export class AchievementComponent {
         },
       ]
     },
+
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          key: 'isRepeatable',
+          className: 'col-3',
+          type: 'checkbox',
+          defaultValue: false,
+          templateOptions: {
+            label: 'Is Repeatable',
+            description: 'Whether or not the achievement should reset progress upon completion / reward claim.',
+          },
+        },
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the splash art for the item.',
+            required: true,
+            options: this.mod.allArtData.achievements.map(art => ({ value: art, label: art })),
+          },
+        },
+      ]
+    }
   ];
 
   constructor(public mod: ModManagerService) {}
