@@ -72,6 +72,9 @@ import { ElementQuantityFormComponent } from './components/element-quantity-form
 import { AchievementComponent } from './components/achievement/achievement.component';
 import { AchievementListComponent } from './components/achievement-list/achievement-list.component';
 import { AchievementRewardEntryFormComponent } from './components/achievement-reward-entry-form/achievement-reward-entry-form.component';
+import { SpritesheetUnitFormComponent } from './components/spritesheet-unit-form/spritesheet-unit-form.component';
+import { SpritesheetAnimationComponent } from './components/_shared/spritesheet-animation/spritesheet-animation.component';
+import { SpritesheetAnimationGroupComponent } from './components/_shared/spritesheet-animation-group/spritesheet-animation-group.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +119,10 @@ import { AchievementRewardEntryFormComponent } from './components/achievement-re
     ElementQuantityFormComponent,
     AchievementComponent,
     AchievementListComponent,
-    AchievementRewardEntryFormComponent
+    AchievementRewardEntryFormComponent,
+    SpritesheetUnitFormComponent,
+    SpritesheetAnimationComponent,
+    SpritesheetAnimationGroupComponent
   ],
   imports: [
     BrowserModule,

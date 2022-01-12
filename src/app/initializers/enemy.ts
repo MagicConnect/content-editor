@@ -7,6 +7,16 @@ export const newEnemy = (): IEnemy => ({
   art: '',
   spritesheet: '',
 
+  spritesheetData: {
+    attackFrames: 0,
+    castFrames: 0,
+    deadFrames: 0,
+    idleFrames: 0,
+    moveFrames: 0,
+    onDeathFrames: 0,
+    onHitFrames: 0
+  },
+
   primaryStat: Stat.Attack,
 
   basePoints: {

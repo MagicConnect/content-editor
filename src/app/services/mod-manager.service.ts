@@ -7,7 +7,7 @@ import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, AchievementCategory } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -187,13 +187,14 @@ export class ModManagerService {
       .subscribe((d) => {
         const importPack: IContentPack = d as IContentPack;
         this.currentPack = importPack;
-        this.ensurePackData();
-
-        this.sync();
 
         this._loading = false;
 
         this.packObserver = jsonPatch.observe(this.currentPack);
+
+        this.ensurePackData();
+
+        this.sync();
       });
   }
 
