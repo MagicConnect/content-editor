@@ -73,7 +73,8 @@ export class AbilityEffectFormComponent {
           className: 'col-4',
           type: 'checkbox',
           hideExpression: (model: IAbilityEffect) => {
-            const matches = [AbilityEffect.NegateDamageInstances, AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement].includes(model.value);
+            const matches = [AbilityEffect.NegateDamageInstances, AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement, AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.GenerateElementOnAllAttack,
+            AbilityEffect.GenerateElementOnPhysicalAttack, AbilityEffect.GenerateElementOnMagicalAttack].includes(model.value);
             if(matches) delete model.props.isPercent;
 
             return matches;
@@ -201,6 +202,8 @@ export class AbilityEffectFormComponent {
             const matches = ![
               AbilityEffect.IncomingElementDamage, AbilityEffect.OutgoingElementDamage,
               AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement,
+              AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.GenerateElementOnAllAttack,
+              AbilityEffect.GenerateElementOnPhysicalAttack, AbilityEffect.GenerateElementOnMagicalAttack
             ].includes(model.value);
             if(matches) delete model.props.element;
 
