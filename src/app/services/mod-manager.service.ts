@@ -91,7 +91,7 @@ export class ModManagerService {
   };
 
   public get shopTokens(): IItem[] {
-    return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
+    return this.currentPack.items.filter(i => [ItemType.ShopToken, ItemType.Gold, ItemType.Crystal].includes(i.itemType));
   }
 
   public get mapNames(): Array<{ id: string, name: string }> {
