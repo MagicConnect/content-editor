@@ -42,7 +42,7 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Acquistions" [flexGrow]="1">
+  <ngx-datatable-column name="Acquistions / Uses" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip" container="body" placement="right" [tooltip]="itemCurrentlyUsedIn(row) | json">
         <ng-container *ngIf="itemCurrentlyUsedIn(row) as usesArray">

@@ -6,6 +6,7 @@ export const newCharacter = (): ICharacter => ({
   name: '',
   art: '',
   spritesheet: '',
+  reinforceItem: '',
 
   spritesheetData: {
     attackFrames: 0,

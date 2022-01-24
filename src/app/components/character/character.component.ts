@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { newCharacter } from '../../initializers';
-import { Archetype, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
+import { Archetype, ItemType, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -106,6 +106,19 @@ export class CharacterComponent {
               { value: Stat.Magic,   label: 'Magic' },
               { value: Stat.Special, label: 'Special'  },
             ],
+          },
+        },
+
+        {
+          key: 'reinforceItem',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Reinforce Item',
+            placeholder: 'Choose reinforce item...',
+            description: 'This determines the third item used for Reinforcing this character.',
+            required: true,
+            options: this.mod.filteredItems.filter(x => x.itemType === ItemType.ReinforceSpecificItem).map(i => ({ value: i.id, label: i.name })),
           },
         },
 

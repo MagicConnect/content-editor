@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newItem } from '../../initializers';
-import { IBanner, IItem, IShop } from 'content-interfaces';
+import { IBanner, ICharacter, IItem, IShop } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class ItemListComponent implements OnInit {
   public items: IItem[] = [];
   public banners: IBanner[] = [];
   public shops: IShop[] = [];
+  public characters: ICharacter[] = [];
 
   public currentItem?: IItem;
 
@@ -62,6 +63,7 @@ export class ItemListComponent implements OnInit {
 
     this.mod.banners$.subscribe(banners => this.banners = [...banners]);
     this.mod.shops$.subscribe(shops => this.shops = [...shops]);
+    this.mod.characters$.subscribe(characters => this.characters = characters);
   }
 
   filter() {
@@ -131,7 +133,9 @@ export class ItemListComponent implements OnInit {
 
     const shops = this.shops.filter(shop => shop.currencyItem === item.name || shop.items.find(i => i.name === item.id)).map(s => `Shop: ${s.name}`);
 
-    return [...banners, ...shops];
+    const chars = this.characters.filter(char => char.reinforceItem === item.id).map(c => `Character: ${c.name}`);
+
+    return [...banners, ...shops, ...chars];
   }
 
   isItemCurrentlyInUse(item: IItem): boolean {
