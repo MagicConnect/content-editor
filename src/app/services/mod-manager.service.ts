@@ -195,6 +195,8 @@ export class ModManagerService {
         this.ensurePackData();
 
         this.sync();
+      }, () => {
+        alert('Failed to load content pack from server. Please try again later.');
       });
   }
 

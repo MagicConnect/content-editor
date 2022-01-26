@@ -1,5 +1,5 @@
 
-import { Archetype, Stat, Weapon, ICharacter } from 'content-interfaces';
+import { Archetype, Stat, Weapon, ICharacter, CharacterSpeed } from 'content-interfaces';
 
 export const newCharacter = (): ICharacter => ({
   id: '',
@@ -7,6 +7,7 @@ export const newCharacter = (): ICharacter => ({
   art: '',
   spritesheet: '',
   reinforceItem: '',
+  speed: CharacterSpeed.Normal,
 
   spritesheetData: {
     attackFrames: 0,

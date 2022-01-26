@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { newCharacter } from '../../initializers';
-import { Archetype, ItemType, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
+import { Archetype, CharacterSpeed, ItemType, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -122,6 +122,30 @@ export class CharacterComponent {
           },
         },
 
+        {
+          key: 'speed',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Speed',
+            placeholder: 'Choose base speed...',
+            description: 'Base speed influences default turn order (order is generally support > dps > tank).',
+            required: true,
+            options: [
+              { value: CharacterSpeed.VerySlow,   label: 'Very Slow' },
+              { value: CharacterSpeed.Slow,       label: 'Slow' },
+              { value: CharacterSpeed.Normal,     label: 'Normal' },
+              { value: CharacterSpeed.Fast,       label: 'Fast' },
+              { value: CharacterSpeed.VeryFast,   label: 'Very Fast' },
+            ]
+          },
+        },
+      ]
+    },
+
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
         {
           key: 'art',
           className: 'col-3',
