@@ -247,7 +247,7 @@ export class CharacterComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.abilities[i].abilities.push(choice.name);
+      this.model.abilities[i].abilities.push(choice.id);
     });
   }
 
