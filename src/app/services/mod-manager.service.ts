@@ -7,7 +7,7 @@ import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -408,6 +408,26 @@ export class ModManagerService {
       a.rewards.items.forEach(r => r.quantity = ensureNumber(r.quantity));
       a.rewards.weapons.forEach(r => r.quantity = ensureNumber(r.quantity));
 
+    });
+
+    // character->spritesheetData
+    this.currentPack.characters.forEach(char => {
+      if(!char.spritesheetData) return;
+
+      Object.keys(char.spritesheetData).forEach(spriteKey => {
+        const key = spriteKey as keyof IUnitSpritesheetData;
+        char.spritesheetData[key] = ensureNumber(char.spritesheetData[key]);
+      });
+    });
+
+    // enemy->spritesheetData
+    this.currentPack.enemies.forEach(char => {
+      if(!char.spritesheetData) return;
+
+      Object.keys(char.spritesheetData).forEach(spriteKey => {
+        const key = spriteKey as keyof IUnitSpritesheetData;
+        char.spritesheetData[key] = ensureNumber(char.spritesheetData[key]);
+      });
     });
 
   }
