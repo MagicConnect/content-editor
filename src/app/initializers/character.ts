@@ -5,6 +5,7 @@ export const newCharacter = (): ICharacter => ({
   id: '',
   name: '',
   art: '',
+  title: '',
   spritesheet: '',
   reinforceItem: '',
   speed: CharacterSpeed.Normal,
