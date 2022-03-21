@@ -38,6 +38,18 @@ export class CharacterComponent {
           },
         },
         {
+          key: 'title',
+          className: 'col-3',
+          type: 'input',
+          templateOptions: {
+            label: 'Title',
+            placeholder: 'Enter title here...',
+            description: 'It should be less than 30 characters.',
+            required: true,
+            maxLength: 30,
+          },
+        },
+        {
           key: 'archetype',
           className: 'col-3',
           type: 'better-select',
