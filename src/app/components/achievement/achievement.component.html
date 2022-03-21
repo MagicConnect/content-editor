@@ -1,0 +1,81 @@
+<app-background-image class="background-image" artType="achievements" [art]="model.art"></app-background-image>
+
+<fieldset class="border border-dark p-3">
+  <legend>Base Details</legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Accessory Rewards
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('accessories')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.rewards.accessories.length === 0">No accessory rewards.</div>
+
+  <app-achievement-reward-entry-form *ngFor="let accessory of model.rewards.accessories; let i = index"
+                           (remove)="remove('accessories', i)"
+                           [model]="accessory"
+                           type="accessory"
+                           [index]="i"></app-achievement-reward-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Character Rewards
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('characters')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.rewards.characters.length === 0">No character rewards.</div>
+
+  <app-achievement-reward-entry-form *ngFor="let character of model.rewards.characters; let i = index"
+                           (remove)="remove('characters', i)"
+                           [model]="character"
+                           type="character"
+                           [index]="i"></app-achievement-reward-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Item Rewards
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('items')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.rewards.items.length === 0">No item rewards.</div>
+
+  <app-achievement-reward-entry-form *ngFor="let item of model.rewards.items; let i = index"
+                           (remove)="remove('items', i)"
+                           [model]="item"
+                           type="item"
+                           [index]="i"></app-achievement-reward-entry-form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Weapon Rewards
+
+    <button class="btn btn-info btn-sm float-right" (click)="add('weapons')">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.rewards.weapons.length === 0">No weapon rewards.</div>
+
+  <app-achievement-reward-entry-form *ngFor="let weapon of model.rewards.weapons; let i = index"
+                           (remove)="remove('weapons', i)"
+                           [model]="weapon"
+                           type="weapon"
+                           [index]="i"></app-achievement-reward-entry-form>
+</fieldset>

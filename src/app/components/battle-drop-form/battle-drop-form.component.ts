@@ -20,7 +20,8 @@ export class BattleDropFormComponent {
   @Input() model: IMapNodeDroppable = {
     name: '',
     dropPercent: 100,
-    quantity: 1
+    quantity: 1,
+    onlyOneTime: false
   };
 
   options: FormlyFormOptions = {};
@@ -31,7 +32,7 @@ export class BattleDropFormComponent {
       fieldGroup: [
         {
           key: 'name',
-          className: 'col-4',
+          className: 'col-3',
           type: 'better-select',
           templateOptions: {
             label: 'Item',
@@ -64,6 +65,16 @@ export class BattleDropFormComponent {
             description: '',
             required: true,
             min: -1,
+          },
+        },
+        {
+          key: 'onlyOneTime',
+          className: 'col-3',
+          hideExpression: (model) => +model.dropPercent !== 100,
+          type: 'checkbox',
+          templateOptions: {
+            label: 'One Time Drop?',
+            description: 'If checked, the item will only ever drop once (even if the mission is run multiple times).'
           },
         },
       ]

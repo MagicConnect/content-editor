@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IBanner } from 'content-interfaces';
+import { IBanner, ItemType } from 'content-interfaces';
 import { newBanner } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 
@@ -46,6 +46,17 @@ export class BannerComponent {
           },
         },
         {
+          key: 'rollItem',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Roll Item',
+            placeholder: 'Choose roll item...',
+            description: 'This determines what item is consumed when rollign on this banner.',
+            options: this.mod.filteredItems.filter(x => [ItemType.LimitedDraw, ItemType.GeneralDraw].includes(x.itemType)).map(x => ({ label: x.name, value: x.id })),
+          },
+        },
+        {
           key: 'activeStarts',
           className: 'col-4',
           type: 'input',
@@ -72,7 +83,7 @@ export class BannerComponent {
 
         {
           key: 'art',
-          className: 'col-3',
+          className: 'col-4',
           type: 'better-select',
           templateOptions: {
             label: 'Base Art',

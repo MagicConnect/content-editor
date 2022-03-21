@@ -28,6 +28,7 @@
     "bootstrap": "^4.5.3",
     "content-interfaces": "github:MagicConnect/content-interfaces",
     "d3": "^6.1.1",
+    "fast-json-patch": "^3.1.0",
     "firebase": "^9.4.0",
     "lodash": "^4.17.21",
     "ngx-bootstrap": "^7.1.0",

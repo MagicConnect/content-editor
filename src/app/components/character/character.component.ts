@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { newCharacter } from '../../initializers';
-import { Archetype, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
+import { Archetype, CharacterSpeed, ItemType, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -110,6 +110,43 @@ export class CharacterComponent {
         },
 
         {
+          key: 'reinforceItem',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Reinforce Item',
+            placeholder: 'Choose reinforce item...',
+            description: 'This determines the third item used for Reinforcing this character.',
+            required: true,
+            options: this.mod.filteredItems.filter(x => x.itemType === ItemType.ReinforceSpecificItem).map(i => ({ value: i.id, label: i.name })),
+          },
+        },
+
+        {
+          key: 'speed',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Speed',
+            placeholder: 'Choose base speed...',
+            description: 'Base speed influences default turn order (order is generally support > dps > tank).',
+            required: true,
+            options: [
+              { value: CharacterSpeed.VerySlow,   label: 'Very Slow' },
+              { value: CharacterSpeed.Slow,       label: 'Slow' },
+              { value: CharacterSpeed.Normal,     label: 'Normal' },
+              { value: CharacterSpeed.Fast,       label: 'Fast' },
+              { value: CharacterSpeed.VeryFast,   label: 'Very Fast' },
+            ]
+          },
+        },
+      ]
+    },
+
+    {
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
           key: 'art',
           className: 'col-3',
           type: 'better-select',
@@ -210,7 +247,7 @@ export class CharacterComponent {
     });
 
     modalRef.content?.choose.subscribe(choice => {
-      this.model.abilities[i].abilities.push(choice.name);
+      this.model.abilities[i].abilities.push(choice.id);
     });
   }
 

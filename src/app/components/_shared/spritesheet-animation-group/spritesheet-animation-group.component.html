@@ -1,0 +1,6 @@
+
+<div class="row">
+  <div class="col-1" *ngFor="let frameType of ['idle', 'move', 'cast', 'attack', 'onHit', 'onDeath', 'dead']; let i = index">
+    <app-spritesheet-animation [type]="type" [spritesheetName]="spritesheetName" [frameset]="i" [numFrames]="getFrames(frameType)"></app-spritesheet-animation>
+  </div>
+</div>

@@ -8,6 +8,14 @@
   </form>
 </fieldset>
 
+<fieldset class="border border-dark p-3 mt-3 mb-3" *ngIf="model.spritesheet">
+  <legend>Spritesheet Details</legend>
+
+  <app-spritesheet-unit-form [model]="model.spritesheetData"></app-spritesheet-unit-form>
+
+  <app-spritesheet-animation-group type="character" [spritesheetName]="model.spritesheet" [spritesheetData]="model.spritesheetData"></app-spritesheet-animation-group>
+</fieldset>
+
 <fieldset class="border border-dark p-3 mt-3 mb-3">
   <legend>Stats</legend>
 
@@ -66,7 +74,6 @@
         <th>Level</th>
         <th>LB</th>
         <th>HP</th>
-        <th>MP</th>
         <th>Attack</th>
         <th>Defense</th>
         <th>Magic</th>

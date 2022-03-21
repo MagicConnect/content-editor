@@ -8,6 +8,7 @@ export const newBanner = (): IBanner => ({
   description: '',
   activeStarts: '',
   activeEnds: '',
+  rollItem: '',
 
   characters: [],
   accessories: [],

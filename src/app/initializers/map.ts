@@ -14,6 +14,7 @@ export const newMap = (): IMap => ({
 export const newMapBattle = (): IMapNode => ({
   id: -1,
   name: 'New Battle',
+  isDefaultAvailable: false,
   x: 0,
   y: 0,
   description: '',

@@ -1,28 +1,24 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { IAchievement } from 'content-interfaces';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { newItem } from '../../initializers';
-import { IBanner, ICharacter, IItem, IShop } from 'content-interfaces';
+import { newAchievement } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
-  selector: 'app-item-list',
-  templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss']
+  selector: 'app-achievement-list',
+  templateUrl: './achievement-list.component.html',
+  styleUrls: ['./achievement-list.component.scss']
 })
-export class ItemListComponent implements OnInit {
+export class AchievementListComponent implements OnInit {
 
   public searchText = '';
-  public searchResults: IItem[] = [];
+  public searchResults: IAchievement[] = [];
 
-  private allItems: IItem[] = [];
+  private allItems: IAchievement[] = [];
+  private items: IAchievement[] = [];
 
-  public items: IItem[] = [];
-  public banners: IBanner[] = [];
-  public shops: IShop[] = [];
-  public characters: ICharacter[] = [];
-
-  public currentItem?: IItem;
+  public currentItem?: IAchievement;
 
   public editIndex = -1;
   public modalRef?: BsModalRef;
@@ -30,9 +26,9 @@ export class ItemListComponent implements OnInit {
   public get canSaveCurrentItem(): boolean {
     if(!this.currentItem) return false;
     return this.currentItem.name?.length >= 2
-        && !this.isCurrentItemDuplicateName
-        && this.currentItem.sellValue > 0
-        && !!this.currentItem.itemType;
+        && this.currentItem.requirements.statValue > 0
+        && this.currentItem.lockedBy !== this.currentItem.id
+        && !this.isCurrentItemDuplicateName;
   }
 
   public get isCurrentItemClone(): boolean {
@@ -56,14 +52,10 @@ export class ItemListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.mod.items$.subscribe(items => {
+    this.mod.achievements$.subscribe(items => {
       this.items = this.allItems = [...items];
       this.filter();
     });
-
-    this.mod.banners$.subscribe(banners => this.banners = [...banners]);
-    this.mod.shops$.subscribe(shops => this.shops = [...shops]);
-    this.mod.characters$.subscribe(characters => this.characters = characters);
   }
 
   filter() {
@@ -74,9 +66,7 @@ export class ItemListComponent implements OnInit {
 
     this.searchResults = this.allItems.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.itemType.toLowerCase().includes(this.searchText.toLowerCase())
-          || this.itemCurrentlyUsedIn(a).find(i => i.toLowerCase().includes(this.searchText.toLowerCase()));
+          || a.requirements.stat.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 
@@ -85,19 +75,19 @@ export class ItemListComponent implements OnInit {
   }
 
   addNewItem(template: TemplateRef<any>) {
-    this.currentItem = newItem();
+    this.currentItem = newAchievement();
 
     this.openEditModal(template);
   }
 
-  cloneItem(template: TemplateRef<any>, item: IItem) {
+  cloneItem(template: TemplateRef<any>, item: IAchievement) {
     this.currentItem = cloneDeep(item);
     this.currentItem.name = `${this.currentItem.name} (Clone)`;
     this.mod.rerollID(this.currentItem);
     this.openEditModal(template);
   }
 
-  editItem(template: TemplateRef<any>, item: IItem) {
+  editItem(template: TemplateRef<any>, item: IAchievement) {
     this.currentItem = cloneDeep(item);
     this.openEditModal(template);
     this.editIndex = this.allItems.findIndex(i => i.name === item.name);
@@ -107,18 +97,18 @@ export class ItemListComponent implements OnInit {
     if(!this.currentItem || !this.currentItem.name) return;
 
     if(this.editIndex === -1) {
-      this.mod.addItem(this.currentItem);
+      this.mod.addAchievement(this.currentItem);
     } else {
-      this.mod.editItem(this.currentItem, this.editIndex);
+      this.mod.editAchievement(this.currentItem, this.editIndex);
     }
 
     this.cancelEdit();
   }
 
-  deleteItem(item: IItem) {
-    if(!confirm('Are you sure you want to delete this item?')) return;
+  deleteItem(item: IAchievement) {
+    if(!confirm('Are you sure you want to delete this achievement?')) return;
 
-    this.mod.deleteItem(item);
+    this.mod.deleteAchievement(item);
   }
 
   cancelEdit() {
@@ -128,17 +118,22 @@ export class ItemListComponent implements OnInit {
     this.editIndex = -1;
   }
 
-  itemCurrentlyUsedIn(item: IItem): string[] {
-    const banners = this.banners.filter(banner => banner.items.find(i => i.name === item.id)).map(b => `Banner: ${b.name}`);
+  mapName(id: string): string {
+    if(!id) return '';
 
-    const shops = this.shops.filter(shop => shop.currencyItem === item.name || shop.items.find(i => i.name === item.id)).map(s => `Shop: ${s.name}`);
-
-    const chars = this.characters.filter(char => char.reinforceItem === item.id).map(c => `Character: ${c.name}`);
-
-    return [...banners, ...shops, ...chars];
+    return this.mod.filteredMaps.find(x => x.id === id)?.name ?? 'UNKNOWN';
   }
 
-  isItemCurrentlyInUse(item: IItem): boolean {
-    return this.itemCurrentlyUsedIn(item).length > 0;
+  mapNodeName(mapId: string, id: number): string {
+    if(!mapId || !id || id === -1) return '';
+
+    return this.mod.filteredMaps.find(x => x.id === mapId)?.nodes.find(n => n.id === id)?.name ?? 'UNKNOWN';
   }
+
+  achievementName(id: string): string {
+    if(!id) return '';
+
+    return this.mod.filteredAchievements.find(x => x.id === id)?.name ?? 'UNKNOWN';
+  }
+
 }

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { sortBy, isUndefined } from 'lodash';
+import { sortBy, isUndefined, isNumber } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject, Observable } from 'rxjs';
+import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -18,17 +19,24 @@ export class ModManagerService {
   // content pack
   @LocalStorage() public currentPack!: IContentPack;
 
+  // json patch observer
+  private packObserver!: jsonPatch.Observer<any>;
+
+  // observables
   private abilities: BehaviorSubject<IAbility[]> = new BehaviorSubject<IAbility[]>([]);
   public abilities$: Observable<IAbility[]> = this.abilities.asObservable();
+
+  private accessories: BehaviorSubject<IAccessory[]> = new BehaviorSubject<IAccessory[]>([]);
+  public accessories$: Observable<IAccessory[]> = this.accessories.asObservable();
+
+  private achievements: BehaviorSubject<IAchievement[]> = new BehaviorSubject<IAchievement[]>([]);
+  public achievements$: Observable<IAchievement[]> = this.achievements.asObservable();
 
   private banners: BehaviorSubject<IBanner[]> = new BehaviorSubject<IBanner[]>([]);
   public banners$: Observable<IBanner[]> = this.banners.asObservable();
 
   private characters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
   public characters$: Observable<ICharacter[]> = this.characters.asObservable();
-
-  private accessories: BehaviorSubject<IAccessory[]> = new BehaviorSubject<IAccessory[]>([]);
-  public accessories$: Observable<IAccessory[]> = this.accessories.asObservable();
 
   private enemies: BehaviorSubject<IEnemy[]> = new BehaviorSubject<IEnemy[]>([]);
   public enemies$: Observable<IEnemy[]> = this.enemies.asObservable();
@@ -51,6 +59,7 @@ export class ModManagerService {
   // art pack
   private artData: IArtPack = {
     meta: { fileExt: 'webp', basePath: 'assets/art' },
+    achievements: [],
     banners: [],
     characters: [],
     charactersheets: [],
@@ -82,7 +91,7 @@ export class ModManagerService {
   };
 
   public get shopTokens(): IItem[] {
-    return this.currentPack.items.filter(i => i.itemType === ItemType.ShopToken);
+    return this.currentPack.items.filter(i => [ItemType.ShopToken, ItemType.Gold, ItemType.Crystal].includes(i.itemType));
   }
 
   public get mapNames(): Array<{ id: string, name: string }> {
@@ -107,6 +116,14 @@ export class ModManagerService {
 
   public get filteredItems(): Array<{ id: string, name: string, itemType: ItemType }> {
     return this.currentPack.items.map(c => ({ id: c.id, name: c.name, itemType: c.itemType }));
+  }
+
+  public get filteredMaps(): Array<{ id: string, name: string, nodes: IMapNode[] }> {
+    return this.currentPack.maps.map(c => ({ id: c.id, name: c.name, nodes: c.nodes }));
+  }
+
+  public get filteredAchievements(): Array<{ id: string, name: string }> {
+    return this.currentPack.achievements.map(c => ({ id: c.id, name: c.name }));
   }
 
   public get chooseableAbilities(): Array<{ id: string, name: string, description: string }> {
@@ -170,35 +187,45 @@ export class ModManagerService {
       .subscribe((d) => {
         const importPack: IContentPack = d as IContentPack;
         this.currentPack = importPack;
+
+        this._loading = false;
+
+        this.packObserver = jsonPatch.observe(this.currentPack);
+
         this.ensurePackData();
 
         this.sync();
-
-        this._loading = false;
+      }, () => {
+        alert('Failed to load content pack from server. Please try again later.');
       });
   }
 
   public exportNet() {
-    this.http.put(this.api.contentUrl, this.currentPack).subscribe((res) => {
-      console.log(res);
-    },
-    (err) => {
-      console.error(err);
-      if(!err.error) return;
 
-      const validationErrors = err.error.validationErrors.map((errs: any) => {
-        return errs.prettyPathString;
+    const patches = jsonPatch.generate(this.packObserver);
+    if(patches.length > 0) {
+      this.http.patch(this.api.contentUrl, patches).subscribe(res => {
+        console.log('Saved patches.');
+      },
+      (err) => {
+        console.error(err);
+        if(!err.error) return;
+
+        const validationErrors = err.error.validationErrors.map((errs: any) => {
+          return errs.prettyPathString;
+        });
+
+        alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
+        \n${validationErrors.join('\n')}`);
       });
-
-      alert(`If you see this message, screenshot it and send it to Seiyria. These fields need to be changed either to be a number or to have data:
-      \n${validationErrors.join('\n')}`);
-    });
+    }
   }
 
   // Pack-related
   private ensurePackData(): void {
     if(!this.currentPack.abilities) this.currentPack.abilities = [];
     if(!this.currentPack.accessories) this.currentPack.accessories = [];
+    if(!this.currentPack.achievements) this.currentPack.achievements = [];
     if(!this.currentPack.banners) this.currentPack.banners = [];
     if(!this.currentPack.characters) this.currentPack.characters = [];
     if(!this.currentPack.enemies) this.currentPack.enemies = [];
@@ -213,6 +240,7 @@ export class ModManagerService {
     this.currentPack = {
       abilities: [],
       accessories: [],
+      achievements: [],
       banners: [],
       characters: [],
       enemies: [],
@@ -226,9 +254,10 @@ export class ModManagerService {
 
   private sync(): void {
     this.abilities.next(this.currentPack.abilities ?? []);
+    this.accessories.next(this.currentPack.accessories ?? []);
+    this.achievements.next(this.currentPack.achievements ?? []);
     this.banners.next(this.currentPack.banners ?? []);
     this.characters.next(this.currentPack.characters ?? []);
-    this.accessories.next(this.currentPack.accessories ?? []);
     this.enemies.next(this.currentPack.enemies ?? []);
     this.items.next(this.currentPack.items ?? []);
     this.maps.next(this.currentPack.maps ?? []);
@@ -365,6 +394,42 @@ export class ModManagerService {
 
     });
 
+    // achievements->requirements->statValue
+    this.currentPack.achievements.forEach(a => {
+      if(!a.lockedBy) delete a.lockedBy;
+
+      a.requirements.statValue = ensureNumber(a.requirements.statValue);
+
+      if(!isNumber(a.requirements.mapNodeId) || a.requirements.mapNodeId === -1) delete a.requirements.mapNodeId;
+      if(!a.requirements.mapName) delete a.requirements.mapNodeId;
+
+      a.rewards.accessories.forEach(r => r.quantity = ensureNumber(r.quantity));
+      a.rewards.characters.forEach(r => r.quantity = ensureNumber(r.quantity));
+      a.rewards.items.forEach(r => r.quantity = ensureNumber(r.quantity));
+      a.rewards.weapons.forEach(r => r.quantity = ensureNumber(r.quantity));
+
+    });
+
+    // character->spritesheetData
+    this.currentPack.characters.forEach(char => {
+      if(!char.spritesheetData) return;
+
+      Object.keys(char.spritesheetData).forEach(spriteKey => {
+        const key = spriteKey as keyof IUnitSpritesheetData;
+        char.spritesheetData[key] = ensureNumber(char.spritesheetData[key]);
+      });
+    });
+
+    // enemy->spritesheetData
+    this.currentPack.enemies.forEach(char => {
+      if(!char.spritesheetData) return;
+
+      Object.keys(char.spritesheetData).forEach(spriteKey => {
+        const key = spriteKey as keyof IUnitSpritesheetData;
+        char.spritesheetData[key] = ensureNumber(char.spritesheetData[key]);
+      });
+    });
+
   }
 
   public rerollID(ident: IIdentifiable): void {
@@ -381,7 +446,7 @@ export class ModManagerService {
   public addAbility(ability: IAbility): void {
     if(!this.currentPack.abilities) this.currentPack.abilities = [];
 
-    if(!ability.id) ability.id = uuid();
+    this.ensureID(ability);
 
     this.currentPack.abilities.push(ability);
     this.syncAndSave();
@@ -423,6 +488,25 @@ export class ModManagerService {
 
   public deleteAccessory(acc: IAccessory): void {
     this.currentPack.accessories = this.currentPack.accessories.filter(c => c !== acc);
+    this.syncAndSave();
+  }
+
+  // Achievement-related
+  public addAchievement(ach: IAchievement): void {
+    if(!this.currentPack.achievements) this.currentPack.achievements = [];
+
+    this.ensureID(ach);
+    this.currentPack.achievements.push(ach);
+    this.syncAndSave();
+  }
+
+  public editAchievement(ach: IAchievement, index: number): void {
+    this.currentPack.achievements[index] = ach;
+    this.syncAndSave();
+  }
+
+  public deleteAchievement(ach: IAchievement): void {
+    this.currentPack.achievements = this.currentPack.achievements.filter(a => a !== ach);
     this.syncAndSave();
   }
 

@@ -65,13 +65,23 @@ export class BattleComponent implements OnInit {
         },
         {
           key: 'unlocksMap',
-          className: 'col-3',
+          className: 'col-4',
           type: 'better-select',
           templateOptions: {
             label: 'Map Unlock',
             placeholder: 'Choose unlocked map...',
             description: 'Usually this would be reserved for a final node in the story.',
             options: Object.values(this.mod.mapNames).filter(Boolean).sort().map(x => ({ label: x.name, value: x.name }))
+          },
+        },
+        {
+          key: 'isDefaultAvailable',
+          className: 'col-4',
+          type: 'checkbox',
+          defaultValue: false,
+          templateOptions: {
+            label: 'Is Available By Default',
+            description: 'Whether the battle should be available without unlocking any fights (ie, is the first fight in a map).',
           },
         },
       ]
@@ -152,7 +162,7 @@ export class BattleComponent implements OnInit {
   }
 
   addDropItem() {
-    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1 });
+    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1, onlyOneTime: false });
   }
 
   removeDropItem(index: number) {
