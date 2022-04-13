@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(!this.currentPage) this.currentPage = 'weapon';
+    if(!this.currentPage) this.currentPage = 'Character';
 
     if(this.email && this.password && this.hasLoggedIn) {
       this.doLogin();
