@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlySelectModule } from '@ngx-formly/core/select';
@@ -21,6 +22,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { ModManagerService } from './services/mod-manager.service';
 
@@ -156,7 +158,9 @@ import { SpritesheetAnimationGroupComponent } from './components/_shared/sprites
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ClipboardModule,
+    HotToastModule.forRoot()
   ],
   providers: [
     {

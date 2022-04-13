@@ -21,3 +21,12 @@
     user-select: none;
   }
 }
+
+.message {
+  min-height: 40px;
+  text-align: center;
+
+  .message-content {
+    outline: 1px solid #000;
+  }
+}

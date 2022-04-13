@@ -66,12 +66,14 @@
     </ng-template>
   </ngx-datatable-column>
 
-  <ngx-datatable-column name="Actions" [width]="200" [sortable]="false" [canAutoResize]="false">
+  <ngx-datatable-column name="Actions" [width]="250" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
         <button class="btn btn-info btn-sm ml-1" (click)="cloneBanner(bannerEditor, row)">Clone</button>
         <button class="btn btn-info btn-sm ml-1" (click)="editBanner(bannerEditor, row)">Edit</button>
         <button class="btn btn-danger btn-sm ml-1" (click)="deleteBanner(row)">Delete</button>
+
+        <button class="btn btn-info btn-sm ml-1" ngxClipboard [cbContent]="row.id" (cbOnSuccess)="mod.notify('Copied ID of ' + row.name + ' (' + row.id + ')!')">ID</button>
       </div>
     </ng-template>
   </ngx-datatable-column>

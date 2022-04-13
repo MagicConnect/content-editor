@@ -22,6 +22,9 @@ export class ModManagerService {
   // json patch observer
   private packObserver!: jsonPatch.Observer<any>;
 
+  private newMessage: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public newMessage$: Observable<string> = this.newMessage.asObservable();
+
   // observables
   private abilities: BehaviorSubject<IAbility[]> = new BehaviorSubject<IAbility[]>([]);
   public abilities$: Observable<IAbility[]> = this.abilities.asObservable();
@@ -134,6 +137,9 @@ export class ModManagerService {
     return sortBy(this.currentPack.skills.map(a => ({ id: a.id, name: a.name, description: a.description })), 'name');
   }
 
+  // notification tooltip
+  private _notificationTimeout: any;
+
   // loading
   private _loading = false;
 
@@ -141,7 +147,11 @@ export class ModManagerService {
     return this._loading;
   }
 
-  constructor(private http: HttpClient, private auth: AuthService, private api: ApiService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private api: ApiService
+  ) {}
 
   public init() {
     if(!this.currentPack) {
@@ -157,6 +167,16 @@ export class ModManagerService {
     const artData = await artDataRef.json();
 
     this.artData = artData;
+  }
+
+  public notify(message: string) {
+    if(this._notificationTimeout) clearTimeout(this._notificationTimeout);
+
+    this.newMessage.next(message);
+
+    this._notificationTimeout = setTimeout(() => {
+      this.newMessage.next('');
+    }, 5000);
   }
 
   // Management-related
