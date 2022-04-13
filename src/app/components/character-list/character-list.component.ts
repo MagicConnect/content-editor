@@ -33,6 +33,7 @@ export class CharacterListComponent implements OnInit {
         && !this.isCurrentCharacterDuplicateName
         && !this.isCurrentCharacterClone
         && this.currentCharacter.primaryStat
+        && !!this.currentCharacter.title
         && this.currentCharacter.weapon
         && this.currentCharacter.archetype
         && this.currentCharacter.stars >= 3
@@ -83,6 +84,7 @@ export class CharacterListComponent implements OnInit {
     this.searchResults = this.allCharacters.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
           || a.archetype.toLowerCase().includes(this.searchText.toLowerCase())
+          || a.title.toLowerCase().includes(this.searchText.toLowerCase())
           || a.weapon.toLowerCase().includes(this.searchText.toLowerCase())
           || a.specialSkill.toLowerCase().includes(this.searchText.toLowerCase())
           || a.primaryStat.toLowerCase().includes(this.searchText.toLowerCase())
