@@ -63,7 +63,7 @@ export class BannerComponent {
           templateOptions: {
             label: 'Start Date/Time',
             placeholder: 'Enter start date/time here...',
-            description: 'YYYY/MM/DD HH:MM, -1 for permanent',
+            description: 'YYYY-MM-DD HH:MM, leave blank for permanent',
             required: true,
             maxLength: 16,
           },
@@ -75,7 +75,7 @@ export class BannerComponent {
           templateOptions: {
             label: 'End Date/Time',
             placeholder: 'Enter end date/time here...',
-            description: 'YYYY/MM/DD HH:MM, -1 for permanent',
+            description: 'YYYY-MM-DD HH:MM, leave blank for permanent',
             required: true,
             maxLength: 16,
           },
