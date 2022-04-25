@@ -82,7 +82,6 @@ export class WeaponComponent {
               { value: 3, label: '★★★' },
               { value: 4, label: '★★★★' },
               { value: 5, label: '★★★★★' },
-              { value: 6, label: '★★★★★★ (Banner Weapon)' },
             ],
             change: (field, $event) => {
               const value = +$event.target.value.split(' ')[1];
@@ -129,6 +128,17 @@ export class WeaponComponent {
               { value: Stat.Magic,   label: 'Magic' },
               { value: Stat.Special, label: 'Special'  },
             ],
+          },
+        },
+
+        {
+          key: 'hasHigherPotential',
+          className: 'col-3',
+          type: 'checkbox',
+          defaultValue: false,
+          templateOptions: {
+            label: 'Has Higher Potential',
+            description: 'Whether or not the weapon has a higher potential (ie, banner weapons). Affects stat growth.',
           },
         },
 
