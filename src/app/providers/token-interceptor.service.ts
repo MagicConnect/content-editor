@@ -14,6 +14,8 @@ export class TokenInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
+    if(req.url.includes('.json')) return next.handle(req);
+
     const token = JSON.parse(localStorage.getItem('ngx-webstorage|token') || '""');
     if(token) {
       req = req.clone({

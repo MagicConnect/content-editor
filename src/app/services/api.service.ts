@@ -15,7 +15,7 @@ export class ApiService {
   }
 
   public get contentUrlRaw(): string {
-    return `${this.contentUrl}/raw`;
+    return 'https://gamedata.magic-connect.com/content.json';
   }
 
   constructor() { }
