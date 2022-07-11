@@ -36,15 +36,14 @@ export class StoreComponent {
         },
         {
           key: 'cost',
-          className: 'col-4',
+          className: 'col-4', //could be 'col-3'?
           type: 'input',
           templateOptions: {
             label: 'Cost',
             placeholder: 'Enter bundle cost here...',
-            description: 'It should be less than 50 characters.',
+            description: '',
             required: true,
-            maxLength: 50,
-            type: 'number',
+            min: 0,
           },
         },
       ]
@@ -53,11 +52,13 @@ export class StoreComponent {
 
   constructor(private mod: ModManagerService) { }
 
-  // add(type: keyof IStore & 'items') {
-  //   this.model[type].push({ itemType: '', quantity: -1 });
-  // }
+  add() { //type: keyof IStore & 'items') {
+    this.model.push({ itemType: '', quantity: -1 });
+  //this.model[type].push({ itemType: '', quantity: -1 });
+  }
 
-  // remove(type: keyof IStore & 'items', index: number) {
-  //   this.model[type].splice(index, 1);
-  // }
+  remove(index: number) { //type: keyof IStore & 'items', index: number) {
+    this.model.splice(index, 1);
+    //this.model[type].splice(index, 1);
+  }
 }
