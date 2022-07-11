@@ -7,7 +7,7 @@ import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData, IStore } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -52,6 +52,9 @@ export class ModManagerService {
 
   private shops: BehaviorSubject<IShop[]> = new BehaviorSubject<IShop[]>([]);
   public shops$: Observable<IShop[]> = this.shops.asObservable();
+
+  private stores: BehaviorSubject<IStore[]> = new BehaviorSubject<IStore[]>([]);
+  public stores$: Observable<IStore[]> = this.stores.asObservable();
 
   private skills: BehaviorSubject<ISkill[]> = new BehaviorSubject<ISkill[]>([]);
   public skills$: Observable<ISkill[]> = this.skills.asObservable();
@@ -252,6 +255,7 @@ export class ModManagerService {
     if(!this.currentPack.items) this.currentPack.items = [];
     if(!this.currentPack.maps) this.currentPack.maps = [];
     if(!this.currentPack.shops) this.currentPack.shops = [];
+    if(!this.currentPack.stores) this.currentPack.stores = [];
     if(!this.currentPack.skills) this.currentPack.skills = [];
     if(!this.currentPack.weapons) this.currentPack.weapons = [];
   }
@@ -267,6 +271,7 @@ export class ModManagerService {
       items: [],
       maps: [],
       shops: [],
+      stores: [],
       skills: [],
       weapons: [],
     };
@@ -282,6 +287,7 @@ export class ModManagerService {
     this.items.next(this.currentPack.items ?? []);
     this.maps.next(this.currentPack.maps ?? []);
     this.shops.next(this.currentPack.shops ?? []);
+    this.stores.next(this.currentPack.stores ?? []);
     this.skills.next(this.currentPack.skills ?? []);
     this.weapons.next(this.currentPack.weapons ?? []);
   }
@@ -362,6 +368,13 @@ export class ModManagerService {
       s.items.forEach(i => {
         i.quantity = ensureNumber(i.quantity);
         i.cost = ensureNumber(i.cost);
+      });
+    });
+
+    // ensure store->quantity is a number
+    this.currentPack.stores.forEach(s => {
+      s.items.forEach(i => {
+        i.quantity = ensureNumber(i.quantity);
       });
     });
 
@@ -650,6 +663,26 @@ export class ModManagerService {
 
   public deleteShop(shop: IShop): void {
     this.currentPack.shops = this.currentPack.shops.filter(s => s !== shop);
+    this.syncAndSave();
+  }
+
+  // Store-related
+  public addStore(store: IStore): void {
+    if(!this.currentPack.stores) this.currentPack.stores = [];
+
+    this.ensureID(store);
+
+    this.currentPack.stores.push(store);
+    this.syncAndSave();
+  }
+
+  public editStore(store: IStore, index: number): void {
+    this.currentPack.stores[index] = store;
+    this.syncAndSave();
+  }
+
+  public deleteStore(store: IStore): void {
+    this.currentPack.stores = this.currentPack.stores.filter(s => s !== store);
     this.syncAndSave();
   }
 

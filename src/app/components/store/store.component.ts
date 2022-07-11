@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IStore } from 'content-interfaces';
+import { IStore, ItemType } from 'content-interfaces';
 import { newStore } from 'src/app/initializers/store';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 
@@ -52,13 +52,11 @@ export class StoreComponent {
 
   constructor(private mod: ModManagerService) { }
 
-  add() { //type: keyof IStore & 'items') {
-    this.model.push({ itemType: '', quantity: -1 });
-  //this.model[type].push({ itemType: '', quantity: -1 });
+  add() {
+    this.model.items.push({ itemType: ItemType.Crystal, quantity: -1 });
   }
 
-  remove(index: number) { //type: keyof IStore & 'items', index: number) {
-    this.model.splice(index, 1);
-    //this.model[type].splice(index, 1);
+  remove(index: number) {
+    this.model.items.splice(index, 1);
   }
 }

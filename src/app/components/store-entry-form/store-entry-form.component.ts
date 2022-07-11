@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IItemBundle } from 'content-interfaces';
+import { IStoreItemBundle, ItemType } from 'content-interfaces';
 
 import { sortBy } from 'lodash';
 import { ModManagerService } from '../../services/mod-manager.service';
@@ -12,18 +12,14 @@ import { ModManagerService } from '../../services/mod-manager.service';
   styleUrls: ['./store-entry-form.component.scss']
 })
 export class StoreEntryFormComponent {
-
-  //verify what should be here (probably just item???)
-  //@Input() type: 'weapon' | 'character' | 'item' | 'accessory' = 'item';
-
   @Output() remove = new EventEmitter();
   @Input() index = 0;
 
   form = new FormGroup({});
 
-  @Input() model: IItemBundle = {
-    name: '',
-    quantity: -1
+  @Input() model: IStoreItemBundle = {
+    itemType: ItemType.Crystal,
+    quantity: -1,
   };
 
   options: FormlyFormOptions = {};
@@ -45,7 +41,7 @@ export class StoreEntryFormComponent {
         },
         {
           key: 'quantity',
-          className: 'col-3',
+          className: 'col-4',
           type: 'input',
           templateOptions: {
             label: 'Quantity',
