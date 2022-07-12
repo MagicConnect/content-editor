@@ -79,6 +79,7 @@ import { SpritesheetAnimationComponent } from './components/_shared/spritesheet-
 import { SpritesheetAnimationGroupComponent } from './components/_shared/spritesheet-animation-group/spritesheet-animation-group.component';
 import { StoreListComponent } from './components/store-list/store-list.component';
 import { StoreComponent } from './components/store/store.component';
+import { StoreEntryFormComponent } from './components/store-entry-form/store-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { StoreComponent } from './components/store/store.component';
     SpritesheetAnimationComponent,
     SpritesheetAnimationGroupComponent,
     StoreListComponent,
-    StoreComponent
+    StoreComponent,
+    StoreEntryFormComponent
   ],
   imports: [
     BrowserModule,

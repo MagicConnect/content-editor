@@ -36,6 +36,7 @@ export class StoreEntryFormComponent {
             label: 'Item',
             placeholder: 'Pick item...',
             description: 'If you don\'t see any items, add one.',
+            required: true,
             options: sortBy(Object.values(this.mod.filteredItems).filter(Boolean), ['name', 'itemType']).map((x: any) => ({ label: x.name, value: x.id, itemType: x.itemType }))
           },
         },
