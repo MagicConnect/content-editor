@@ -67,6 +67,7 @@ export class ModManagerService {
     meta: { fileExt: 'webp', basePath: 'assets/art' },
     achievements: [],
     banners: [],
+    characterheads: [],
     characters: [],
     charactersheets: [],
     accessories: [],

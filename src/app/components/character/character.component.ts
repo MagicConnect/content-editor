@@ -172,6 +172,19 @@ export class CharacterComponent {
         },
 
         {
+          key: 'headArt',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Head Art',
+            placeholder: 'Choose head art...',
+            description: 'This determines the head art for the character (character list interfaces).',
+            required: true,
+            options: this.mod.allArtData.characterheads.map(art => ({ value: art, label: art })),
+          },
+        },
+
+        {
           key: 'spritesheet',
           className: 'col-3',
           type: 'better-select',
