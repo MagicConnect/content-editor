@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-9">
+    <input class="form-control" type="text" placeholder="Search Stores" [(ngModel)]="searchText" (keyup)="filter()">
+  </div>
+  <div class="col-3 text-right">
+    <button class="btn btn-primary" (click)="addNewStore(storeEditor)">+ Add New Store</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="searchResults"
+               columnMode="flex"
+               [sorts]="[{ prop: 'name', dir: 'asc' }]"
+               [limit]="10"
+               [headerHeight]="50"
+               [footerHeight]="50"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Items" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.items.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [width]="250" [sortable]="false" [canAutoResize]="false">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneStore(storeEditor, row)">Clone</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="editStore(storeEditor, row)">Edit</button>
+        <button class="btn btn-danger btn-sm ml-1" (click)="deleteStore(row)">Delete</button>
+
+        <button class="btn btn-info btn-sm ml-1" ngxClipboard [cbContent]="row.id" (cbOnSuccess)="mod.notify('Copied ID of ' + row.name + ' (' + row.id + ')!')">ID</button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #storeEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Store
+    </h4>
+
+    <div class="has-actions text-center">
+      <div class="d-flex justify-content-space-around">
+        <button class="btn btn-sm btn-primary" (click)="confirmStoreEdit()" [disabled]="!canSaveCurrentStore">Save</button>
+
+        <div class="ml-1 errors">
+          <div class="error" *ngIf="isCurrentStoreDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentStoreClone">Rename clone.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-store [model]="currentStore" *ngIf="currentStore"></app-store>
+  </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentStore?.id }}</div>
+  </div>
+</ng-template>
