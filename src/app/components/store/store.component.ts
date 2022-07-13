@@ -41,9 +41,10 @@ export class StoreComponent {
           templateOptions: {
             label: 'Cost',
             placeholder: 'Enter bundle cost here...',
-            description: '',
+            description: 'Should be an integer representing the cost, eg. 499 for $4.99.',
             required: true,
             min: 0,
+            max: 99999,
           },
         },
       ]

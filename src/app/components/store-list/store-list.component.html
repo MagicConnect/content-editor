@@ -25,6 +25,14 @@
     </ng-template>
   </ngx-datatable-column>
 
+  <ngx-datatable-column name="Cost" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.cost }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
   <ngx-datatable-column name="Items" [flexGrow]="1">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
