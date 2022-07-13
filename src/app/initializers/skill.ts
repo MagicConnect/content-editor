@@ -4,6 +4,7 @@ import { ISkill, Element } from 'content-interfaces';
 export const newSkill = (): ISkill => ({
   id: '',
   name: '',
+  art: '',
   description: '',
   actions: [],
   cooldown: 0,

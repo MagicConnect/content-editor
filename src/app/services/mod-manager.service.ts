@@ -75,6 +75,8 @@ export class ModManagerService {
     enemysheets: [],
     items: [],
     maps: [],
+    npcs: [],
+    skillicons: [],
     weapons: []
   };
 

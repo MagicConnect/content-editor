@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Element, ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
 import { newSkill } from '../../initializers';
+import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
   selector: 'app-skill-form',
@@ -35,13 +36,25 @@ export class SkillFormComponent {
         },
         {
           key: 'description',
-          className: 'col-8',
+          className: 'col-4',
           type: 'input',
           templateOptions: {
             label: 'Description',
             placeholder: 'Enter description here...',
             description: 'It should be less than 500 characters.',
             maxLength: 500,
+          },
+        },
+        {
+          key: 'art',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Base Art',
+            placeholder: 'Choose base art...',
+            description: 'This determines the icon art for the skill.',
+            required: true,
+            options: this.mod.allArtData.skillicons.map(art => ({ value: art, label: art })),
           },
         },
       ]
@@ -90,7 +103,7 @@ export class SkillFormComponent {
     },
   ];
 
-  constructor() { }
+  constructor(public mod: ModManagerService) { }
 
   addAction() {
     this.model.actions.push({
