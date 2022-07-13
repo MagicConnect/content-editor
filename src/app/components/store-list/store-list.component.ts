@@ -31,7 +31,7 @@ export class StoreListComponent implements OnInit {
         && this.currentStore.cost > 0
         && this.currentStore.items.length > 0
         && this.currentStore.items.every(c => !!c.itemType && c.quantity > 0)
-        && this.currentStore.cost.toString().includes('.');//isNan(this.currentStore.cost);
+        && this.currentStore.cost.toString().includes('.');
   }
 
   public get isCurrentStoreClone(): boolean {
