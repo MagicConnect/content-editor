@@ -326,6 +326,8 @@ export class ModManagerService {
     // ensure something is a number
     const ensureNumber = (val: number | string) => +val;
 
+    const ensureInteger = (val: number | string) =>  +val.toString().replace(/[^0-9]*/, '');
+
     trimAll(this.currentPack);
 
     // ensure ability->baseValue is a number
@@ -377,6 +379,7 @@ export class ModManagerService {
       s.items.forEach(i => {
         i.quantity = ensureNumber(i.quantity);
       });
+      s.cost = ensureInteger(s.cost);
     });
 
     // ensure skill->{hpCost,spcCost,statScaling[],actions[].statusEffectChanges[]}
