@@ -5,6 +5,7 @@ export const newCharacter = (): ICharacter => ({
   id: '',
   name: '',
   art: '',
+  headArt: '',
   title: '',
   spritesheet: '',
   reinforceItem: '',

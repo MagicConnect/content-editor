@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     { name: 'Item',         key: 'items' },
     { name: 'Map',          key: 'maps' },
     { name: 'Shop',         key: 'shops' },
+    { name: 'Store',        key: 'stores' },
     { name: 'Skill',        key: 'skills' },
     { name: 'Weapon',       key: 'weapons' },
   ];
