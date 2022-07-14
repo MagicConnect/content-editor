@@ -109,6 +109,7 @@ export class SkillFormComponent {
     this.model.actions.push({
       castTime: 0,
       dropsTrap: false,
+      canTargetDead: false,
       elements: [],
       hits: 1,
       pattern: SkillActionPattern.SingleTarget,

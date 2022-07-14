@@ -37,7 +37,8 @@ export class SkillActionFormComponent {
       [Stat.MeleeEvasion]: 0,
     },
     hits: 1,
-    dropsTrap: false
+    dropsTrap: false,
+    canTargetDead: false
   };
 
   options: FormlyFormOptions = {};
@@ -126,6 +127,16 @@ export class SkillActionFormComponent {
           templateOptions: {
             label: 'Drops Trap',
             description: 'Whether the ability drops a trap that fires later.',
+          },
+        },
+        {
+          key: 'canTargetDead',
+          className: 'col-3',
+          type: 'checkbox',
+          defaultValue: false,
+          templateOptions: {
+            label: 'Can Target Dead',
+            description: 'Whether the ability can target a dead creature.',
           },
         },
       ]
