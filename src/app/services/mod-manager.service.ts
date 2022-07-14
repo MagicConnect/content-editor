@@ -412,6 +412,14 @@ export class ModManagerService {
           a.hits = ensureNumber(a.hits);
         }
 
+        if(a.push) {
+          a.push = ensureNumber(a.push);
+        }
+
+        if(a.pull) {
+          a.pull = ensureNumber(a.pull);
+        }
+
         if(a.statScaling) {
           Object.keys(a.statScaling).forEach(key => {
             if(isUndefined(a.statScaling[key as Stat])) return;
