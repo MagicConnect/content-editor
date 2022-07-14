@@ -7,7 +7,7 @@ import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData, IStore } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData, IStore, ICalendarBonus } from 'content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -38,6 +38,9 @@ export class ModManagerService {
   private banners: BehaviorSubject<IBanner[]> = new BehaviorSubject<IBanner[]>([]);
   public banners$: Observable<IBanner[]> = this.banners.asObservable();
 
+  private calendarBonuses: BehaviorSubject<ICalendarBonus[]> = new BehaviorSubject<ICalendarBonus[]>([]);
+  public calendarBonuses$: Observable<ICalendarBonus[]> = this.calendarBonuses.asObservable();
+
   private characters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
   public characters$: Observable<ICharacter[]> = this.characters.asObservable();
 
@@ -67,6 +70,7 @@ export class ModManagerService {
     meta: { fileExt: 'webp', basePath: 'assets/art' },
     achievements: [],
     banners: [],
+    calendarBonus: [],
     characterheads: [],
     characters: [],
     charactersheets: [],
@@ -253,6 +257,7 @@ export class ModManagerService {
     if(!this.currentPack.accessories) this.currentPack.accessories = [];
     if(!this.currentPack.achievements) this.currentPack.achievements = [];
     if(!this.currentPack.banners) this.currentPack.banners = [];
+    if(!this.currentPack.calendarBonuses) this.currentPack.calendarBonuses = [];
     if(!this.currentPack.characters) this.currentPack.characters = [];
     if(!this.currentPack.enemies) this.currentPack.enemies = [];
     if(!this.currentPack.items) this.currentPack.items = [];
@@ -269,6 +274,7 @@ export class ModManagerService {
       accessories: [],
       achievements: [],
       banners: [],
+      calendarBonuses: [],
       characters: [],
       enemies: [],
       items: [],
@@ -285,6 +291,7 @@ export class ModManagerService {
     this.accessories.next(this.currentPack.accessories ?? []);
     this.achievements.next(this.currentPack.achievements ?? []);
     this.banners.next(this.currentPack.banners ?? []);
+    this.calendarBonuses.next(this.currentPack.calendarBonuses ?? []);
     this.characters.next(this.currentPack.characters ?? []);
     this.enemies.next(this.currentPack.enemies ?? []);
     this.items.next(this.currentPack.items ?? []);
@@ -354,6 +361,13 @@ export class ModManagerService {
       if(w.secondaryStat) return;
 
       delete w.secondaryStat;
+    });
+
+    this.currentPack.calendarBonuses.forEach(c => {
+      c.rewardItems.forEach(i => {
+        i.quantity = ensureNumber(i.quantity);
+        i.day = ensureNumber(i.day);
+      });;
     });
 
     // ensure character->skill->lb is a number
@@ -572,6 +586,26 @@ export class ModManagerService {
 
   public deleteBanner(banner: IBanner): void {
     this.currentPack.banners = this.currentPack.banners.filter(b => b !== banner);
+    this.syncAndSave();
+  }
+
+  // CalendarBonus-related
+  public addCalendarBonus(calendarBonus: ICalendarBonus): void {
+    if(!this.currentPack.calendarBonuses) this.currentPack.calendarBonuses = [];
+
+    this.ensureID(calendarBonus);
+
+    this.currentPack.calendarBonuses.push(calendarBonus);
+    this.syncAndSave();
+  }
+
+  public editCalendarBonus(calendarBonus: ICalendarBonus, index: number): void {
+    this.currentPack.calendarBonuses[index] = calendarBonus;
+    this.syncAndSave();
+  }
+
+  public deleteCalendarBonus(calendarBonus: ICalendarBonus): void {
+    this.currentPack.calendarBonuses = this.currentPack.calendarBonuses.filter(c => c !== calendarBonus);
     this.syncAndSave();
   }
 
