@@ -408,17 +408,9 @@ export class ModManagerService {
       });
 
       s.actions.forEach(a => {
-        if(a.hits) {
-          a.hits = ensureNumber(a.hits);
-        }
-
-        if(a.push) {
-          a.push = ensureNumber(a.push);
-        }
-
-        if(a.pull) {
-          a.pull = ensureNumber(a.pull);
-        }
+        a.hits = ensureNumber(a.hits);
+        a.push = ensureNumber(a.push);
+        a.pull = ensureNumber(a.pull);
 
         if(a.statScaling) {
           Object.keys(a.statScaling).forEach(key => {
