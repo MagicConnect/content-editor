@@ -80,6 +80,9 @@ import { SpritesheetAnimationGroupComponent } from './components/_shared/sprites
 import { StoreListComponent } from './components/store-list/store-list.component';
 import { StoreComponent } from './components/store/store.component';
 import { StoreEntryFormComponent } from './components/store-entry-form/store-entry-form.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarListComponent } from './components/calendar-list/calendar-list.component';
+import { CalendarEntryFormComponent } from './components/calendar-entry-form/calendar-entry-form.component';
 
 @NgModule({
   declarations: [
@@ -130,7 +133,10 @@ import { StoreEntryFormComponent } from './components/store-entry-form/store-ent
     SpritesheetAnimationGroupComponent,
     StoreListComponent,
     StoreComponent,
-    StoreEntryFormComponent
+    StoreEntryFormComponent,
+    CalendarComponent,
+    CalendarListComponent,
+    CalendarEntryFormComponent
   ],
   imports: [
     BrowserModule,
