@@ -473,6 +473,8 @@ export class ModManagerService {
       });
     });
 
+    console.log('Saving: ', this.currentPack);
+
   }
 
   public rerollID(ident: IIdentifiable): void {

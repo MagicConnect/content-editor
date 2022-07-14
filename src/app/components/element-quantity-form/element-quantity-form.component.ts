@@ -59,7 +59,7 @@ export class ElementQuantityFormComponent implements OnInit, OnChanges, OnDestro
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const isDisabled = !!changes.disabled.currentValue;
+    const isDisabled = !!changes.disabled?.currentValue;
     this.setFieldsEnableOrDisable(isDisabled);
   }
 
