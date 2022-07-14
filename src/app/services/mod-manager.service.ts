@@ -427,6 +427,10 @@ export class ModManagerService {
           if(!isUndefined(e.duration)) {
             e.duration = ensureNumber(e.duration);
           }
+
+          if(!isUndefined(e.probability)) {
+            e.probability = ensureNumber(e.probability);
+          }
         });
 
       });
