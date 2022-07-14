@@ -54,8 +54,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'HP',
-            placeholder: 'Enter HP here...',
-            min: 0
+            placeholder: 'Enter HP here...'
           },
         },
         {
@@ -64,8 +63,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Attack',
-            placeholder: 'Enter attack here...',
-            min: 0
+            placeholder: 'Enter attack here...'
           },
         },
         {
@@ -74,8 +72,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Defense',
-            placeholder: 'Enter defense here...',
-            min: 0
+            placeholder: 'Enter defense here...'
           },
         },
         {
@@ -84,8 +81,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Magic',
-            placeholder: 'Enter magic here...',
-            min: 0
+            placeholder: 'Enter magic here...'
           },
         },
         {
@@ -94,8 +90,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Special',
-            placeholder: 'Enter special here...',
-            min: 0
+            placeholder: 'Enter special here...'
           },
         },
       ]
@@ -111,8 +106,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Melee Evasion',
-            placeholder: 'Enter melee evasion here...',
-            min: 0
+            placeholder: 'Enter melee evasion here...'
           },
         },
         {
@@ -121,8 +115,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Magic Evasion',
-            placeholder: 'Enter magic evasion here...',
-            min: 0
+            placeholder: 'Enter magic evasion here...'
           },
         },
         {
@@ -131,8 +124,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Accuracy',
-            placeholder: 'Enter accuracy here...',
-            min: 0
+            placeholder: 'Enter accuracy here...'
           },
         },
         {
@@ -141,8 +133,7 @@ export class StatsFormComponent {
           type: 'input',
           templateOptions: {
             label: 'Critical',
-            placeholder: 'Enter critical here...',
-            min: 0
+            placeholder: 'Enter critical here...'
           },
         },
       ]
