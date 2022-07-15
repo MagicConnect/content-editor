@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     { name: 'Accessory',    key: 'accessories' },
     { name: 'Achievement',  key: 'achievements' },
     { name: 'Banner',       key: 'banners' },
+    { name: 'Calendar',     key: 'calendarBonuses' },
     { name: 'Character',    key: 'characters' },
     { name: 'Enemy',        key: 'enemies' },
     { name: 'Item',         key: 'items' },
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
   numEntries(editorName: string): number {
     const editorKey = this.editors.find(e => e.name === editorName)?.key;
     if(!editorKey) return -1;
-
+    console.log(editorName, editorKey);
     return this.mod.currentPack[editorKey].length;
   }
 

@@ -1,11 +1,11 @@
-import { ICalendarBonus } from 'content-interfaces';
+import { CalendarBonusRepeat, ICalendarBonus } from 'content-interfaces';
 
 export const newCalendarBonus = (): ICalendarBonus => ({
   id: '',
   name: '',
   description: '',
-  activeStart: '',
-  activeEnd: '',
+  activeStarts: '',
+  activeEnds: '',
   calendarBonusRepeat: CalendarBonusRepeat.NotRepeatable,
   rewardItems: [],
 });

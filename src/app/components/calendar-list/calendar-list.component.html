@@ -68,8 +68,8 @@
   <ngx-datatable-column name="Actions" [width]="250" [sortable]="false" [canAutoResize]="false">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="float-right">
-        <button class="btn btn-info btn-sm ml-1" (click)="cloneCalendarBonus(CalendarBonusEditor, row)">Clone</button>
-        <button class="btn btn-info btn-sm ml-1" (click)="editCalendarBonus(CalendarBonusEditor, row)">Edit</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneCalendarBonus(calendarBonusEditor, row)">Clone</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="editCalendarBonus(calendarBonusEditor, row)">Edit</button>
         <button class="btn btn-danger btn-sm ml-1" (click)="deleteCalendarBonus(row)">Delete</button>
 
         <button class="btn btn-info btn-sm ml-1" ngxClipboard [cbContent]="row.id" (cbOnSuccess)="mod.notify('Copied ID of ' + row.name + ' (' + row.id + ')!')">ID</button>
