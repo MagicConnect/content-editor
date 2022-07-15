@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { ICalendarBonus } from 'content-interfaces';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 import { newCalendarBonus } from '../../initializers';
-
 
 @Component({
   selector: 'app-calendar-list',
@@ -39,7 +39,7 @@ export class CalendarListComponent implements OnInit {
 
   public get isCurrentCalendarBonusDuplicateName(): boolean {
     if(!this.currentCalendarBonus) return false;
-    return !!this.calendarBonuses.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentShop?.name);
+    return !!this.calendarBonuses.filter((x, i) => i !== this.editIndex).find(b => b.name === this.currentCalendarBonus?.name);
   }
 
   constructor(

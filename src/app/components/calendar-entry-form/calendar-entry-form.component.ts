@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ItemType } from 'content-interfaces';
+import { ICalendarBonusItem, ItemType } from 'content-interfaces';
 import { sortBy } from 'lodash';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 
