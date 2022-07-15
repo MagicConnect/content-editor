@@ -147,7 +147,7 @@ export class AbilityConditionFormComponent {
           type: 'input',
           hideExpression: (model: IAbilityCondition) => {
             const matches = ![
-              AbilityCondition.ArchersInParty,
+              AbilityCondition.RangersInParty,
               AbilityCondition.AttackersInParty,
               AbilityCondition.CastersInParty,
               AbilityCondition.DefendersInParty,
