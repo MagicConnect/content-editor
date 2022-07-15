@@ -60,7 +60,6 @@ export class AppComponent implements OnInit {
   numEntries(editorName: string): number {
     const editorKey = this.editors.find(e => e.name === editorName)?.key;
     if(!editorKey) return -1;
-    console.log(editorName, editorKey);
     return this.mod.currentPack[editorKey].length;
   }
 
