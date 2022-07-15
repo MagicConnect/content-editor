@@ -3,6 +3,7 @@ export * from './ability';
 export * from './accessory';
 export * from './achievement';
 export * from './banner';
+export * from './calendarBonus';
 export * from './character';
 export * from './accessory';
 export * from './enemy';
