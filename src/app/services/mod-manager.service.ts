@@ -342,17 +342,55 @@ export class ModManagerService {
     // ensure ability->baseValue is a number
     this.currentPack.abilities.forEach(a => {
       a.effects.forEach(e => {
-        if(isUndefined(e.props.baseValue)) return;
 
-        e.props.baseValue = ensureNumber(e.props.baseValue);
+        if(!isUndefined(e.props.baseValue)) {
+          e.props.baseValue = ensureNumber(e.props.baseValue);
+        }
+
+        if(!isUndefined(e.props.surviveDeathReboundValue)) {
+          e.props.surviveDeathReboundValue = ensureNumber(e.props.surviveDeathReboundValue);
+        }
+
       });
 
       Object.values(a.lbChanges).forEach(c => {
         c.effects.forEach(e => {
-          if(isUndefined(e.props.baseValue)) return;
 
-          e.props.baseValue = ensureNumber(e.props.baseValue);
+          if(!isUndefined(e.props.baseValue)) {
+            e.props.baseValue = ensureNumber(e.props.baseValue);
+          }
+
+          if(!isUndefined(e.props.surviveDeathReboundValue)) {
+            e.props.surviveDeathReboundValue = ensureNumber(e.props.surviveDeathReboundValue);
+          }
         });
+      });
+
+      a.conditions.forEach(c => {
+        if(!isUndefined(c.props.alliesCount)) {
+          c.props.alliesCount = ensureNumber(c.props.alliesCount);
+        }
+
+        if(!isUndefined(c.props.archetypesInParty)) {
+          c.props.archetypesInParty = ensureNumber(c.props.archetypesInParty);
+        }
+
+        if(!isUndefined(c.props.enemyCount)) {
+          c.props.enemyCount = ensureNumber(c.props.enemyCount);
+        }
+
+        if(!isUndefined(c.props.firstTurns)) {
+          c.props.firstTurns = ensureNumber(c.props.firstTurns);
+        }
+
+        if(!isUndefined(c.props.hpValue)) {
+          c.props.hpValue = ensureNumber(c.props.hpValue);
+        }
+
+        if(!isUndefined(c.props.spcValue)) {
+          c.props.spcValue = ensureNumber(c.props.spcValue);
+        }
+
       });
     });
 
