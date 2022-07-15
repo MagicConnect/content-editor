@@ -1,1 +1,111 @@
-<p>calendar-list works!</p>
+<div class="row">
+  <div class="col-9">
+    <input class="form-control" type="text" placeholder="Search Calendars" [(ngModel)]="searchText" (keyup)="filter()">
+  </div>
+  <div class="col-3 text-right">
+    <button class="btn btn-primary" (click)="addNewCalendarBonus(calendarBonusEditor)">+ Add New Calendar</button>
+  </div>
+</div>
+
+
+<ngx-datatable class="bootstrap"
+               [rows]="searchResults"
+               columnMode="flex"
+               [sorts]="[{ prop: 'name', dir: 'asc' }]"
+               [limit]="10"
+               [headerHeight]="50"
+               [footerHeight]="50"
+               rowHeight="auto">
+
+  <ngx-datatable-column name="Name" [flexGrow]="2">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.name }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Description" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.description }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Active Starts" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.activeStarts }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Active Ends" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.activeEnds }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Calendar Bonus Repeat" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.calendarBonusRepeat }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Reward Items" [flexGrow]="1">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="chip">
+        {{ row.rewardItems.length }}
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Actions" [width]="250" [sortable]="false" [canAutoResize]="false">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <div class="float-right">
+        <button class="btn btn-info btn-sm ml-1" (click)="cloneCalendarBonus(CalendarBonusEditor, row)">Clone</button>
+        <button class="btn btn-info btn-sm ml-1" (click)="editCalendarBonus(CalendarBonusEditor, row)">Edit</button>
+        <button class="btn btn-danger btn-sm ml-1" (click)="deleteCalendarBonus(row)">Delete</button>
+
+        <button class="btn btn-info btn-sm ml-1" ngxClipboard [cbContent]="row.id" (cbOnSuccess)="mod.notify('Copied ID of ' + row.name + ' (' + row.id + ')!')">ID</button>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #calendarBonusEditor>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Create/Edit Calendar
+    </h4>
+
+    <div class="has-actions text-center">
+      <div class="d-flex justify-content-space-around">
+        <button class="btn btn-sm btn-primary" (click)="confirmCalendarBonusEdit()" [disabled]="!canSaveCurrentCalendarBonus">Save</button>
+
+        <div class="ml-1 errors">
+          <div class="error" *ngIf="isCurrentCalendarBonusDuplicateName">Duplicate name.</div>
+          <div class="error" *ngIf="isCurrentCalendarBonusClone">Rename clone.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-close close" (click)="cancelEdit()">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <app-calendar [model]="currentCalendarBonus" *ngIf="currentCalendarBonus"></app-calendar>
+  </div>
+
+  <div class="modal-footer">
+    <div class="uuid">{{ currentCalendarBonus?.id }}</div>
+  </div>
+</ng-template>
