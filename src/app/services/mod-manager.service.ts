@@ -269,6 +269,7 @@ export class ModManagerService {
       accessories: [],
       achievements: [],
       banners: [],
+      calendarBonuses: [],
       characters: [],
       enemies: [],
       items: [],
