@@ -1,0 +1,15 @@
+<div class="calendar-container" [ngClass]="'calendar-' + index">
+  <div class="row">
+    <div class="col-10">
+
+      <form [formGroup]="form">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+      </form>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-danger float-right" (click)="remove.emit()">Remove E#{{ index + 1 }}</button>
+    </div>
+  </div>
+
+</div>

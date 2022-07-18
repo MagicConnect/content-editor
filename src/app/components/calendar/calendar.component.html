@@ -1,0 +1,26 @@
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Base Details
+  </legend>
+
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+  </form>
+</fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Reward Items
+
+    <button class="btn btn-info btn-sm float-right" (click)="add()">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.rewardItems.length === 0">No reward items in calendar.</div>
+
+  <app-calendar-entry-form *ngFor="let item of model.rewardItems; let i = index"
+                           (remove)="remove(i)"
+                           [model]="item"
+                           [index]="i"></app-calendar-entry-form>
+</fieldset>
