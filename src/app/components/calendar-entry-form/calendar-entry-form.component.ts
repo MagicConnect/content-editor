@@ -40,7 +40,7 @@ export class CalendarEntryFormComponent {
           },
         },
         {
-          key: 'name',
+          key: 'itemId',
           className: 'col-4',
           type: 'better-select',
           templateOptions: {

@@ -41,16 +41,9 @@ export class CalendarListComponent implements OnInit {
       numDates = Math.floor(numDates / 86_400_000) + 1;
     }
 
-    const isDateRangeInValid = this.currentCalendarBonus.activeStarts !== '-1' && this.currentCalendarBonus.activeStarts === '-1';
-    //console.log(numDates, isDateRangeInValid);
-
     return this.currentCalendarBonus.name?.length >= 2
         && !this.isCurrentCalendarBonusDuplicateName
-        && this.currentCalendarBonus.rewardItems.every(c => {
-          console.log(c.itemType, c.quantity);
-          return !!c.itemType && c.quantity > 0;
-        })
-        && !isDateRangeInValid
+        && this.currentCalendarBonus.rewardItems.every(c => !!c.itemId && c.quantity > 0)
         && ((numDates > 0
           && this.currentCalendarBonus.rewardItems.length >= numDates)
           || (numDates <= 0
@@ -87,8 +80,7 @@ export class CalendarListComponent implements OnInit {
 
     this.searchResults = this.allCalendarBonuses.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.rewardItems.some(b => b.itemType.toLowerCase().includes(this.searchText.toLowerCase()));
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 
