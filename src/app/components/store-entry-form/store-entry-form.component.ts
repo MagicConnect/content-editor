@@ -18,7 +18,7 @@ export class StoreEntryFormComponent {
   form = new FormGroup({});
 
   @Input() model: IStoreItemBundle = {
-    itemType: ItemType.Crystal,
+    //itemType: ItemType.Crystal,
     quantity: -1,
   };
 
