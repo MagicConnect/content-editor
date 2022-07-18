@@ -57,7 +57,7 @@ export class AbilityEffectFormComponent {
           className: 'col-4',
           type: 'input',
           hideExpression: (model: IAbilityEffect) => {
-            const matches = [AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement].includes(model.value);
+            const matches = [AbilityEffect.AttackElementBasic, AbilityEffect.AttackElementSkill, AbilityEffect.AttackElementSpecial].includes(model.value);
             if(matches) delete model.props.baseValue;
 
             return matches;
@@ -73,8 +73,8 @@ export class AbilityEffectFormComponent {
           className: 'col-4',
           type: 'checkbox',
           hideExpression: (model: IAbilityEffect) => {
-            const matches = [AbilityEffect.NegateDamageInstances, AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement, AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.GenerateElementOnAllAttack,
-            AbilityEffect.GenerateElementOnPhysicalAttack, AbilityEffect.GenerateElementOnMagicalAttack].includes(model.value);
+            const matches = [AbilityEffect.AttackElementBasic, AbilityEffect.AttackElementSkill, AbilityEffect.AttackElementSpecial, AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.GenerateElementOnSkill,
+            AbilityEffect.GenerateElementOnSpecial].includes(model.value);
             if(matches) delete model.props.isPercent;
 
             return matches;
@@ -179,8 +179,7 @@ export class AbilityEffectFormComponent {
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![
               AbilityEffect.ResistStatusEffect, AbilityEffect.InflictStatusEffect,
-              AbilityEffect.BasicAttackStatusEffect, AbilityEffect.PhysicalAttackStatusEffect,
-              AbilityEffect.MagicalAttackStatusEffect, AbilityEffect.SkillStatusEffect,
+              AbilityEffect.BasicAttackStatusEffect, AbilityEffect.SkillStatusEffect,
               AbilityEffect.SpecialStatusEffect, AbilityEffect.StatusEffectDuration,
             ].includes(model.value);
             if(matches) delete model.props.statusEffect;
@@ -201,9 +200,9 @@ export class AbilityEffectFormComponent {
           hideExpression: (model: IAbilityEffect) => {
             const matches = ![
               AbilityEffect.IncomingElementDamage, AbilityEffect.OutgoingElementDamage,
-              AbilityEffect.MagicalAttackElement, AbilityEffect.PhysicalAttackElement,
-              AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.GenerateElementOnAllAttack,
-              AbilityEffect.GenerateElementOnPhysicalAttack, AbilityEffect.GenerateElementOnMagicalAttack
+              AbilityEffect.AttackElementBasic, AbilityEffect.AttackElementSkill,
+              AbilityEffect.GenerateElementOnBasicAttack, AbilityEffect.AttackElementSpecial,
+              AbilityEffect.GenerateElementOnSkill, AbilityEffect.GenerateElementOnSpecial
             ].includes(model.value);
             if(matches) delete model.props.element;
 
