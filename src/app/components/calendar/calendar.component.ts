@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { CalendarBonusRepeat, ICalendarBonus, ItemType } from 'content-interfaces';
+import { CalendarBonusRepeat, ICalendarBonus } from 'content-interfaces';
 import { newCalendarBonus } from 'src/app/initializers';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 
@@ -88,7 +88,7 @@ export class CalendarComponent {
   constructor(private mod: ModManagerService) { }
 
   add() {
-    this.model.rewardItems.push({ day: this.model.rewardItems.length + 1, itemType: ItemType.None, quantity: -1 });
+    this.model.rewardItems.push({ day: this.model.rewardItems.length + 1, itemId: '', quantity: -1 });
   }
 
   remove(index: number) {

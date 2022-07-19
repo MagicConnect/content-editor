@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ICalendarBonusItem, ItemType } from 'content-interfaces';
+import { ICalendarBonusItem } from 'content-interfaces';
 import { sortBy } from 'lodash';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 
@@ -18,7 +18,7 @@ export class CalendarEntryFormComponent {
 
   @Input() model: ICalendarBonusItem = {
     day: this.index + 1,
-    itemType: ItemType.None,
+    itemId: '',
     quantity: -1,
   };
 
@@ -40,7 +40,7 @@ export class CalendarEntryFormComponent {
           },
         },
         {
-          key: 'name',
+          key: 'itemId',
           className: 'col-4',
           type: 'better-select',
           templateOptions: {

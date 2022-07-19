@@ -26,10 +26,28 @@ export class CalendarListComponent implements OnInit {
 
   public get canSaveCurrentCalendarBonus(): boolean {
     if(!this.currentCalendarBonus) return false;
+
+    let numDates = -1;
+
+    if (this.currentCalendarBonus.activeEnds !== '-1' && this.currentCalendarBonus.activeStarts !== '-1') {
+      const activeStartDate = new Date(this.currentCalendarBonus.activeStarts);
+      const activeEndDate = new Date(this.currentCalendarBonus.activeEnds);
+      const activeStart = { date: activeStartDate.getDate(), month: activeStartDate.getMonth(), year: activeStartDate.getFullYear() };
+      const activeEnd = { date: activeEndDate.getDate(), month: activeEndDate.getMonth(), year: activeEndDate.getFullYear() };
+
+      numDates = +new Date(activeEnd.year, activeEnd.month, activeEnd.date) - +new Date(activeStart.year, activeStart.month, activeStart.date);
+
+      // calculate number of days, last day included
+      numDates = Math.floor(numDates / 86_400_000) + 1;
+    }
+
     return this.currentCalendarBonus.name?.length >= 2
         && !this.isCurrentCalendarBonusDuplicateName
-        && this.currentCalendarBonus.rewardItems.length > 0
-        && this.currentCalendarBonus.rewardItems.every(c => !!c.itemType && c.quantity > 0);
+        && this.currentCalendarBonus.rewardItems.every(c => !!c.itemId && c.quantity > 0)
+        && ((numDates > 0
+          && this.currentCalendarBonus.rewardItems.length >= numDates)
+          || (numDates <= 0
+          && this.currentCalendarBonus.rewardItems.length > 0));
   }
 
   public get isCurrentCalendarBonusClone(): boolean {
@@ -62,8 +80,7 @@ export class CalendarListComponent implements OnInit {
 
     this.searchResults = this.allCalendarBonuses.filter(a => {
       return a.name.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.description.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.rewardItems.some(b => b.itemType.toLowerCase().includes(this.searchText.toLowerCase()));
+          || a.description.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 
