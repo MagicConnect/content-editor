@@ -40,9 +40,9 @@ export class AbilityListComponent implements OnInit {
     const isValidBaseAbility = isValidAbility(this.currentAbility);
     if(this.currentAbility.effects.length > 0 && !isValidBaseAbility) return false;
 
-    const numLBAbilities = Object.values(this.currentAbility.lbChanges).filter(x => !x.shouldHide).length;
+    const numLBAbilities = Object.values(this.currentAbility.abilityChanges).filter(x => !x.shouldHide).length;
 
-    const isValidLBAbilities = Object.values(this.currentAbility.lbChanges).filter(x => !x.shouldHide).every(lb => isValidAbility(lb));
+    const isValidLBAbilities = Object.values(this.currentAbility.abilityChanges).filter(x => !x.shouldHide).every(lb => isValidAbility(lb));
 
     if(numLBAbilities > 0 && !isValidLBAbilities) return false;
 

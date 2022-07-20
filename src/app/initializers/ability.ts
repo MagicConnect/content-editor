@@ -7,7 +7,7 @@ export const newAbility = (): IAbility => ({
   isAbilityUsedAtBase: true,
   ...newAbilityUtility(),
 
-  lbChanges: {
+  abilityChanges: {
     0:  { shouldHide: true, ...newAbilityUtility() },
     1:  { shouldHide: true, ...newAbilityUtility() },
     2:  { shouldHide: true, ...newAbilityUtility() },

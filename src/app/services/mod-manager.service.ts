@@ -352,7 +352,7 @@ export class ModManagerService {
 
       });
 
-      Object.values(a.lbChanges).forEach(c => {
+      Object.values(a.abilityChanges).forEach(c => {
         c.effects.forEach(e => {
 
           if(!isUndefined(e.props.baseValue)) {

@@ -13,7 +13,7 @@
               <span *ngIf="x >= 0">LB {{ x + 1 }}</span>
 
               <span class="badge badge-success ml-1" *ngIf="x === -1 && model.isAbilityUsedAtBase">C</span>
-              <span class="badge badge-success ml-1" *ngIf="x >= 0 && !model.lbChanges[x].shouldHide">C</span>
+              <span class="badge badge-success ml-1" *ngIf="x >= 0 && !model.abilityChanges[x].shouldHide">C</span>
             </a>
           </li>
         </ul>
@@ -34,11 +34,11 @@
 
         <ng-container *ngIf="activeLB >= 0">
           <div class="form-check">
-            <input type="checkbox" [id]="'should-use-' + activeLB" [(ngModel)]="model.lbChanges[activeLB].shouldHide" />
+            <input type="checkbox" [id]="'should-use-' + activeLB" [(ngModel)]="model.abilityChanges[activeLB].shouldHide" />
             <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Limit Break Level</label>
           </div>
 
-          <app-ability-content-form [model]="model.lbChanges[activeLB]" *ngIf="!model.lbChanges[activeLB].shouldHide"></app-ability-content-form>
+          <app-ability-content-form [model]="model.abilityChanges[activeLB]" *ngIf="!model.abilityChanges[activeLB].shouldHide"></app-ability-content-form>
         </ng-container>
 
 
