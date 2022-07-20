@@ -14,10 +14,6 @@ export const newAbility = (): IAbility => ({
     3:  { shouldHide: true, ...newAbilityUtility() },
     4:  { shouldHide: true, ...newAbilityUtility() },
     5:  { shouldHide: true, ...newAbilityUtility() },
-    6:  { shouldHide: true, ...newAbilityUtility() },
-    7:  { shouldHide: true, ...newAbilityUtility() },
-    8:  { shouldHide: true, ...newAbilityUtility() },
-    9:  { shouldHide: true, ...newAbilityUtility() },
   }
 });
 

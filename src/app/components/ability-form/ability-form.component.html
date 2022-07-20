@@ -2,15 +2,15 @@
 <div class="ability-container">
 
   <fieldset class="border border-dark p-3 mt-3 mb-3">
-    <legend>Base Ability & Limit Break Changes</legend>
+    <legend>Base Ability & Connect Changes</legend>
 
     <div class="row">
       <div class="col-12">
         <ul class="nav nav-pills nav-fill">
-          <li class="nav-item mx-1" *ngFor="let x of [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" (click)="activeLB = x">
+          <li class="nav-item mx-1" *ngFor="let x of [-1, 0, 1, 2, 3, 4, 5]" (click)="activeLB = x">
             <a class="nav-link" [class.active]="x === activeLB">
               <span *ngIf="x === -1">Base</span>
-              <span *ngIf="x >= 0">LB {{ x + 1 }}</span>
+              <span *ngIf="x >= 0">Connect {{ x + 1 }}</span>
 
               <span class="badge badge-success ml-1" *ngIf="x === -1 && model.isAbilityUsedAtBase">C</span>
               <span class="badge badge-success ml-1" *ngIf="x >= 0 && !model.abilityChanges[x].shouldHide">C</span>
@@ -26,7 +26,7 @@
         <ng-container *ngIf="activeLB === -1">
           <div class="form-check">
             <input type="checkbox" id="should-use-base" [(ngModel)]="model.isAbilityUsedAtBase" />
-            <label class="ml-3" tooltip="If unchecked, the ability will be unlocked at a higher LB." for="should-use-base">Ability is usable at LB 0 / Base ⓘ</label>
+            <label class="ml-3" tooltip="If unchecked, the ability will be unlocked at a higher LB." for="should-use-base">Ability is usable at Base ⓘ</label>
           </div>
 
           <app-ability-content-form [model]="model" [showAllFields]="model.isAbilityUsedAtBase"></app-ability-content-form>
@@ -35,7 +35,7 @@
         <ng-container *ngIf="activeLB >= 0">
           <div class="form-check">
             <input type="checkbox" [id]="'should-use-' + activeLB" [(ngModel)]="model.abilityChanges[activeLB].shouldHide" />
-            <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Limit Break Level</label>
+            <label class="ml-3" [for]="'should-use-' + activeLB">Hide This Connect Level</label>
           </div>
 
           <app-ability-content-form [model]="model.abilityChanges[activeLB]" *ngIf="!model.abilityChanges[activeLB].shouldHide"></app-ability-content-form>
