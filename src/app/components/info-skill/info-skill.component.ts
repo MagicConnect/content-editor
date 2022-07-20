@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ModManagerService } from '../../services/mod-manager.service';
   templateUrl: './info-skill.component.html',
   styleUrls: ['./info-skill.component.scss']
 })
-export class InfoSkillComponent implements OnInit {
+export class InfoSkillComponent implements OnInit, OnChanges {
 
   @Input() id = '';
 
@@ -16,6 +16,16 @@ export class InfoSkillComponent implements OnInit {
   constructor(private mod: ModManagerService) { }
 
   ngOnInit(): void {
+    this.setupNameAndDesc();
+  }
+
+  ngOnChanges(changes: any) {
+    if(!changes.id) return;
+
+    this.setupNameAndDesc();
+  }
+
+  private setupNameAndDesc() {
     this.name = this.mod.chooseableSkills.find(x => x.id === this.id)?.name ?? 'UNKNOWN';
     this.desc = this.mod.getSkillDescription(this.id);
   }
