@@ -132,7 +132,7 @@ export class StatsFormComponent {
 
   constructor(public mod: ModManagerService) { }
 
-  private increaseFieldControlValue(stat: string, valueIncrease = 0) {
+  private increaseFieldControlValue(stat: string, valueIncrease: number = 0) {
     const formControl = this.fields
       .map(x => (x.fieldGroup || []))
       .flat()
@@ -141,7 +141,7 @@ export class StatsFormComponent {
 
     if(!formControl) return;
 
-    formControl.setValue((formControl.value ?? 0) + (valueIncrease ?? 0));
+    formControl.setValue((+formControl.value ?? 0) + (+valueIncrease ?? 0));
   }
 
   totalPoints(): number {
