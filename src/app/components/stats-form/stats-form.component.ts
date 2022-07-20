@@ -55,6 +55,11 @@ export class StatsFormComponent {
             label: 'HP',
             placeholder: 'Enter HP here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Attack,
@@ -64,6 +69,11 @@ export class StatsFormComponent {
             label: 'Attack',
             placeholder: 'Enter attack here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Defense,
@@ -73,6 +83,11 @@ export class StatsFormComponent {
             label: 'Defense',
             placeholder: 'Enter defense here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Magic,
@@ -82,6 +97,11 @@ export class StatsFormComponent {
             label: 'Magic',
             placeholder: 'Enter magic here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
       ]
     },
@@ -98,6 +118,11 @@ export class StatsFormComponent {
             label: 'Evasion',
             placeholder: 'Enter evasion here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Accuracy,
@@ -107,6 +132,11 @@ export class StatsFormComponent {
             label: 'Accuracy',
             placeholder: 'Enter accuracy here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Critical,
@@ -116,6 +146,11 @@ export class StatsFormComponent {
             label: 'Critical',
             placeholder: 'Enter critical here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
         {
           key: Stat.Special,
@@ -125,6 +160,11 @@ export class StatsFormComponent {
             label: 'Special',
             placeholder: 'Enter special here...'
           },
+          expressionProperties: {
+            'templateOptions.disabled': () => {
+              return this.pointBuyEnabled;
+            },
+          }
         },
       ]
     }

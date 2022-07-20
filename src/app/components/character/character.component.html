@@ -78,6 +78,9 @@
         <th>Defense</th>
         <th>Magic</th>
         <th>Special</th>
+        <th>Critical</th>
+        <th>Evasion</th>
+        <th>Accuracy</th>
       </tr>
     </thead>
 
@@ -100,6 +103,9 @@
           <td><span class="number">{{ stats.defense | number }}</span> DEF</td>
           <td><span class="number">{{ stats.magic | number }}</span> MAG</td>
           <td><span class="number">{{ stats.special | number }}</span> SPC</td>
+          <td><span class="number">{{ stats.critical | number }}</span> CRT</td>
+          <td><span class="number">{{ stats.evasion | number }}</span> EVA</td>
+          <td><span class="number">{{ stats.accuracy | number }}</span> ACC</td>
         </ng-container>
       </tr>
     </tbody>

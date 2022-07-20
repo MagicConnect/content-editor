@@ -301,6 +301,9 @@ export class CharacterComponent {
       [Stat.Evasion]: 0,
     };
 
+    stats[Stat.Accuracy] = 90;
+    stats[Stat.Critical] = 5;
+
     const applyToStats = (modelKey: 'basePoints'|'lbPoints'|'levelPoints', matrix: 'baseStatPoints'|'levelupPoints'|'limitBreakPoints', times = 1) => {
 
       const model = this.model[modelKey];
