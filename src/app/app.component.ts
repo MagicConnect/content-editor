@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IContentPack } from 'content-interfaces';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { interval } from 'rxjs';
+import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { ModManagerService } from './services/mod-manager.service';
 
@@ -12,6 +14,8 @@ import { ModManagerService } from './services/mod-manager.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  public isConnected = true;
 
   public currentColor = 'primary';
   private readonly allColors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
@@ -42,7 +46,9 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(
+    private http: HttpClient,
     private modalService: BsModalService,
+    private api: ApiService,
     public auth: AuthService,
     public mod: ModManagerService
   ) {}
@@ -55,6 +61,7 @@ export class AppComponent implements OnInit {
     }
 
     this.watchLoginButtonColor();
+    this.watchServerUpOrDown();
   }
 
   numEntries(editorName: string): number {
@@ -72,6 +79,19 @@ export class AppComponent implements OnInit {
       if(this.auth.loggedIn) return;
 
       this.currentColor = this.allColors[Math.floor(Math.random() * this.allColors.length)];
+    });
+  }
+
+  watchServerUpOrDown() {
+    interval(5000).subscribe(() => {
+      if(!this.auth.loggedIn) return;
+
+      this.http.get(this.api.meUrl).subscribe(
+        () => {
+          this.isConnected = true;
+        }, () => {
+          this.isConnected = false;
+        });
     });
   }
 

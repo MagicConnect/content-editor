@@ -47,6 +47,13 @@
 </nav>
 
 <div class="container mt-3">
+
+  <div class="row" *ngIf="!isConnected">
+    <div class="col">
+      <div class="alert alert-danger">You are not connected to the server. Your changes will not be saved. Please refrain from doing anything until this message goes away.</div>
+    </div>
+  </div>
+
   <div class="row message">
     <div class="col">
       <div class="message-content" *ngIf="mod.newMessage$ | async as message">
