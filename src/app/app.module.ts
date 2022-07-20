@@ -83,6 +83,7 @@ import { StoreEntryFormComponent } from './components/store-entry-form/store-ent
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarListComponent } from './components/calendar-list/calendar-list.component';
 import { CalendarEntryFormComponent } from './components/calendar-entry-form/calendar-entry-form.component';
+import { TinyImageComponent } from './components/_shared/tiny-image/tiny-image.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { CalendarEntryFormComponent } from './components/calendar-entry-form/cal
     BattleDropFormComponent,
     BetterSelectComponent,
     BackgroundImageComponent,
+    TinyImageComponent,
     AbilityContentFormComponent,
     InfoAbilityComponent,
     InfoSkillComponent,

@@ -21,6 +21,8 @@
   <ngx-datatable-column name="Name" [flexGrow]="2">
     <ng-template ngx-datatable-cell-template let-row="row">
       <div class="chip">
+        <app-tiny-image class="tiny-image" artType="weapons" [art]="row.art"></app-tiny-image>
+
         {{ row.name }}
       </div>
     </ng-template>
