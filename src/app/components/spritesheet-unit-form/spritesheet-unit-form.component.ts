@@ -20,6 +20,7 @@ export class SpritesheetUnitFormComponent {
     deadFrames: 0,
     idleFrames: 0,
     moveFrames: 0,
+    moveEndFrames: 0,
     onDeathFrames: 0,
     onHitFrames: 0
   };
@@ -29,7 +30,7 @@ export class SpritesheetUnitFormComponent {
   fields: FormlyFieldConfig[] = [
     {
       fieldGroupClassName: 'row',
-      fieldGroup: ['idle', 'move', 'cast', 'attack', 'onHit', 'onDeath', 'dead'].map(key => ({
+      fieldGroup: ['idle', 'move', 'moveEnd', 'cast', 'attack', 'onHit', 'onDeath', 'dead'].map(key => ({
         key: `${key}Frames`,
         className: 'col-1',
         type: 'input',

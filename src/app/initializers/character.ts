@@ -17,6 +17,7 @@ export const newCharacter = (): ICharacter => ({
     deadFrames: 0,
     idleFrames: 0,
     moveFrames: 0,
+    moveEndFrames: 0,
     onDeathFrames: 0,
     onHitFrames: 0
   },

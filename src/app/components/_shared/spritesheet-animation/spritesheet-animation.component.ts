@@ -19,6 +19,8 @@ export class SpritesheetAnimationComponent implements OnInit, OnDestroy {
 
   @Input() numFrames = 0;
 
+  @Input() startFrame = 0;
+
   @HostBinding('style.--animation-frame')
   public curFrame = 0;
 
@@ -30,11 +32,13 @@ export class SpritesheetAnimationComponent implements OnInit, OnDestroy {
   constructor(public mod: ModManagerService) { }
 
   ngOnInit() {
+    this.curFrame = this.startFrame;
+
     this.timer$ = timer(0, 100).subscribe(() => {
       this.curFrame++;
 
-      if(this.curFrame > this.numFrames - 1) {
-        this.curFrame = 0;
+      if(this.curFrame > this.startFrame + this.numFrames - 1) {
+        this.curFrame = this.startFrame;
       }
     });
   }

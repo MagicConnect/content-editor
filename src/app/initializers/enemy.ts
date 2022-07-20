@@ -14,6 +14,7 @@ export const newEnemy = (): IEnemy => ({
     idleFrames: 0,
     moveFrames: 0,
     onDeathFrames: 0,
+    moveEndFrames: 0,
     onHitFrames: 0
   },
 

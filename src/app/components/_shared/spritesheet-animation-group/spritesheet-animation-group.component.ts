@@ -18,9 +18,21 @@ export class SpritesheetAnimationGroupComponent {
     deadFrames: 0,
     idleFrames: 0,
     moveFrames: 0,
+    moveEndFrames: 0,
     onDeathFrames: 0,
     onHitFrames: 0
   };
+
+  public frameIndexes = [
+    { name: 'idle',     row: 0 },
+    { name: 'move',     row: 1 },
+    { name: 'moveEnd',  row: 1, addFramesFrom: 'move' },
+    { name: 'cast',     row: 2 },
+    { name: 'attack',   row: 3 },
+    { name: 'onHit',    row: 4 },
+    { name: 'onDeath',  row: 5 },
+    { name: 'dead',     row: 6 },
+  ]
 
   constructor() { }
 
