@@ -43,8 +43,7 @@ export const newCharacter = (): ICharacter => ({
     [Stat.Accuracy]: 90,
     [Stat.Critical]: 5,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   },
 
   levelPoints: {
@@ -64,8 +63,7 @@ export const newCharacter = (): ICharacter => ({
     [Stat.Accuracy]: 0,
     [Stat.Critical]: 0,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   },
 
   lbPoints: {
@@ -85,8 +83,7 @@ export const newCharacter = (): ICharacter => ({
     [Stat.Accuracy]: 0,
     [Stat.Critical]: 0,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   },
 
   abilities: [],

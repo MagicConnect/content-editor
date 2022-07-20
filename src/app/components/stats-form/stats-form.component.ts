@@ -32,8 +32,7 @@ export class StatsFormComponent {
     [Stat.Accuracy]: 0,
     [Stat.Critical]: 0,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   };
 
   archetypes = this.mod.archetypes;
@@ -84,15 +83,6 @@ export class StatsFormComponent {
             placeholder: 'Enter magic here...'
           },
         },
-        {
-          key: Stat.Special,
-          className: 'col-2',
-          type: 'input',
-          templateOptions: {
-            label: 'Special',
-            placeholder: 'Enter special here...'
-          },
-        },
       ]
     },
 
@@ -101,21 +91,12 @@ export class StatsFormComponent {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          key: Stat.MeleeEvasion,
+          key: Stat.Evasion,
           className: 'col-2',
           type: 'input',
           templateOptions: {
-            label: 'Melee Evasion',
-            placeholder: 'Enter melee evasion here...'
-          },
-        },
-        {
-          key: Stat.MagicEvasion,
-          className: 'col-2',
-          type: 'input',
-          templateOptions: {
-            label: 'Magic Evasion',
-            placeholder: 'Enter magic evasion here...'
+            label: 'Evasion',
+            placeholder: 'Enter evasion here...'
           },
         },
         {
@@ -136,11 +117,32 @@ export class StatsFormComponent {
             placeholder: 'Enter critical here...'
           },
         },
+        {
+          key: Stat.Special,
+          className: 'col-2',
+          type: 'input',
+          templateOptions: {
+            label: 'Special',
+            placeholder: 'Enter special here...'
+          },
+        },
       ]
     }
   ];
 
   constructor(public mod: ModManagerService) { }
+
+  private increaseFieldControlValue(stat: string, valueIncrease = 0) {
+    const formControl = this.fields
+      .map(x => (x.fieldGroup || []))
+      .flat()
+      .find((x: FormlyFieldConfig) => x.key === stat)
+      ?.formControl;
+
+    if(!formControl) return;
+
+    formControl.setValue((formControl.value ?? 0) + (valueIncrease ?? 0));
+  }
 
   totalPoints(): number {
     return Object.values(this.statPointModel).reduce((a, b) => a + b, 0);
@@ -163,15 +165,7 @@ export class StatsFormComponent {
       myStats[stat] ??= 0;
       myStats[stat] += valueIncrease;
 
-      const formControl = this.fields
-        .map(x => (x.fieldGroup || []))
-        .flat()
-        .find((x: FormlyFieldConfig) => x.key === stat)
-        ?.formControl;
-
-      if(!formControl) return;
-
-      formControl.setValue((formControl.value ?? 0) + (valueIncrease ?? 0));
+      this.increaseFieldControlValue(stat, valueIncrease);
     });
 
   }

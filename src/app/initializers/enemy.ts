@@ -36,8 +36,7 @@ export const newEnemy = (): IEnemy => ({
     [Stat.Accuracy]: 90,
     [Stat.Critical]: 5,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   },
 
   levelPoints: {
@@ -57,8 +56,7 @@ export const newEnemy = (): IEnemy => ({
     [Stat.Accuracy]: 90,
     [Stat.Critical]: 5,
     [Stat.HP]: 0,
-    [Stat.MagicEvasion]: 0,
-    [Stat.MeleeEvasion]: 0,
+    [Stat.Evasion]: 0,
   },
 
   abilities: [],

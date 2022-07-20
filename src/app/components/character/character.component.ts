@@ -298,8 +298,7 @@ export class CharacterComponent {
       [Stat.HP]: 0,
       [Stat.Accuracy]: 0,
       [Stat.Critical]: 0,
-      [Stat.MagicEvasion]: 0,
-      [Stat.MeleeEvasion]: 0,
+      [Stat.Evasion]: 0,
     };
 
     const applyToStats = (modelKey: 'basePoints'|'lbPoints'|'levelPoints', matrix: 'baseStatPoints'|'levelupPoints'|'limitBreakPoints', times = 1) => {

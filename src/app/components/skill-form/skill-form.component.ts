@@ -123,8 +123,7 @@ export class SkillFormComponent {
         [Stat.Special]: 0,
         [Stat.Accuracy]: 0,
         [Stat.Critical]: 0,
-        [Stat.MagicEvasion]: 0,
-        [Stat.MeleeEvasion]: 0,
+        [Stat.Evasion]: 0,
       },
       statusEffectChanges: [],
       validTargets: SkillValidTargets.Enemies
