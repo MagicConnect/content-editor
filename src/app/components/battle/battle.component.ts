@@ -6,7 +6,7 @@ import { sortBy } from 'lodash';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newMapBattle } from '../../initializers';
-import { IEnemy, IMapNode } from 'content-interfaces';
+import { IEnemy, IMapNode, MapDropType } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 
@@ -162,7 +162,7 @@ export class BattleComponent implements OnInit {
   }
 
   addDropItem() {
-    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1, onlyOneTime: false });
+    this.model.drops.push({ name: '', dropPercent: 100, quantity: 1, maxQuantity: 1, dropType: MapDropType.FirstTimeClear });
   }
 
   removeDropItem(index: number) {

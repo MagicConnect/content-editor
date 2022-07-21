@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { sortBy } from 'lodash';
-import { IMapNodeDroppable } from 'content-interfaces';
+import { IMapNodeDroppable, MapDropType } from 'content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({
@@ -21,7 +21,8 @@ export class BattleDropFormComponent {
     name: '',
     dropPercent: 100,
     quantity: 1,
-    onlyOneTime: false
+    maxQuantity: 1,
+    dropType: MapDropType.FirstTimeClear
   };
 
   options: FormlyFormOptions = {};
@@ -44,10 +45,10 @@ export class BattleDropFormComponent {
         },
         {
           key: 'dropPercent',
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
-            label: 'Drop Percent Chance',
+            label: 'Drop Percent',
             placeholder: 'Enter drop % here...',
             description: '',
             required: true,
@@ -57,24 +58,38 @@ export class BattleDropFormComponent {
         },
         {
           key: 'quantity',
-          className: 'col-3',
+          className: 'col-2',
           type: 'input',
           templateOptions: {
             label: 'Quantity',
-            placeholder: 'Enter quantity here... (-1 for infinite)',
+            placeholder: 'Enter min quantity here...',
             description: '',
             required: true,
-            min: -1,
+            min: 1,
           },
         },
         {
-          key: 'onlyOneTime',
-          className: 'col-3',
-          hideExpression: (model) => +model.dropPercent !== 100,
-          type: 'checkbox',
+          key: 'maxQuantity',
+          className: 'col-2',
+          type: 'input',
           templateOptions: {
-            label: 'One Time Drop?',
-            description: 'If checked, the item will only ever drop once (even if the mission is run multiple times).'
+            label: 'Max Quantity',
+            placeholder: 'Enter max quantity here...',
+            description: '',
+            required: true,
+            min: 1,
+          },
+        },
+        {
+          key: 'value',
+          className: 'col-3',
+          type: 'better-select',
+          templateOptions: {
+            label: 'Drop Type',
+            placeholder: 'Choose drop type...',
+            description: 'Drop type determines when this item is dropped.',
+            required: true,
+            options: Object.values(MapDropType).filter(Boolean).sort().map(x => ({ label: x, value: x }))
           },
         },
       ]
