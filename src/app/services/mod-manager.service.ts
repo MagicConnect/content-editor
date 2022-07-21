@@ -146,6 +146,10 @@ export class ModManagerService {
     return sortBy(this.currentPack.skills.map(a => ({ id: a.id, name: a.name, description: a.description })), 'name');
   }
 
+  public get chooseableItems(): Array<{ id: string, name: string, description: string }> {
+    return sortBy(this.currentPack.items.map(a => ({ id: a.id, name: a.name, description: a.description })), 'name');
+  }
+
   // notification tooltip
   private _notificationTimeout: any;
 

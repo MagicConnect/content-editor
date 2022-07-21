@@ -33,3 +33,29 @@
     </tbody>
   </table>
 </fieldset>
+
+<fieldset class="border border-dark p-3 mt-3 mb-3">
+  <legend>
+    Extra Allowed Dupes
+
+    <button class="btn btn-info btn-sm float-right" (click)="addExtraDupe()">
+      Add
+    </button>
+  </legend>
+
+  <div *ngIf="model.allowedExtraDupeItems.length === 0">No extra dupe items available.</div>
+
+  <table class="table table-striped table-bordered">
+    <tbody>
+      <tr *ngFor="let item of model.allowedExtraDupeItems; let i = index">
+        <td>
+          <app-info-item [id]="item"></app-info-item>
+        </td>
+
+        <td class="text-right">
+          <button class="btn btn-danger" (click)="removeExtraDupe(i)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>

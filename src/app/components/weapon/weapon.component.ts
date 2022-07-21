@@ -175,4 +175,19 @@ export class WeaponComponent {
     this.model.abilities.splice(index, 1);
   }
 
+  addExtraDupe() {
+    const modalRef = this.modal.show(PickerModalComponent, {
+      class: 'modal-lg',
+      initialState: { type: 'Item', entries: this.mod.chooseableItems, disabledEntries: this.model.allowedExtraDupeItems }
+    });
+
+    modalRef.content?.choose.subscribe(choice => {
+      this.model.allowedExtraDupeItems.push(choice.id);
+    });
+  }
+
+  removeExtraDupe(index: number) {
+    this.model.allowedExtraDupeItems.splice(index, 1);
+  }
+
 }
