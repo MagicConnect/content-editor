@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 import { sortBy } from 'lodash';
 
-import { IBannerRollable } from 'content-interfaces';
+import { IBannerRollable } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

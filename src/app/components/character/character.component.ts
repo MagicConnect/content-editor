@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions, } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { newCharacter } from '../../initializers';
-import { Archetype, CharacterSpeed, ItemType, Stat, StatAllocationMatrix, Weapon } from 'content-interfaces';
+import { Archetype, CharacterSpeed, ItemType, Stat, StatAllocationMatrix, Weapon } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 

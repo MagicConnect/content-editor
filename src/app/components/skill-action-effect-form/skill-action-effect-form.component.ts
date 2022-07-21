@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ISkillActionStatusEffect, Stat, StatusEffect } from 'content-interfaces';
+import { ISkillActionStatusEffect, Stat, StatusEffect } from '@magicconnect/content-interfaces';
 
 @Component({
   selector: 'app-skill-action-effect-form',

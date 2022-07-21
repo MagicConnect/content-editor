@@ -1,4 +1,4 @@
-import { Element, IMap, IMapNode } from 'content-interfaces';
+import { Element, IMap, IMapNode } from '@magicconnect/content-interfaces';
 
 export const newMap = (): IMap => ({
   id: '',

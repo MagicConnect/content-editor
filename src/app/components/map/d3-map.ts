@@ -2,7 +2,7 @@
 import * as d3 from 'd3';
 import { maxBy } from 'lodash';
 import { newMapBattle } from '../../initializers';
-import { IMapCombatGrid, IMapNode } from 'content-interfaces';
+import { IMapCombatGrid, IMapNode } from '@magicconnect/content-interfaces';
 
 class GraphConstants {
   public static selectedClass = 'selected';

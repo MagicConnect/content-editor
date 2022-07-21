@@ -7,7 +7,7 @@ import { cloneDeep, extend } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { newMap } from '../../initializers';
-import { IMap, IMapNode } from 'content-interfaces';
+import { IMap, IMapNode } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { D3MapCreator } from './d3-map';
 

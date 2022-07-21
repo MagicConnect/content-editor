@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IBanner, ItemType } from 'content-interfaces';
+import { IBanner, ItemType } from '@magicconnect/content-interfaces';
 import { newBanner } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 

@@ -1,5 +1,5 @@
 
-import { IBanner } from 'content-interfaces';
+import { IBanner } from '@magicconnect/content-interfaces';
 
 export const newBanner = (): IBanner => ({
   id: '',

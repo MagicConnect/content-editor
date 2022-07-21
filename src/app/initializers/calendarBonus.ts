@@ -1,4 +1,4 @@
-import { CalendarBonusRepeat, ICalendarBonus } from 'content-interfaces';
+import { CalendarBonusRepeat, ICalendarBonus } from '@magicconnect/content-interfaces';
 
 export const newCalendarBonus = (): ICalendarBonus => ({
   id: '',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IUnitSpritesheetData } from 'content-interfaces';
+import { IUnitSpritesheetData } from '@magicconnect/content-interfaces';
 
 @Component({
   selector: 'app-spritesheet-animation-group',

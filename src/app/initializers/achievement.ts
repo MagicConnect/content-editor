@@ -1,4 +1,4 @@
-import { AchievementCategory, AchievementStat, IAchievement } from 'content-interfaces';
+import { AchievementCategory, AchievementStat, IAchievement } from '@magicconnect/content-interfaces';
 
 export const newAchievement = (): IAchievement => ({
   id: '',

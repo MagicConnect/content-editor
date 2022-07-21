@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Element, ISkill, SkillActionPattern, SkillValidTargets, Stat } from 'content-interfaces';
+import { Element, ISkill, SkillActionPattern, SkillValidTargets, Stat } from '@magicconnect/content-interfaces';
 import { newSkill } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 

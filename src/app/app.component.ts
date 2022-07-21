@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IContentPack } from 'content-interfaces';
+import { IContentPack } from '@magicconnect/content-interfaces';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LocalStorage } from 'ngx-webstorage';
 import { interval } from 'rxjs';

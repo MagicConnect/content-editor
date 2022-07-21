@@ -1,5 +1,5 @@
 
-import { IShop, ShopReset } from 'content-interfaces';
+import { IShop, ShopReset } from '@magicconnect/content-interfaces';
 
 export const newShop = (): IShop => ({
   id: '',

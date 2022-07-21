@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { sortBy } from 'lodash';
-import { IMapNodeDroppable, MapDropType } from 'content-interfaces';
+import { IMapNodeDroppable, MapDropType } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

@@ -1,4 +1,4 @@
-import { IItem, ItemType } from 'content-interfaces';
+import { IItem, ItemType } from '@magicconnect/content-interfaces';
 
 export const newItem = (): IItem => ({
   id: '',

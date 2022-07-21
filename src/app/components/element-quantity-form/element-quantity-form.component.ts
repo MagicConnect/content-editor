@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Element } from 'content-interfaces';
+import { Element } from '@magicconnect/content-interfaces';
 import { interval, Subscription } from 'rxjs';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { newShop } from '../../initializers';
-import { IShop, ShopReset } from 'content-interfaces';
+import { IShop, ShopReset } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

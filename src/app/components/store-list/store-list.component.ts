@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { IStore } from 'content-interfaces';
+import { IStore } from '@magicconnect/content-interfaces';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newStore } from 'src/app/initializers/store';

@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ICalendarBonus } from 'content-interfaces';
+import { ICalendarBonus } from '@magicconnect/content-interfaces';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModManagerService } from 'src/app/services/mod-manager.service';

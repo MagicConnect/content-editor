@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { CalendarBonusRepeat, ICalendarBonus } from 'content-interfaces';
+import { CalendarBonusRepeat, ICalendarBonus } from '@magicconnect/content-interfaces';
 import { newCalendarBonus } from 'src/app/initializers';
 import { ModManagerService } from 'src/app/services/mod-manager.service';
 

@@ -6,7 +6,7 @@ import { sortBy } from 'lodash';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newMapBattle } from '../../initializers';
-import { IEnemy, IMapNode, MapDropType } from 'content-interfaces';
+import { IEnemy, IMapNode, MapDropType } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 

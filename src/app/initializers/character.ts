@@ -1,5 +1,5 @@
 
-import { Archetype, Stat, Weapon, ICharacter, CharacterSpeed } from 'content-interfaces';
+import { Archetype, Stat, Weapon, ICharacter, CharacterSpeed } from '@magicconnect/content-interfaces';
 
 export const newCharacter = (): ICharacter => ({
   id: '',

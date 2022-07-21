@@ -1,4 +1,4 @@
-import { ItemType, IWeapon, Stat, Weapon } from 'content-interfaces';
+import { ItemType, IWeapon, Stat, Weapon } from '@magicconnect/content-interfaces';
 
 export const newWeapon = (): IWeapon => ({
   id: '',
@@ -12,5 +12,6 @@ export const newWeapon = (): IWeapon => ({
   primaryStat: Stat.Attack,
   secondaryStat: '' as any,
 
-  abilities: []
+  abilities: [],
+  allowedExtraDupeItems: []
 });

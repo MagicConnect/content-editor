@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IBanner, IShop, IWeapon } from 'content-interfaces';
+import { IBanner, IShop, IWeapon } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 import { cloneDeep } from 'lodash';

@@ -1,5 +1,5 @@
 
-import { Archetype, Stat, IEnemy } from 'content-interfaces';
+import { Archetype, Stat, IEnemy } from '@magicconnect/content-interfaces';
 
 export const newEnemy = (): IEnemy => ({
   id: '',

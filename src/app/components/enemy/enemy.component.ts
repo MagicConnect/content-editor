@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { newEnemy } from '../../initializers';
-import { Stat } from 'content-interfaces';
+import { Stat } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { PickerModalComponent } from '../picker-modal/picker-modal.component';
 

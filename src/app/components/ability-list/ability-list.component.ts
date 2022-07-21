@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newAbility } from '../../initializers';
-import { IAbility, ICharacter, IAccessory, IEnemy, IWeapon, IAbilityUtility } from 'content-interfaces';
+import { IAbility, ICharacter, IAccessory, IEnemy, IWeapon, IAbilityUtility } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

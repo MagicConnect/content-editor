@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IStoreItemBundle, ItemType } from 'content-interfaces';
+import { IStoreItemBundle, ItemType } from '@magicconnect/content-interfaces';
 
 import { sortBy } from 'lodash';
 import { ModManagerService } from '../../services/mod-manager.service';

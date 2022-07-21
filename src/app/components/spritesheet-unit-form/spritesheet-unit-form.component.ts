@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IUnitSpritesheetData } from 'content-interfaces';
+import { IUnitSpritesheetData } from '@magicconnect/content-interfaces';
 
 @Component({
   selector: 'app-spritesheet-unit-form',

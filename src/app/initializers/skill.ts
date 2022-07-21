@@ -1,5 +1,5 @@
 
-import { ISkill, Element } from 'content-interfaces';
+import { ISkill, Element } from '@magicconnect/content-interfaces';
 
 export const newSkill = (): ISkill => ({
   id: '',

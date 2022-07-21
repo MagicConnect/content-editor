@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
-import { AchievementCategory, AchievementStat, IAchievement } from 'content-interfaces';
+import { AchievementCategory, AchievementStat, IAchievement } from '@magicconnect/content-interfaces';
 import { newAchievement } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 import { Subscription } from 'rxjs';

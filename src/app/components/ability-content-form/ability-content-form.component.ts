@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IAbilityUtility } from 'content-interfaces';
+import { IAbilityUtility } from '@magicconnect/content-interfaces';
 import { newAbilityUtility } from '../../initializers';
 
-import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger } from 'content-interfaces';
+import { AbilityCondition, AbilityEffect, AbilityTarget, AbilityTrigger } from '@magicconnect/content-interfaces';
 
 @Component({
   selector: 'app-ability-content-form',

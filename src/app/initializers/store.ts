@@ -1,4 +1,4 @@
-import { IStore } from 'content-interfaces';
+import { IStore } from '@magicconnect/content-interfaces';
 
 export const newStore = (): IStore => ({
   id: '',

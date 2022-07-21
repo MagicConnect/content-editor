@@ -1,5 +1,5 @@
 
-import { AbilityTrigger, IAbility, IAbilityUtility } from 'content-interfaces';
+import { AbilityTrigger, IAbility, IAbilityUtility } from '@magicconnect/content-interfaces';
 
 export const newAbility = (): IAbility => ({
   id: '',

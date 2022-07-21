@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { IBanner, ICharacter, IShop } from 'content-interfaces';
+import { IBanner, ICharacter, IShop } from '@magicconnect/content-interfaces';
 import { newCharacter } from '../../initializers';
 import { ModManagerService } from '../../services/mod-manager.service';
 

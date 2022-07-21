@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { Archetype, ArchetypeStatMatrix, Stat, StatAllocationMatrix } from 'content-interfaces';
+import { Archetype, ArchetypeStatMatrix, Stat, StatAllocationMatrix } from '@magicconnect/content-interfaces';
 import { ModManagerService } from '../../services/mod-manager.service';
 
 @Component({

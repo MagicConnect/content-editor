@@ -7,7 +7,7 @@ import * as jsonPatch from 'fast-json-patch';
 
 import { v4 as uuid } from 'uuid';
 
-import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData, IStore, ICalendarBonus } from 'content-interfaces';
+import { Archetype, IAbility, IArtPack, IBanner, ICharacter, IAccessory, IContentPack, IEnemy, IItem, IMap, IShop, ISkill, ItemType, IWeapon, Stat, IIdentifiable, Element, IAchievement, IMapNode, IUnitSpritesheetData, IStore, ICalendarBonus } from '@magicconnect/content-interfaces';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 

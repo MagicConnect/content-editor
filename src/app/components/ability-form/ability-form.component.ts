@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IAbility } from 'content-interfaces';
+import { IAbility } from '@magicconnect/content-interfaces';
 import { newAbility } from '../../initializers';
 
 @Component({

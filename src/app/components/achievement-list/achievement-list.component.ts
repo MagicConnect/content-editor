@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { IAchievement } from 'content-interfaces';
+import { IAchievement } from '@magicconnect/content-interfaces';
 import { cloneDeep } from 'lodash';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { newAchievement } from '../../initializers';

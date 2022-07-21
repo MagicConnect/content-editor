@@ -1,4 +1,4 @@
-import { IAccessory, ItemType, Stat } from 'content-interfaces';
+import { IAccessory, ItemType, Stat } from '@magicconnect/content-interfaces';
 
 export const newAccessory = (): IAccessory => ({
   id: '',
@@ -10,5 +10,6 @@ export const newAccessory = (): IAccessory => ({
   stars: 1,
   primaryStat: Stat.Defense,
 
-  abilities: []
+  abilities: [],
+  allowedExtraDupeItems: []
 });
