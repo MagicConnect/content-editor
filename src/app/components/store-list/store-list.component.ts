@@ -30,7 +30,7 @@ export class StoreListComponent implements OnInit {
         && !this.isCurrentStoreDuplicateName
         && this.currentStore.cost > 0
         && this.currentStore.items.length > 0
-        && this.currentStore.items.every(c => !!c.itemType && c.quantity > 0)
+        && this.currentStore.items.every(c => !!c.itemId && c.quantity > 0)
         && this.currentStore.cost.toString().includes('.');
   }
 
@@ -63,8 +63,7 @@ export class StoreListComponent implements OnInit {
     }
 
     this.searchResults = this.allStores.filter(a => {
-      return a.name.toLowerCase().includes(this.searchText.toLowerCase())
-          || a.items.some(b => b.itemType.toLowerCase().includes(this.searchText.toLowerCase()));
+      return a.name.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
 
