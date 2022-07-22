@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { IStoreItemBundle, ItemType } from '@magicconnect/content-interfaces';
+import { IStoreItemBundle } from '@magicconnect/content-interfaces';
 
 import { sortBy } from 'lodash';
 import { ModManagerService } from '../../services/mod-manager.service';
@@ -18,7 +18,7 @@ export class StoreEntryFormComponent {
   form = new FormGroup({});
 
   @Input() model: IStoreItemBundle = {
-    itemType: ItemType.Crystal,
+    itemId: '',
     quantity: -1,
   };
 
